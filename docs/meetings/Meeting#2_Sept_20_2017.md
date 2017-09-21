@@ -7,13 +7,21 @@ topics covered:
 
 1.database: chosing the structure of the database, still not confirmed. Ahmad will speak to some database experts to see their input and will have an answer by thursday Sept 21st.
 
-2.teams:
+2. Decided server side language
 
-front-end: 
+3. Decided database design and implementation
 
-back-end: 
+4. Discussed MVC
 
-qa/testing: 
+5. Discussed Definition of user stories 
+
+6.teams possibly will require confirmation:
+
+front-end: Roy Salida, Vartan Benohanian, George Theophanous, Anania Yeghikian
+
+back-end: Marc-Andre Dragon, YongAnn Khoo, Kosta Evagelidis, Ahmad Baiazid, Shayan Shakeri, Michel Maroun
+
+qa/testing: Everyone
 
 documentation: everyone will document what they do and we will put it all together at the end of each sprint
 
