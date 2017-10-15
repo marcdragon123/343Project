@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="CSS/register.css" type="text/css" >
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="Js/register.js"></script>
+    <?php include('../php/register.php'); ?>
 </head>
 
 <div class="container">
@@ -10,17 +11,17 @@
             <div class="row">
             <div class="col-sm-3"></div>
                 <div class="col-sm-6">
-            <form class="form-signin" method="POST" action="sign_in.php">
+            <form class="form-signin" method="POST" action="register.php">
                 <span id="reauth-email" class="reauth-email"></span>
                 <input type="email" id="email" class="form-control" name="email" placeholder="Email address" onchange="validate_email()" required autofocus >
-                <div id="emailalert"><strong id="emailalertstrong"></strong> <!--Alerts-->
+                <div id="emailalert"><strong id="emailalertstrong"></strong></div> <!--Alerts-->
                 <span id="reauth-email" class="reauth-email"></span>
                 <input type="password" id="password" class="form-control" name="password" placeholder="Password" required>
                 
                 <span id="reauth-email" class="reauth-email"></span>
                 
                 <input type="text" id="fname" class="form-control" name="fname" placeholder="Enter your first name" onchange="validate_fname()" required autofocus>
-                <div id="fnamealert"><strong id="fnamealertstrong"></strong> <!--Alerts-->
+                <div id="fnamealert"><strong id="fnamealertstrong"></strong></div> <!--Alerts-->
                  
                 <input type="text" id="lname" class="form-control" name="lname" placeholder="Enter your last name" required autofocus>
                  
@@ -41,10 +42,10 @@
                     
                 <!--City + Postal Code -->
                 <div class="col-sm-5">
-                    <input type="text" id="city" class="form-control" name="City" placeholder="City" required autofocus>
+                    <input type="text" id="city" class="form-control" name="city" placeholder="City" required autofocus>
                 </div>
                     <div class="col-sm-7">
-                        <input type="text" id="postalcode" class="form-control" name="PostalCode" placeholder="Postal Code" required autofocus>
+                        <input type="text" id="postalcode" class="form-control" name="postalcode" placeholder="Postal Code" required autofocus>
                     </div>
                 </div> <!--/City + Postal code--->
                 

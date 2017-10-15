@@ -2,7 +2,6 @@
   //define variables for inputs
   var fname = document.getElementById('fname').value;
   var lname = document.getElementById('lname').value;
-  var email = document.getElementById('email').value;
   var phone = document.getElementById('phone').value;
   var city = document.getElementById('city').value;
   var streetnum = document.getElementById('streetnum').value;
@@ -13,10 +12,10 @@
 
   //Define pattern recognition variables 
   var namepatt = /^[a-z]+$/i;    
-  var emailpatt = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  var phonepatt = /^(([0-9]{10}))$/;
+  var emailpatt = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm;
 
   function validate_email(){
+      var email = document.getElementById('email').value;
       
       if(!emailpatt.test(email))
       { 
