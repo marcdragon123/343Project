@@ -14,13 +14,14 @@ $dbname="compstor_db";
         die("connection failed");
     }    
     else{
-        //If connection was successful, go to this function
-        
-        $email= $_POST['email'];
-        $password = $_POST['password'];
-        
-        Sign_in($email, $password, $connection);
-    }  
+            //If there was a post method
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $email= $_POST['email'];
+            $password = $_POST['password'];
+            //Go to this function with the following parameters
+            Sign_in($email, $password, $connection);
+            }
+        }  
     
 //Catch email and password
 function Sign_in($email, $password, $connection){
