@@ -32,25 +32,30 @@ function Sign_in($email, $password, $connection){
     //if table has more than 0 records
     if (mysqli_num_rows($search) > 0) {
     
-    // Loop through data of each row
-    while($row = mysqli_fetch_assoc($search)) {
-        //if Exists matching email and password
-        if($row["Email"]==$email && $row["password"]==$password){
-           header("Location: catalogue.html");
-        }
-        //If user enters wrong password
-        else{
-            //Take action
-        }
+        //checks if the user exists in table
+        $if_exists = "SELECT Email,password FROM account_tbl WHERE Email = '$email' AND 
+        password = '$password'";
+        $checks = mysqli_query($connection, $if_exists);
         
-     }
-//If 
-} else {
-    echo "0 results";
-}
+        //if record matches    
+        if(mysqli_num_rows($checks) > 0){
+            header("Location:catalogue.html");
+        }
+        else{
+            echo "
+            <script>
+            alert('User does not exists!');
+            </script>";
+        }
+   
+
+    } else{ //if there are no entries 
+        
+        die("No records in table");
+    }
 
 }
-
+ 
 
 
 ?>
