@@ -153,28 +153,6 @@ class Config
             return false; 
         } 
    }
-    //Should delete this chunk of code
-    public function insertNewUser($firstName, $lastName, $id, $password, $email, $dob, $userType){
-        if(!$this->checkExists('user', "concordiaID", $id)){
-            $this->insert('user', array($id, $password, $userType));
-            if ($userType==1){
-                $table="instructor";
-            } else if ($userType==0){
-                $table="student";
-            }
-            $this->insert($table, array($id, $firstName, $lastName, $dob, $email));
-        } else {
-            $message="Sorry, this user ID already exists!";
-            echo "<script type='text/javascript'>alert('$message');</script>";
-        }
-    }
-    
-    public function insertNewCourse($id, $code, $name, $section, $description){
-        $this->insert('course', array('NULL',$id, $code." - ".$name, $section, $description));
-    }
-    //up to here
-
-
     public function checkExists($table, $identifier, $value, $extraWhere=NULL){
         $q= "SELECT * FROM ".$table." WHERE ".$identifier."='".$value."'";
         if($extraWhere!=NULL){
