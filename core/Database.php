@@ -1,13 +1,13 @@
 <?php
 
-include ('Lock.php');
+include ('Container.php');
 /**
  * Created by Marc-Andre Dragon.
  * Date: 2017-10-14
  * Time: 10:33 AM
  */
-$lock= new Lock();
-$GLOBALS['lock'] = $lock;
+$Container= new Container();
+$GLOBALS['Container'] = $Container;
 
 class Database implements SplSubject
 {
@@ -16,8 +16,8 @@ class Database implements SplSubject
 
     function __construct() {
         $this->conn = $this->getCon();
-        $lock = $this->getLock();
-        $this->attach($lock);
+        $Container = $this->getContainer();
+        $this->attach($Container);
     }
 
     function __destruct()
@@ -67,24 +67,24 @@ class Database implements SplSubject
         return $res;
     }
     //access the global array to notify lock of a change
-    function getLock(){
-        return $GLOBALS['lock'];
+    function getContainer(){
+        return $GLOBALS['Container'];
     }
 
 
     function updateTable($object){
-        $lock = $this->getLock();
-        $lock->notifyUpdateTable($object);
+        $Container = $this->getContainer();
+        $Container->notifyUpdateTable($object, $this);
     }
 
     function addToTable($object){
-        $lock = $this->getLock();
-        $lock->notifyAddToTable($object);
+        $Container = $this->getContainer();
+        $Container->notifyAddToTable($object, $this);
     }
 
     function removeFromTable($object){
-        $lock = $this->getLock();
-        $lock->notifyRemoveFromTable($object);
+        $Container = $this->getContainer();
+        $Container->notifyRemoveFromTable($object, $this);
     }
 
     /**

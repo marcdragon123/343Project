@@ -8,14 +8,22 @@
 
 class MyThread extends Worker {
     private $objects = array();
+    private $db;
 
     //code to be run when the object is constructed
-    function __construct($object){
+    function __construct($object, $db){
         if($object==null) {
             array_push($this->objects,null);
         }
         else{
             array_push($this->objects,$object);
+        }
+
+        if($db==null) {
+            $db = null;
+        }
+        else{
+            $this->db = $db;
         }
     }
 
@@ -31,6 +39,11 @@ class MyThread extends Worker {
     //code to be run when thread is started
     function run()
     {
-        //ToDo write code to run query
+        $res = array();
+        foreach ($this->objects as $item) {
+            array_push($res,$this->excuteQuery($item, $this->db));
+        }
+
+
     }
 }
