@@ -5,10 +5,13 @@ namespace App;
 class Config
 {
     //FOR TESTING
-    private $db_host="localhost:8888";
+    private $db_host="localhost";
     private $db_user="root";
-    private $db_pass="root";
-    private $db_name="compstor_db";
+    private $db_pass="";
+    private $db_name="compstore_db";
+
+    private $con = null;
+    private $connection = null;
     
     //REAL THING
     /*private $db_host="localhost";
@@ -48,6 +51,16 @@ class Config
         }
     }
     
+    public function authenticate($email, $password){ 
+        $credentials = $this->select("account_tbl", "*", "email='$email' AND password='$password'");
+
+        if($credentials) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function select($table, $rows = '*', $where = null, $order = null){
         $q = 'SELECT '.$rows.' FROM '.$table;
         if($where != null){

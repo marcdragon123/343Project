@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en-US">
 
     <head>
@@ -12,8 +13,8 @@
     <body>
            <div class="login-page">
                     <div class="form">
-                        <form class="login-form" action="" method="post">
-                            <input type="text" placeholder="Username" name="id"/>
+                        <form class="login-form" action="../controllers/loginController.php" method="POST">
+                            <input type="text" placeholder="Email" name="email"/>
                             <input type="password" placeholder="Password" name="password"/>
                             <input type="submit" value="Log In" name="submit">
                             <p class="message">Not registered? <a href="#">Create an account</a></p>
