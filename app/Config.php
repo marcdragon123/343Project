@@ -5,10 +5,14 @@ namespace App;
 class Config
 {
     //FOR TESTING
-    private $db_host="localhost:8888";
+    //You should change these values to work with your DB
+    private $db_host="localhost";
     private $db_user="root";
-    private $db_pass="root";
-    private $db_name="compstor_db";
+    private $db_pass="";
+    private $db_name="compstore_db";
+
+    private $con = null;
+    private $connection = null;
     
     //REAL THING
     /*private $db_host="localhost";
@@ -47,7 +51,17 @@ class Config
             }
         }
     }
-    
+
+    public function authenticate($email, $password){ 
+        $credentials = $this->select("account_tbl", "*", "email='$email' AND password='$password'");
+
+        if($credentials) {
+            return $credentials[0];
+        } else {
+            return false;
+        }
+    }
+
     public function select($table, $rows = '*', $where = null, $order = null){
         $q = 'SELECT '.$rows.' FROM '.$table;
         if($where != null){
@@ -139,26 +153,6 @@ class Config
             return false; 
         } 
    }
-    
-    public function insertNewUser($firstName, $lastName, $id, $password, $email, $dob, $userType){
-        if(!$this->checkExists('user', "concordiaID", $id)){
-            $this->insert('user', array($id, $password, $userType));
-            if ($userType==1){
-                $table="instructor";
-            } else if ($userType==0){
-                $table="student";
-            }
-            $this->insert($table, array($id, $firstName, $lastName, $dob, $email));
-        } else {
-            $message="Sorry, this user ID already exists!";
-            echo "<script type='text/javascript'>alert('$message');</script>";
-        }
-    }
-    
-    public function insertNewCourse($id, $code, $name, $section, $description){
-        $this->insert('course', array('NULL',$id, $code." - ".$name, $section, $description));
-    }
-    
     public function checkExists($table, $identifier, $value, $extraWhere=NULL){
         $q= "SELECT * FROM ".$table." WHERE ".$identifier."='".$value."'";
         if($extraWhere!=NULL){
@@ -188,5 +182,3 @@ class Config
 
 
 }
-
-?>
