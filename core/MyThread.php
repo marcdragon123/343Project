@@ -43,7 +43,7 @@ class MyThread extends Worker {
         foreach ($this->objects as $item) {
             array_push($res,$this->excuteQuery($item, $this->db));
         }
-
+        //TODO set a exception handler in case of failed execution of query.
 
     }
 }

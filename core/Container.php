@@ -36,7 +36,40 @@ class Container implements SplObserver
     }
 
     function notifyUpdateTable($object, $db) {
-        //ToDo Add SQL statements to query DB
+
+        $queryStart="UPDATE ";
+        $serialNumber = $object->getSerialNumber();
+        $objectType = $object->getType();
+
+        switch ($objectType)
+        {
+            case 'Monitor':
+                $queryStart.="Monitor_tbl";
+                break;
+            case 'Tablet':
+                $queryStart.="Tablet_tbl";
+                break;
+            case 'Computer':
+                $queryStart.="DesktopComputer_tbl";
+                break;
+            case 'Laptop':
+                $queryStart.="Laptop_tbl";
+                break;
+        }
+
+        $queryStart.=" SET";
+        $queryFinish=" WHERE SerialNumber=".$serialNumber;
+
+        foreach ($object->properties as $key=>$val) {
+            $query = $queryStart." Key=".$key.", Value=".$val." ";
+            $query.=$queryFinish;
+            $thread = new MyThread($query, $db);
+            $this->request($thread);
+        }
+
+        $this->runUpdate();
+
+
     }
 
     function notifyAddToTable($object, $db) {
@@ -71,8 +104,6 @@ class Container implements SplObserver
 
         $this->runUpdate();
 
-
-        //ToDo Add SQL statements to query DB
     }
 
     function notifyRemoveFromTable($object, $db) {
@@ -103,8 +134,6 @@ class Container implements SplObserver
         $this->request($thread);
         $this->runUpdate();
 
-
-        //ToDo Add SQL statements to query DB
     }
 
     /**
@@ -117,7 +146,6 @@ class Container implements SplObserver
      * @since 5.1.0
      */
     public function update(SplSubject $subject) {
-        // TODO: Implement update() method.
     }
 
     public function runUpdate()
