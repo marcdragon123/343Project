@@ -18,13 +18,6 @@ require('models/home.php');
 //require('models/share.php');
 require('models/user.php');
 
-if(array_key_exists('controller', $_GET) || array_key_exists('action', $_GET)){
-
-} else {
-	$_GET['controller'] = "";
-	$_GET['action'] = "";
-}
-
 $router = new Router($_GET);
 $controller = $router->createController();
 if($controller){
