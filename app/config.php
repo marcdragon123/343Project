@@ -1,11 +1,22 @@
 <?php
 
-// Define DB Params
+// Define DB Params for your local hosting
 define("DB_HOST", "localhost");
 define("DB_USER", "root");
-define("DB_PASS", "root");
-define("DB_NAME", "shareboard");
+define("DB_PASS", "");
+define("DB_NAME", "compstore_db");
 
-// Define URL
-define("ROOT_PATH", "/~ahmadbiz/php.dev/");
-define("ROOT_URL", "http://localhost/~ahmadbiz/php.dev/");
+// Define DB Params for the real thing
+//define("DB_HOST", "localhost");
+//define("DB_USER", "root");
+//define("DB_PASS", "");
+//define("DB_NAME", "compstore_db");
+
+// Define URL for localhost
+define("ROOT_PATH", "/343Project/app/");
+define("ROOT_URL", "http://localhost/343Project/app/");
+
+
+// Define URL real thing
+//define("ROOT_PATH", "/343Project/app/");
+//define("ROOT_URL", "http://localhost/343Project/app/");
