@@ -10,7 +10,7 @@ class UserModel extends Model{
 
 
 			// Insert into MySQL
-			$this->query('INSERT INTO Account_tbl (isAdmin, FirstName, LastName, 
+			$this->query('INSERT INTO account_tbl (Admin, FirstName, LastName, 
                           Email, PhoneNumber, password, StreetName, StreetNumber, City, Province,
                            Country, PostalCode) VALUES(:isAdmin, :fname, :lname, :email, :phone,
                             :password , :streetname, :streetnum, :city, :Province, :Country, :postalcode)');
@@ -44,7 +44,7 @@ class UserModel extends Model{
 
 		if($post['submit']){
 			// Compare Login
-			$this->query('SELECT * FROM Account_tbl WHERE Email = :email AND password = :password');
+			$this->query('SELECT * FROM account_tbl WHERE Email = :email AND password = :password');
 			$this->bind(':email', $post['email']);
 			$this->bind(':password', $password);
 			
@@ -53,8 +53,8 @@ class UserModel extends Model{
 			if($row){
 				$_SESSION['is_logged_in'] = true;
 				$_SESSION['user_data'] = array(
-					"ID"	=> $row['id'],
-					"FirstName"	=> $row['name'],
+					"ID"	=> $row['ID'],
+					"FirstName"	=> $row['FirstName'],
 					"Email"	=> $row['email']
                 );
 				header('Location: '.ROOT_URL.'home');
