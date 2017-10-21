@@ -6,8 +6,11 @@ class Users extends Controller{
 	}
 
 	protected function login(){
-		
 		$viewmodel = new UserModel();
+		//Create variables here and pass them to view, Uncomment the following to try out
+		//$apple = 'iPhone 5';
+		//$samsung = 'galaxy edge';
+		//$this->addVars(compact('apple', 'samsung'));
 		$this->returnView($viewmodel->login(), true);
 	}
 

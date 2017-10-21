@@ -4,7 +4,8 @@
     <h3 class="panel-title">User Login</h3>
   </div>
   <div class="panel-body">
-
+    <!--Uncomment the following line to try out an example  -->
+    <!--<?= $apple . '<br>' .$samsung ?> -->
     <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
       	<div class="form-group">
     		<label>Email</label>
