@@ -1,22 +1,18 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: ahmadbiz
+ * Date: 2017-10-20
+ * Time: 11:01 PM
+ */
 
-// Define DB Params for your local hosting
+
+// Define DB Params
 define("DB_HOST", "localhost");
 define("DB_USER", "root");
 define("DB_PASS", "root");
 define("DB_NAME", "compstor_db");
 
-// Define DB Params for the real thing
-//define("DB_HOST", "localhost");
-//define("DB_USER", "root");
-//define("DB_PASS", "");
-//define("DB_NAME", "compstore_db");
-
-// Define URL for localhost
+// Define URL
 define("ROOT_PATH", "/~ahmadbiz/343Project/app/");
 define("ROOT_URL", "http://localhost/~ahmadbiz/343Project/app/");
-
-
-// Define URL real thing
-//define("ROOT_PATH", "/343Project/app/");
-//define("ROOT_URL", "http://localhost/343Project/app/");

@@ -3,14 +3,14 @@ class UserModel extends Model{
 	public function register(){
 		// Sanitize POST
 		$post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-        $isAdmin = 0;
+        $isAdmin = 1;
 		$password = md5($post['password']);
 
 		if($post['submit']){
 
 
 			// Insert into MySQL
-			$this->query('INSERT INTO account_tbl (Admin, FirstName, LastName, 
+			$this->query('INSERT INTO account_tbl (isAdmin, FirstName, LastName, 
                           Email, PhoneNumber, password, StreetName, StreetNumber, City, Province,
                            Country, PostalCode) VALUES(:isAdmin, :fname, :lname, :email, :phone,
                             :password , :streetname, :streetnum, :city, :Province, :Country, :postalcode)');
