@@ -24,10 +24,15 @@ abstract class Controller{
         }
 	}
 
-	//pass variables to respective view
-	protected function addVars($varArray){
+	//pass variables to respective view, by adding to array
+	protected function setVars($varArray){
 		foreach ($varArray as $key => $value) {
 			$this->viewVars[$key] = $value;
 		}
+	}
+
+	//sets one variable at a time instead of adding it to an array like above
+	protected function setVar($name, $value){
+		$viewVars[$name] = $value;
 	}
 }

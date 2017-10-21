@@ -10,7 +10,9 @@ class Users extends Controller{
 		//Create variables here and pass them to view, Uncomment the following to try out
 		//$apple = 'iPhone 5';
 		//$samsung = 'galaxy edge';
-		//$this->addVars(compact('apple', 'samsung'));
+		//$this->setVars(compact('apple', 'samsung'));
+		//$this->setVar('apple', $apple);
+		//$this->setVar('samsung', $samsung);
 		$this->returnView($viewmodel->login(), true);
 	}
 
