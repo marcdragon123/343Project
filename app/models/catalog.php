@@ -8,9 +8,25 @@
 
 class CatalogModel extends Model{
     public function Index(){
-        $this->query(''); //query goes here
+        $this->query('SELECT * FROM '); //query goes here
         $rows = $this->resultSet();
         return $rows;
+    }
+
+    public function addProduct(){
+
+    }
+
+    public function editProduct(){
+
+    }
+
+    public function removeProduct(){
+
+    }
+
+    public function viewProductDDetails(){
+
     }
 
 }

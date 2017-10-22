@@ -8,30 +8,31 @@ class UserModel extends Model{
 
 		if($post['submit']){
 
+		    //need a function here to check if email already exists
 
-			// Insert into MySQL
-			$this->query('INSERT INTO account_tbl (isAdmin, FirstName, LastName, 
-                          Email, PhoneNumber, password, StreetName, StreetNumber, City, Province,
-                           Country, PostalCode, isActive) VALUES(:isAdmin, :fname, :lname, :email, :phone,
-                            :password , :streetname, :streetnum, :city, :Province, :Country, :postalcode)');
+            // Insert into MySQL
+            $this->query('INSERT INTO account_tbl (isAdmin, FirstName, LastName, 
+                      Email, PhoneNumber, password, StreetName, StreetNumber, City, Province,
+                       Country, PostalCode) VALUES(:isAdmin, :fname, :lname, :email, :phone,
+                        :password , :streetname, :streetnum, :city, :Province, :Country, :postalcode)');
             $this->bind(':isAdmin', $isAdmin);
-			$this->bind(':fname', $post['fname']);
+            $this->bind(':fname', $post['fname']);
             $this->bind(':lname', $post['lname']);
             $this->bind(':email', $post['email']);
             $this->bind(':phone', $post['phone']);
             $this->bind(':streetnum', $post['streetnum']);
-			$this->bind(':streetname', $post['streetname']);
+            $this->bind(':streetname', $post['streetname']);
             $this->bind(':city', $post['city']);
             $this->bind(':postalcode', $post['postalcode']);
             $this->bind(':Province', $post['Province']);
             $this->bind(':Country', $post['Country']);
-			$this->bind(':password', $password);
-			$this->execute();
-			// Verify
-			if($this->lastInsertId()){
-				// Redirect
-				header('Location: '.ROOT_URL.'users/login');
-			}
+            $this->bind(':password', $password);
+            $this->execute();
+            // Verify
+            if ($this->lastInsertId()) {
+                // Redirect
+                header('Location: ' . ROOT_URL . 'users/login');
+            }
 		}
 		return;
 	}
@@ -96,6 +97,7 @@ class UserModel extends Model{
         $this->execute();
     }
 
+    //checks if user already has a regular user account
 
 	public function viewProile(){
         $get = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);

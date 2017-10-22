@@ -30,7 +30,7 @@
 
                 <input type="text" id="lname" class="form-control" name="lname" placeholder="Enter your last name" required autofocus>
 
-                <input type="text" id="phonenum" class="form-control" name="phone" placeholder="Enter your phone number" required autofocus>
+                <input type="text" id="phone" class="form-control" name="phone" placeholder="Enter your phone number" required autofocus>
                 <div class="row">
 
                 <!--Street name + Number -->

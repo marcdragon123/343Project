@@ -12,11 +12,28 @@ class Catalog extends Controller{
         $this->returnView($viewmodel->Index(), true);
     }
 
-    protected function add(){
+    protected function addProduct(){
         if(!isset($_SESSION['is_logged_in'])){
-            header('Location: '.ROOT_URL.'shares');
+            header('Location: '.ROOT_URL.'home');
         }
         $viewmodel = new CatalogModel();
-        $this->returnView($viewmodel->add(), true);
+        $this->returnView($viewmodel->addProduct(), true);
     }
+
+    protected function addProduct(){
+
+    }
+
+    protected function editProduct(){
+
+    }
+
+    protected function removeProduct(){
+
+    }
+
+    protected function viewProductDDetails(){
+
+    }
+
 }
