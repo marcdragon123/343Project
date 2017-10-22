@@ -32,7 +32,7 @@ abstract class Model{
 	}
 
 	public function execute(){
-		$this->stmt->execute();
+        $this->stmt->execute();
 	}
 
 	public function resultSet(){

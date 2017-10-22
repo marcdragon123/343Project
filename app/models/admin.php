@@ -12,6 +12,7 @@ class AdminModel extends Model{
         $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
         $password = md5($post['password']);
+        $email = $post['email'];
 
         if($post['submit']){
             // Compare Login
@@ -28,6 +29,8 @@ class AdminModel extends Model{
                     "FirstName"	=> $row['FirstName'],
                     "Email"	=> $row['email']
                 );
+                $ID = $_SESSION['user_data']['ID'];
+                $this->loginStatus($email, $ID);
                 header('Location: '.ROOT_URL.'home');
             } else {
                 Messages::setMsg('Incorrect Login', 'error');
@@ -35,5 +38,32 @@ class AdminModel extends Model{
         }
         return;
     }
+
+    public function loginStatus($email, $ID){
+        $isActive = true;
+        $this->query('UPDATE account_tbl SET isActive = :isActive WHERE Email = :email');
+        $this->bind(':email', $email);
+        $this->bind(':isActive', $isActive);
+        $this->execute();
+
+        $this->query('INSERT INTO audit_tbl (AccountID, Login) VALUES (:ID, CURRENT_TIMESTAMP )');
+        $this->bind(':ID', $ID);
+        $this->execute();
+
+    }
+
+    public function logoutStatus($email, $ID){
+        $isActive = false;
+        $this->query('UPDATE account_tbl SET isActive = :isActive WHERE Email = :email');
+        $this->bind(':email', $email);
+        $this->bind(':isActive', $isActive);
+        $this->execute();
+
+        $out = null;
+        $this->query('UPDATE audit_tbl SET Logout=CURRENT_TIMESTAMP WHERE AccountID = :ID AND Logout IS NULL');
+        $this->bind(':ID', $ID);
+        $this->execute();
+    }
+
 
 }

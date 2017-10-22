@@ -17,6 +17,10 @@ class Users extends Controller{
 	}
 
 	protected function logout(){
+	    $email = $_SESSION['user_data']['Email'];
+	    $ID = $_SESSION['user_data']['ID'];
+	    $viewModel = new UserModel();
+	    $viewModel->logoutStatus($email, $ID);
 		unset($_SESSION['is_logged_in']);
 		unset($_SESSION['user_data']);
 		session_destroy();

@@ -8,7 +8,7 @@
 
 class Catalog extends Controller{
     protected function Index(){
-        $viewmodel = new ShareModel();
+        $viewmodel = new CatalogModel();
         $this->returnView($viewmodel->Index(), true);
     }
 
@@ -16,7 +16,7 @@ class Catalog extends Controller{
         if(!isset($_SESSION['is_logged_in'])){
             header('Location: '.ROOT_URL.'shares');
         }
-        $viewmodel = new ShareModel();
+        $viewmodel = new CatalogModel();
         $this->returnView($viewmodel->add(), true);
     }
 }
