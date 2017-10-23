@@ -20,20 +20,19 @@ class Catalog extends Controller{
         $this->returnView($viewmodel->addProduct(), true);
     }
 
-    protected function addProduct(){
-
-    }
-
     protected function editProduct(){
-
+        $viewmodel = new CatalogModel();
+        $this->returnView($viewmodel->editProduct(), true);
     }
 
     protected function removeProduct(){
-
+        $viewmodel = new CatalogModel();
+        $this->returnView($viewmodel->removeProduct(), true);
     }
 
     protected function viewProductDDetails(){
-
+        $viewmodel = new CatalogModel();
+        $this->returnView($viewmodel->viewProductDDetails(), true);
     }
 
 }

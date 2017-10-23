@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="../assets/css/admin_index.css" type="text/css" >
 <link rel="stylesheet" href="../assets/css/register.css" type="text/css" >
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<!--    <script src="../assets/js/register.js"></script>-->
+   <script src="../assets/js/register.js"></script>
 </head>
 <body>
         <div class="panel panel-default">
