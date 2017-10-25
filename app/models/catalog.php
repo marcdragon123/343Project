@@ -1,19 +1,14 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ahmadbiz
- * Date: 2017-10-20
- * Time: 11:24 PM
- */
 
 class CatalogModel extends Model{
     public function Index(){
-        $this->query('SELECT * FROM '); //query goes here
+        $this->query('SELECT * FROM account_tbl ORDER BY ID DESC'); //query goes here
         $rows = $this->resultSet();
         return $rows;
     }
 
     public function addProduct(){
+        return ;
 
     }
 

@@ -58,7 +58,8 @@ class UserModel extends Model{
 				$_SESSION['user_data'] = array(
 					"ID"	=> $row['ID'],
 					"FirstName"	=> $row['FirstName'],
-					"Email"	=> $row['Email']
+					"Email"	=> $row['Email'],
+                    "Admin" => $row['Admin']
                 );
 				$ID = $_SESSION['user_data']['ID'];
 				$this->loginStatus($email, $ID);
@@ -105,5 +106,8 @@ class UserModel extends Model{
         if($get){
 
         }
+    }
+    public function userProfile(){
+        return;
     }
 }
