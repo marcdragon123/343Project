@@ -1,12 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ahmadbiz
- * Date: 2017-10-20
- * Time: 10:56 PM
- */
 
 class Admin extends Controller{
+    protected function Index(){
+        $viewmodel = new CatalogModel();
+        $this->returnView($viewmodel->Index(), true);
+    }
+
     protected function adminLogin(){
         $viewmodel = new AdminModel();
         //Create variables here and pass them to view, Uncomment the following to try out
@@ -28,5 +27,14 @@ class Admin extends Controller{
         session_destroy();
         // Redirect
         header('Location: '.ROOT_URL);
+    }
+
+    protected function userProfile(){
+        $viewmodel = new UserModel();
+        $this->returnView($viewmodel->userProfile(), true);    }
+
+    protected function addProduct(){
+        $viewmodel = new CatalogModel();
+        $this->returnView($viewmodel->userProfile(), true);
     }
 }

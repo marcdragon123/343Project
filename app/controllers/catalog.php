@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ahmadbiz
- * Date: 2017-10-20
- * Time: 11:23 PM
- */
 
 class Catalog extends Controller{
     protected function Index(){
@@ -16,8 +10,27 @@ class Catalog extends Controller{
         if(!isset($_SESSION['is_logged_in'])){
             header('Location: '.ROOT_URL.'home');
         }
-        $viewmodel = new CatalogModel();
-        $this->returnView($viewmodel->addProduct(), true);
+
+        if(!empty($_POST)) {
+            $viewmodel = new CatalogModel();
+            switch (true) {
+                case isset($_POST['computer']):
+                    $this->returnView($viewmodel->addComputer(), true);
+                    break;
+                case isset($_POST['laptop']):
+                    $this->returnView($viewmodel->addLaptop(), true);
+                    break;
+                case isset($_POST['tablet']):
+                    $this->returnView($viewmodel->addTablet(), true);
+                    break;
+                case isset($_POST['monitor']):
+                    $this->returnView($viewmodel->addMonitor(), true);
+                    break;
+                case isset($_POST['desktop']):
+                    $this->returnView($viewmodel->addDesktop(), true);
+            }
+        }
+
     }
 
     protected function editProduct(){

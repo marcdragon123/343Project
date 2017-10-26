@@ -7,6 +7,12 @@
  */
 
 class AdminModel extends Model{
+    public function Index(){
+        $this->query('SELECT * FROM account_tbl ORDER BY ID DESC'); //query goes here
+        $rows = $this->resultSet();
+        return $rows;
+    }
+
     public function adminLogin(){
         // Sanitize POST
         $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -27,11 +33,12 @@ class AdminModel extends Model{
                 $_SESSION['user_data'] = array(
                     "ID"	=> $row['ID'],
                     "FirstName"	=> $row['FirstName'],
-                    "Email"	=> $row['email']
+                    "Email"	=> $row['email'],
+                    "Admin" => $row['Admin']
                 );
                 $ID = $_SESSION['user_data']['ID'];
                 $this->loginStatus($email, $ID);
-                header('Location: '.ROOT_URL.'home');
+                header('Location: '.ROOT_URL.'admin');
             } else {
                 Messages::setMsg('Incorrect Login', 'error');
             }
@@ -65,5 +72,8 @@ class AdminModel extends Model{
         $this->execute();
     }
 
+    public function userProfile(){
+        return;
+    }
 
 }

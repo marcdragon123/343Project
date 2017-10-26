@@ -27,4 +27,10 @@ class Users extends Controller{
 		// Redirect
 		header('Location: '.ROOT_URL);
 	}
+
+    protected function userProfile(){
+	    echo "fuck this shit";
+        $viewmodel = new UserModel();
+        $this->returnView($viewmodel->userProfile(), true);
+    }
 }
