@@ -1,9 +1,6 @@
 <<<<<<< HEAD
  <div id="page-wrapper">
-=======
-
         <div id="page-wrapper">
->>>>>>> 08a5529fefd0f03947791fe371e5677533b64c4a
             <div class="card">
                 <div class="row">
                     <div class="col-lg-12">
