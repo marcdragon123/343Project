@@ -8,11 +8,10 @@ class CatalogModel extends Model{
     }
 
     public function addProduct(){
-<<<<<<< HEAD
+
         $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-=======
+
         return ;
->>>>>>> 08a5529fefd0f03947791fe371e5677533b64c4a
 
         if($post['submit']){
             if($post['productType'] == '' || $post['quantity'] == ''){

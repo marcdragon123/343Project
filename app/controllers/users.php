@@ -29,11 +29,7 @@ class Users extends Controller{
 	}
 
     protected function userProfile(){
-<<<<<<< HEAD
-	    echo "fuck this shit";
-=======
-	    //echo "fuck this shit";
->>>>>>> 08a5529fefd0f03947791fe371e5677533b64c4a
+
         $viewmodel = new UserModel();
         $this->returnView($viewmodel->userProfile(), true);
     }
