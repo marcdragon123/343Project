@@ -13,6 +13,6 @@ class Cart extends Controller{
     }
 
     public function displayCart(){
-        $viewmodel = new cartModel();
+        $viewmodel = new CartModel();
     }
 }

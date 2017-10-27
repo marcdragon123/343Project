@@ -20,6 +20,7 @@ require('models/home.php');
 require('models/admin.php');
 require('models/user.php');
 require('models/catalog.php');
+require('models/cart.php');
 
 $router = new Router($_GET);
 $controller = $router->createController();
