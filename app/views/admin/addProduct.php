@@ -37,3 +37,76 @@
         </div><!--/.nav-collapse -->
     </div>
 </nav>
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Add product</h1>
+                </div>
+                <select>
+                    <option value="volvo">Tablet</option>
+                    <option value="saab">Monitor</option>
+                    <option value="mercedes">Laptop</option>
+                    <option value="audi">Computer</option>
+                </select>
+                <!-- /.col-lg-12 -->
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <div class="row">
+                <!-- /.col-lg-6 -->
+                <div class="col-lg-12">
+                <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Tablet 
+                        </div>
+                        <form>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="table-responsive table-bordered">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Product ID</th>
+                                            <th>Product Name</th>
+                                            <th>Price</th>
+                                            <th>Stock</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><br><input type="text" name ="productID"><br></td>
+                                            <td><br><input type="text" name ="productName"><br></td>
+                                            <td><br><input type="text" name ="price"><br></td>
+                                            <td><br><input type="text" name ="stock"><br></td>
+                                        </tr>
+                                    </tbody>
+                                    
+                                </table>
+                                <input type="submit" value="submit">
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                        </form>
+                    </div>
+                        
+                        
+                    
+                <!-- /.col-lg-6 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /#page-wrapper -->
+            
+    </div>
