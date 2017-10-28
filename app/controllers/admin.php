@@ -19,7 +19,7 @@ class Admin extends Controller{
 
     protected function logout(){
         $email = $_SESSION['user_data']['Email'];
-        $ID = $_SESSION['user_data']['ID'];
+        $ID = $_SESSION['user_data']['account_ID'];
         $viewModel = new UserModel();
         $viewModel->logoutStatus($email, $ID);
         unset($_SESSION['is_logged_in']);

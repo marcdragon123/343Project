@@ -1,14 +1,14 @@
   
   //define variables for inputs
-  var fname = document.getElementById('fname').value;
-  var lname = document.getElementById('lname').value;
+  var firstName = document.getElementById('firstName').value;
+  var lastName = document.getElementById('lastName').value;
   var phone = document.getElementById('phone').value;
   var city = document.getElementById('city').value;
-  var streetnum = document.getElementById('streetnum').value;
-  var streetname = document.getElementById('streetname').value;
+  var streetNumber = document.getElementById('streetNumber').value;
+  var streetName = document.getElementById('streetName').value;
   var province = document.getElementById('province').value;
   var country = document.getElementById('country').value;
-  var postalcode = document.getElementById('postalcode').value;
+  var postalCode = document.getElementById('postalCode').value;
 
   //Define pattern recognition variables 
   var namepatt = /^[a-z]+$/i;    

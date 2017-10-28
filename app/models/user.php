@@ -11,21 +11,21 @@ class UserModel extends Model{
 		    //need a function here to check if email already exists
 
             // Insert into MySQL
-            $this->query('INSERT INTO account_tbl (Admin, FirstName, LastName, 
-                      Email, PhoneNumber, password, StreetName, StreetNumber, City, Province,
-                       Country, PostalCode) VALUES(:isAdmin, :fname, :lname, :email, :phone,
-                        :password , :streetname, :streetnum, :city, :Province, :Country, :postalcode)');
+            $this->query('INSERT INTO account (Admin, FirstName, LastName, 
+                      Email, PhoneNumber, Password, StreetName, StreetNumber, City, Province,
+                       Country, PostalCode) VALUES(:isAdmin, :firstName, :lastName, :email, :phone,
+                        :password , :streetName, :streetNumber, :city, :province, :country, :postalCode)');
             $this->bind(':isAdmin', $isAdmin);
-            $this->bind(':fname', $post['fname']);
-            $this->bind(':lname', $post['lname']);
+            $this->bind(':firstName', $post['firstName']);
+            $this->bind(':lastName', $post['lastName']);
             $this->bind(':email', $post['email']);
             $this->bind(':phone', $post['phone']);
-            $this->bind(':streetnum', $post['streetnum']);
-            $this->bind(':streetname', $post['streetname']);
+            $this->bind(':streetNumber', $post['streetNumber']);
+            $this->bind(':streetName', $post['streetName']);
             $this->bind(':city', $post['city']);
-            $this->bind(':postalcode', $post['postalcode']);
-            $this->bind(':Province', $post['Province']);
-            $this->bind(':Country', $post['Country']);
+            $this->bind(':postalCode', $post['postalCode']);
+            $this->bind(':province', $post['province']);
+            $this->bind(':country', $post['country']);
             $this->bind(':password', $password);
             $this->execute();
             // Verify
@@ -47,7 +47,7 @@ class UserModel extends Model{
 
 		if($post['submit']){
 			// Compare Login
-			$this->query('SELECT * FROM account_tbl WHERE Email = :email AND password = :password');
+			$this->query('SELECT * FROM account WHERE Email = :email AND password = :password');
 			$this->bind(':email', $post['email']);
 			$this->bind(':password', $password);
 
@@ -56,12 +56,12 @@ class UserModel extends Model{
 			if($row){
 				$_SESSION['is_logged_in'] = true;
 				$_SESSION['user_data'] = array(
-					"ID"	=> $row['ID'],
+					"account_ID"	=> $row['account_ID'],
 					"FirstName"	=> $row['FirstName'],
 					"Email"	=> $row['Email'],
                     "Admin" => $row['Admin']
                 );
-				$ID = $_SESSION['user_data']['ID'];
+				$ID = $_SESSION['user_data']['account_ID'];
 				$this->loginStatus($email, $ID);
                 header('Location: '.ROOT_URL.'home');
             }
@@ -74,27 +74,27 @@ class UserModel extends Model{
 
 	public function loginStatus($email, $ID){
 	    $isActive = true;
-	    $this->query('UPDATE account_tbl SET isActive = :isActive WHERE Email = :email');
+	    $this->query('UPDATE account SET isActive = :isActive WHERE Email = :email');
 	    $this->bind(':email', $email);
 	    $this->bind(':isActive', $isActive);
 	    $this->execute();
 
-	    $this->query('INSERT INTO audit_tbl (AccountID, Login) VALUES (:ID, CURRENT_TIMESTAMP )');
-	    $this->bind(':ID', $ID);
+	    $this->query('INSERT INTO audit (account_ID, Login) VALUES (:account_ID, CURRENT_TIMESTAMP )');
+	    $this->bind(':account_ID', $ID);
 	    $this->execute();
 
     }
 
     public function logoutStatus($email, $ID){
 	    $isActive = false;
-        $this->query('UPDATE account_tbl SET isActive = :isActive WHERE Email = :email');
+        $this->query('UPDATE account SET isActive = :isActive WHERE Email = :email');
         $this->bind(':email', $email);
         $this->bind(':isActive', $isActive);
         $this->execute();
 
         $out = null;
-        $this->query('UPDATE audit_tbl SET Logout=CURRENT_TIMESTAMP WHERE AccountID = :ID AND Logout IS NULL');
-        $this->bind(':ID', $ID);
+        $this->query('UPDATE audit SET Logout=CURRENT_TIMESTAMP WHERE account_ID = :account_ID AND Logout IS NULL');
+        $this->bind(':account_ID', $ID);
         $this->execute();
     }
 

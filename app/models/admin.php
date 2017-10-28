@@ -22,7 +22,7 @@ class AdminModel extends Model{
 
         if($post['submit']){
             // Compare Login
-            $this->query('SELECT * FROM account_tbl WHERE Email = :email AND password = :password AND isAdmin = TRUE');
+            $this->query('SELECT * FROM account WHERE Email = :email AND Password = :password AND Admin = TRUE');
             $this->bind(':email', $post['email']);
             $this->bind(':password', $password);
 
@@ -31,12 +31,12 @@ class AdminModel extends Model{
             if($row){
                 $_SESSION['is_logged_in'] = true;
                 $_SESSION['user_data'] = array(
-                    "ID"	=> $row['ID'],
+                    "account_ID"	=> $row['account_ID'],
                     "FirstName"	=> $row['FirstName'],
-                    "Email"	=> $row['email'],
+                    "Email"	=> $row['Email'],
                     "Admin" => $row['Admin']
                 );
-                $ID = $_SESSION['user_data']['ID'];
+                $ID = $_SESSION['user_data']['account_ID'];
                 $this->loginStatus($email, $ID);
                 header('Location: '.ROOT_URL.'admin');
             } else {
@@ -48,12 +48,12 @@ class AdminModel extends Model{
 
     public function loginStatus($email, $ID){
         $isActive = true;
-        $this->query('UPDATE account_tbl SET isActive = :isActive WHERE Email = :email');
+        $this->query('UPDATE account SET isActive = :isActive WHERE Email = :email');
         $this->bind(':email', $email);
         $this->bind(':isActive', $isActive);
         $this->execute();
 
-        $this->query('INSERT INTO audit_tbl (AccountID, Login) VALUES (:ID, CURRENT_TIMESTAMP )');
+        $this->query('INSERT INTO audit (account_ID, Login) VALUES (:ID, CURRENT_TIMESTAMP )');
         $this->bind(':ID', $ID);
         $this->execute();
 
@@ -61,13 +61,13 @@ class AdminModel extends Model{
 
     public function logoutStatus($email, $ID){
         $isActive = false;
-        $this->query('UPDATE account_tbl SET isActive = :isActive WHERE Email = :email');
+        $this->query('UPDATE account SET isActive = :isActive WHERE Email = :email');
         $this->bind(':email', $email);
         $this->bind(':isActive', $isActive);
         $this->execute();
 
         $out = null;
-        $this->query('UPDATE audit_tbl SET Logout=CURRENT_TIMESTAMP WHERE AccountID = :ID AND Logout IS NULL');
+        $this->query('UPDATE audit SET Logout=CURRENT_TIMESTAMP WHERE account_ID = :ID AND Logout IS NULL');
         $this->bind(':ID', $ID);
         $this->execute();
     }

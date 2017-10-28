@@ -2,7 +2,7 @@
 
 class CatalogModel extends Model{
     public function Index(){
-        $this->query('SELECT * FROM account_tbl ORDER BY ID DESC'); //query goes here
+        $this->query('SELECT * FROM account ORDER BY account_ID DESC'); //query goes here
         $rows = $this->resultSet();
         return $rows;
     }
@@ -17,7 +17,7 @@ class CatalogModel extends Model{
                 return;
             }
             // Insert into MySQL
-            $this->query('INSERT INTO product_tbl (productType, Quantity) VALUES(:productType, :quantity)');
+            $this->query('INSERT INTO product (productType, Quantity) VALUES(:productType, :quantity)');
             $this->bind(':productType', $post['productType']);
             $this->bind(':quantity', $post['quantity']);
             $this->execute();
@@ -40,7 +40,7 @@ class CatalogModel extends Model{
                 return;
             }
             // Insert into MySQL
-            $this->query('INSERT INTO product_tbl (productType, Quantity) VALUES(:productType, :quantity)');
+            $this->query('INSERT INTO product (productType, Quantity) VALUES(:productType, :quantity)');
             $this->bind(':productType', $post['productType']);
             $this->bind(':quantity', $post['quantity']);
             $this->execute();
@@ -64,7 +64,7 @@ class CatalogModel extends Model{
                 return;
             }
             // Insert into MySQL
-            $this->query('INSERT INTO product_tbl (productType, Quantity) VALUES(:productType, :quantity)');
+            $this->query('INSERT INTO product (productType, Quantity) VALUES(:productType, :quantity)');
             $this->bind(':productType', $post['productType']);
             $this->bind(':quantity', $post['quantity']);
             $this->execute();
@@ -88,7 +88,7 @@ class CatalogModel extends Model{
                 return;
             }
             // Insert into MySQL
-            $this->query('INSERT INTO product_tbl (productType, Quantity) VALUES(:productType, :quantity)');
+            $this->query('INSERT INTO product (productType, Quantity) VALUES(:productType, :quantity)');
             $this->bind(':productType', $post['productType']);
             $this->bind(':quantity', $post['quantity']);
             $this->execute();

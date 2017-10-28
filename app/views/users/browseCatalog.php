@@ -13,4 +13,7 @@
     <!--  Light Bootstrap Table core CSS    -->
     <link href="content/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
 </head>
+<body>
+	<h1>Hello Catalog Page!</h1>
+</body>
 </html>
