@@ -8,161 +8,161 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema compstor_db
+-- Schema compstore
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema compstor_db
+-- Schema compstore
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `compstor_db` DEFAULT CHARACTER SET utf8 ;
-USE `compstor_db` ;
+CREATE SCHEMA IF NOT EXISTS `compstore` DEFAULT CHARACTER SET utf8 ;
+USE `compstore` ;
 
 -- -----------------------------------------------------
--- Table `compstor_db`.`Account_tbl`
+-- Table `compstore`.`account`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `compstor_db`.`Account_tbl` (
-  `ID` INT(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `compstore`.`account` (
+  `account_ID` INT(11) NOT NULL AUTO_INCREMENT,
   `FirstName` VARCHAR(45) NULL,
   `LastName` VARCHAR(45) NULL,
-  `Email` VARCHAR(100) NOT NULL,
+  `Email` VARCHAR(50) NOT NULL,
   `PhoneNumber` VARCHAR(15) NULL,
   `Admin` TINYINT(1) NULL,
-  `password` VARCHAR(45) NULL,
+  `Password` VARCHAR(45) NULL,
   `StreetName` VARCHAR(45) NULL,
-  `StreetNumber` INT(11) NULL,
+  `StreetNumber` VARCHAR(45) NULL,
   `City` VARCHAR(45) NULL,
   `Province` VARCHAR(45) NULL,
   `Country` VARCHAR(45) NULL,
-  `PostalCode` VARCHAR(45) NULL,
-  PRIMARY KEY (`ID`, `Email`),
-  INDEX `Account_idx` (`ID` ASC))
+  `PostalCode` VARCHAR(15) NULL,
+  PRIMARY KEY (`account_ID`, `Email`),
+  INDEX `account_index` (`account_ID` ASC))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `compstor_db`.`Purchases`
+-- Table `compstore`.`Purchases`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `compstor_db`.`Purchases` (
-  `PurchaseID` INT(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `compstore`.`purchases` (
+  `purchases_ID` INT(11) NOT NULL,
   `PurchaseDate` DATETIME NULL,
-  `AccountID` INT(11) NOT NULL,
+  `account_ID` INT(11) NOT NULL,
   `TotalCost` DOUBLE NULL,
-  PRIMARY KEY (`PurchaseID`, `AccountID`),
-  INDEX `AccountIDPurchases_idx` (`AccountID` ASC),
-  INDEX `PurchaseID` (`PurchaseID` ASC),
-  CONSTRAINT `AccountIDPurchases`
-    FOREIGN KEY (`AccountID`)
-    REFERENCES `compstor_db`.`Account_tbl` (`ID`)
+  PRIMARY KEY (`purchases_ID`, `account_ID`),
+  INDEX `account_IDpurchases_index` (`account_ID` ASC),
+  INDEX `purchases_ID` (`purchases_ID` ASC),
+  CONSTRAINT `Account_IDpurchases`
+    FOREIGN KEY (`account_ID`)
+    REFERENCES `compstore`.`account` (`account_ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `compstor_db`.`Tablet_tbl`
+-- Table `compstore`.`tablet`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `compstor_db`.`Tablet_tbl` (
-  `ID` INT(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `compstore`.`tablet` (
+  `tablet_ID` INT(11) NOT NULL,
   `Key` VARCHAR(10) NULL,
   `Value` VARCHAR(10) NULL,
   `SerialNumber` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`ID`, `SerialNumber`),
+  PRIMARY KEY (`tablet_ID`, `SerialNumber`),
   INDEX `SerialNumber` (`SerialNumber` ASC))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `compstor_db`.`Laptop_tbl`
+-- Table `compstore`.`laptop`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `compstor_db`.`Laptop_tbl` (
-  `ID` INT(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `compstore`.`laptop` (
+  `laptop_ID` INT(11) NOT NULL,
   `Key` VARCHAR(10) NULL,
   `Value` VARCHAR(10) NULL,
   `SerialNumber` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`ID`, `SerialNumber`),
+  PRIMARY KEY (`laptop_ID`, `SerialNumber`),
   INDEX `SerialNumber` (`SerialNumber` ASC))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `compstor_db`.`Monitor_tbl`
+-- Table `compstore`.`monitor`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `compstor_db`.`Monitor_tbl` (
-  `ID` INT(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `compstore`.`monitor` (
+  `monitor_ID` INT(11) NOT NULL,
   `Key` VARCHAR(10) NULL,
   `Value` VARCHAR(10) NULL,
   `SerialNumber` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`ID`, `SerialNumber`),
+  PRIMARY KEY (`monitor_ID`, `SerialNumber`),
   INDEX `SerialNumber` (`SerialNumber` ASC))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `compstor_db`.`DesktopComputer_tbl`
+-- Table `compstore`.`desktopComputer`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `compstor_db`.`DesktopComputer_tbl` (
-  `ID` INT(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `compstore`.`desktopComputer` (
+  `desktopComputer_ID` INT(11) NOT NULL,
   `Key` VARCHAR(10) NULL,
   `Value` VARCHAR(10) NULL,
   `SerialNumber` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`ID`, `SerialNumber`),
+  PRIMARY KEY (`desktopComputer_ID`, `SerialNumber`),
   INDEX `SerailNumber` (`SerialNumber` ASC))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `compstor_db`.`Purchaselist_tbl`
+-- Table `compstore`.`purchaseList`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `compstor_db`.`Purchaselist_tbl` (
-  `ID` INT(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `compstore`.`purchaseList` (
+  `purchaseList_ID` INT(11) NOT NULL AUTO_INCREMENT,
   `ProductSerialNumber` VARCHAR(45) NOT NULL,
-  `PurchaseID` INT(11) NOT NULL,
-  PRIMARY KEY (`ID`, `ProductSerialNumber`, `PurchaseID`),
-  UNIQUE INDEX `ID_UNIQUE` (`ID` ASC),
+  `purchases_ID` INT(11) NOT NULL,
+  PRIMARY KEY (`purchaseList_ID`, `ProductSerialNumber`, `purchases_ID`),
+  UNIQUE INDEX `ID_UNIQUE` (`purchaseList_ID` ASC),
   UNIQUE INDEX `ProductSerialNumber_UNIQUE` (`ProductSerialNumber` ASC),
-  INDEX `PurchaseID_idx` (`PurchaseID` ASC),
-  INDEX `ProductSerialNumber_idx` (`ProductSerialNumber` ASC),
-  CONSTRAINT `PurchaseID`
-    FOREIGN KEY (`PurchaseID`)
-    REFERENCES `compstor_db`.`Purchases` (`PurchaseID`)
+  INDEX `purchase_ID_index` (`purchases_ID` ASC),
+  INDEX `ProductSerialNumber_index` (`ProductSerialNumber` ASC),
+  CONSTRAINT `purchases_ID`
+    FOREIGN KEY (`purchases_ID`)
+    REFERENCES `compstore`.`purchases` (`purchases_ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `SerialMonitor`
     FOREIGN KEY (`ProductSerialNumber`)
-    REFERENCES `compstor_db`.`Monitor_tbl` (`SerialNumber`)
+    REFERENCES `compstore`.`monitor` (`SerialNumber`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `SerialLaptop`
     FOREIGN KEY (`ProductSerialNumber`)
-    REFERENCES `compstor_db`.`Laptop_tbl` (`SerialNumber`)
+    REFERENCES `compstore`.`laptop` (`SerialNumber`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `SerialTablet`
     FOREIGN KEY (`ProductSerialNumber`)
-    REFERENCES `compstor_db`.`Tablet_tbl` (`SerialNumber`)
+    REFERENCES `compstore`.`tablet` (`SerialNumber`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `SerialComputer`
     FOREIGN KEY (`ProductSerialNumber`)
-    REFERENCES `compstor_db`.`DesktopComputer_tbl` (`SerialNumber`)
+    REFERENCES `compstore`.`desktopComputer` (`SerialNumber`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `compstor_db`.`Audit_tbl`
+-- Table `compstore`.`audit`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `compstor_db`.`Audit_tbl` (
-  `AccountID` INT(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `compstore`.`audit` (
+  `account_ID` INT(11) NOT NULL,
   `Logout` DATETIME NULL,
   `Login` DATETIME NULL,
   `IsActive` TINYINT(1) NULL,
-  PRIMARY KEY (`AccountID`),
-  INDEX `AccountID_idx` (`AccountID` ASC),
-  CONSTRAINT `AccountIDAudit`
-    FOREIGN KEY (`AccountID`)
-    REFERENCES `compstor_db`.`Account_tbl` (`ID`)
+  PRIMARY KEY (`account_ID`),
+  INDEX `account_ID_index` (`account_ID` ASC),
+  CONSTRAINT `account_IDaudit`
+    FOREIGN KEY (`account_ID`)
+    REFERENCES `compstore`.`account` (`account_ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

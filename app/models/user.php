@@ -11,7 +11,7 @@ class UserModel extends Model{
 		    //need a function here to check if email already exists
 
             // Insert into MySQL
-            $this->query('INSERT INTO account_tbl (isAdmin, FirstName, LastName, 
+            $this->query('INSERT INTO account_tbl (Admin, FirstName, LastName, 
                       Email, PhoneNumber, password, StreetName, StreetNumber, City, Province,
                        Country, PostalCode) VALUES(:isAdmin, :fname, :lname, :email, :phone,
                         :password , :streetname, :streetnum, :city, :Province, :Country, :postalcode)');
