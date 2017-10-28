@@ -1,4 +1,3 @@
-<<<<<<< HEAD
  <div id="page-wrapper">
         <div id="page-wrapper">
             <div class="card">

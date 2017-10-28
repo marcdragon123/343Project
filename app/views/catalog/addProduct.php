@@ -1,10 +1,37 @@
-
- <div id="page-wrapper">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#product').on('change', function() {
+            if(this.value === "1"){
+                $("#tablet").show();
+            } else {
+                $("#tablet").hide();
+            }
+            if(this.value === "2"){
+                $("#monitor").show();
+            } else {
+                $("#monitor").hide();
+            }
+            if(this.value === "3"){
+                $("#laptop").show();
+            } else {
+                $("#laptop").hide();
+            }
+            if(this.value === "4"){
+                $("#desktop").show();
+            } else {
+                $("#desktop").hide();
+            }
+        });
+    });
+</script>
+<div id="page-wrapper">
      <div class="row">
          <div class="col-lg-12">
              <h1 class="page-header">Add Product</h1>
          </div>
-         <select id="dropdown">
+         <select id="product">
+             <option value="" disabled="disabled" selected="selected">Choose Product to Enter</option>
              <option value="1">Tablet</option>
              <option value="2">Monitor</option>
              <option value="3">Laptop</option>
@@ -17,6 +44,7 @@
      <div class="row">
          <!-- /.col-lg-6 -->
          <div class="panel panel-default">
+             <div style="display: none" id="tablet">
              <form name="tablet" id="11" method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
                  <!-- /.panel-heading -->
                  <div class="panel-body">
@@ -55,6 +83,8 @@
                  </div>
                  <!-- /.panel-body -->
              </form>
+             </div>
+             <div style="display: none" id="laptop">
              <form name="laptop" id="33" method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
                  <!-- /.panel-heading -->
                  <div class="panel-body">
@@ -95,6 +125,8 @@
                  </div>
                  <!-- /.panel-body -->
              </form>
+             </div>
+             <div style="display: none" id="monitor">
              <form name="monitor" id="22" method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
                  <!-- /.panel-heading -->
                  <div class="panel-body">
@@ -122,8 +154,9 @@
                  </div>
                  <!-- /.panel-body -->
              </form>
-
-             <form name="tablet" id="44" method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
+             </div>
+             <div style="display: none" id="desktop">
+             <form name="desktop" id="44" method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
                  <!-- /.panel-heading -->
                  <div class="panel-body">
                      <div class="table-responsive table-bordered">
@@ -155,6 +188,7 @@
                  </div>
                  <!-- /.panel-body -->
              </form>
+             </div>
          </div>
      </div>
  </div>
