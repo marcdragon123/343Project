@@ -128,7 +128,7 @@ class CatalogModel extends Model{
     }
 
     public function addDesktop(){
-        $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        /*$post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
         if($post['submit']){
             if($post['productType'] == '' || $post['quantity'] == ''){
@@ -144,9 +144,9 @@ class CatalogModel extends Model{
             // Verify
             if($this->lastInsertId()){
                 // Redirect
-                header('Location: '.ROOT_URL.'shares');
+                header('Location: '.ROOT_URL.'admin');
             }
-        }
+        }*/
         return;
 
     }

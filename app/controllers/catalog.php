@@ -10,8 +10,10 @@ class Catalog extends Controller{
         if(!isset($_SESSION['is_logged_in'])){
             header('Location: '.ROOT_URL.'home');
         }
+        $viewmodel = new CatalogModel();
+        $this->returnView($viewmodel->addDesktop(), true);
 
-        if(!empty($_POST)) {
+        /*if(!empty($_POST)) {
             $viewmodel = new CatalogModel();
             switch (true) {
                 case isset($_POST['computer']):
@@ -29,7 +31,7 @@ class Catalog extends Controller{
                 case isset($_POST['desktop']):
                     $this->returnView($viewmodel->addDesktop(), true);
             }
-        }
+        }*/
 
     }
 
