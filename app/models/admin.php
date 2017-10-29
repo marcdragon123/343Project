@@ -8,7 +8,7 @@
 
 class AdminModel extends Model{
     public function Index(){
-        $this->query('SELECT * FROM account_tbl ORDER BY id DESC'); //query goes here
+        $this->query('SELECT * FROM account_tbl ORDER BY id'); //query goes here
         $rows = $this->resultSet();
         return $rows;
     }
