@@ -46,11 +46,16 @@ class Database implements SplSubject
         $Container->notifyRemoveFromTable($object, $this);
     }
 
-    function successful(){
+    public function successful(){
 
     }
 
-    function failure(){
+    public function failure(){
+
+    }
+
+    public function result($res)
+    {
 
     }
 

@@ -147,15 +147,41 @@ class Container implements SplObserver
     {
         $writer = $this->getWriterQueries();
         $reader = $this->getReaderQueries();
+        $conn = $this->getCon();
+        $results = array();
         while(!empty($reader) || !empty($writer))
         {
             if(!empty($writer))
             {
                 foreach ($writer as $item) {
-
+                    $res=$conn->query($item);
+                    array_push($results,$res);
                 }
             }
 
+            if(!empty($reader))
+            {
+                foreach ($reader as $item) {
+                    $res=$conn->query($item);
+                    array_push($results,array($res,$item));
+                }
+            }
+
+        }
+
+        foreach ($results as $result) {
+            if($res[0] == true)
+            {
+                $db->successful();
+            }
+            if($res[0] == false)
+            {
+                $db->failure();
+            }
+            if($res[0] == mysqli_result::class)
+            {
+                $db->result($res);
+            }
         }
     }
 
