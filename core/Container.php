@@ -16,7 +16,7 @@ class Container implements SplObserver
     private $queryTypes = array("writer"=>"writer", "reader"=>"reader");
 
     public function __construct() {
-        $this->conn = $this->getCon();
+        $this->conn = $this->createCon();
     }
 
     public function __destruct() {
@@ -84,7 +84,7 @@ class Container implements SplObserver
         $type = "writer";
 
         foreach ($object->properties as $key=>$val) {
-            $query = $queryStart." Key=".$key.", Value=".$val." ";
+            $query = $queryStart." specKey=".$key.", specValue=".$val." ";
             $query.=$queryFinish;
 
             $this->request($type,$query);
@@ -103,7 +103,7 @@ class Container implements SplObserver
 
         $queryStart .= $this->determineTable($objectType);
 
-        $queryStart.=" ( Key, Value, SerialNumber ) VALUES ";
+        $queryStart.=" ( specKey, specValue, SerialNumber ) VALUES ";
         $type = "writer";
 
         foreach ($object->properties as $key=>$val) {
@@ -193,7 +193,7 @@ class Container implements SplObserver
 
     //get Connection to the db and opens the MySQLi connection or closes it if there is an error
     //Please update this class for local testing
-    function getCon(){
+    private function createCon(){
         $servername = "127.0.0.1";
         $servernamelocal = "localhost";
         $port = "3306";
@@ -221,14 +221,23 @@ class Container implements SplObserver
         }
         return $conn;
     }
+
+    public function getCon(){
+        if ($this->conn==null) {
+            return null;
+        }
+        else {
+            return $this->conn;
+        }
+    }
+
     //closes a connection takes a connection object
-    function closeCon(){
+    private function closeCon(){
         $conn = $this->conn;
         if(!$conn == null) {
             $conn->close();
         }
     }
-
 }
 ?>
 

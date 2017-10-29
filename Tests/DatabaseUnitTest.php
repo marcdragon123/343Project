@@ -2,14 +2,12 @@
 
 /**
  * Created by Marc-Andre Dragon.
- * Date: 2017-10-25
- * Time: 11:27 PM
+ * Date: 2017-10-28
+ * Time: 9:35 PM
  */
 
-use PHPUnit\Framework\TestCase;
-include '../core/Database.php';
-
-class DatabaseTest extends TestCase
+include_once '../core/Database.php';
+class DatabaseUnitTest extends PHPUnit_Framework_TestCase
 {
     protected $dbObject;
 
@@ -27,5 +25,4 @@ class DatabaseTest extends TestCase
     {
         unset($this->dbObject);
     }
-
 }
