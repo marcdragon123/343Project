@@ -14,5 +14,5 @@ define("DB_PASS", "root");
 define("DB_NAME", "compstor_db");
 
 // Define URL
-define("ROOT_PATH", "/~ahmadbiz/343Project/app/");
-define("ROOT_URL", "http://localhost/~ahmadbiz/343Project/app/");
+define("ROOT_PATH", "/~Shayan/343Project/app/");
+define("ROOT_URL", "http://localhost/~Shayan/343Project/app/");

@@ -26,7 +26,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <?php if(isset($_SESSION['is_logged_in'])) : ?>
-                <li><a href="<?php echo ROOT_URL; ?>">Welcome <?php echo ucwords($_SESSION['user_data']['FirstName']); ?></a></li>
+                <li><a href="<?php echo ROOT_URL; ?>">Welcome <?php echo ucwords($_SESSION['user_data']['firstName']); ?></a></li>
                 <li><a type="logout" href="<?php echo ROOT_URL; ?>users/logout">Logout</a></li>
                 <li><a type="profile" href="<?php echo ROOT_URL; ?>users/userProfile">View Profile</a></li>
                 <li><a href="<?php echo ROOT_URL; ?>cart/displayCart">Cart</a></li>

@@ -53,14 +53,23 @@ class UserModel extends Model{
 
 			$row = $this->single();
 
-			if($row){
-				$_SESSION['is_logged_in'] = true;
-				$_SESSION['user_data'] = array(
-					"id"	=> $row['id'],
-					"firstName"	=> $row['firstName'],
-					"email"	=> $row['email'],
-                    "isAdmin" => $row['isAdmin']
+            if($row){
+                $_SESSION['is_logged_in'] = true;
+                $_SESSION['user_data'] = array(
+                    "ID" => $row['id'],
+                    "firstName" => $row['firstName'],
+                    "lastName" => $row['lastName'],
+                    "email" => $row['email'],
+                    "phone" => $row['phone'],
+                    "isAdmin" => $row['isAdmin'],
+                    "street" => $row['street'],
+                    "streetNum" => $row['streetNum'],
+                    "city" => $row['city'],
+                    "province" => $row['province'],
+                    "country" => $row['country'],
+                    "postalCode" => $row['postalCode'],
                 );
+
 				$ID = $_SESSION['user_data']['id'];
 				$this->loginStatus($email, $ID);
                 header('Location: '.ROOT_URL.'home');
@@ -108,6 +117,34 @@ class UserModel extends Model{
         }
     }
     public function userProfile(){
+
+            $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            $firstName = $post['firstName'];
+            $lastName = $post['lastName'];
+            $email = $post['email'];
+            $phone = $post['phone'];
+            $street = $post['street'];
+            $streetNum = $post['$streetNum'];
+            $city = $post['city'];
+            $province = $post['province'];
+            $country = $post['country'];
+            $postalCode = $post['postalCode'];
+
+                $this->query('SELECT * FROM account_tbl WHERE firstName = :firstName AND lastName = :lastName AND email = :email AND phone = :phone AND street = :street AND streetNum = :streetNum AND city = :city AND province = :province AND country = :country AND postalCode = :postalCode');
+                $this->bind(':firstName', $post['firstName']);
+                $this->bind(':lastName', $post['lastName']);
+                $this->bind(':email', $post['email']);
+                $this->bind(':phone', $post['phone']);
+                $this->bind(':street', $post['street']);
+                $this->bind(':streetNum', $post['streetNum']);
+                $this->bind(':city', $post['city']);
+                $this->bind(':province', $post['province']);
+                $this->bind(':country', $post['country']);
+                $this->bind(':postalCode', $post['postalCode']);
+
+                print_r($firstName);
+
         return;
     }
 }

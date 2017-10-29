@@ -16,37 +16,49 @@
                             </div>
                             <!-- /.panel-heading -->
                             <div class="panel-body">
+
+                                <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
                                 <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                     <tr>
-                                        <th>Client ID</th>
-                                        <th>Created</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>
-                                        <th>Is Admin?</th>
-                                        <th>UserName</th>
+                                        <th>Email</th>
+                                        <th>Phone Number</th>
+                                        <th>Postal Code</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr class="odd gradeX">
-                                        <td>1111</td>
-                                        <td>01/01/500 B.C.</td>
-                                        <td>George</td>
-                                        <td>Theophanous</td>
-                                        <td class="center">Yes</td>
-                                        <td class="center">Lambhunter0</td>
+                                        <td><input class="form-control" type = "text" value = <?php echo ucwords ($_SESSION['user_data']['firstName']); ?>></input></td>
+                                        <td><input class="form-control" type = "text" value = <?php echo ucwords ($_SESSION['user_data']['lastName']); ?>></input></td>
+                                        <td><input class="form-control" type = "text" value = <?php echo ucwords ($_SESSION['user_data']['email']); ?>></input></td>
+                                        <td><input class="form-control" type = "text" value = <?php echo ucwords ($_SESSION['user_data']['phone']); ?>></input></td>
+                                        <td><input class="form-control" type = "text" size = "6" value = <?php echo ucwords ($_SESSION['user_data']['postalCode']); ?>></input></td>
                                     </tr>
+                                    <thead>
+                                    <tr>
+                                        <th>Street Name</th>
+                                        <th>Street Number</th>
+                                        <th>City</th>
+                                        <th>Province</th>
+                                        <th>Country</th>
+
+                                    </tr>
+                                    <thead>
                                     <tr class="even gradeC">
-                                        <td>2222</td>
-                                        <td>02/01/THE FUTURE</td>
-                                        <td>Roy</td>
-                                        <td>Saliba</td>
-                                        <td class="center">No :'( </td>
-                                        <td class="center">RoydRage</td>
+                                        <td><input class="form-control" type = "text" size = "4" value = <?php echo ucwords ($_SESSION['user_data']['streetNum']); ?>></input></td>
+                                        <td><input class="form-control" type = "text" value = <?php echo ucwords ($_SESSION['user_data']['street']); ?>></input></td>
+                                        <td><input class="form-control" type = "text" value = <?php echo ucwords ($_SESSION['user_data']['city']); ?>></input></td>
+                                        <td><input class="form-control" type = "text" value = <?php echo ucwords ($_SESSION['user_data']['province']); ?>></input></td>
+                                        <td><input class="form-control" type = "text" value = <?php echo ucwords ($_SESSION['user_data']['country']); ?>></input></td>
                                     </tr>
                                     </tbody>
                                 </table>
                                 <!-- /.table-responsive -->
+                                <input class="btn btn-primary" name="submit" type="submit" value="Submit"/>
+                                </form>
+
                                 <div class="well">
                                     <h4>Client Information</h4>
                                     <p>Select a client in the table above and see its specific information below.</p>
@@ -71,28 +83,28 @@
                                     <table class="table">
                                         <thead>
                                         <tr>
-                                            <th>Client ID</th>
-                                            <th>Created</th>
-                                            <th>First name</th>
-                                            <th>Last Name</th>
-                                            <th>Is Admin?</th>
-                                            <th>UserName</th>
-                                            <th>Address</th>
-                                            <th>Postal Code</th>
-                                            <th>Email</th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr>
-                                            <td>1111</td>
-                                            <td>01/01/500 B.C.</td>
-                                            <td>George</td>
-                                            <td>Theophanous</td>
-                                            <td>Yes</td>
-                                            <td>Lambhunter0</td>
-                                            <td>467 Glengarry Avenue</td>
-                                            <td>H3R1B1</td>
-                                            <td>george.theophanous @hotmail.com</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
                                         </tr>
                                         </tbody>
                                     </table>
