@@ -11,61 +11,20 @@ $GLOBALS['Container'] = $Container;
 
 class Database implements SplSubject
 {
-    private $conn = null;
+
     private $observer;
+    private $container;
 
     function __construct() {
-        $this->conn = $this->getCon();
-        $Container = $this->getContainer();
-        $this->attach($Container);
+        $this->container = $this->getContainer();
+        $this->attach($this->container);
     }
 
     function __destruct()
     {
-        $this->getCon();
         $this->detach($this->observer);
     }
 
-    //get Connection to the db and opens the MySQLi connection or closes it if there is an error
-    //Please update this class for local testing
-    function getCon(){
-        $servername = "127.0.0.1";
-        $servernamelocal = "localhost";
-        $port = "3306";
-        $username = "admin";
-        $password = "MSQLs24!!%%";
-        $schema = "compstor_db";
-
-/*
-        //Uncomment for the hosting solution
-        $servernamelocal = "localhost";
-        $port = "3306";
-        $username = "compstor_admin";
-        $password = "MSQLs24!!%%";
-        $schema = "compstor_db";
-        $conn  = new mysqli($servernamelocal, $username, $password, $schema, $port);
-        if($conn->connect_error)
-            die("Connection failed: " . $conn->connect_error);
-        return $conn;
-
-*/
-
-        $conn = new mysqli($servername, $username, $password, $schema, $port);
-
-        if($conn->connect_error){
-            $conn  = new mysqli($servernamelocal, $username, $password, $schema, $port);
-
-            if($conn->connect_error)
-                die("Connection failed: " . $conn->connect_error);
-        }
-        return $conn;
-    }
-    //closes a connection takes a connection object
-    function closeCon(){
-        $conn = $this->conn;
-        $res = $conn->close();
-        return $res;
-    }
     //access the global array to notify lock of a change
     function getContainer(){
         return $GLOBALS['Container'];
@@ -85,6 +44,14 @@ class Database implements SplSubject
     function removeFromTable($object){
         $Container = $this->getContainer();
         $Container->notifyRemoveFromTable($object, $this);
+    }
+
+    function successful(){
+
+    }
+
+    function failure(){
+
     }
 
     /**
