@@ -2,22 +2,22 @@
 <script>
     $(document).ready(function(){
         $('#product').on('change', function() {
-            if(this.value === "1"){
+            if(this.value === "tablet"){
                 $("#tablet").show();
             } else {
                 $("#tablet").hide();
             }
-            if(this.value === "2"){
+            if(this.value === "monitor"){
                 $("#monitor").show();
             } else {
                 $("#monitor").hide();
             }
-            if(this.value === "3"){
+            if(this.value === "laptop"){
                 $("#laptop").show();
             } else {
                 $("#laptop").hide();
             }
-            if(this.value === "4"){
+            if(this.value === "desktop"){
                 $("#desktop").show();
             } else {
                 $("#desktop").hide();
@@ -25,23 +25,20 @@
         });
     });
 </script>
-<div id="page-wrapper">
-     <div class="row">
-         <div class="col-lg-12">
-             <h1 class="page-header">Add Product</h1>
-         </div>
-         <select id="product">
+<div class="panel panel-default" id="page-wrapper">
+    <div class="panel-heading">
+        <h3>Add Product</h3>
+
+    <div class="row">
+         <select name="productType" id="product">
              <option value="" disabled="disabled" selected="selected">Choose Product to Enter</option>
-             <option value="1">Tablet</option>
-             <option value="2">Monitor</option>
-             <option value="3">Laptop</option>
-             <option value="4">Desktop</option>
+             <option value="tablet">Tablet</option>
+             <option value="monitor">Monitor</option>
+             <option value="laptop">Laptop</option>
+             <option value="destop">Desktop</option>
          </select>
          <!-- /.col-lg-12 -->
      </div>
-     <div class="row">
-     </div>
-     <div class="row">
          <!-- /.col-lg-6 -->
          <div class="panel panel-default">
              <div style="display: none" id="tablet">
@@ -52,7 +49,7 @@
                          <table class="table">
                              <tbody>
                              <tr>
-                                 <td><br><input type="text" placeholder="Model Number" name ="modelNumber"><br></td>
+                                 <td><br><input type="text" placeholder="Model Number" name ="serialNum"><br></td>
                                  <td><br><input type="text" placeholder="Product Name" name ="productName"><br></td>
                                  <td><br><input type="text" placeholder="Brand Name" name ="brandName"><br></td>
                                  <td><br><input type="text" placeholder="Price" name ="price"><br></td>
@@ -92,7 +89,7 @@
                          <table class="table">
                              <tbody>
                              <tr>
-                                 <td><br><input type="text" placeholder="Model Number" name ="modelNumber"><br></td>
+                                 <td><br><input type="text" placeholder="Model Number" name ="serialNum"><br></td>
                                  <td><br><input type="text" placeholder="Product Name" name ="productName"><br></td>
                                  <td><br><input type="text" placeholder="Brand Name" name ="brandName"><br></td>
                                  <td><br><input type="text" placeholder="Price" name ="price"><br></td>
@@ -134,7 +131,7 @@
                          <table class="table">
                              <tbody>
                              <tr>
-                                 <td><br><input type="text" placeholder="Model Number" name ="modelNumber"><br></td>
+                                 <td><br><input type="text" placeholder="Model Number" name ="serialNum"><br></td>
                                  <td><br><input type="text" placeholder="Product Name" name ="productName"><br></td>
                                  <td><br><input type="text" placeholder="Brand Name" name ="brandName"><br></td>
                                  <td><br><input type="text" placeholder="Price" name ="price"><br></td>
@@ -163,7 +160,7 @@
                          <table class="table">
                              <tbody>
                              <tr>
-                                 <td><br><input type="text" placeholder="Model Number" name ="modelNumber"><br></td>
+                                 <td><br><input type="text" placeholder="Model Number" name ="serialNum"><br></td>
                                  <td><br><input type="text" placeholder="Product Name" name ="productName"><br></td>
                                  <td><br><input type="text" placeholder="Brand Name" name ="brandName"><br></td>
                                  <td><br><input type="text" placeholder="Price" name ="price"><br></td>

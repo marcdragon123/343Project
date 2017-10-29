@@ -11,27 +11,25 @@ class Catalog extends Controller{
             header('Location: '.ROOT_URL.'home');
         }
         $viewmodel = new CatalogModel();
-        $this->returnView($viewmodel->addDesktop(), true);
+        $this->returnView($viewmodel->addProduct(), true);
 
-        /*if(!empty($_POST)) {
+        if(!empty($_POST)) {
             $viewmodel = new CatalogModel();
-            switch (true) {
-                case isset($_POST['computer']):
+            switch ($_POST['productType']) {
+                case "desktop":
                     $this->returnView($viewmodel->addComputer(), true);
                     break;
-                case isset($_POST['laptop']):
+                case "laptop":
                     $this->returnView($viewmodel->addLaptop(), true);
                     break;
-                case isset($_POST['tablet']):
+                case "tablet":
                     $this->returnView($viewmodel->addTablet(), true);
                     break;
-                case isset($_POST['monitor']):
+                case "monitor":
                     $this->returnView($viewmodel->addMonitor(), true);
                     break;
-                case isset($_POST['desktop']):
-                    $this->returnView($viewmodel->addDesktop(), true);
             }
-        }*/
+        }
 
     }
 
