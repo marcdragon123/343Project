@@ -15,10 +15,16 @@ class Container implements SplObserver
 
     private $queryTypes = array("writer"=>"writer", "reader"=>"reader");
 
+    /**
+     * Container constructor.
+     */
     public function __construct() {
         $this->conn = $this->createCon();
     }
 
+    /**
+     * Container Destructor
+     */
     public function __destruct() {
         $this->closeCon();
     }
@@ -55,6 +61,10 @@ class Container implements SplObserver
         $this->writerQueries = $writerQueries;
     } //thread requests to run.
 
+    /**
+     * @param $type
+     * @param $object
+     */
     public function request($type,$object) {
         $arrayReader = $this->getReaderQueries();
         $arrayWriter = $this->getWriterQueries();
@@ -71,6 +81,10 @@ class Container implements SplObserver
 
     }
 
+    /**
+     * @param $object
+     * @param $db
+     */
     function notifyUpdateTable($object, $db) {
 
         $queryStart="UPDATE ";
@@ -95,6 +109,11 @@ class Container implements SplObserver
 
     }
 
+
+    /**
+     * @param $object
+     * @param $db
+     */
     function notifyAddToTable($object, $db) {
 
         $queryStart="INSERT INTO ";
@@ -115,6 +134,10 @@ class Container implements SplObserver
 
     }
 
+    /**
+     * @param $object
+     * @param $db
+     */
     function notifyRemoveFromTable($object, $db) {
 
         $query="DELETE FROM";
@@ -132,17 +155,8 @@ class Container implements SplObserver
     }
 
     /**
-     * Receive update from subject
-     * @link http://php.net/manual/en/splobserver.update.php
-     * @param SplSubject $subject <p>
-     * The <b>SplSubject</b> notifying the observer of an update.
-     * </p>
-     * @return void
-     * @since 5.1.0
+     * @param $db
      */
-    public function update(SplSubject $subject) {
-    }
-
     public function runUpdate($db)
     {
         $writer = $this->getWriterQueries();
@@ -154,37 +168,30 @@ class Container implements SplObserver
             if(!empty($writer))
             {
                 foreach ($writer as $item) {
-                    $res=$conn->query($item);
-                    array_push($results,$res);
+                    $res=$this->excuteQuery($item,$conn);
+                    array_push($results,array($res,$item));
                 }
             }
 
             if(!empty($reader))
             {
                 foreach ($reader as $item) {
-                    $res=$conn->query($item);
+                    $res=$this->excuteQuery($item,$conn);
                     array_push($results,array($res,$item));
                 }
             }
 
         }
 
-        foreach ($results as $result) {
-            if($res[0] == true)
-            {
-                $db->successful();
-            }
-            if($res[0] == false)
-            {
-                $db->failure();
-            }
-            if($res[0] == mysqli_result::class)
-            {
-                $db->result($res);
-            }
-        }
+        $this->getResults($db, $results);
     }
 
+
+    /**
+     * @param $qry
+     * @param $db
+     * @return bool or MySQLi object
+     */
     //takes a query and a connection to run a db query
     function excuteQuery($qry,$db){
         $res = $db->query($qry);
@@ -264,6 +271,38 @@ class Container implements SplObserver
             $conn->close();
         }
     }
+
+    /**
+     * @param $db
+     * @param $results
+     */
+    public function getResults($db, $results)
+    {
+        foreach ($results as $result) {
+            if ($result[0] == true) {
+                $db->successful();
+            }
+            if ($result[0] == false) {
+                $db->failure();
+            }
+            if ($result[0] == mysqli_result::class) {
+                $db->result($result[0]);
+            }
+        }
+    }
+
+    /**
+     * Receive update from subject
+     * @link http://php.net/manual/en/splobserver.update.php
+     * @param SplSubject $subject <p>
+     * The <b>SplSubject</b> notifying the observer of an update.
+     * </p>
+     * @return void
+     * @since 5.1.0
+     */
+    public function update(SplSubject $subject) {
+    }
+
 }
 ?>
 
