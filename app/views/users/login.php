@@ -4,10 +4,10 @@
     <h3 class="panel-title">User Login</h3>
   </div>
   <div class="panel-body">
-    <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
+    <form method="POST" action="../../controllers/users.php">
       	<div class="form-group">
     		<label>Email</label>
-    		<input type="text" name="email" class="form-control" />
+      	<input type="text" name="email" class="form-control" />
     	</div>
     	<div class="form-group">
     		<label>Password</label>

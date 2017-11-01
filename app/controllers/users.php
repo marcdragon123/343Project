@@ -1,5 +1,6 @@
 <?php
 class Users extends Controller{
+	
 	protected function register(){
 		$viewmodel = new UserModel();
 		$this->returnView($viewmodel->register(), true);
@@ -7,6 +8,7 @@ class Users extends Controller{
 
 	protected function login(){
 		$viewmodel = new UserModel();
+
 		//Create variables here and pass them to view, Uncomment the following to try out
 		//$apple = 'iPhone 5';
 		//$samsung = 'galaxy edge';

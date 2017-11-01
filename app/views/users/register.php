@@ -11,7 +11,8 @@
             <h3 class="panel-title">Register User</h3>
           </div>
           <div class="panel-body">
-            <form method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
+            <form method="post" action="../../controllers/users.php">
+
                 <span id="reauth-email" class="reauth-email"></span>
                 
                 <input type="email" id="email" class="form-control" name="email" placeholder="Email address" onchange="validate_email()" required autofocus >
