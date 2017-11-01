@@ -6,7 +6,7 @@
  * Time: 7:02 PM
  */
 
-class cart extends Model{
+class CartModel extends Model{
 
     public function displayCart(){
         return;
