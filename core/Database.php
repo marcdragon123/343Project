@@ -6,8 +6,6 @@ include ('Container.php');
  * Date: 2017-10-14
  * Time: 10:33 AM
  */
-$Container= new Container();
-$GLOBALS['Container'] = $Container;
 
 class Database implements SplSubject
 {
@@ -15,8 +13,9 @@ class Database implements SplSubject
     private $observer;
     private $container;
 
-    function __construct() {
-        $this->container = $this->getContainer();
+    function __construct()
+    {
+        $this->setContainer(new Container());
         $this->attach($this->container);
     }
 
@@ -27,10 +26,12 @@ class Database implements SplSubject
 
     //access the global array to notify lock of a change
     function getContainer(){
-        return $GLOBALS['Container'];
+        return $this->container;
     }
 
-
+    public function setContainer($container) {
+        $this->container=$container;
+    }
     function updateTable($object){
         $Container = $this->getContainer();
         $Container->notifyUpdateTable($object, $this);
