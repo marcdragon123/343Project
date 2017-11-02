@@ -24,10 +24,7 @@
                     <input type="submit" value="Log In" name="submit">
                     <?php 
                     $controller = new Container();
-                    print_r(select($account, $FirstName = 'Anania', $where = null, $order = null));
-
-                    
-
+                   
                      ?>
                     <p class="message">Not registered? <a href="#">Create an account</a></p>
                 </form>

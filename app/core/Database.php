@@ -6,8 +6,7 @@ include ('Container.php');
  * Date: 2017-10-14
  * Time: 10:33 AM
  */
-$Container= new Container();
-$GLOBALS['Container'] = $Container;
+
 
 //mapper
 //model object and the gateway should never communicate directly
@@ -19,7 +18,8 @@ class Database implements SplSubject
     private $container;
 
     function __construct() {
-        $this->container = $this->getContainer();
+
+        $this->setContainer(new Container());
         $this->attach($this->container);
     }
 
@@ -30,7 +30,11 @@ class Database implements SplSubject
 
     //access the global array to notify lock of a change
     function getContainer(){
-        return $GLOBALS['Container'];
+        return $this->container;
+    }
+
+    public function setContainer($container) {
+         $this->container=$container;
     }
 
     //model should use one of these functions with the database class

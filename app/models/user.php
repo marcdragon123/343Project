@@ -3,7 +3,7 @@
 
 class User{
 	//Make sure the capitalization of these matches the ones in DB
-	private $account_ID;
+	private $UserID;
 	private $Password;
 	private $Admin;
 
@@ -25,8 +25,8 @@ class User{
 		}
 	}
 
-	public function getAccount_ID(){
-		return $this->account_ID;
+	public function getUserID(){
+		return $this->UserID;
 	}
 	public function getPassword(){
 		return $this->Password;
@@ -67,7 +67,7 @@ class User{
 
 
 	public function setID($ID){
-		$this->account_ID = $account_ID;
+		$this->UserID = $UserID;
 	}
 	public function setPassword($password){
 		$this->Password = $Password;
