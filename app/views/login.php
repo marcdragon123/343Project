@@ -1,4 +1,10 @@
+<?php require_once '../core/Container.php';
+
+
+
+?>
 <!DOCTYPE html>
+
 
 <html lang="en-US">
 
@@ -16,6 +22,13 @@
                     <input type="text" placeholder="Email" name="email"/>
                     <input type="password" placeholder="Password" name="password"/>
                     <input type="submit" value="Log In" name="submit">
+                    <?php 
+                    $controller = new Container();
+                    print_r(select($account, $FirstName = 'Anania', $where = null, $order = null));
+
+                    
+
+                     ?>
                     <p class="message">Not registered? <a href="#">Create an account</a></p>
                 </form>
             </div>
