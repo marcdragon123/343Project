@@ -7,28 +7,26 @@
     <orderEntry type="module-library">
       <library name="PHP" type="php">
         <CLASSES>
-          <root url="file://B:/Xampp5_6/php" />
           <root url="file://C:/Program Files/PHP/v7.0" />
-          <root url="file://C:/Windows/System32" />
+          <root url="file://$USER_HOME$/Desktop" />
         </CLASSES>
         <SOURCES>
-          <root url="file://B:/Xampp5_6/php" />
           <root url="file://C:/Program Files/PHP/v7.0" />
-          <root url="file://C:/Windows/System32" />
+          <root url="file://$USER_HOME$/Desktop" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
       <library name="PHARS">
         <CLASSES>
-          <root url="phar://B:/Xampp5_6/php/pharcommand.phar/" />
-          <root url="phar://$MODULE_DIR$/phpunit-5.7.23.phar/" />
           <root url="phar://C:/Program Files/PHP/v7.0/pharcommand.phar/" />
+          <root url="phar://$USER_HOME$/Desktop/University/SOEN341/Noah_DB/composer.phar/" />
+          <root url="phar://$MODULE_DIR$/phpunit-5.7.23.phar/" />
         </CLASSES>
         <SOURCES>
-          <root url="phar://B:/Xampp5_6/php/pharcommand.phar/" />
-          <root url="phar://$MODULE_DIR$/phpunit-5.7.23.phar/" />
           <root url="phar://C:/Program Files/PHP/v7.0/pharcommand.phar/" />
+          <root url="phar://$USER_HOME$/Desktop/University/SOEN341/Noah_DB/composer.phar/" />
+          <root url="phar://$MODULE_DIR$/phpunit-5.7.23.phar/" />
         </SOURCES>
       </library>
     </orderEntry>

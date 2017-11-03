@@ -47,7 +47,7 @@ class Config
             }
         }
     }
-    
+
     public function select($table, $rows = '*', $where = null, $order = null){
         $q = 'SELECT '.$rows.' FROM '.$table;
         if($where != null){
@@ -91,7 +91,7 @@ class Config
         $insert .= ' VALUES ('.$values.')';
         $ins = @mysqli_query($this->connection, $insert);
     }
-    
+
     //returns a join of two tables (inner, left, or right)
     public function joinTables($joinType, $table1, $table2, $table1columns, $table2columns, $table1equality, $table2equality, $where=NULL, $orderBy=NULL){
         for($x=0;$x<count($table1columns);$x++){
