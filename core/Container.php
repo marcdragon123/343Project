@@ -229,9 +229,9 @@ class Container implements SplObserver
     private function createCon(){
         $servername = "127.0.0.1";
         $servernamelocal = "localhost";
-        $port = "3306";
+        $port = "8080";
         $username = "root";
-        $password = "MSQLs24!!%%";
+        $password = "publicvoid1";
         $schema = "compstor_db";
 
         /*

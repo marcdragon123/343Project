@@ -9,4 +9,8 @@ class Controller{
         $this->model = $model;
     }
 
+    public function index()
+    {
+        echo 'home/index';
+    }
 }

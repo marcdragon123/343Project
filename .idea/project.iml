@@ -21,12 +21,12 @@
         <CLASSES>
           <root url="phar://C:/Program Files/PHP/v7.0/pharcommand.phar/" />
           <root url="phar://$USER_HOME$/Desktop/University/SOEN341/Noah_DB/composer.phar/" />
-          <root url="phar://$MODULE_DIR$/phpunit-5.7.23.phar/" />
+          <root url="phar://$USER_HOME$/Desktop/343_TEMP_FOLDER/phpunit-5.7.23.phar/" />
         </CLASSES>
         <SOURCES>
           <root url="phar://C:/Program Files/PHP/v7.0/pharcommand.phar/" />
           <root url="phar://$USER_HOME$/Desktop/University/SOEN341/Noah_DB/composer.phar/" />
-          <root url="phar://$MODULE_DIR$/phpunit-5.7.23.phar/" />
+          <root url="phar://$USER_HOME$/Desktop/343_TEMP_FOLDER/phpunit-5.7.23.phar/" />
         </SOURCES>
       </library>
     </orderEntry>

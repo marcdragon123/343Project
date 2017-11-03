@@ -5,7 +5,7 @@ namespace App;
 class Config
 {
     //FOR TESTING
-    private $db_host="localhost:8888";
+    private $db_host="localhost:8080";
     private $db_user="root";
     private $db_pass="root";
     private $db_name="compstor_db";

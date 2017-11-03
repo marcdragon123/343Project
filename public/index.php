@@ -1,15 +1,10 @@
 <?php
 /**
-*
-*Front Conroller
-*
-*/
+ * Created by PhpStorm.
+ * User: leban
+ * Date: 2017-11-02
+ * Time: 10:33 PM
+ */
+require_once '../core/app.php';
 
-
-require '../core/router.php'
-    $router = new router();
-echo get_class($router);
-
-
-
-?>
+$app = new app();
