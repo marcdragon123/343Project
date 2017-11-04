@@ -1,4 +1,10 @@
-<?php require_once '../core/Container.php';
+<?php
+require_once('../core/Container.php');
+require_once('../Config.php');
+require_once('../models/user.php');
+require_once('../controllers/Controller.php');
+require_once('../core/Gateways/userTable.php');
+require_once('../classes/Model.php');
 
 
 
@@ -23,12 +29,36 @@
                     <input type="password" placeholder="Password" name="password"/>
                     <input type="submit" value="Log In" name="submit">
                     <?php 
+                    echo "Hello1";
                     $controller = new Container();
-                   
+                    
+
                      ?>
                     <p class="message">Not registered? <a href="#">Create an account</a></p>
                 </form>
             </div>
+            <?php
+
+              
+$array = array("Email","Password");
+$controller = new Controller($array);
+
+$model = new Model();
+$controller->givesData($model);  
+$db = new Database();
+$model->update($db);
+
+$userTable = new userTable();
+$user = new User();
+$userTable->populateUser($user);
+echo "hello!";
+print_r($user->getFirstName());
+
+
+
+
+
+            ?>
         </div>
     </body>
     

@@ -9,9 +9,12 @@ class userTable extends Gateway {
 
 		$sql = "SELECT * FROM account WHERE Email=$email";
 
+		$sqlArray = array();
 		$sqlArray = $sql->mysqli_fetch_all();
+		print_r($sqlArray);
 
-		$user->setID($sqlArray->[0]['UserID']);
+/*
+		$user->setID($sqlArray->['UserID']);
 		$user->setPassword($sqlArray->[0]['Password']);
 		$user->setAdmin($sqlArray->[0]['Admin']);
 		$user->setFirstName($sqlArray->[0]['FirstName']);
@@ -24,7 +27,7 @@ class userTable extends Gateway {
 		$user->setCountry($sqlArray->[0]['Country']);
 		$user->setPostalCode($sqlArray->[0]['PostalCode']);
 		$user->setPhoneNumber($sqlArray->[0]['PhoneNumber']);
-
+*/
 	}
 
 

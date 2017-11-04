@@ -5,7 +5,7 @@ class Model {
   
 	public function updateData($array) {
    		foreach($array as $key => $value){
-     		push_array($data
+     		push_array($data);
     	}
   	}
  	
@@ -19,7 +19,7 @@ class Model {
   	}
   
   	public function getData() {
-   		return $this->data 
+   		return $this->$data; 
   	}
 
 }
