@@ -1,66 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d6aa3b8c-52d6-46f3-a3e2-3a06f3cc06c6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/container/Account.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/container/Administrator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/container/Customer.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/container/Monitor.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/container/Product.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/container/ProductCatalog.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/User.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/mappers/AccountMapperAbstract.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/mappers/CustomerMapper.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/tdgs/Model.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/tdgs/UserTDG.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/.idea/app.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/.idea/vcs.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/.idea/workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/css/admin_index.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/css/bootstrap.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/css/register.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/css/style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/js/register.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/classes/Model.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/content/css/bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/content/css/light-bootstrap-dashboard.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/content/fonts/Pe-icon-7-stroke.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/content/fonts/Pe-icon-7-stroke.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/content/fonts/Pe-icon-7-stroke.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/content/fonts/Pe-icon-7-stroke.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/controllers/cart.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/controllers/catalog.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/controllers/home.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/controllers/monitor.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/controllers/users.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/models/admin.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/models/cart.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/models/catalog.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/models/home.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/models/monitor.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/models/product.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/models/user.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/admin/adminCatalog.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/admin/adminLogin.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/admin/index.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/cart/displayCart.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/catalog/DisplayCatalogue.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/catalog/addProduct.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/catalog/index.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/home/index.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/users/browseCatalog.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/users/login.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/users/register.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/users/userProfile.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/database_import_file/compstor_db.sql" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/logs/hello.txt" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Config.php" afterPath="$PROJECT_DIR$/app/Config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/admin.php" afterPath="$PROJECT_DIR$/app/controllers/admin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index.php" afterPath="$PROJECT_DIR$/app/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/main.php" afterPath="$PROJECT_DIR$/app/views/main.php" />
-    </list>
+    <list default="true" id="d6aa3b8c-52d6-46f3-a3e2-3a06f3cc06c6" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -75,7 +16,7 @@
           <file leaf-file-name="AccountMapperAbstract.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/mappers/AccountMapperAbstract.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="225">
+                <state relative-caret-position="183">
                   <caret line="20" column="26" lean-forward="false" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
                   <folding />
                 </state>
@@ -92,11 +33,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="User.php" pinned="false" current-in-tab="true">
+          <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/controllers/User.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="240">
-                  <caret line="21" column="8" lean-forward="false" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
+                <state relative-caret-position="405">
+                  <caret line="32" column="29" lean-forward="true" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="29" />
                   <folding />
                 </state>
               </provider>
@@ -112,7 +53,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Customer.php" pinned="false" current-in-tab="false">
+          <file leaf-file-name="Customer.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/container/Customer.php">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="225">
@@ -149,8 +90,8 @@
           <file leaf-file-name="UserTDG.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/data/tdgs/UserTDG.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="390">
-                  <caret line="31" column="29" lean-forward="true" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
+                <state relative-caret-position="-45">
+                  <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
                   <folding>
                     <marker date="1509946834000" expanded="true" signature="303:345" ph="SELECT * FRO... Account" />
                     <marker date="1509946834000" expanded="true" signature="614:647" ph="SELECT * FRO... Account" />
@@ -347,12 +288,12 @@
       <updated>1508530384769</updated>
       <workItem from="1508530386095" duration="5543000" />
       <workItem from="1509910405478" duration="28436000" />
-      <workItem from="1509947350089" duration="121000" />
+      <workItem from="1509947350089" duration="436000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34100000" />
+    <option name="totallyTimeSpent" value="34415000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -571,32 +512,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/tdgs/UserTDG.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="31" column="29" lean-forward="true" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
-          <folding>
-            <marker date="1509946834000" expanded="true" signature="303:345" ph="SELECT * FRO... Account" />
-            <marker date="1509946834000" expanded="true" signature="614:647" ph="SELECT * FRO... Account" />
-            <marker date="1509946834000" expanded="true" signature="846:1158" ph="INSERT INTO account_tbl... " />
-            <marker date="1509946834000" expanded="true" signature="1916:1950" ph="DELETE FROM " />
-            <marker date="1509946834000" expanded="true" signature="2577:2897" ph="UPDATE accou... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/Admin.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="9" column="26" lean-forward="false" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/mappers/AccountMapperAbstract.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="20" column="26" lean-forward="false" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
           <folding />
         </state>
       </provider>
@@ -633,14 +552,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/container/Customer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="20" column="1" lean-forward="true" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/container/Account.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -649,10 +560,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/data/tdgs/UserTDG.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-45">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <marker date="1509946834000" expanded="true" signature="303:345" ph="SELECT * FRO... Account" />
+            <marker date="1509946834000" expanded="true" signature="614:647" ph="SELECT * FRO... Account" />
+            <marker date="1509946834000" expanded="true" signature="846:1158" ph="INSERT INTO account_tbl... " />
+            <marker date="1509946834000" expanded="true" signature="1916:1950" ph="DELETE FROM " />
+            <marker date="1509946834000" expanded="true" signature="2577:2897" ph="UPDATE accou... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/mappers/AccountMapperAbstract.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="20" column="26" lean-forward="false" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="21" column="8" lean-forward="false" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
+        <state relative-caret-position="405">
+          <caret line="32" column="29" lean-forward="true" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/container/Customer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="20" column="1" lean-forward="true" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
           <folding />
         </state>
       </provider>
