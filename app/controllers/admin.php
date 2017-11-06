@@ -1,40 +1,31 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: ahmadbiz
+ * Date: 2017-11-05
+ * Time: 3:25 PM
+ */
 
-class Admin extends Controller{
-    protected function Index(){
-        $viewmodel = new CatalogModel();
-        $this->returnView($viewmodel->Index(), true);
+class Admin extends Controller {
+    protected $userMapper;
+
+    public function login(){
+        $this->userMapper = new CustomerMapper();
+
     }
 
-    protected function adminLogin(){
-        $viewmodel = new AdminModel();
-        //Create variables here and pass them to view, Uncomment the following to try out
-        //$apple = 'iPhone 5';
-        //$samsung = 'galaxy edge';
-        //$this->setVars(compact('apple', 'samsung'));
-        //$this->setVar('apple', $apple);
-        //$this->setVar('samsung', $samsung);
-        $this->returnView($viewmodel->adminLogin(), true);
+    public function logout(){
+
     }
 
-    protected function logout(){
-        $email = $_SESSION['user_data']['email'];
-        $ID = $_SESSION['user_data']['id'];
-        $viewModel = new UserModel();
-        $viewModel->logoutStatus($email, $ID);
-        unset($_SESSION['is_logged_in']);
-        unset($_SESSION['user_data']);
-        session_destroy();
-        // Redirect
-        header('Location: '.ROOT_URL);
+    public function viewProductCatalog(){
+
     }
 
-    protected function userProfile(){
-        $viewmodel = new UserModel();
-        $this->returnView($viewmodel->userProfile(), true);    }
+    public function viewProductSpecification($id){
 
-    protected function addProduct(){
-        $viewmodel = new CatalogModel();
-        $this->returnView($viewmodel->userProfile(), true);
     }
+
+
+
 }

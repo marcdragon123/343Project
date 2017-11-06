@@ -1,13 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ahmadbiz
- * Date: 2017-10-20
- * Time: 11:01 PM
- */
 
-
-// Define DB Params
 define("DB_HOST", "localhost");
 define("DB_USER", "root");
 define("DB_PASS", "root");
