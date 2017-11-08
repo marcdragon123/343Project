@@ -28,7 +28,8 @@ class CustomerMapper extends AccountMapperAbstract{
 
     public function createAccount(array $obj){
         $userTDG = new UserTDG();
-        $userId = $userTDG->insert($obj);
+
+        return $userTDG->insert($obj);
 
     }
 
@@ -123,5 +124,7 @@ class CustomerMapper extends AccountMapperAbstract{
         // TODO: Implement _commit() method, call UOW commit
     }
 
+    //updateloginsession
+    //clearallloginsessions
 
 }
