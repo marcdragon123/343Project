@@ -16,20 +16,22 @@ class CustomerMapper extends AccountMapperAbstract{
      * create a new User instance via the create function.
      *
      * @param string $email
+     * @param string $password
      * @return Account
      */
-    public function findByEmail($email, $password){
+    public function findById($id, $password){
         $dbData = array(
-            'email' => $email,
+            'email' => $id,
             'password' => $password
         );
         return $this->create($dbData);
     }
 
-    public function createAccount(array $obj){
+    public function createAccount(array $post){
         $userTDG = new UserTDG();
+        //TODO: must call the idmap and uow
 
-        return $userTDG->insert($obj);
+        return $userTDG->insert($post);
 
     }
 
@@ -45,7 +47,6 @@ class CustomerMapper extends AccountMapperAbstract{
      * @return Customer
      */
     public function populate(Account $obj, array $data){
-        $obj->__set("id",$data['id']);
         $obj->__set("fname", $data['fName']);
         $obj->__set("lName", $data['lName']);
         $obj->__set("isAdmin", $data['isAdmin']);

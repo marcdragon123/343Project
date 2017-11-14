@@ -16,6 +16,19 @@ require('classes/Messages.php');
 require('classes/Router.php');
 require('classes/Controller.php');
 
+require('../domain/core/Account.php');
+require('../domain/core/Customer.php');
+require('../domain/core/Administrator.php');
+
+require('controllers/Admin.php');
+require('controllers/User.php');
+require('controllers/home.php');
+
+require('mappers/AccountMapperAbstract.php');
+require('mappers/CustomerMapper.php');
+
+
+
 $router = new Router($_GET);
 $controller = $router->createController();
 if($controller){

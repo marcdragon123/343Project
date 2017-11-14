@@ -6,7 +6,7 @@
  * Time: 3:33 PM
  */
 
-class Product
+class Product extends DomainObject
 {
     private $id;
     private $type;

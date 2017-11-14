@@ -6,8 +6,9 @@
  * Time: 2:42 PM
  */
 
-abstract class Account {
+abstract class Account extends DomainObject {
 
+    protected static $id=0;
     protected $isAdmin;
     protected $fName;
     protected $lName;
@@ -20,12 +21,7 @@ abstract class Account {
     protected $province;
     protected $postalCode;
     protected $country;
-    protected $id;
     protected $loginStatus;
-
-    public function setId($id){
-        $this->id;
-    }
 
 
     public function __set($name, $value){
@@ -48,12 +44,6 @@ abstract class Account {
                 break;
             case "phone":
                 $this->phone = $value;
-                break;
-            case "id":
-                if(!(is_null($this->id))){
-                    throw new Exception("cannot change ID");
-                }
-                $this->id = $value;
                 break;
             case "streetNum":
                 $this->streetNum = $value;

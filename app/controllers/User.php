@@ -21,11 +21,13 @@ class User extends Controller {
      */
     public function register(){
         $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-        $userObj = $this->userMapper->create($post);
-        $userId = $this->userMapper->createAccount($post);
-        $this->userMapper->initializeId($userObj, $userId);
+        if($post['submit']) {
+            $userObj = $this->userMapper->create($post);
+            header('Location: ' . ROOT_URL . 'users/login');
+        }
 
-        $this->returnView(header('Location: '.ROOT_URL.'users/login'), true);
+        $this->returnView(null, true);
+
     }
 
     /**
