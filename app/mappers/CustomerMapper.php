@@ -6,7 +6,7 @@
  * Time: 6:32 PM
  */
 
-class CustomerMapper extends AccountMapperAbstract{
+class CustomerMapper extends MapperAbstract{
 
     /**
      * Fetch a user object by ID
@@ -15,7 +15,7 @@ class CustomerMapper extends AccountMapperAbstract{
      * how the database data ($dataFromDb) is used to
      * create a new User instance via the create function.
      *
-     * @param string $email
+     * @param string $id
      * @param string $password
      * @return Account
      */
@@ -88,7 +88,7 @@ class CustomerMapper extends AccountMapperAbstract{
      */
     public function _insert(Account $obj)
     {
-        // TODO: Implement _insert() method, this should simply call the UOW insert Method
+        // TODO: Implement _insert() method, this should simply call the tdg insert Method
     }
 
     /**
@@ -99,9 +99,9 @@ class CustomerMapper extends AccountMapperAbstract{
      *
      * @param Account $obj
      */
-    protected function _update(Account $obj)
+    public function _update(Account $obj)
     {
-        // TODO: Implement _update() method, call UOW update Method
+        // TODO: Implement _update() method, call tdg update Method
     }
 
     /**
@@ -112,17 +112,18 @@ class CustomerMapper extends AccountMapperAbstract{
      *
      * @param Account $obj
      */
-    protected function _delete(Account $obj)
+    public function _delete(Account $obj)
     {
-        // TODO: Implement _update() method, call UOW update
+        // TODO: Implement _update() method, call tdg update
     }
 
     /**
      *
      */
-    protected function _commit()
+    public function _commit()
     {
         // TODO: Implement _commit() method, call UOW commit
+
     }
 
     //updateloginsession

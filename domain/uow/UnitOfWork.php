@@ -1,90 +1,105 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: ahmadbiz
- * Date: 2017-11-13
- * Time: 7:07 PM
+ * The Unit of Work object.
+ *
  */
-
-class UnitOfWork{
-
-
-    private $newObjects;
-    private $dirtyObjects;
-    private $removedObjects;
-    private $committedObjects;
-
-    public function __construct(){
-
-        $this->newObjects = array();
-        $this->dirtyObjects = array();
-        $this->removedObjects = array();
-        $this->committedObjects = array();
-
-    }
-
+class UnitOfWork
+{
+    private $mapper;
+    private $dirtyObjects = array();
+    private $newObjects = array();
+    private $deletedObjects = array();
     /**
-     * register new object, first checks if object exits anywhere already
-     * TODO: missing contracts here, can use assert?
+     * @param CustomerMapper $mapper
+     */
+    public function __construct(CustomerMapper $mapper)
+    {
+        $this->mapper = $mapper;
+    }
+    /**
      *
-     * @param $obj
      */
-    public function registerNew(DomainObject $obj){
-        assert(!is_null($obj), "assertion failed, object has no id");
-        if(!is_null($obj)){
-            if(in_array($obj,$this->dirtyObjects)){
-               echo "cant add old object as a new object";
-            }
-            elseif (in_array($obj,$this->removedObjects)){
-                echo "cant register deleted obj";
-            }
-            elseif (in_array($obj,$this->newObjects)){
-                echo "object already registered";
-            }
-            else{
-                array_push($this->newObjects, $obj);
-            }
-        }
+    public function commit()
+    {
 
+    }
+    /**
+     * @param DomainObject $object
+     */
+    public function registerDirty(DomainObject $object)
+    {
+        $this->dirtyObjects[ spl_object_hash($object) ] = $object;
     }
 
     /**
-     * checks if object is deleted or if object is already in dirty
-     * @param $obj
+     * Register an object as dirty. This is valid unless:
+     * - The object is registered to be removed
+     * - The object is registered as dirty (has been changed)
+     * - The object is already registered as new
+     * @param DomainObject $object
+     * @throws Exception
      */
-    public function registerDirty(DomainObject $obj){
-        if(!is_null($obj)){
-            if(in_array($obj, $this->removedObjects)){
-                echo "cant modify a removed object";
-            }
-            elseif ((!in_array($obj, $this->dirtyObjects))&&(!in_array($obj,$this->newObjects))){
-                array_push($this->dirtyObjects, $obj);
-            }
+    public function registerNew(DomainObject $object)
+    {
+        // Check if we meet our criteria.
+        if ($this->isDeleted($object)) {
+            throw new Exception('Cannot register as new, object is marked for deletion.');
         }
+        if ($this->isDirty($object)) {
+            throw new Exception('Cannot register as new, object is marked as dirty.');
+        }
+        if ($this->isNew($object)) {
+            throw new Exception('Cannot register as new, object is already marked as new.');
+        }
+        $this->newObjects[ spl_object_hash($object) ] = $object;
     }
-
     /**
-     * checks if object is registered, if so, remove it and add to removedObjects[]
-     *
-     * @param $obj
+     * @param DomainObject $object
      */
-    public function registerRemoved(DomainObject $obj){
-    if(!(is_null($obj))){
-        if(in_array($obj, $this->newObjects)){
-            unset($this->newObjects[$obj]);
-            unset($this->dirtyObjects[$obj]);
-            }
-        if(!in_array($obj, $this->removedObjects)){
-            array_push($this->removedObjects, $obj);
-            }
+    public function registerDeleted(DomainObject $object)
+    {
+        $this->deletedObjects[ spl_object_hash($object) ] = $object;
+    }
+    /**
+     * @param DomainObject $object
+     * @return bool
+     */
+    public function isDirty(DomainObject $object)
+    {
+        return isset($this->dirtyObjects[ spl_object_hash($object) ]);
+    }
+    /**
+     * @param DomainObject $object
+     * @return bool
+     */
+    public function isNew(DomainObject $object)
+    {
+        return isset($this->newObjects[ spl_object_hash($object) ]);
+    }
+    /**
+     * @param DomainObject $object
+     * @return bool
+     */
+    public function isDeleted(DomainObject $object)
+    {
+        return isset($this->deletedObjects[ spl_object_hash($object) ]);
+    }
+
+    public function insertNew(){
+        foreach ($this->newObjects as $newObject) {
+            $this->mapper->_insert($newObject);
         }
     }
 
-
-    public function commit(){
-
-
+    public function updateDirty(){
+        foreach ($this->dirtyObjects as $updateObject) {
+            $this->mapper->_update($updateObject);
+        }
     }
 
-
+    public function deleteRemoved(){
+        foreach ($this->deletedObjects as $deletedObject) {
+            $this->mapper->delete($deletedObject);
+        }
+    }
 }

@@ -24,7 +24,7 @@ require('controllers/Admin.php');
 require('controllers/User.php');
 require('controllers/home.php');
 
-require('mappers/AccountMapperAbstract.php');
+require('mappers/MapperAbstract.php');
 require('mappers/CustomerMapper.php');
 
 

@@ -6,7 +6,7 @@
  * Time: 6:16 PM
  */
 
-abstract class AccountMapperAbstract {
+abstract class MapperAbstract {
 
     /**
      * Create a new instance of the DomainObject-->Account class that this
