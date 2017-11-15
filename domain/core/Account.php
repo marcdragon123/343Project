@@ -10,12 +10,12 @@ abstract class Account extends DomainObject {
 
     protected static $id=0;
     protected $isAdmin;
-    protected $fName;
-    protected $lName;
+    protected $firstName;
+    protected $lastName;
     protected $password;
     protected $email;
     protected $phone;
-    protected $streetNum;
+    protected $streetNumber;
     protected $streetName;
     protected $city;
     protected $province;
@@ -24,17 +24,22 @@ abstract class Account extends DomainObject {
     protected $loginStatus;
 
 
+    public function getID()
+    {
+        return $this::$id;
+    }
+
     public function __set($name, $value){
 
         switch ($name){
             case "isAdmin":
                 $this->isAdmin = $value;
                 break;
-            case "fName":
-                $this->fName = $value;
+            case "firstName":
+                $this->firstName = $value;
                 break;
-            case "lName":
-                $this->lName = $value;
+            case "lastName":
+                $this->lastName = $value;
                 break;
             case "password":
                 $this->password = $value;
@@ -45,8 +50,8 @@ abstract class Account extends DomainObject {
             case "phone":
                 $this->phone = $value;
                 break;
-            case "streetNum":
-                $this->streetNum = $value;
+            case "streetNumber":
+                $this->streetNumber = $value;
                 break;
             case "streetName":
                 $this->streetName = $value;
@@ -72,11 +77,11 @@ abstract class Account extends DomainObject {
             case "isAdmin":
                 return $this->isAdmin;
                 break;
-            case "fName":
-                return $this->fName;
+            case "firstName":
+                return $this->firstName;
                 break;
-            case "lName":
-                return $this->lName;
+            case "lastName":
+                return $this->lastName;
                 break;
             case "password":
                 return $this->password;
@@ -90,8 +95,8 @@ abstract class Account extends DomainObject {
             case "id":
                 return $this->id;
                 break;
-            case "streetNum":
-                return $this->streetNum;
+            case "streetNumber":
+                return $this->streetNumber;
                 break;
             case "streetName":
                 return $this->streetName;

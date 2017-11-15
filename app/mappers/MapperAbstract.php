@@ -14,18 +14,8 @@ abstract class MapperAbstract {
      * from a data array.
      *
      * @param array $data
-     * @return Account
      */
-
-    public function create(array $data = null){
-        $obj = $this->_create();
-
-        if($data){
-            $obj = $this->populate($obj, $data);
-        }
-        return $obj;
-    }
-
+    abstract public function create(array $data = null);
 
     /**
      * Save the DomainObject
@@ -35,13 +25,7 @@ abstract class MapperAbstract {
      *
      * @param Account $obj
      */
-    public function save(Account $obj){
-        if(is_null($obj->__get("id"))){
-            $this->_insert($obj);
-        } else {
-            $this->_update($obj);
-        }
-    }
+    abstract public function save(Account $obj);
 
     /**
      * Delete the DomainObject
@@ -50,10 +34,7 @@ abstract class MapperAbstract {
      *
      * @param Account $obj
      */
-    public function delete(Account $obj)
-    {
-        $this->_delete($obj);
-    }
+    abstract public function delete(Account $obj);
 
     /**
      * Populate the DomainObject with the values
@@ -72,32 +53,26 @@ abstract class MapperAbstract {
      *
      * @return Account
      */
-    abstract protected function _create();
+    abstract public function _create();
 
     /**
      * Insert the DomainObject to persistent storage
      *
      * @param Account $obj
      */
-    abstract protected function _insert(Account $obj);
+    abstract public function _insert(Account $obj);
 
     /**
      * Update the DomainObject in persistent storage
      *
      * @param Account $obj
      */
-    abstract protected function _update(Account $obj);
+    abstract public function _update(Account $obj);
 
     /**
      * Delete the DomainObject from peristent Storage
      *
      * @param Account $obj
      */
-    abstract protected function _delete(Account $obj);
-
-    /**
-     * Commit DomainObject to DB
-     * calls UOW commit method
-     */
-    abstract protected function _commit();
+    abstract public function _delete(Account $obj);
 }

@@ -16,6 +16,8 @@ require('classes/Messages.php');
 require('classes/Router.php');
 require('classes/Controller.php');
 
+
+require('../domain/core/DomainObject.php');
 require('../domain/core/Account.php');
 require('../domain/core/Customer.php');
 require('../domain/core/Administrator.php');
@@ -26,6 +28,14 @@ require('controllers/home.php');
 
 require('mappers/MapperAbstract.php');
 require('mappers/CustomerMapper.php');
+
+require('../domain/idmap/idMap.php');
+require('../domain/uow/UnitOfWork.php');
+
+
+require('../data/tdgs/Model.php');
+require('../data/tdgs/UserTDG.php');
+
 
 
 

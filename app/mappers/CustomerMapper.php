@@ -8,6 +8,17 @@
 
 class CustomerMapper extends MapperAbstract{
 
+    public $UOW;
+    public $idMap;
+    public $userTDG;
+
+    public function __construct()
+    {
+        $this->UOW = new UnitOfWork($this);
+        $this->idMap = new IdMap();
+        $this->userTDG = new UserTDG();
+    }
+
     /**
      * Fetch a user object by ID
      *
@@ -16,23 +27,61 @@ class CustomerMapper extends MapperAbstract{
      * create a new User instance via the create function.
      *
      * @param string $id
-     * @param string $password
      * @return Account
      */
-    public function findById($id, $password){
+    public function findById($id){
         $dbData = array(
             'email' => $id,
-            'password' => $password
-        );
+            );
         return $this->create($dbData);
     }
 
+    /**
+     * @param array $post
+     * @return string
+     */
     public function createAccount(array $post){
         $userTDG = new UserTDG();
         //TODO: must call the idmap and uow
 
         return $userTDG->insert($post);
+    }
 
+    /**
+     * @param array|null $data
+     * @return Customer
+     */
+    public function create(array $data = null)
+    {
+        $obj = $this->_create();
+
+        if($data){
+            $obj = $this->populate($obj, $data);
+        }
+
+        $this->idMap->add('Customer', $obj);
+        $this->UOW->registerNew($obj);
+        $this->UOW->commit();
+    }
+
+    /**
+     * @param Account $obj
+     */
+    public function save(Account $obj)
+    {
+        if(is_null($obj->__get("id"))){
+            $this->_insert($obj);
+        } else {
+            $this->_update($obj);
+        }
+    }
+
+    /**
+     * @param Account $obj
+     */
+    public function delete(Account $obj)
+    {
+        $this->_delete($obj);
     }
 
     /**
@@ -47,25 +96,19 @@ class CustomerMapper extends MapperAbstract{
      * @return Customer
      */
     public function populate(Account $obj, array $data){
-        $obj->__set("fname", $data['fName']);
-        $obj->__set("lName", $data['lName']);
-        $obj->__set("isAdmin", $data['isAdmin']);
+        $obj->__set("firstName", $data['firstName']);
+        $obj->__set("lastName", $data['lastName']);
         $obj->__set("password", $data['password']);
         $obj->__set("email", $data['email']);
         $obj->__set("phone", $data['phone']);
-        $obj->__set("streetNum", $data['streetNum']);
+        $obj->__set("streetNumber", $data['streetNumber']);
         $obj->__set("streetName", $data['streetName']);
         $obj->__set("city", $data['city']);
-        $obj->__set("province", $data['provice']);
+        $obj->__set("province", $data['province']);
         $obj->__set("postalCode", $data['postalCode']);
         $obj->__set("country", $data['country']);
 
         return $obj;
-    }
-
-    public function initializeId(Account $obj, $userId){
-        $obj->setId($userId);
-        return $userId;
     }
 
     /**
@@ -74,7 +117,6 @@ class CustomerMapper extends MapperAbstract{
      * @return Customer
      */
     public function _create(){
-
         return new Customer();
     }
 
@@ -88,7 +130,9 @@ class CustomerMapper extends MapperAbstract{
      */
     public function _insert(Account $obj)
     {
-        // TODO: Implement _insert() method, this should simply call the tdg insert Method
+        //var_dump($obj->__get('firstName'));
+
+        $this->userTDG->insert($obj);
     }
 
     /**
@@ -101,7 +145,7 @@ class CustomerMapper extends MapperAbstract{
      */
     public function _update(Account $obj)
     {
-        // TODO: Implement _update() method, call tdg update Method
+        //$this->userTDG->update($obj);
     }
 
     /**
@@ -114,18 +158,12 @@ class CustomerMapper extends MapperAbstract{
      */
     public function _delete(Account $obj)
     {
-        // TODO: Implement _update() method, call tdg update
+        //$this->userTDG->delete($obj->getID());
     }
 
     /**
      *
      */
-    public function _commit()
-    {
-        // TODO: Implement _commit() method, call UOW commit
-
-    }
-
     //updateloginsession
     //clearallloginsessions
 

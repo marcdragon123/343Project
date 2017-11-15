@@ -10,9 +10,9 @@ class UnitOfWork
     private $newObjects = array();
     private $deletedObjects = array();
     /**
-     * @param CustomerMapper $mapper
+     * @param MapperAbstract $mapper
      */
-    public function __construct(CustomerMapper $mapper)
+    public function __construct(MapperAbstract $mapper)
     {
         $this->mapper = $mapper;
     }
@@ -21,14 +21,16 @@ class UnitOfWork
      */
     public function commit()
     {
-
+        $this->insertNew();
+        $this->updateDirty();
+        $this->deleteRemoved();
     }
     /**
      * @param DomainObject $object
      */
     public function registerDirty(DomainObject $object)
     {
-        $this->dirtyObjects[ spl_object_hash($object) ] = $object;
+        $this->dirtyObjects[spl_object_hash($object)] = $object;
     }
 
     /**
@@ -99,7 +101,7 @@ class UnitOfWork
 
     public function deleteRemoved(){
         foreach ($this->deletedObjects as $deletedObject) {
-            $this->mapper->delete($deletedObject);
+            $this->mapper->_delete($deletedObject);
         }
     }
 }

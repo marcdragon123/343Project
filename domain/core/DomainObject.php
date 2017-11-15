@@ -8,5 +8,5 @@
 
 abstract class DomainObject
 {
-
+    abstract function getID();
 }

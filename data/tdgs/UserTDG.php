@@ -37,27 +37,25 @@ class UserTDG extends Model
     }
 
     /**
-     * @param $post object
+     * @param Account object
      * @return string
      */
-    public function insert($post)
+    public function insert(Account $user)
     {
 
-        $this->query('INSERT INTO account_tbl (firstName, lastName, 
-                      email, phone, password, street, streetNum, city, province,
-                       country, postalCode) VALUES(:fname, :lname, :email, :phone,
-                        :password , :streetname, :streetnum, :city, :Province, :Country, :postalcode)');
-        $this->bind(':fname', $post['fName']);
-        $this->bind(':lname', $post['lname']);
-        $this->bind(':email', $post['email']);
-        $this->bind(':phone', $post['phone']);
-        $this->bind(':streetnum', $post['streetNum']);
-        $this->bind(':streetname', $post['streetName']);
-        $this->bind(':city', $post['city']);
-        $this->bind(':postalcode', $post['postalCode']);
-        $this->bind(':province', $post['province']);
-        $this->bind(':country', $post['country']);
-        $this->bind(':password', $post['password']);
+        $this->query('INSERT INTO account_tbl (firstName, lastName, email, phone, password, streetName, streetNumber, city, province, country, postalCode) 
+                             VALUES(:firstName, :lastName, :email, :phone, :password , :streetName, :streetNumber, :city, :province, :country, :postalCode)');
+        $this->bind(':firstName', $user->__get('firstName'));
+        $this->bind(':lastName', $user->__get('lastName'));
+        $this->bind(':email', $user->__get('email'));
+        $this->bind(':phone', $user->__get('phone'));
+        $this->bind(':password', $user->__get('password'));
+        $this->bind(':streetName', $user->__get('streetName'));
+        $this->bind(':streetNumber', $user->__get('streetNumber'));
+        $this->bind(':city', $user->__get('city'));
+        $this->bind(':province', $user->__get('province'));
+        $this->bind(':country', $user->__get('country'));
+        $this->bind(':postalCode', $user->__get('postalCode'));
         $this->execute();
 
         return $this->lastInsertId();
@@ -78,41 +76,27 @@ class UserTDG extends Model
     }
 
     /**
-     * @param $id
-     * @param $fName
-     * @param $lName
-     * @param $isAdmin
-     * @param $password
-     * @param $email
-     * @param $phone
-     * @param $streetNum
-     * @param $streetName
-     * @param $city
-     * @param $province
-     * @param $postalCode
-     * @param $country
+     * @param Account $user
      * @return string id
      */
 
-    public function update($id, $fName, $lName, $isAdmin, $password, $email, $phone, $streetNum, $streetName,
-                           $city, $province, $postalCode, $country)
+    public function update(Account $user)
     {
-        $this->query('UPDATE account SET isAdmin = :isAdmin, firstName = :fname, lastName = :lname, 
-                      email = :email, phone = :phone, password = :password, street = :streetName, streetNum = :streetNum,
-                       city = :city, province = :province, country = :country, postalCode = :postalCode) WHERE id = :id');
-        $this->bind('id', $id);
-        $this->bind(':isAdmin', $isAdmin);
-        $this->bind(':fname', $fName);
-        $this->bind(':lname', $lName);
-        $this->bind(':email', $email);
-        $this->bind(':phone', $phone);
-        $this->bind(':streetnum', $streetNum);
-        $this->bind(':streetname', $streetName);
-        $this->bind(':city', $city);
-        $this->bind(':postalcode', $postalCode);
-        $this->bind(':Province', $province);
-        $this->bind(':Country', $country);
-        $this->bind(':password', $password);
+        $this->query('UPDATE account SET firstName = :firstName, lastName = :lastName, email = :email, phone = :phone,
+                            password = :password, street = :streetName, streetNumber = :streetNumber,
+                            city = :city, province = :province, country = :country, postalCode = :postalCode) WHERE id = :id');
+        $this->bind(':id', $user->getID());
+        $this->bind(':firstName', $user->__get('firstName'));
+        $this->bind(':lastName', $user->__get('lastName'));
+        $this->bind(':email', $user->__get('email'));
+        $this->bind(':phone', $user->__get('phone'));
+        $this->bind(':streetNumber', $user->__get('streetNumber'));
+        $this->bind(':streetName', $user->__get('streetName'));
+        $this->bind(':city', $user->__get('city'));
+        $this->bind(':postalCode', $user->__get('postalCode'));
+        $this->bind(':province', $user->__get('province'));
+        $this->bind(':country', $user->__get('country'));
+        $this->bind(':password', $user->__get('password'));
         $this->execute();
 
         return $this->lastInsertId();

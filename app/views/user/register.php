@@ -14,22 +14,22 @@
             <!--Alerts-->
             <span id="reauth-email" class="reauth-email"></span>
 
-            <input type="password" id="password" class="form-control" name="password" placeholder="Password" required>
+            <input type="password" id="password" class="form-control" name="password" placeholder="password" required>
 
             <span id="reauth-email" class="reauth-email"></span>
 
-            <input type="text" id="fName" class="form-control" name="fName" placeholder="Enter your first name" onchange="validate_fname()" required autofocus>
+            <input type="text" id="firstName" class="form-control" name="firstName" placeholder="Enter your first name" onchange="validate_fname()" required autofocus>
 
             <div id="fnamealert"><strong id="fnamealertstrong"></strong></div> <!--Alerts-->
 
-            <input type="text" id="lName" class="form-control" name="lName" placeholder="Enter your last name" required autofocus>
+            <input type="text" id="lastName" class="form-control" name="lastName" placeholder="Enter your last name" required autofocus>
 
             <input type="text" id="phone" class="form-control" name="phone" placeholder="Enter your phone number" required autofocus>
             <div class="row">
 
                 <!--Street name + Number -->
                 <div class="col-sm-4">
-                    <input type="text" id="streetNum" class="form-control" name="streetNum" placeholder="Street Number" required autofocus>
+                    <input type="text" id="streetNumber" class="form-control" name="streetNumber" placeholder="Street Number" required autofocus>
                 </div>
                 <div class="col-sm-4">
                     <input type="text" id="streetName" class="form-control" name="streetName" placeholder="Enter Street Name" required autofocus>

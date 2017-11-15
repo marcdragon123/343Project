@@ -22,8 +22,8 @@ class User extends Controller {
     public function register(){
         $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
         if($post['submit']) {
-            $userObj = $this->userMapper->create($post);
-            header('Location: ' . ROOT_URL . 'users/login');
+            $this->userMapper->create($post);
+            header('Location: ' . ROOT_URL . 'user/login');
         }
 
         $this->returnView(null, true);
@@ -35,8 +35,10 @@ class User extends Controller {
      */
     public function login(){
         $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-
-        $this->userMapper->findByEmail();
+        if($post['submit']){
+            $this->userMapper->findById();
+        }
+        $this->returnView(null, true);
     }
 
     public function logout(){
