@@ -8,46 +8,57 @@
 
 class IdMap
 {
-    private $container = array();
+    public static $container = array();
+    private static $instance = null;
 
-    /**
-     * @param $objectName
-     * @param DomainObject $object
-     * @return $this
-     * @throws Exception
-     */
-    public function add($objectName, DomainObject $object)
+
+    public static function getInstance()
     {
-        if(isset($this->container[$objectName][$object->getID()])) {
-            throw new Exception('cannot reset user id');
+        if (self::$instance === null)
+        {
+            self::$instance = new IdMap();
         }
+
+        return self::$instance;
+    }
+    private function __construct(){
+
+    }
+
+    public function add(Customer $object)
+    {
+        if(isset(IdMap::$container[$object->getID()])) {
+                var_dump(IdMap::$container[$object->getID()]);
+                throw new Exception('cannot reset user id: ' . $object->getID());
+        }
+
+        IdMap::$container[$object->getID()] = $object;
+        //var_dump($this->container[$objectName][$object->getID()]);
+
         // Define an entry, based on the entity name, and the ID (primary key) of the entity
-        $this->container[$objectName][$object->getID()] = $object;
         // Return this, so that we can easily chain set calls. (Fluent interface)
         return $this;
     }
-    /**
-     * Return an entity
-     *
-     * @param $objectName
-     * @param $id
-     * @return DomainObject
-     */
-    public function get($objectName, $id)
+
+    public function get($id)
     {
         // If no entity is known by this ID, simply return NULL. It's not exceptional that a
         // key doesn't exists, so throwing an exception is not recommended.
-        if ( ! isset($this->container[$objectName][$id])) {
+        //echo "the id is: ".$id;
+
+        if (!isset(IdMap::$container[$id])) {
+            echo "doesnt exist";
             return null;
         }
-        return $this->container[$objectName][$id];
+        //var_dump($this->container[$objectName][$id]);
+        return IdMap::$container[$id];
     }
 
-    public function remove($objectName, $id){
-        if(isset($this->container[$objectName][$id])){
+    public function remove( $id){
+        if(isset(IdMap::$container[$id])){
             throw new Exception('item does not exist, cannot delete it');
         }
-        unset($this->container[$objectName][$id]);
+        unset(IdMap::$container[$id]);
         return $this;
 
     }

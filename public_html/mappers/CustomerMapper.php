@@ -9,42 +9,57 @@
 class CustomerMapper extends MapperAbstract{
 
     public $UOW;
-    public $idMap;
     public $userTDG;
+    private static $instance = null;
 
-    public function __construct()
+    public static function getInstance()
+    {
+        if (self::$instance == null)
+        {
+            self::$instance = new CustomerMapper();
+        }
+
+        return self::$instance;
+    }
+
+    private function __construct()
     {
         $this->UOW = new UnitOfWork($this);
-        $this->idMap = new IdMap();
         $this->userTDG = new UserTDG();
     }
 
     /**
-     * Fetch a user object by ID
-     *
-     * An example skeleton of a "Fetch" function showing
-     * how the database data ($dataFromDb) is used to
-     * create a new User instance via the create function.
-     *
-     * @param string $id
-     * @return Account
+     * @param array $post
+     * @return bool
      */
-    public function findById($id){
-        $dbData = array(
-            'email' => $id,
-            );
-        return $this->create($dbData);
+    public function login(array $post){
+        //$customerObj = $this->findById($post['email']);
+        $cusId = $this->userTDG->find($post['email']);
+        echo "is it getting the id" . $cusId['id'];
+        $customerObj = IdMap::getInstance()->get($cusId['id']);
+        if(!is_null($customerObj)){
+            if(($customerObj->__get("password") === $post['password'])){
+                $this->updateLoginSession();
+                return true;
+            }
+        }
+        echo "fuck";
+
     }
 
     /**
      * @param array $post
      * @return string
+     * @throws Exception
      */
     public function createAccount(array $post){
         $userTDG = new UserTDG();
-        //TODO: must call the idmap and uow
+        if(!is_null($userTDG->find($post['email']))){
+            throw new Exception("this email already exists");
+        }
+        //$userObj = $userTDG->insert($post);
+        $this->create($post);
 
-        return $userTDG->insert($post);
     }
 
     /**
@@ -58,10 +73,17 @@ class CustomerMapper extends MapperAbstract{
         if($data){
             $obj = $this->populate($obj, $data);
         }
+        $id = $this->userTDG->insert($obj);
+        $obj->setID($id);
+        //echo "this is the id: ". $obj->getID();
+        IdMap::getInstance()->add($obj);
+        //IdMap::getInstance()->get("Customer", $obj->getID());
+        //var_dump($this->idMap->add('Customer', $obj));
+        //var_dump($this->findById($obj->__get('email')));
+        //$this->UOW->registerNew($obj);
+        //$this->UOW->commit();
 
-        $this->idMap->add('Customer', $obj);
-        $this->UOW->registerNew($obj);
-        $this->UOW->commit();
+        return $obj;
     }
 
     /**
@@ -96,6 +118,7 @@ class CustomerMapper extends MapperAbstract{
      * @return Customer
      */
     public function populate(Account $obj, array $data){
+
         $obj->__set("firstName", $data['firstName']);
         $obj->__set("lastName", $data['lastName']);
         $obj->__set("password", $data['password']);
@@ -107,6 +130,9 @@ class CustomerMapper extends MapperAbstract{
         $obj->__set("province", $data['province']);
         $obj->__set("postalCode", $data['postalCode']);
         $obj->__set("country", $data['country']);
+        $obj->__set("loginStatus", 0);
+        $obj->__set("isAdmin", 0);
+
 
         return $obj;
     }
@@ -164,7 +190,11 @@ class CustomerMapper extends MapperAbstract{
     /**
      *
      */
-    //updateloginsession
+    public function updateLoginSession(){
+        //$this->UOW->registerDirty($this);
+        //$this->UOW->commit();
+
+    }
     //clearallloginsessions
 
 }

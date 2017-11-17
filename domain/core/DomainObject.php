@@ -8,5 +8,13 @@
 
 abstract class DomainObject
 {
+    /**
+     * @return int $id;
+     */
     abstract function getID();
+
+    /**
+     * @param int $id
+     */
+    abstract function setID($id);
 }

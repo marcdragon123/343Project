@@ -15,6 +15,7 @@ class Admin extends Controller {
     }
 
     public function logout(){
+
     }
 
     public function viewProductCatalog(){

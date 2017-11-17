@@ -1,8 +1,8 @@
 <html>
 <head>
     <title>CompStore343</title>
-    <link rel="stylesheet" href="<?php echo ROOT_PATH; ?>/content/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo ROOT_PATH; ?>/content/css/light-bootstrap-dashboard.css">
+    <link rel="stylesheet" href="<?php echo ROOT_PATH; ?>content/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo ROOT_PATH; ?>content/css/light-bootstrap-dashboard.css">
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -27,8 +27,8 @@
             <ul class="nav navbar-nav navbar-right">
                 <?php if(isset($_SESSION['is_logged_in'])) : ?>
                     <li><a href="<?php echo ROOT_URL; ?>">Welcome <?php echo ucwords($_SESSION['user_data']['FirstName']); ?></a></li>
-                    <li><a type="logout" href="<?php echo ROOT_URL; ?>user/logout">Logout</a></li>
-                    <li><a type="profile" href="<?php echo ROOT_URL; ?>user/userProfile">View Profile</a></li>
+                    <li><a type="logout" href="<?php echo ROOT_URL; ?>users/logout">Logout</a></li>
+                    <li><a type="profile" href="<?php echo ROOT_URL; ?>users/userProfile">View Profile</a></li>
                     <li><a href="<?php echo ROOT_URL; ?>cart/displayCart">Cart</a></li>
 
                 <?php else : ?>

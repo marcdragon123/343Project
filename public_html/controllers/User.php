@@ -5,15 +5,11 @@
  * Date: 2017-11-05
  * Time: 3:05 PM
  */
-
 class User extends Controller {
-
-    private $userMapper;
 
     public function __construct($action, $request)
     {
         parent::__construct($action, $request);
-        $this->userMapper = new CustomerMapper();
     }
 
     /**
@@ -22,12 +18,10 @@ class User extends Controller {
     public function register(){
         $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
         if($post['submit']) {
-            $this->userMapper->create($post);
-            header('Location: ' . ROOT_URL . 'user/login');
+            if(!is_null(CustomerMapper::getInstance()->create($post)))
+                header('Location: ' . ROOT_URL . 'user/login');
         }
-
         $this->returnView(null, true);
-
     }
 
     /**
@@ -36,7 +30,9 @@ class User extends Controller {
     public function login(){
         $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
         if($post['submit']){
-            $this->userMapper->findById();
+            if(CustomerMapper::getInstance()->login($post)){
+                header('Location: ' . ROOT_URL . 'catalog');
+            }
         }
         $this->returnView(null, true);
     }

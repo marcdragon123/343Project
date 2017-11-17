@@ -8,7 +8,7 @@
 
 abstract class Account extends DomainObject {
 
-    protected static $id=0;
+    protected $id;
     protected $isAdmin;
     protected $firstName;
     protected $lastName;
@@ -23,15 +23,28 @@ abstract class Account extends DomainObject {
     protected $country;
     protected $loginStatus;
 
-
+    /**
+     * @return int $id
+     */
     public function getID()
     {
-        return $this::$id;
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setID($id)
+    {
+        $this->id = $id;
     }
 
     public function __set($name, $value){
 
         switch ($name){
+            case "id":
+                $this->id = $value;
+                break;
             case "isAdmin":
                 $this->isAdmin = $value;
                 break;
@@ -68,9 +81,17 @@ abstract class Account extends DomainObject {
             case "country":
                 $this->country = $value;
                 break;
+            case "loginStatus":
+                $this->loginStatus = $value;
+                break;
         }
     }
 
+    /**
+     * @param $name
+     * @return int $id
+     *
+     */
     public function __get($name)
     {
         switch ($name){

@@ -8,10 +8,6 @@
 
 class Customer extends Account{
 
-    public function __construct(){
-        parent::$id = 1;
-        parent::$id++;
-    }
 
     public function __set($name, $value)
     {

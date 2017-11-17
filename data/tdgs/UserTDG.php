@@ -17,7 +17,7 @@ class UserTDG extends Model
      */
     public function find($email)
     {
-        $this->query('SELECT * FROM Account WHERE Email = :email');//query goes here
+        $this->query('SELECT * FROM account_tbl WHERE email = :email');//query goes here
         $this->bind('email', $email);
         $userData = $this->single();
         return $userData;
