@@ -1,47 +1,22 @@
 <?php
 //A domain object is a logical container of purely domain information; it usually represents a logical entity in the problem domain space. Commonly referred to as business logic
 
-class User{
+class User extends Account {
 	//Make sure the capitalization of these matches the ones in DB
-	private $UserID;
-	private $Password;
-	private $Admin;
 
-	private $FirstName;
-	private $LastName;
-	private $Email;
 
 	private $StreetName;
-	private $StreetNumber;
-	private $City;
-	private $Province;
-	private $Country;
-	private $PostalCode;
-	private $PhoneNumber;
+    private $StreetNumber;
+    private $City;
+    private $Province;
+    private $Country;
+    private $PostalCode;
+    private $PhoneNumber;
 
 	function __construct($array) {
 		foreach ($array as $key => $value) {
 			$this->$key = $value;
 		}
-	}
-
-	public function getUserID(){
-		return $this->UserID;
-	}
-	public function getPassword(){
-		return $this->Password;
-	}
-	public function getAdmin(){
-		return $this->Admin;
-	}
-	public function getFirstName(){
-		return $this->FirstName;
-	}
-	public function getLastName(){
-		return $this->LastName;
-	}
-	public function getEmail(){
-		return $this->Email;
 	}
 	public function getStreetName(){
 		return $this->StreetName;
@@ -65,25 +40,6 @@ class User{
 		return $this->PhoneNumber;
 	}
 
-
-	public function setID($ID){
-		$this->UserID = $UserID;
-	}
-	public function setPassword($password){
-		$this->Password = $Password;
-	}
-	public function setAdmin($Admin){
-		$this->Admin = $Admin;
-	}
-	public function setFirstName($FirstName){
-		$this->FirstName = $FirstName;
-	}
-	public function setLastName($LastName){
-		$this->LastName = $LastName;
-	}
-	public function setEmail($Email){
-		$this->Email = $Email;
-	}
 	public function setStreetName($StreetName){
 		$this->StreetName = $StreetName;
 	}
