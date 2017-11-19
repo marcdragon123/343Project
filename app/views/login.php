@@ -5,6 +5,7 @@ require_once('../models/user.php');
 require_once('../controllers/Controller.php');
 require_once('../core/Gateways/userTable.php');
 require_once('../classes/Model.php');
+require_once('../models/Account.php');
 
 
 
@@ -39,7 +40,8 @@ require_once('../classes/Model.php');
             </div>
             <?php
 
-              
+ 
+ /*             
 $array = array("Email","Password");
 $controller = new Controller($array);
 
@@ -55,7 +57,7 @@ echo "hello!";
 print_r($user->getFirstName());
 
 
-
+*/
 
 
             ?>

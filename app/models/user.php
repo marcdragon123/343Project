@@ -1,5 +1,6 @@
 <?php
 //A domain object is a logical container of purely domain information; it usually represents a logical entity in the problem domain space. Commonly referred to as business logic
+require_once("Account.php");
 
 class User extends Account {
 	//Make sure the capitalization of these matches the ones in DB

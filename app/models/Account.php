@@ -5,7 +5,6 @@
  * Date: 2017-11-16
  * Time: 12:32 AM
  */
-
 abstract class Account
 {
     private $UserID;
