@@ -28,6 +28,7 @@ require('controllers/home.php');
 
 require('mappers/MapperAbstract.php');
 require('mappers/CustomerMapper.php');
+require('mappers/CatalogMapper.php');
 
 require('../domain/idmap/idMap.php');
 require('../domain/uow/UnitOfWork.php');
@@ -35,7 +36,7 @@ require('../domain/uow/UnitOfWork.php');
 
 require('../data/tdgs/Model.php');
 require('../data/tdgs/UserTDG.php');
-
+require('../data/tdgs/CatalogTDG.php');
 
 
 

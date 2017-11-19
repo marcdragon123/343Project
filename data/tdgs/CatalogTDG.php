@@ -6,7 +6,19 @@
  * Time: 1:47 PM
  */
 
-class CatalogTDG
+class CatalogTDG extends model
 {
+
+    public function __construct()
+    {
+
+    }
+
+    public function selectAll()
+    {
+        $all = $this->query('SELECT * FROM Catalog ORDER BY ID');
+
+        return $all;
+    }
 
 }

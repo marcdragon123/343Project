@@ -1,8 +1,8 @@
 <html>
 <head>
     <title>CompStore343</title>
-    <link rel="stylesheet" href="<?php echo ROOT_PATH; ?>content/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo ROOT_PATH; ?>content/css/light-bootstrap-dashboard.css">
+    <link rel="stylesheet" href="content/css/bootstrap.min.css">
+    <link rel="stylesheet" href="content/css/light-bootstrap-dashboard.css">
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -32,7 +32,7 @@
                     <li><a href="<?php echo ROOT_URL; ?>cart/displayCart">Cart</a></li>
 
                 <?php else : ?>
-                    <li><a href="<?php echo ROOT_URL; ?>user/login">Login</a></li>
+                    <li><a href="user/login">Login</a></li>
                     <li><a href="<?php echo ROOT_URL; ?>user/register">Register</a></li>
                 <?php endif; ?>
             </ul>
