@@ -1,6 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
+ * greatly improved by anania. with love <3
  * User: ahmadbiz
  * Date: 2017-11-05
  * Time: 2:42 PM
@@ -23,68 +24,25 @@ abstract class Account extends DomainObject {
     protected $country;
     protected $loginStatus;
 
+    //add constructor
+
     /**
      * @return int $id
      */
-    public function getID()
-    {
+    public function getID() {
         return $this->id;
     }
 
     /**
      * @param int $id
      */
-    public function setID($id)
-    {
+    public function setID($id) {
         $this->id = $id;
     }
 
-    public function __set($name, $value){
 
-        switch ($name){
-            case "id":
-                $this->id = $value;
-                break;
-            case "isAdmin":
-                $this->isAdmin = $value;
-                break;
-            case "firstName":
-                $this->firstName = $value;
-                break;
-            case "lastName":
-                $this->lastName = $value;
-                break;
-            case "password":
-                $this->password = $value;
-                break;
-            case "email":
-                $this->email = $value;
-                break;
-            case "phone":
-                $this->phone = $value;
-                break;
-            case "streetNumber":
-                $this->streetNumber = $value;
-                break;
-            case "streetName":
-                $this->streetName = $value;
-                break;
-            case "city":
-                $this->city = $value;
-                break;
-            case "province":
-                $this->province = $value;
-                break;
-            case "postalCode":
-                $this->postalCode = $value;
-                break;
-            case "country":
-                $this->country = $value;
-                break;
-            case "loginStatus":
-                $this->loginStatus = $value;
-                break;
-        }
+    public function __set($name, $value) {
+        $this->$name = $value;
     }
 
     /**
@@ -92,49 +50,8 @@ abstract class Account extends DomainObject {
      * @return int $id
      *
      */
-    public function __get($name)
-    {
-        switch ($name){
-            case "isAdmin":
-                return $this->isAdmin;
-                break;
-            case "firstName":
-                return $this->firstName;
-                break;
-            case "lastName":
-                return $this->lastName;
-                break;
-            case "password":
-                return $this->password;
-                break;
-            case "email":
-                return $this->email;
-                break;
-            case "phone":
-                return $this->phone;
-                break;
-            case "id":
-                return $this->id;
-                break;
-            case "streetNumber":
-                return $this->streetNumber;
-                break;
-            case "streetName":
-                return $this->streetName;
-                break;
-            case "city":
-                return $this->city;
-                break;
-            case "province":
-                return $this->province;
-                break;
-            case "postalCode":
-                return $this->postalCode;
-                break;
-            case "country":
-                return $this->country;
-                break;
-        }
+    public function __get($name) {
+        return $this->$name;
     }
 
 }

@@ -8,6 +8,19 @@
 
 class UserTDG extends Model
 {
+    //public $id_field = "UserId";
+    //maybe add here rest of attributes to make sqls easier to eliminate mistakes
+    //and make it easier to change one to change all
+
+    public function get($id){
+        $this->query('SELECT * FROM account WHERE UserId = :id');//query goes here
+        $this->bind('id', $id);
+        $userData = $this->single();
+
+        //$user = new Account($userData);
+        //better to turn everything into objects
+        return $user;
+    }
 
     /**
      * fetch single user from DB by email
@@ -15,13 +28,11 @@ class UserTDG extends Model
      *
      * @return array $userData
      */
-    public function find($email)
-    {
-        $this->query('SELECT * FROM account_tbl WHERE email = :email');//query goes here
+    public function find($email) {
+        $this->query('SELECT * FROM account WHERE Email = :email');//query goes here
         $this->bind('email', $email);
         $userData = $this->single();
         return $userData;
-
     }
 
     /**
@@ -31,7 +42,7 @@ class UserTDG extends Model
      */
     public function findAll()
     {
-        $this->query('SELECT * FROM Account ORDER BY id');
+        $this->query('SELECT * FROM account ORDER BY userID');
         $users = $this->resultSet();
         return $users;
     }
@@ -40,10 +51,9 @@ class UserTDG extends Model
      * @param Account object
      * @return string
      */
-    public function insert(Account $user)
+    public function insert($user)
     {
-
-        $this->query('INSERT INTO account_tbl (firstName, lastName, email, phone, password, streetName, streetNumber, city, province, country, postalCode) 
+        $this->query('INSERT INTO account (FirstName, LastName, Email, PhoneNumber, Password, StreetName, StreetNumber, City, Province, Country, PostalCode) 
                              VALUES(:firstName, :lastName, :email, :phone, :password , :streetName, :streetNumber, :city, :province, :country, :postalCode)');
         $this->bind(':firstName', $user->__get('firstName'));
         $this->bind(':lastName', $user->__get('lastName'));
@@ -56,10 +66,10 @@ class UserTDG extends Model
         $this->bind(':province', $user->__get('province'));
         $this->bind(':country', $user->__get('country'));
         $this->bind(':postalCode', $user->__get('postalCode'));
+
         $this->execute();
-
+        
         return $this->lastInsertId();
-
     }
 
     /**
@@ -68,7 +78,7 @@ class UserTDG extends Model
      */
     public function delete($id)
     {
-        $this->query('DELETE FROM Account WHERE id = :id');
+        $this->query('DELETE FROM Account WHERE UserID = :id');
         $this->bind('id', $id);
         $this->execute();
 
@@ -82,9 +92,9 @@ class UserTDG extends Model
 
     public function update(Account $user)
     {
-        $this->query('UPDATE account SET firstName = :firstName, lastName = :lastName, email = :email, phone = :phone,
-                            password = :password, street = :streetName, streetNumber = :streetNumber,
-                            city = :city, province = :province, country = :country, postalCode = :postalCode) WHERE id = :id');
+        $this->query('UPDATE account SET FirstName = :firstName, LastName = :lastName, Email = :email, PhoneNumber = :phone,
+                            Password = :password, StreetName = :streetName, StreetNumber = :streetNumber,
+                            City = :city, Province = :province, Country = :country, PostalCode = :postalCode) WHERE id = :id');
         $this->bind(':id', $user->getID());
         $this->bind(':firstName', $user->__get('firstName'));
         $this->bind(':lastName', $user->__get('lastName'));

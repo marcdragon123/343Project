@@ -18,8 +18,14 @@ class User extends Controller {
     public function register(){
         $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
         if($post['submit']) {
-            if(!is_null(CustomerMapper::getInstance()->create($post)))
+            $customer = CustomerMapper::getInstance()->create($post);
+            
+           
+
+            if(!is_null($customer)) {
+              
                 header('Location: ' . ROOT_URL . 'user/login');
+            }
         }
         $this->returnView(null, true);
     }

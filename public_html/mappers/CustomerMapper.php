@@ -12,6 +12,7 @@ class CustomerMapper extends MapperAbstract{
     public $userTDG;
     private static $instance = null;
 
+
     public static function getInstance()
     {
         if (self::$instance == null)
@@ -22,8 +23,7 @@ class CustomerMapper extends MapperAbstract{
         return self::$instance;
     }
 
-    private function __construct()
-    {
+    private function __construct() {
         $this->UOW = new UnitOfWork($this);
         $this->userTDG = new UserTDG();
     }
@@ -32,19 +32,39 @@ class CustomerMapper extends MapperAbstract{
      * @param array $post
      * @return bool
      */
-    public function login(array $post){
-        //$customerObj = $this->findById($post['email']);
-        $cusId = $this->userTDG->find($post['email']);
-        echo "is it getting the id" . $cusId['id'];
-        $customerObj = IdMap::getInstance()->get($cusId['id']);
-        if(!is_null($customerObj)){
-            if(($customerObj->__get("password") === $post['password'])){
-                $this->updateLoginSession();
-                return true;
+    public function login(array $post) {
+        //1
+        //check db for an with email, password
+        //set to container 
+        //if it is, means valid username/password, else, invalid login
+
+        //2
+        //check container for email
+        //if found in container, compare passwords and return
+        //if not found in container, query db, add to container, compare passwords, and return
+
+        //2 implementation
+        $account = IdMap::getInstance()->findByEmail($post['email']);
+        if(is_null($account)){
+            //not in container, get from db
+            $account = $this->userTDG->find($post['email']);
+            if(is_null($account)){
+                //not even in db, this email has never been registered
+                //TODO
+                return false;
+            }else{
+                //user with email was in db
+                IdMap::getInstance()->container[$account['UserID']] = $account;
             }
         }
-        echo "fuck";
+        //if(($account->__get("password") === $post['password'])){
+        if(($account['Password'] === $post['password'])){
+            $this->updateLoginSession();
+            return true;
+        }
 
+        //password is wrong
+        return false;
     }
 
     /**
@@ -54,7 +74,7 @@ class CustomerMapper extends MapperAbstract{
      */
     public function createAccount(array $post){
         $userTDG = new UserTDG();
-        if(!is_null($userTDG->find($post['email']))){
+        if(!is_null($userTDG->find($post['Email']))){
             throw new Exception("this email already exists");
         }
         //$userObj = $userTDG->insert($post);
@@ -118,6 +138,13 @@ class CustomerMapper extends MapperAbstract{
      * @return Customer
      */
     public function populate(Account $obj, array $data){
+
+
+        function __construct($array) {
+            foreach ($array as $key => $value) {
+                $this->$key = $value;
+            }
+        }
 
         $obj->__set("firstName", $data['firstName']);
         $obj->__set("lastName", $data['lastName']);
