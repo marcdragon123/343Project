@@ -6,3 +6,4 @@
 .idea/*
 .gitignore
 phpunit-5.7.23.phar
+Tests/*

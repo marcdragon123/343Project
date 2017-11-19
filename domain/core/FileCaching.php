@@ -40,12 +40,16 @@ abstract class FileCaching
         $this->locked = flock($this->file, LOCK_EX);
     }
 
-    public function write($object)
+    public function write($object, $toBePurged)
     {
         // TODO: Implement write() method.
         $productSerialized = serialize($object);
         $this->acquireWriterLock();
         if($this->locked) {
+            if ($toBePurged)
+            {
+                $this->purge();
+            }
             $val = fwrite($this->file,$productSerialized.PHP_EOL);
             $this->releaseLock();
             return $val;
