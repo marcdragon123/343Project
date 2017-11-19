@@ -6,63 +6,114 @@
  * Time: 3:33 PM
  */
 
+require "DomainObject.php";
+
 class Product extends DomainObject
 {
-    private $id;
-    private $type;
     private $weight;
+    private $productID;
     private $brand;
-    private $serialNum;
+    private $model;
     private $price;
-
-    public function __construct($type){
-        $this->type = $type;
+    private $serialNumber;
+    /**
+     * @return mixed
+     */
+    public function getWeight()
+    {
+        return $this->weight;
+    }
+    /**
+     * @param mixed $weight
+     */
+    public function setWeight($weight)
+    {
+        $this->weight = $weight;
+    }
+    /**
+     * @return mixed
+     */
+    public function getProductID()
+    {
+        return $this->productID;
+    }
+    /**
+     * @param mixed $productID
+     */
+    public function setProductID($productID)
+    {
+        $this->productID = $productID;
+    }
+    /**
+     * @return mixed
+     */
+    public function getBrand()
+    {
+        return $this->brand;
+    }
+    /**
+     * @param mixed $brand
+     */
+    public function setBrand($brand)
+    {
+        $this->brand = $brand;
+    }
+    /**
+     * @return mixed
+     */
+    public function getModel()
+    {
+        return $this->model;
+    }
+    /**
+     * @param mixed $model
+     */
+    public function setModel($model)
+    {
+        $this->model = $model;
+    }
+    /**
+     * @return mixed
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+    /**
+     * @param mixed $price
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+    }
+    /**
+     * @return mixed
+     */
+    public function getSerialNumber()
+    {
+        return $this->serialNumber;
+    }
+    /**
+     * @param mixed $serialNumber
+     */
+    public function setSerialNumber($serialNumber)
+    {
+        $this->serialNumber = $serialNumber;
     }
 
-    public function __set($name, $value){
-        switch ($name){
-            case "id":
-                if(!(isset($this->id))){
-                    throw new Exception("cannot change ID");
-                }
-                $this->id = $value;
-                break;
-            case "weight":
-                $this->weight = $value;
-                break;
-            case "brand":
-                $this->brand  = $value;
-                break;
-            case "serialNum":
-                if(!(isset($this->serialNum))){
-                    throw new Exception("cannot change ID");
-                }
-                $this->serialNum = $value;
-                break;
-            case "price":
-                $this->price = $value;
-                break;
-        }
+    /**
+     * @return int $id;
+     */
+    function getID()
+    {
+        // TODO: Implement getID() method.
     }
 
-    public function __get($name){
-        switch ($name){
-            case "id":
-                return $this->id;
-                break;
-            case "weight":
-                return $this->weight;
-                break;
-            case "brand":
-                return $this->brand;
-                break;
-            case "serialNum":
-                return $this->serialNum;
-                break;
-            case "price":
-                return $this->price;
-                break;
-        }
+    /**
+     * @param int $id
+     */
+    function setID($id)
+    {
+        // TODO: Implement setID() method.
     }
-
 }
