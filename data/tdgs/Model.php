@@ -35,24 +35,21 @@ abstract class Model
         $this->stmt->bindValue($param, $value, $type);
     }
 
-    public function execute()
-    {
-        $this->stmt->execute();
+    public function execute() {
+        return $this->stmt->execute();
+       
     }
 
-    public function resultSet()
-    {
+    public function resultSet() {
         $this->execute();
         return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function lastInsertId()
-    {
+    public function lastInsertId() {
         return $this->dbh->lastInsertId();
     }
 
-    public function single()
-    {
+    public function single() {
         $this->execute();
         return $this->stmt->fetch(PDO::FETCH_ASSOC);
     }
