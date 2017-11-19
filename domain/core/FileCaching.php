@@ -10,9 +10,11 @@ abstract class FileCaching
 {
     private $file;
     private $locked;
+    private $fileName;
 
     public function build($fileName)
     {
+        $this->fileName = $fileName;
         $this->file = fopen($fileName,"a+");
     }
 
@@ -83,4 +85,26 @@ abstract class FileCaching
     {
         ftruncate($this->file, 0);
     }
+
+    public function isEmpty()
+    {
+        return (filesize($this->fileName)==0);
+    }
+
+    /**
+     * @return string
+     */
+    public function getFileName()
+    {
+        return $this->fileName;
+    }
+
+    /**
+     * @param string $fileName
+     */
+    public function setFileName($fileName)
+    {
+        $this->fileName = $fileName;
+    }
+
 }

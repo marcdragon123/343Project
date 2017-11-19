@@ -11,28 +11,10 @@ require  "FileCaching.php";
 class ProductFile extends FileCaching
 {
 
-    private $fileName;
-
     public function __construct($name = "products.txt")
     {
         $this->setFileName($name);
         $this->buildProductCache();
-    }
-
-    /**
-     * @return string
-     */
-    public function getFileName()
-    {
-        return $this->fileName;
-    }
-
-    /**
-     * @param string $fileName
-     */
-    public function setFileName($fileName)
-    {
-        $this->fileName = $fileName;
     }
 
     public function buildProductCache() {
