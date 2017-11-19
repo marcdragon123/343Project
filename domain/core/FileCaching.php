@@ -10,7 +10,6 @@ abstract class FileCaching
 {
     private $file;
     private $locked;
-    private $productSerialized;
 
     public function build($fileName)
     {
@@ -44,10 +43,10 @@ abstract class FileCaching
     public function write($object)
     {
         // TODO: Implement write() method.
-        $this->productSerialized = serialize($object);
+        $productSerialized = serialize($object);
         $this->acquireWriterLock();
         if($this->locked) {
-            $val = fwrite($this->file,$this->productSerialized.PHP_EOL);
+            $val = fwrite($this->file,$productSerialized.PHP_EOL);
             $this->releaseLock();
             return $val;
         }
@@ -70,6 +69,14 @@ abstract class FileCaching
             }
 
         }
+        else{
+            throw new Exception("Could Not Lock");
+        }
         return $unserializedObj;
+    }
+
+    public function purge()
+    {
+        ftruncate($this->file, 0);
     }
 }
