@@ -38,9 +38,12 @@ class CatalogMapper extends MapperAbstract
         return new Catalog();
     }
 
-    public function selectAll(){
 
-        $this->CatalogTDG->selectAll();
+    public function selectAll(){
+        $tdg = CatalogMapper::getInstance();
+        $array_Catalog = $tdg->CatalogTDG->selectAll();
+
+        return $array_Catalog;
     }
 
     /**

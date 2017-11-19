@@ -16,9 +16,8 @@ class CatalogTDG extends model
 
     public function selectAll()
     {
-        $all = $this->query('SELECT * FROM Catalog ORDER BY ID');
 
-        return $all;
+
     }
 
 }

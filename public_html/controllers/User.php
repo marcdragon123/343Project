@@ -56,7 +56,7 @@ class User extends Controller {
     }
 
     public function browseCatalog(){
-        $Obj = new CatalogMapper();
+        $Obj =CatalogMapper::getInstance();
         $Obj->selectAll();
 
     }
