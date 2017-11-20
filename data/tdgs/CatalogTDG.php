@@ -1,26 +1,20 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: leban
+ * users: leban
  * Date: 2017-11-19
  * Time: 1:47 PM
  */
 
-class CatalogTDG extends model
+class CatalogTDG extends Model
 {
 
-    public function __construct()
-    {
-
-    }
 
     public function selectAll()
     {
-    $conn = $this->getConn();
-    $sql = "SELECT * FROM Product ";
-    $result = mysqli_query($conn, $sql);
-    mysqli_close($conn);
-    return $result;
+        $this->query("SELECT * FROM Product ORDER BY ID");
+        $row = $this->resultSet();
+        return $row;
     }
 
 }

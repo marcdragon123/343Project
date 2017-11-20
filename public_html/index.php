@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: ahmadbiz
+ * users: ahmadbiz
  * Date: 2017-11-05
  * Time: 2:36 PM
  */
@@ -23,7 +23,7 @@ require('../domain/core/Customer.php');
 require('../domain/core/Administrator.php');
 
 require('controllers/Admin.php');
-require('controllers/User.php');
+require('controllers/users.php');
 require('controllers/home.php');
 
 require('mappers/MapperAbstract.php');

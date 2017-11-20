@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: ahmadbiz
+ * users: ahmadbiz
  * Date: 2017-11-14
  * Time: 1:01 PM
  */
@@ -26,7 +26,7 @@ class IdMap
     public function add(Customer $object) {
         if(isset($this->container[$object->getID()])) {
                 var_dump($this->container[$object->getID()]);
-                throw new Exception('cannot reset user id: ' . $object->getID());
+                throw new Exception('cannot reset users id: ' . $object->getID());
         }
 
         $this->container[$object->getID()] = $object;

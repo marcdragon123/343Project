@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: ahmadbiz
+ * users: ahmadbiz
  * Date: 2017-11-05
  * Time: 6:32 PM
  */
@@ -53,7 +53,7 @@ class CustomerMapper extends MapperAbstract{
                 //TODO
                 return false;
             }else{
-                //user with email was in db
+                //users with email was in db
                 IdMap::getInstance()->container[$account['UserID']] = $account;
             }
         }
@@ -165,7 +165,7 @@ class CustomerMapper extends MapperAbstract{
     }
 
     /**
-     * Create a new User DomainObject
+     * Create a new users DomainObject
      *
      * @return Customer
      */

@@ -1,11 +1,13 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: ahmadbiz
+ * users: ahmadbiz
  * Date: 2017-11-05
  * Time: 3:05 PM
  */
-class User extends Controller {
+class users extends Controller {
+
+    private $obj;
 
     public function __construct($action, $request)
     {
@@ -13,7 +15,7 @@ class User extends Controller {
     }
 
     /**
-     * this function will instantiate a user object and also push it to the db to get an id for the user
+     * this function will instantiate a users object and also push it to the db to get an id for the users
      */
     public function register(){
         $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -24,7 +26,7 @@ class User extends Controller {
 
             if(!is_null($customer)) {
               
-                header('Location: ' . ROOT_URL . 'user/login');
+                header('Location: ' . ROOT_URL . 'users/login');
             }
         }
         $this->returnView(null, true);
@@ -56,12 +58,10 @@ class User extends Controller {
     }
 
     public function browseCatalog(){
-        $Obj =CatalogMapper::getInstance();
-        $Obj->selectAll();
+        $catalog = CatalogMapper::getInstance();
 
-        foreach($Obj as $c){
-            die($c . '');
-        }
+        $this->returnView($catalog->browseCatalog(),true);
+
 
     }
 

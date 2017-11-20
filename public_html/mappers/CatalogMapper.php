@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: leban
+ * users: leban
  * Date: 2017-11-19
  * Time: 1:44 PM
  */
@@ -40,10 +40,8 @@ class CatalogMapper extends MapperAbstract
 
 
     public function selectAll(){
-        $tdg = CatalogMapper::getInstance();
-        $array_Catalog = $tdg->CatalogTDG->selectAll();
-
-        return $array_Catalog;
+        $row = $this->CatalogTDG->selectAll();
+        return $row;
     }
 
     /**

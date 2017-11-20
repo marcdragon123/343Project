@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: ahmadbiz
+ * users: ahmadbiz
  * Date: 2017-11-05
  * Time: 8:10 PM
  */
@@ -17,13 +17,13 @@ class UserTDG extends Model
         $this->bind('id', $id);
         $userData = $this->single();
 
-        //$user = new Account($userData);
+        //$users = new Account($userData);
         //better to turn everything into objects
         return $user;
     }
 
     /**
-     * fetch single user from DB by email
+     * fetch single users from DB by email
      * @param $email
      *
      * @return array $userData
@@ -73,7 +73,7 @@ class UserTDG extends Model
     }
 
     /**
-     * deletes user from DB
+     * deletes users from DB
      * @param $id
      */
     public function delete($id)
