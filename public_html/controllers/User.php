@@ -59,6 +59,10 @@ class User extends Controller {
         $Obj =CatalogMapper::getInstance();
         $Obj->selectAll();
 
+        foreach($Obj as $c){
+            die($c . '');
+        }
+
     }
 
 

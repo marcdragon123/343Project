@@ -11,7 +11,7 @@ abstract class Model
     }
 
     public function getConn(){
-        $this->conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        $this->conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
         return $this->conn;
     }
 

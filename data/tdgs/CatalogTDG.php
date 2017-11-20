@@ -16,8 +16,11 @@ class CatalogTDG extends model
 
     public function selectAll()
     {
-
-
+    $conn = $this->getConn();
+    $sql = "SELECT * FROM Product ";
+    $result = mysqli_query($conn, $sql);
+    mysqli_close($conn);
+    return $result;
     }
 
 }
