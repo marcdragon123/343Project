@@ -36,7 +36,7 @@ require('../data/tdgs/UserTDG.php');
 require('../data/tdgs/CatalogTDG.php');
 
 require('../domain/activeCache/FileCaching.php');
-require('../domain/activeCache/ProductFile.php');
+require('../domain/activeCache/File.php');
 require('../domain/activeCache/CustomerFile.php');
 
 

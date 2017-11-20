@@ -10,95 +10,103 @@ require "DomainObject.php";
 
 class Product extends DomainObject
 {
-    private $weight;
-    private $productID;
-    private $brand;
-    private $model;
-    private $price;
-    private $serialNumber;
+    private $Weight;
+    private $Brand;
+    private $Model;
+    private $Price;
+    private $SerialNumber;
+    private $productType;
+
+    public function _construct($type)
+    {
+        $this->setProductType($type);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductType()
+    {
+        return $this->productType;
+    }
+
+    /**
+     * @param mixed $productType
+     */
+    public function setProductType($productType)
+    {
+        $this->productType = $productType;
+    }
+
     /**
      * @return mixed
      */
     public function getWeight()
     {
-        return $this->weight;
+        return $this->Weight;
     }
     /**
-     * @param mixed $weight
+     * @param mixed $Weight
      */
-    public function setWeight($weight)
+    public function setWeight($Weight)
     {
-        $this->weight = $weight;
-    }
-    /**
-     * @return mixed
-     */
-    public function getProductID()
-    {
-        return $this->productID;
-    }
-    /**
-     * @param mixed $productID
-     */
-    public function setProductID($productID)
-    {
-        $this->productID = $productID;
+        $this->Weight = $Weight;
     }
     /**
      * @return mixed
      */
     public function getBrand()
     {
-        return $this->brand;
+        return $this->Brand;
     }
     /**
-     * @param mixed $brand
+     * @param mixed $Brand
      */
-    public function setBrand($brand)
+    public function setBrand($Brand)
     {
-        $this->brand = $brand;
+        $this->Brand = $Brand;
     }
     /**
      * @return mixed
      */
     public function getModel()
     {
-        return $this->model;
+        return $this->Model;
     }
     /**
-     * @param mixed $model
+     * @param mixed $Model
      */
-    public function setModel($model)
+    public function setModel($Model)
     {
-        $this->model = $model;
+        $this->Model = $Model;
     }
     /**
      * @return mixed
      */
     public function getPrice()
     {
-        return $this->price;
+        return $this->Price;
     }
     /**
-     * @param mixed $price
+     * @param mixed $Price
      */
-    public function setPrice($price)
+    public function setPrice($Price)
     {
-        $this->price = $price;
+        $this->Price = $Price;
     }
     /**
      * @return mixed
      */
     public function getSerialNumber()
     {
-        return $this->serialNumber;
+        return $this->SerialNumber;
     }
     /**
-     * @param mixed $serialNumber
+     * @param mixed $SerialNumber
      */
-    public function setSerialNumber($serialNumber)
+    public function setSerialNumber($SerialNumber)
     {
-        $this->serialNumber = $serialNumber;
+        $this->SerialNumber = $SerialNumber;
     }
 
     /**

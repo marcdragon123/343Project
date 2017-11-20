@@ -6,7 +6,7 @@
  * Time: 11:04 PM
  */
 
-class ProductFile extends FileCaching
+class File extends FileCaching
 {
 
 

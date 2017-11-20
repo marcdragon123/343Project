@@ -25,77 +25,9 @@ class CatalogMapper extends MapperAbstract
 
     public function __construct() {
 
-        //$this->UOW = new UnitOfWork($this);
+        $this->UOW = new UnitOfWork($this);
         $this->CatalogTDG = new CatalogTDG();
     }
-
-    public function populate(Account $obj, array $data)
-    {
-        // TODO: Implement populate() method.
-    }
-
-    public function _create(){
-        return new Catalog();
-    }
-
-
-    public function selectAll(){
-        $row = $this->CatalogTDG->selectAll();
-        return $row;
-    }
-
-    /**
-     * Insert the DomainObject in persistent storage
-     *
-     * This may include connecting to the database
-     * and running an insert statement.
-     *
-     * @param Account $obj
-     */
-    public function _insert(Account $obj)
-    {
-        //var_dump($obj->__get('firstName'));
-
-        $this->userTDG->insert($obj);
-    }
-
-    /**
-     * Update the DomainObject in persistent storage
-     *
-     * This may include connecting to the database
-     * and running an update statement.
-     *
-     * @param Account $obj
-     */
-    public function _update(Account $obj)
-    {
-        //$this->userTDG->update($obj);
-    }
-
-    /**
-     * Delete the DomainObject from persistent storage
-     *
-     * This may include connecting to the database
-     * and running a delete statement.
-     *
-     * @param Account $obj
-     */
-    public function _delete(Account $obj)
-    {
-        //$this->userTDG->delete($obj->getID());
-    }
-
-    /**
-     *
-     */
-    public function updateLoginSession(){
-        //$this->UOW->registerDirty($this);
-        //$this->UOW->commit();
-
-    }
-
-    //clearallloginsessions
-
 
     /**
      * Create a new instance of the DomainObject-->Account class that this
@@ -115,9 +47,9 @@ class CatalogMapper extends MapperAbstract
      * Store the DomainObject in persistent storage. Either insert
      * or update the store as required.
      *
-     * @param Account $obj
+     * @param DomainObject $obj
      */
-    public function save(Account $obj)
+    public function save($obj)
     {
         // TODO: Implement save() method.
     }
@@ -127,10 +59,71 @@ class CatalogMapper extends MapperAbstract
      *
      * Delete the DomainObject from persistent storage.
      *
-     * @param Account $obj
+     * @param DomainObject $obj
      */
-    public function delete(Account $obj)
+    public function delete($obj)
     {
         // TODO: Implement delete() method.
+    }
+
+    /**
+     * Populate the DomainObject with the values
+     * from the data array.
+     *
+     * To be implemented by the concrete mapper class
+     *
+     * @param DomainObject $obj
+     * @param array $data
+     * @return DomainObject
+     */
+    public function populate($obj, array $data)
+    {
+        // TODO: Implement populate() method.
+
+        foreach ($data as $key => $value) {
+            $obj->$key = $value;
+        }
+
+        return $obj;
+    }
+
+    /**
+     * Create a new instance of a DomainObject
+     *
+     * @return DomainObject
+     */
+    public function _create()
+    {
+        // TODO: Implement _create() method.
+    }
+
+    /**
+     * Insert the DomainObject to persistent storage
+     *
+     * @param DomainObject $obj
+     */
+    public function _insert($obj)
+    {
+        // TODO: Implement _insert() method.
+    }
+
+    /**
+     * Update the DomainObject in persistent storage
+     *
+     * @param DomainObject $obj
+     */
+    public function _update($obj)
+    {
+        // TODO: Implement _update() method.
+    }
+
+    /**
+     * Delete the DomainObject from peristent Storage
+     *
+     * @param DomainObject $obj
+     */
+    public function _delete($obj)
+    {
+        // TODO: Implement _delete() method.
     }
 }

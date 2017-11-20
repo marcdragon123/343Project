@@ -12,8 +12,18 @@ class CatalogTDG extends Model
 
     public function selectAll()
     {
-        $this->query("SELECT * FROM Product ORDER BY ID");
-        $row = $this->resultSet();
+        //queries all the tables individually
+        $this->query("SELECT * FROM Tablet ORDER BY ComputerModelNumber");
+        $tablet = $this->resultSet();
+        $this->query("SELECT * FROM Monitor ORDER BY MonitorModelNumber");
+        $monitor = $this->resultSet();
+        $this->query("SELECT * FROM DesktopComputer ORDER BY ComputerModelNumber");
+        $desktop = $this->resultSet();
+        $this->query("SELECT * FROM Laptop ORDER BY ComputerModelNumber");
+        $laptop = $this->resultSet();
+        $row = array();
+        //merges all the arrays into $row variable and returning it
+        array_merge($row, $tablet, $monitor, $desktop, $laptop);
         return $row;
     }
 
