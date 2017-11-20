@@ -18,9 +18,9 @@ class Laptop extends Product
     private $ToucheScreenToggle;
     private $CameraToggle;
 
-    public function _construct($type)
+    public function __construct()
     {
-        parent::_construct($type);
+        parent::__construct('Laptop');
     }
 
     /**

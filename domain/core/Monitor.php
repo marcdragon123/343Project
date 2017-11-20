@@ -10,6 +10,11 @@ class Monitor extends Product {
 
     private $DisplayDimensions;
 
+    public function __construct()
+    {
+        parent::__construct("Monitor");
+    }
+
     /**
      * @return mixed
      */
@@ -26,8 +31,5 @@ class Monitor extends Product {
         $this->DisplayDimensions = $DisplayDimensions;
     }
 
-    public function __construct($type)
-    {
-        parent::__construct($type);
-    }
+
 }

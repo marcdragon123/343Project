@@ -28,6 +28,7 @@ require('mappers/CustomerMapper.php');
 require('mappers/CatalogMapper.php');
 
 require('../domain/idmap/idMap.php');
+require('../domain/idmap/ProductsIdMap.php');
 require('../domain/uow/UnitOfWork.php');
 
 
@@ -36,7 +37,7 @@ require('../data/tdgs/UserTDG.php');
 require('../data/tdgs/CatalogTDG.php');
 
 require('../domain/activeCache/FileCaching.php');
-require('../domain/activeCache/File.php');
+require('../domain/activeCache/ProductFile.php');
 require('../domain/activeCache/CustomerFile.php');
 
 

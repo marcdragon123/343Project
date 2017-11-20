@@ -18,9 +18,9 @@ class Tablet extends Product
     private $OS;
     private $CameraInformation;
 
-    public function _construct($type)
+    public function __construct()
     {
-        parent::_construct($type);
+        parent::__construct('Tablet');
     }
 
     /**

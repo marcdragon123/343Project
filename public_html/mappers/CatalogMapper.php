@@ -38,14 +38,13 @@ class CatalogMapper extends MapperAbstract
      */
     public function create(array $data = null)
     {
-        $obj = null;
+        $obj = $this->_createProduct($data['ProductType']);
         if($data)
         {
-            $obj = $this->_createProduct($data["productType"]);
             $obj = $this->populate($obj, $data);
         }
 
-        //$id = $this->CatalogTDG->;
+
 
     }
 
@@ -55,7 +54,7 @@ class CatalogMapper extends MapperAbstract
      * Store the DomainObject in persistent storage. Either insert
      * or update the store as required.
      *
-     * @param DomainObject $obj
+     * @param Product $obj
      */
     public function save($obj)
     {
@@ -80,9 +79,9 @@ class CatalogMapper extends MapperAbstract
      *
      * To be implemented by the concrete mapper class
      *
-     * @param DomainObject $obj
+     * @param Product $obj
      * @param array $data
-     * @return DomainObject
+     * @return Product
      */
     public function populate($obj, array $data)
     {
@@ -95,21 +94,26 @@ class CatalogMapper extends MapperAbstract
         return $obj;
     }
 
+
+    /**
+     * @param $type
+     * @return Product
+     */
     public function _createProduct($type)
     {
         switch($type)
         {
             case "Laptop":
-                return new Laptop("Laptop");
+                return new Laptop();
                 break;
             case "DesktopComputer":
-                return new Desktop("DesktopComputer");
+                return new Desktop();
                 break;
             case "Monitor":
-                return new Monitor("Monitor");
+                return new Monitor();
                 break;
             case "Tablet":
-                return new Tablet("Tablet");
+                return new Tablet();
                 break;
             Default :
                 return null;

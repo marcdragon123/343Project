@@ -17,7 +17,7 @@ class Product extends DomainObject
     private $SerialNumber;
     private $productType;
 
-    public function _construct($type)
+    public function __construct($type)
     {
         $this->setProductType($type);
     }

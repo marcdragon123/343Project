@@ -72,7 +72,7 @@ class AdminMapper extends MapperAbstract{
 
     /**
      * @param array|null $data
-     * @return Customer
+     * @return Administrator
      */
     public function create(array $data = null)
     {
@@ -90,9 +90,9 @@ class AdminMapper extends MapperAbstract{
     }
 
     /**
-     * @param Account $obj
+     * @param Administrator $obj
      */
-    public function save(Account $obj)
+    public function save($obj)
     {
         if(is_null($obj->__get("UserID"))){
             $this->_insert($obj);
@@ -102,25 +102,25 @@ class AdminMapper extends MapperAbstract{
     }
 
     /**
-     * @param Account $obj
+     * @param Administrator $obj
      */
-    public function delete(Account $obj)
+    public function delete($obj)
     {
         $this->_delete($obj);
     }
 
     /**
-     * Populate the Customer (AccountObj) with
+     * Populate the Account (AccountObj) with
      * the data array.
      *
      * This is a very simple example, but the mapping
      * can be as complex as required.
      *
-     * @param Account $obj
+     * @param Administrator $obj
      * @param array $data
-     * @return Customer
+     * @return Administrator
      */
-    public function populate(Account $obj, array $data){
+    public function populate($obj, array $data){
 
 
         function __construct($array) {
@@ -150,10 +150,10 @@ class AdminMapper extends MapperAbstract{
     /**
      * Create a new users DomainObject
      *
-     * @return Customer
+     * @return Administrator
      */
     public function _create(){
-        return new Customer();
+        return new Administrator();
     }
 
     /**
@@ -162,9 +162,9 @@ class AdminMapper extends MapperAbstract{
      * This may include connecting to the database
      * and running an insert statement.
      *
-     * @param Account $obj
+     * @param Administrator $obj
      */
-    public function _insert(Account $obj)
+    public function _insert($obj)
     {
         //var_dump($obj->__get('firstName'));
 
@@ -172,14 +172,14 @@ class AdminMapper extends MapperAbstract{
     }
 
     /**
-     * Update the DomainObject in persistent storage
+     * Update the Administrator in persistent storage
      *
      * This may include connecting to the database
      * and running an update statement.
      *
-     * @param Account $obj
+     * @param Administrator $obj
      */
-    public function _update(Account $obj)
+    public function _update($obj)
     {
         //$this->userTDG->update($obj);
     }
@@ -190,9 +190,9 @@ class AdminMapper extends MapperAbstract{
      * This may include connecting to the database
      * and running a delete statement.
      *
-     * @param Account $obj
+     * @param Administrator $obj
      */
-    public function _delete(Account $obj)
+    public function _delete($obj)
     {
         //$this->userTDG->delete($obj->getID());
     }

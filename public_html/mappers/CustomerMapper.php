@@ -80,7 +80,7 @@ class CustomerMapper extends MapperAbstract{
 
     /**
      * @param array|null $data
-     * @return DomainObject
+     * @return Customer
      */
     public function create(array $data = null)
     {
@@ -98,7 +98,7 @@ class CustomerMapper extends MapperAbstract{
     }
 
     /**
-     * @param DomainObject $obj
+     * @param Customer $obj
      */
     public function save($obj)
     {
@@ -110,7 +110,7 @@ class CustomerMapper extends MapperAbstract{
     }
 
     /**
-     * @param DomainObject $obj
+     * @param Customer $obj
      */
     public function delete($obj)
     {
@@ -124,9 +124,9 @@ class CustomerMapper extends MapperAbstract{
      * This is a very simple example, but the mapping
      * can be as complex as required.
      *
-     * @param DomainObject $obj
+     * @param Customer $obj
      * @param array $data
-     * @return DomainObject
+     * @return Customer
      */
     public function populate($obj, array $data){
 
@@ -170,7 +170,7 @@ class CustomerMapper extends MapperAbstract{
      * This may include connecting to the database
      * and running an insert statement.
      *
-     * @param DomainObject $obj
+     * @param Customer $obj
      */
     public function _insert($obj)
     {
@@ -185,7 +185,7 @@ class CustomerMapper extends MapperAbstract{
      * This may include connecting to the database
      * and running an update statement.
      *
-     * @param DomainObject $obj
+     * @param Customer $obj
      */
     public function _update($obj)
     {
@@ -198,7 +198,7 @@ class CustomerMapper extends MapperAbstract{
      * This may include connecting to the database
      * and running a delete statement.
      *
-     * @param DomainObject $obj
+     * @param Customer $obj
      */
     public function _delete($obj)
     {
