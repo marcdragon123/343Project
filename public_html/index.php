@@ -7,9 +7,6 @@
  */
 
 // Start Session
-session_start();
-
-// Include Config
 require('config.php');
 
 require('classes/Messages.php');
@@ -38,6 +35,9 @@ require('../data/tdgs/Model.php');
 require('../data/tdgs/UserTDG.php');
 require('../data/tdgs/CatalogTDG.php');
 
+require('../domain/activeCache/FileCaching.php');
+require('../domain/activeCache/ProductFile.php');
+require('../domain/activeCache/CustomerFile.php');
 
 
 

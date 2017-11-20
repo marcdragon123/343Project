@@ -1,17 +1,14 @@
 <?php
-
 /**
- * Created by Marc-Andre Dragon.
- * Date: 2017-11-18
- * Time: 11:04 PM
+ * Created by PhpStorm.
+ * users: ahmadbiz
+ * Date: 2017-11-19
+ * Time: 3:50 PM
  */
 
-require  "FileCaching.php";
-
-class ProductFile extends FileCaching
+class CustomerFile extends FileCaching
 {
-
-    public function __construct($name = "products.txt")
+    public function __construct($name = "customers.txt")
     {
         $this->setFileName($name);
         $this->buildProductCache();
@@ -25,5 +22,4 @@ class ProductFile extends FileCaching
     {
         return parent::read($this->getFileName());
     }
-
 }

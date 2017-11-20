@@ -33,38 +33,26 @@ class CustomerMapper extends MapperAbstract{
      * @return bool
      */
     public function login(array $post) {
-        //1
-        //check db for an with email, password
-        //set to container 
-        //if it is, means valid username/password, else, invalid login
 
-        //2
-        //check container for email
-        //if found in container, compare passwords and return
-        //if not found in container, query db, add to container, compare passwords, and return
-
-        //2 implementation
-        $account = IdMap::getInstance()->findByEmail($post['email']);
-        if(is_null($account)){
-            //not in container, get from db
-            $account = $this->userTDG->find($post['email']);
-            if(is_null($account)){
-                //not even in db, this email has never been registered
-                //TODO
+        $userObj = IdMap::getInstance()->get('Customer',$post['Email']);
+        if(!is_null($userObj)) {
+            if ($userObj->__get('Password') !== $post['Password']) {
+                Messages::setMsg("wrong password", 'error');
                 return false;
-            }else{
-                //users with email was in db
-                IdMap::getInstance()->container[$account['UserID']] = $account;
             }
-        }
-        //if(($account->__get("password") === $post['password'])){
-        if(($account['Password'] === $post['password'])){
-            $this->updateLoginSession();
+            Messages::setMsg("Welcome ".$userObj->__get('FirstName'), '');
             return true;
         }
-
-        //password is wrong
-        return false;
+        $userObj = $this->userTDG->find($post['Email']);
+        if(!is_null($userObj)){
+            Messages::setMsg('Email Does not exist', 'error');
+            return false;
+        }
+        if($userObj['Password'] === $post['Password']){
+            $this->create($userObj);
+            $this->updateLoginSession();
+            return true;
+            }
     }
 
     /**
@@ -95,14 +83,9 @@ class CustomerMapper extends MapperAbstract{
         }
         $id = $this->userTDG->insert($obj);
         $obj->setID($id);
-        //echo "this is the id: ". $obj->getID();
-        IdMap::getInstance()->add($obj);
-        //IdMap::getInstance()->get("Customer", $obj->getID());
-        //var_dump($this->idMap->add('Customer', $obj));
-        //var_dump($this->findById($obj->__get('email')));
-        //$this->UOW->registerNew($obj);
-        //$this->UOW->commit();
+        IdMap::getInstance()->add($obj, 'Customer');
 
+        $this->UOW->registerNew($obj);
         return $obj;
     }
 
@@ -111,7 +94,7 @@ class CustomerMapper extends MapperAbstract{
      */
     public function save(Account $obj)
     {
-        if(is_null($obj->__get("id"))){
+        if(is_null($obj->__get("UserID"))){
             $this->_insert($obj);
         } else {
             $this->_update($obj);
@@ -146,19 +129,19 @@ class CustomerMapper extends MapperAbstract{
             }
         }
 
-        $obj->__set("firstName", $data['firstName']);
-        $obj->__set("lastName", $data['lastName']);
-        $obj->__set("password", $data['password']);
-        $obj->__set("email", $data['email']);
-        $obj->__set("phone", $data['phone']);
-        $obj->__set("streetNumber", $data['streetNumber']);
-        $obj->__set("streetName", $data['streetName']);
-        $obj->__set("city", $data['city']);
-        $obj->__set("province", $data['province']);
-        $obj->__set("postalCode", $data['postalCode']);
-        $obj->__set("country", $data['country']);
-        $obj->__set("loginStatus", 0);
-        $obj->__set("isAdmin", 0);
+        $obj->__set("FirstName", $data['FirstName']);
+        $obj->__set("LastName", $data['LastName']);
+        $obj->__set("Password", $data['Password']);
+        $obj->__set("Email", $data['Email']);
+        $obj->__set("Phone", $data['Phone']);
+        $obj->__set("StreetNumber", $data['StreetNumber']);
+        $obj->__set("StreetName", $data['StreetName']);
+        $obj->__set("City", $data['City']);
+        $obj->__set("Province", $data['Province']);
+        $obj->__set("PostalCode", $data['PostalCode']);
+        $obj->__set("Country", $data['Country']);
+        $obj->__set("LoginStatus", 0);
+        $obj->__set("Type", 0);
 
 
         return $obj;
@@ -222,6 +205,5 @@ class CustomerMapper extends MapperAbstract{
         //$this->UOW->commit();
 
     }
-    //clearallloginsessions
 
 }

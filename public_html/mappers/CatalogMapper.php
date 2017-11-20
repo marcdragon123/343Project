@@ -25,7 +25,7 @@ class CatalogMapper extends MapperAbstract
 
     public function __construct() {
 
-       //$this->UOW = new UnitOfWork($this);
+        //$this->UOW = new UnitOfWork($this);
         $this->CatalogTDG = new CatalogTDG();
     }
 

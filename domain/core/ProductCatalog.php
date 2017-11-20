@@ -6,8 +6,9 @@
  * Time: 3:33 PM
  */
 
-class ProductCatalog extends DomainObject {
+class ProductCatalog{
     protected $productMapper;
+    protected $catalog;
 
     public function __construct($type){
         switch ($type){

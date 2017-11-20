@@ -3,24 +3,10 @@ abstract class Model
 {
     protected $dbh;
     protected $stmt;
-    protected $conn;
 
     public function __construct()
     {
         $this->dbh = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS);
-    }
-
-    public function getConn(){
-        $this->conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-        return $this->conn;
-    }
-
-    public function selectAll(){
-        $sql = 'SELECT * FROM Product ';
-        $conn = $this->getConn();
-        $conn->query($sql);
-
-        return $conn;
     }
 
     public function query($query)
