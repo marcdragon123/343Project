@@ -58,9 +58,9 @@ class users extends Controller {
     }
 
     public function browseCatalog(){
-        $catalog = CatalogMapper::getInstance();
+        $viewmodel = CatalogMapper::getInstance();
 
-        $this->returnView($catalog->browseCatalog(),true);
+        $this->returnView($viewmodel->selectAll(),true);
 
 
     }
