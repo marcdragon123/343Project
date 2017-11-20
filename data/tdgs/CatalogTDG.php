@@ -8,8 +8,6 @@
 
 class CatalogTDG extends Model
 {
-
-
     public function selectAll()
     {
         $this->query("SELECT * FROM Product ORDER BY ID");

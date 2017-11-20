@@ -1,12 +1,10 @@
 <?php
 /**
- * Created by PhpStorm.
- * users: ahmadbiz
- * Date: 2017-11-05
- * Time: 6:32 PM
+ *
+ *  Anania
  */
 
-class CustomerMapper extends MapperAbstract{
+class AdminMapper extends MapperAbstract{
 
     public $UOW;
     public $userTDG;
@@ -17,7 +15,7 @@ class CustomerMapper extends MapperAbstract{
     {
         if (self::$instance == null)
         {
-            self::$instance = new CustomerMapper();
+            self::$instance = new AdminMapper();
         }
 
         return self::$instance;
@@ -34,7 +32,9 @@ class CustomerMapper extends MapperAbstract{
      */
     public function login(array $post) {
 
-        $userObj = IdMap::getInstance()->get('Customer',$post['Email']);
+
+
+        $userObj = IdMap::getInstance()->get('Admin',$post['Email']);
         if(!is_null($userObj)) {
             if ($userObj->__get('Password') !== $post['Password']) {
                 Messages::setMsg("wrong password", 'error');
@@ -91,7 +91,7 @@ class CustomerMapper extends MapperAbstract{
         }
         $id = $this->userTDG->insert($obj);
         $obj->setID($id);
-        IdMap::getInstance()->add($obj, 'Customer');
+        IdMap::getInstance()->add($obj, 'Admin');
 
         $this->UOW->registerNew($obj);
         return $obj;
@@ -141,7 +141,7 @@ class CustomerMapper extends MapperAbstract{
         $obj->__set("LastName", $data['LastName']);
         $obj->__set("Password", $data['Password']);
         $obj->__set("Email", $data['Email']);
-        $obj->__set("Phone", $data['Phone']);
+        $obj->__set("PhoneNumber", $data['PhoneNumber']);
         $obj->__set("StreetNumber", $data['StreetNumber']);
         $obj->__set("StreetName", $data['StreetName']);
         $obj->__set("City", $data['City']);
@@ -149,7 +149,7 @@ class CustomerMapper extends MapperAbstract{
         $obj->__set("PostalCode", $data['PostalCode']);
         $obj->__set("Country", $data['Country']);
         $obj->__set("LoginStatus", 0);
-        $obj->__set("Type", 'C');
+        $obj->__set("Type", A);
 
 
         return $obj;

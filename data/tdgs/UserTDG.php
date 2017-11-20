@@ -90,7 +90,7 @@ class UserTDG extends Model
     {
         $this->query('UPDATE account SET FirstName = :FirstName, LastName = :LastName, Email = :Email, PhoneNumber = :Phone,
                             Password = :Password, StreetName = :StreetName, StreetNumber = :StreetNumber,
-                            City = :city, Province = :Province, Country = :Country, PostalCode = :PostalCode) WHERE UserID = :UserID');
+                            City = :City, Province = :Province, Country = :Country, PostalCode = :PostalCode) WHERE UserID = :UserID');
         $this->bind(':UserID', $user->getID());
         $this->bind(':FirstName', $user->__get('FirstName'));
         $this->bind(':LastName', $user->__get('LastName'));
