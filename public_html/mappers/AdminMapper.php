@@ -1,6 +1,6 @@
 <?php
 /**
- *
+ * 
  *  Anania
  */
 
@@ -33,22 +33,14 @@ class AdminMapper extends MapperAbstract{
     public function login(array $post) {
 
 
-
+        
         $userObj = IdMap::getInstance()->get('Admin',$post['Email']);
         if(!is_null($userObj)) {
             if ($userObj->__get('Password') !== $post['Password']) {
                 Messages::setMsg("wrong password", 'error');
                 return false;
             }
-            $_SESSION['is_logged_in'] = true;
-            $_SESSION['user_data'] = array(
-                'UserID' => $userObj->__get('UserID'),
-                'FirstName' => $userObj->__get('FirstName'),
-                'LastName' => $userObj->__get('LastName'),
-                'Email' => $userObj->__get('Email'),
-                'Type' => $userObj->__get('Type')
-            );
-            Messages::setMsg("Welcome ".$_SESSION['FirstName'], '');
+            Messages::setMsg("Welcome ".$userObj->__get('FirstName'), '');
             return true;
         }
         $userObj = $this->userTDG->find($post['Email']);
@@ -60,7 +52,7 @@ class AdminMapper extends MapperAbstract{
             $this->create($userObj);
             $this->updateLoginSession();
             return true;
-        }
+            }
     }
 
     /**
