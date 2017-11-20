@@ -18,6 +18,11 @@ class Tablet extends Product
     private $OS;
     private $CameraInformation;
 
+    public function _construct($type)
+    {
+        parent::_construct($type);
+    }
+
     /**
      * @return mixed
      */

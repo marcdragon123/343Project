@@ -15,6 +15,11 @@ class Desktop extends Product
     private $RAMSize;
     private $HDDSize;
 
+    public function _construct($type)
+    {
+        parent::_construct($type);
+    }
+
     /**
      * @return mixed
      */

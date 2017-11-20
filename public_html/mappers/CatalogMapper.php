@@ -38,7 +38,15 @@ class CatalogMapper extends MapperAbstract
      */
     public function create(array $data = null)
     {
-        // TODO: Implement create() method.
+        $obj = null;
+        if($data)
+        {
+            $obj = $this->_createProduct($data["productType"]);
+            $obj = $this->populate($obj, $data);
+        }
+
+        //$id = $this->CatalogTDG->;
+
     }
 
     /**
@@ -85,6 +93,28 @@ class CatalogMapper extends MapperAbstract
         }
 
         return $obj;
+    }
+
+    public function _createProduct($type)
+    {
+        switch($type)
+        {
+            case "Laptop":
+                return new Laptop("Laptop");
+                break;
+            case "DesktopComputer":
+                return new Desktop("DesktopComputer");
+                break;
+            case "Monitor":
+                return new Monitor("Monitor");
+                break;
+            case "Tablet":
+                return new Tablet("Tablet");
+                break;
+            Default :
+                return null;
+                break;
+        }
     }
 
     /**

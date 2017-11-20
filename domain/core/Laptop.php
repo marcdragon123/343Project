@@ -18,6 +18,11 @@ class Laptop extends Product
     private $ToucheScreenToggle;
     private $CameraToggle;
 
+    public function _construct($type)
+    {
+        parent::_construct($type);
+    }
+
     /**
      * @return mixed
      */
