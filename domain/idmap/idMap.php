@@ -30,6 +30,9 @@ class IdMap
 
         if(isset($this->container[$objectName][$object->__get("Email")])) {
                 throw new Exception('cannot reset users email: ' . $object->__get("Email"));
+                catch (){
+                    echo "hello";
+                }
         }
 
         $this->container[$objectName][$object->__get("Email")] = $object;

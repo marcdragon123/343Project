@@ -15,8 +15,7 @@ class UnitOfWork
     /**
      * @param MapperAbstract $mapper
      */
-    public function __construct(MapperAbstract $mapper)
-    {
+    public function __construct(MapperAbstract $mapper) {
         $this->mapper = $mapper;
         $this->dirtyFile = new ProductFile('dirty.txt');
         $this->newFile = new ProductFile('new.txt');
@@ -25,8 +24,7 @@ class UnitOfWork
     /**
      *
      */
-    public function commit()
-    {
+    public function commit() {
         $this->insertNew();
         $this->updateDirty();
         $this->deleteRemoved();
@@ -34,8 +32,7 @@ class UnitOfWork
     /**
      * @param DomainObject $object
      */
-    public function registerDirty(DomainObject $object)
-    {
+    public function registerDirty(DomainObject $object) {
         $tempContainer= $this->dirtyFile->read($this->dirtyFile->getFileName());
         $this->dirtyObjects = $tempContainer[0];
         $this->dirtyObjects[spl_object_hash($object)] = $object;
@@ -51,8 +48,7 @@ class UnitOfWork
      * @param DomainObject $object
      * @throws Exception
      */
-    public function registerNew(DomainObject $object)
-    {
+    public function registerNew(DomainObject $object) {
         $tempContainer= $this->newFile->read($this->newFile->getFileName());
         $this->newObjects = $tempContainer[0];
 
@@ -73,8 +69,7 @@ class UnitOfWork
     /**
      * @param DomainObject $object
      */
-    public function registerDeleted(DomainObject $object)
-    {
+    public function registerDeleted(DomainObject $object) {
         $tempContainer= $this->deletedFile->read($this->deletedFile->getFileName());
         $this->deletedObjects = $tempContainer[0];
 
@@ -87,8 +82,7 @@ class UnitOfWork
      * @param DomainObject $object
      * @return bool
      */
-    public function isDirty(DomainObject $object)
-    {
+    public function isDirty(DomainObject $object) {
         $tempContainer= $this->dirtyFile->read($this->dirtyFile->getFileName());
         $this->dirtyObjects = $tempContainer[0];
         return isset($this->dirtyObjects[ spl_object_hash($object) ]);
@@ -97,8 +91,7 @@ class UnitOfWork
      * @param DomainObject $object
      * @return bool
      */
-    public function isNew(DomainObject $object)
-    {
+    public function isNew(DomainObject $object) {
         $tempContainer= $this->newFile->read($this->newFile->getFileName());
         $this->newObjects = $tempContainer[0];
 
@@ -108,8 +101,7 @@ class UnitOfWork
      * @param DomainObject $object
      * @return bool
      */
-    public function isDeleted(DomainObject $object)
-    {
+    public function isDeleted(DomainObject $object) {
         $tempContainer= $this->deletedFile->read($this->deletedFile->getFileName());
         $this->deletedObjects = $tempContainer[0];
 
@@ -117,7 +109,7 @@ class UnitOfWork
         return isset($this->deletedObjects[ spl_object_hash($object) ]);
     }
 
-    public function insertNew(){
+    public function insertNew() {
         $tempContainer= $this->newFile->read($this->newFile->getFileName());
         $this->newObjects = $tempContainer[0];
 
@@ -126,7 +118,7 @@ class UnitOfWork
         }
     }
 
-    public function updateDirty(){
+    public function updateDirty() {
         $tempContainer= $this->dirtyFile->read($this->dirtyFile->getFileName());
         $this->dirtyObjects = $tempContainer[0];
 
@@ -135,7 +127,7 @@ class UnitOfWork
         }
     }
 
-    public function deleteRemoved(){
+    public function deleteRemoved() {
         $tempContainer= $this->dirtyFile->read($this->deletedFile->getFileName());
         $this->deletedObjects = $tempContainer[0];
 
