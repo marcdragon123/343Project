@@ -92,7 +92,7 @@ class AdminMapper extends MapperAbstract{
     /**
      * @param Account $obj
      */
-    public function save(Account $obj)
+    public function save($obj)
     {
         if(is_null($obj->__get("UserID"))){
             $this->_insert($obj);
@@ -104,7 +104,7 @@ class AdminMapper extends MapperAbstract{
     /**
      * @param Account $obj
      */
-    public function delete(Account $obj)
+    public function delete($obj)
     {
         $this->_delete($obj);
     }
@@ -116,11 +116,11 @@ class AdminMapper extends MapperAbstract{
      * This is a very simple example, but the mapping
      * can be as complex as required.
      *
-     * @param Account $obj
+     * @param $obj
      * @param array $data
      * @return Customer
      */
-    public function populate(Account $obj, array $data){
+    public function populate($obj, array $data){
 
 
         function __construct($array) {
@@ -164,7 +164,7 @@ class AdminMapper extends MapperAbstract{
      *
      * @param Account $obj
      */
-    public function _insert(Account $obj)
+    public function _insert($obj)
     {
         //var_dump($obj->__get('firstName'));
 
@@ -179,7 +179,7 @@ class AdminMapper extends MapperAbstract{
      *
      * @param Account $obj
      */
-    public function _update(Account $obj)
+    public function _update($obj)
     {
         //$this->userTDG->update($obj);
     }
@@ -192,7 +192,7 @@ class AdminMapper extends MapperAbstract{
      *
      * @param Account $obj
      */
-    public function _delete(Account $obj)
+    public function _delete($obj)
     {
         //$this->userTDG->delete($obj->getID());
     }
