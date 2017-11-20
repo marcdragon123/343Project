@@ -1,12 +1,10 @@
 <?php
 /**
- * Created by PhpStorm.
- * users: ahmadbiz
- * Date: 2017-11-05
- * Time: 6:32 PM
+ *
+ *  Anania
  */
 
-class CustomerMapper extends MapperAbstract{
+class AdminMapper extends MapperAbstract{
 
     public $UOW;
     public $userTDG;
@@ -17,13 +15,13 @@ class CustomerMapper extends MapperAbstract{
     {
         if (self::$instance == null)
         {
-            self::$instance = new CustomerMapper();
+            self::$instance = new AdminMapper();
         }
 
         return self::$instance;
     }
 
-    public function __construct() {
+    private function __construct() {
         $this->UOW = new UnitOfWork($this);
         $this->userTDG = new UserTDG();
     }
@@ -34,7 +32,9 @@ class CustomerMapper extends MapperAbstract{
      */
     public function login(array $post) {
 
-        $userObj = IdMap::getInstance()->get('Customer',$post['Email']);
+
+
+        $userObj = IdMap::getInstance()->get('Admin',$post['Email']);
         if(!is_null($userObj)) {
             if ($userObj->__get('Password') !== $post['Password']) {
                 Messages::setMsg("wrong password", 'error');
@@ -80,7 +80,7 @@ class CustomerMapper extends MapperAbstract{
 
     /**
      * @param array|null $data
-     * @return DomainObject
+     * @return Customer
      */
     public function create(array $data = null)
     {
@@ -91,16 +91,16 @@ class CustomerMapper extends MapperAbstract{
         }
         $id = $this->userTDG->insert($obj);
         $obj->setID($id);
-        IdMap::getInstance()->add($obj, 'Customer');
+        IdMap::getInstance()->add($obj, 'Admin');
 
         $this->UOW->registerNew($obj);
         return $obj;
     }
 
     /**
-     * @param DomainObject $obj
+     * @param Account $obj
      */
-    public function save($obj)
+    public function save(Account $obj)
     {
         if(is_null($obj->__get("UserID"))){
             $this->_insert($obj);
@@ -110,9 +110,9 @@ class CustomerMapper extends MapperAbstract{
     }
 
     /**
-     * @param DomainObject $obj
+     * @param Account $obj
      */
-    public function delete($obj)
+    public function delete(Account $obj)
     {
         $this->_delete($obj);
     }
@@ -124,11 +124,11 @@ class CustomerMapper extends MapperAbstract{
      * This is a very simple example, but the mapping
      * can be as complex as required.
      *
-     * @param DomainObject $obj
+     * @param Account $obj
      * @param array $data
-     * @return DomainObject
+     * @return Customer
      */
-    public function populate($obj, array $data){
+    public function populate(Account $obj, array $data){
 
 
         function __construct($array) {
@@ -141,7 +141,7 @@ class CustomerMapper extends MapperAbstract{
         $obj->__set("LastName", $data['LastName']);
         $obj->__set("Password", $data['Password']);
         $obj->__set("Email", $data['Email']);
-        $obj->__set("Phone", $data['Phone']);
+        $obj->__set("PhoneNumber", $data['PhoneNumber']);
         $obj->__set("StreetNumber", $data['StreetNumber']);
         $obj->__set("StreetName", $data['StreetName']);
         $obj->__set("City", $data['City']);
@@ -149,7 +149,7 @@ class CustomerMapper extends MapperAbstract{
         $obj->__set("PostalCode", $data['PostalCode']);
         $obj->__set("Country", $data['Country']);
         $obj->__set("LoginStatus", 0);
-        $obj->__set("Type", 'C');
+        $obj->__set("Type", A);
 
 
         return $obj;
@@ -170,9 +170,9 @@ class CustomerMapper extends MapperAbstract{
      * This may include connecting to the database
      * and running an insert statement.
      *
-     * @param DomainObject $obj
+     * @param Account $obj
      */
-    public function _insert($obj)
+    public function _insert(Account $obj)
     {
         //var_dump($obj->__get('firstName'));
 
@@ -185,9 +185,9 @@ class CustomerMapper extends MapperAbstract{
      * This may include connecting to the database
      * and running an update statement.
      *
-     * @param DomainObject $obj
+     * @param Account $obj
      */
-    public function _update($obj)
+    public function _update(Account $obj)
     {
         //$this->userTDG->update($obj);
     }
@@ -198,9 +198,9 @@ class CustomerMapper extends MapperAbstract{
      * This may include connecting to the database
      * and running a delete statement.
      *
-     * @param DomainObject $obj
+     * @param Account $obj
      */
-    public function _delete($obj)
+    public function _delete(Account $obj)
     {
         //$this->userTDG->delete($obj->getID());
     }

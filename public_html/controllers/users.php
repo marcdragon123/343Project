@@ -61,8 +61,6 @@ class users extends Controller {
         $viewmodel = CatalogMapper::getInstance();
 
         $this->returnView($viewmodel->selectAll(),true);
-
-
     }
 
 
