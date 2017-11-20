@@ -2,9 +2,8 @@
 /**
  * Created by PhpStorm.
  * greatly improved by anania. with love <3
- * users: ahmadbiz
- * Date: 2017-11-05
- * Time: 2:42 PM
+ * then reverted by ahmad :( </3
+ * 
  */
 
 abstract class Account extends DomainObject {
