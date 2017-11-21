@@ -100,7 +100,7 @@ class CustomerMapper extends MapperAbstract{
     /**
      * @param DomainObject $obj
      */
-    public function save($obj)
+    public function save(DomainObject $obj)
     {
         if(is_null($obj->__get("UserID"))){
             $this->_insert($obj);
@@ -112,7 +112,7 @@ class CustomerMapper extends MapperAbstract{
     /**
      * @param DomainObject $obj
      */
-    public function delete($obj)
+    public function delete(DomainObject $obj)
     {
         $this->_delete($obj);
     }
@@ -128,7 +128,7 @@ class CustomerMapper extends MapperAbstract{
      * @param array $data
      * @return DomainObject
      */
-    public function populate($obj, array $data){
+    public function populate(DomainObject $obj, array $data){
 
 
         function __construct($array) {
@@ -161,7 +161,7 @@ class CustomerMapper extends MapperAbstract{
      * @return Customer
      */
     public function _create(){
-        return new Customer();
+
     }
 
     /**
@@ -172,7 +172,7 @@ class CustomerMapper extends MapperAbstract{
      *
      * @param DomainObject $obj
      */
-    public function _insert($obj)
+    public function _insert(DomainObject $obj)
     {
         //var_dump($obj->__get('firstName'));
 
@@ -187,7 +187,7 @@ class CustomerMapper extends MapperAbstract{
      *
      * @param DomainObject $obj
      */
-    public function _update($obj)
+    public function _update(DomainObject $obj)
     {
         //$this->userTDG->update($obj);
     }
@@ -200,7 +200,7 @@ class CustomerMapper extends MapperAbstract{
      *
      * @param DomainObject $obj
      */
-    public function _delete($obj)
+    public function _delete(DomainObject $obj)
     {
         //$this->userTDG->delete($obj->getID());
     }

@@ -25,7 +25,7 @@ abstract class MapperAbstract {
      *
      * @param DomainObject $obj
      */
-    abstract public function save($obj);
+    abstract public function save(DomainObject $obj);
 
     /**
      * Delete the DomainObject
@@ -34,7 +34,7 @@ abstract class MapperAbstract {
      *
      * @param DomainObject $obj
      */
-    abstract public function delete($obj);
+    abstract public function delete(DomainObject $obj);
 
     /**
      * Populate the DomainObject with the values
@@ -46,7 +46,7 @@ abstract class MapperAbstract {
      * @param array $data
      * @return DomainObject
      */
-    abstract public function populate($obj, array $data);
+    abstract public function populate(DomainObject $obj, array $data);
 
     /**
      * Create a new instance of a DomainObject
@@ -60,19 +60,19 @@ abstract class MapperAbstract {
      *
      * @param DomainObject $obj
      */
-    abstract public function _insert($obj);
+    abstract public function _insert(DomainObject $obj);
 
     /**
      * Update the DomainObject in persistent storage
      *
      * @param DomainObject $obj
      */
-    abstract public function _update($obj);
+    abstract public function _update(DomainObject $obj);
 
     /**
      * Delete the DomainObject from peristent Storage
      *
      * @param DomainObject $obj
      */
-    abstract public function _delete($obj);
+    abstract public function _delete(DomainObject $obj);
 }

@@ -3,6 +3,7 @@
 <html ng-app="">
 
 <?php
+die($viewmodel);
 foreach($viewmodel as $row) : ?>
 
 <div>

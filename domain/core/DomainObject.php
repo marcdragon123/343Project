@@ -6,15 +6,31 @@
  * Time: 9:47 PM
  */
 
-abstract class DomainObject
+ class DomainObject
 {
-    /**
+    private $type;
+
+    public function __construct($type)
+    {
+        switch($type){
+            case 'Account': $this->type = new Account();
+            case 'Product': $this->type= new Product();
+        }
+
+    }
+
+    public function getType(){
+        return $this->type->getClassName();
+    }
+
+
+     /**
      * @return int $id;
      */
-    abstract function getID();
+    function getID(){}
 
     /**
      * @param int $id
      */
-    abstract function setID($id);
+    function setID($id){}
 }

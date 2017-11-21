@@ -11,7 +11,7 @@ class CatalogTDG extends Model
     public function selectAll()
     {
         //queries all the tables individually
-        $this->query("SELECT * FROM Tablet ORDER BY ComputerModelNumber");
+       /* $this->query("SELECT * FROM Tablet ORDER BY ComputerModelNumber");
         $tablet = $this->resultSet();
         $this->query("SELECT * FROM Monitor ORDER BY MonitorModelNumber");
         $monitor = $this->resultSet();
@@ -19,10 +19,15 @@ class CatalogTDG extends Model
         $desktop = $this->resultSet();
         $this->query("SELECT * FROM Laptop ORDER BY ComputerModelNumber");
         $laptop = $this->resultSet();
-        $row = array();
+        $row = array();*/
         //merges all the arrays into $row variable and returning it
-        array_merge($row, $tablet, $monitor, $desktop, $laptop);
-        return $row;
+        //array_merge($row, $tablet, $monitor, $desktop, $laptop);
+
+        $conn = $this->getConn();
+        $query = mysqli_query($conn, "SELECT * FROM product");
+        
+        return $query;
+
     }
 
     public function addLaptop(Laptop $obj)

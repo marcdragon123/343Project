@@ -25,7 +25,7 @@ class CatalogMapper extends MapperAbstract
 
     public function __construct() {
 
-        $this->UOW = new UnitOfWork($this);
+       // $this->UOW = new UnitOfWork($this);
         $this->CatalogTDG = new CatalogTDG();
     }
 
@@ -57,7 +57,7 @@ class CatalogMapper extends MapperAbstract
      *
      * @param DomainObject $obj
      */
-    public function save($obj)
+    public function save(DomainObject $obj)
     {
         // TODO: Implement save() method.
     }
@@ -69,7 +69,7 @@ class CatalogMapper extends MapperAbstract
      *
      * @param DomainObject $obj
      */
-    public function delete($obj)
+    public function delete(DomainObject $obj)
     {
         // TODO: Implement delete() method.
     }
@@ -84,7 +84,7 @@ class CatalogMapper extends MapperAbstract
      * @param array $data
      * @return DomainObject
      */
-    public function populate($obj, array $data)
+    public function populate(DomainObject $obj, array $data)
     {
         // TODO: Implement populate() method.
 
@@ -93,6 +93,10 @@ class CatalogMapper extends MapperAbstract
         }
 
         return $obj;
+    }
+
+    public function selectAll(){
+        $this->CatalogTDG->selectAll();
     }
 
     public function _createProduct($type)
@@ -132,7 +136,7 @@ class CatalogMapper extends MapperAbstract
      *
      * @param DomainObject $obj
      */
-    public function _insert($obj)
+    public function _insert(DomainObject $obj)
     {
         // TODO: Implement _insert() method.
     }
@@ -142,7 +146,7 @@ class CatalogMapper extends MapperAbstract
      *
      * @param DomainObject $obj
      */
-    public function _update($obj)
+    public function _update(DomainObject $obj)
     {
         // TODO: Implement _update() method.
     }
@@ -152,7 +156,7 @@ class CatalogMapper extends MapperAbstract
      *
      * @param DomainObject $obj
      */
-    public function _delete($obj)
+    public function _delete(DomainObject $obj)
     {
         // TODO: Implement _delete() method.
     }

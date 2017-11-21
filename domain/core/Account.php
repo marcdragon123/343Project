@@ -6,7 +6,7 @@
  * re-reverted by anania :D
  */
 
-abstract class Account extends DomainObject {
+ class Account extends DomainObject {
 
     protected $UserID;
     protected $Type;
@@ -24,8 +24,12 @@ abstract class Account extends DomainObject {
     protected $LoginStatus;
 
     //add constructor
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
-    /**
+     /**
      * @return int $id
      */
     public function getID() {

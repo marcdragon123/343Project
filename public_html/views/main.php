@@ -1,8 +1,8 @@
 <html>
 <head>
     <title>CompStore343</title>
-    <link rel="stylesheet" href="<?php echo ROOT_PATH; ?>content/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo ROOT_PATH; ?>content/css/light-bootstrap-dashboard.css">
+    <link rel="stylesheet" href="content/css/bootstrap.min.css">
+    <link rel="stylesheet" href="content/css/light-bootstrap-dashboard.css">
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -20,7 +20,7 @@
                 <li><a href="<?php echo ROOT_URL; ?>">Home</a></li>
                 <?php if(isset($_SESSION['is_logged_in'])) : ?>
                 <?php else :?>
-                    <li><a href="<?php echo ROOT_URL; ?>admin/adminlogin">Administrator</a></li>
+                    <li><a href="admin/adminlogin">Administrator</a></li>
                 <?php endif; ?>
 
             </ul>
