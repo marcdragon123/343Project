@@ -7,7 +7,8 @@
  */
 
 
-require "../domain/core/ProductFile.php";
+
+require "../domain/core/File.php";
 require "../domain/core/Product.php";
 
 class ProductCachingTest extends PHPUnit_Framework_TestCase

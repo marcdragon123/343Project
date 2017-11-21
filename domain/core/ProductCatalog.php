@@ -8,11 +8,10 @@
 
 class ProductCatalog{
     protected $productMapper;
-    protected $catalog;
+    protected $tablets = array();
 
 
-    public function addProduct(){
-        //TODO: check for type of product, then map it to appropriate
+    public function addProduct(Product $product){
 
     }
 
@@ -35,7 +34,6 @@ class ProductCatalog{
     public function deleteProductCatalog(){
 
     }
-
 
 
 }

@@ -24,7 +24,7 @@ class IdMap
         $this->customerFile = new CustomerFile();
     }
 
-    public function add(Customer $object, $objectName) {
+    public function add(Account $object, $objectName) {
         $tempContainer= $this->customerFile->read($this->customerFile->getFileName());
         $this->container = $tempContainer[0];
 
@@ -49,7 +49,6 @@ class IdMap
         $this->container = $tempContainer[0];
 
         if (!isset($this->container[$objectName][$email])) {
-            echo "doesnt exist";
             return null;
         }
 

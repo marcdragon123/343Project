@@ -26,6 +26,7 @@ require('controllers/home.php');
 
 require('mappers/MapperAbstract.php');
 require('mappers/CustomerMapper.php');
+require('mappers/AdminMapper.php');
 require('mappers/CatalogMapper.php');
 
 require('../domain/idmap/idMap.php');
