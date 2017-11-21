@@ -75,7 +75,7 @@ class CustomerMapper extends MapperAbstract{
                     $usr = $this->create();
                     $usr = $this->populate($usr, $userObj);
                     $usr->__set('LoginStatus', true);
-                    IdMap::getInstance()->add($usr, 'Admin');
+                    IdMap::getInstance()->add($usr, 'Customer');
                     return true;
                 }
                 Messages::setMsg('Admin', 'error');
@@ -178,6 +178,7 @@ class CustomerMapper extends MapperAbstract{
      * @return Customer
      */
     public function _create(){
+
         return new Customer();
     }
 
