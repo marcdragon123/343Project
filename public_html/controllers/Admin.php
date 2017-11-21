@@ -34,8 +34,8 @@ class admin extends Controller {
     public function adminlogin(){
         $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
         if($post['submit']){
-            if(CustomerMapper::getInstance()->login($post)){
-                header('Location: ' . ROOT_URL . 'catalog');
+            if(AdminMapper::getInstance()->login($post)){
+                header('Location: ' . ROOT_URL . 'admin/adminCatalog');
             }
         }
         $this->returnView(null, true);
@@ -53,11 +53,9 @@ class admin extends Controller {
 
     }
 
-    public function browseCatalog(){
+    public function adminCatalog(){
         $viewmodel = CatalogMapper::getInstance();
-
-        $this->returnView($viewmodel->selectAll(),true);
-
+        return $this->returnView($viewmodel, true);
 
     }
 

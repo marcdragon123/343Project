@@ -8,6 +8,7 @@
 
 class CatalogTDG extends Model
 {
+
     public function selectAll()
     {
         //queries all the tables individually

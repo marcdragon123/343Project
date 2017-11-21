@@ -8,6 +8,7 @@
 
 class Laptop extends Product
 {
+
     private $DisplayDimensions;
     private $CPUType;
     private $CoreNumber;

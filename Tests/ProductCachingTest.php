@@ -9,8 +9,12 @@
 <<<<<<< HEAD
 require "../domain/core/ProductFile.php";
 =======
+<<<<<<< HEAD
+require "../domain/core/ProductFile.php";
+=======
 require "../domain/core/File.php";
 >>>>>>> 9a5fe753952a5b2188e3418c201573502384af19
+>>>>>>> a5f79070b0680895b05b6d2adb709c17cadde663
 require "../domain/core/Product.php";
 
 class ProductCachingTest extends PHPUnit_Framework_TestCase

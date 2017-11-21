@@ -24,11 +24,11 @@ class UserTDG extends Model
      *
      * @return array $userData
      */
-    public function find($email) {
-        $this->query('SELECT * FROM account WHERE Email = :email');//query goes here
-        $this->bind('email', $email);
-        $userData = $this->single();
-        return $userData;
+    public function find($Email) {
+        $this->query('SELECT * FROM Account WHERE Email = :Email');//query goes here
+        $this->bind('Email', $Email);
+
+        return $this->single();
     }
 
     /**

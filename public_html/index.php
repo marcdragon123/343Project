@@ -7,6 +7,7 @@
  */
 
 // Start Session
+session_start();
 require('config.php');
 
 require('classes/Messages.php');
@@ -25,6 +26,7 @@ require('controllers/home.php');
 
 require('mappers/MapperAbstract.php');
 require('mappers/CustomerMapper.php');
+require('mappers/AdminMapper.php');
 require('mappers/CatalogMapper.php');
 
 require('../domain/idmap/idMap.php');
@@ -37,7 +39,7 @@ require('../data/tdgs/UserTDG.php');
 require('../data/tdgs/CatalogTDG.php');
 
 require('../domain/activeCache/FileCaching.php');
-require('../domain/activeCache/ProductFile.php');
+require('../domain/activeCache/File.php');
 require('../domain/activeCache/CustomerFile.php');
 
 

@@ -35,48 +35,57 @@ class CustomerMapper extends MapperAbstract{
     public function login(array $post) {
 
         $userObj = IdMap::getInstance()->get('Customer',$post['Email']);
+
         if(!is_null($userObj)) {
-            if ($userObj->__get('Password') !== $post['Password']) {
+            if ($userObj->__get('Password') != $post['Password']) {
                 Messages::setMsg("wrong password", 'error');
                 return false;
             }
-            $_SESSION['is_logged_in'] = true;
-            $_SESSION['user_data'] = array(
-                'UserID' => $userObj->__get('UserID'),
-                'FirstName' => $userObj->__get('FirstName'),
-                'LastName' => $userObj->__get('LastName'),
-                'Email' => $userObj->__get('Email'),
-                'Type' => $userObj->__get('Type')
-            );
-            Messages::setMsg("Welcome ".$_SESSION['FirstName'], '');
-            return true;
+            if($userObj->__get('Type')==='C'){
+                $userObj = $this->_create();
+                $_SESSION['is_logged_in'] = true;
+                $_SESSION['user_data'] = array(
+                    'UserID' => $userObj->__get('UserID'),
+                    'FirstName' => $userObj->__get('FirstName'),
+                    'LastName' => $userObj->__get('LastName'),
+                    'Email' => $userObj->__get('Email'),
+                    'Type' => $userObj->__get('Type')
+                );
+
+                return true;
+            }
+            Messages::setMsg($userObj['FirstName'].", login from admin page please", 'error');
+            return false;
         }
         $userObj = $this->userTDG->find($post['Email']);
         if(!is_null($userObj)){
-            Messages::setMsg('Email Does not exist', 'error');
+            if($userObj['Password'] === $post['Password']){
+                if($userObj['Type'] === 'C') {
+                    $_SESSION['is_logged_in'] = true;
+                    $_SESSION['user_data'] = array(
+                        'UserID' => $userObj['UserID'],
+                        'FirstName' => $userObj['FirstName'],
+                        'LastName' => $userObj['LastName'],
+                        'Email' => $userObj['Email'],
+                        'Type' => $userObj['Type']
+                    );
+                    $usr = $this->create();
+                    $usr = $this->populate($usr, $userObj);
+                    $usr->__set('LoginStatus', null);
+                    IdMap::getInstance()->add($usr, 'Admin');
+                    return true;
+                }
+                Messages::setMsg('Admin', 'error');
+                return false;
+
+            }
+            Messages::setMsg('Wrong Password', 'error');
             return false;
         }
-        if($userObj['Password'] === $post['Password']){
-            $this->create($userObj);
-            $this->updateLoginSession();
-            return true;
-        }
+        Messages::setMsg('Email Does Not Exist', 'error');
+        return false;
     }
 
-    /**
-     * @param array $post
-     * @return string
-     * @throws Exception
-     */
-    public function createAccount(array $post){
-        $userTDG = new UserTDG();
-        if(!is_null($userTDG->find($post['Email']))){
-            throw new Exception("this email already exists");
-        }
-        //$userObj = $userTDG->insert($post);
-        $this->create($post);
-
-    }
 
     /**
      * @param array|null $data
