@@ -18,9 +18,9 @@ class UnitOfWork
     public function __construct(MapperAbstract $mapper)
     {
         $this->mapper = $mapper;
-        $this->dirtyFile = new ProductFile('dirty.txt');
-        $this->newFile = new ProductFile('new.txt');
-        $this->deletedFile = new ProductFile('deleted.txt');
+        $this->dirtyFile = new File('dirty.txt');
+        $this->newFile = new File('new.txt');
+        $this->deletedFile = new File('deleted.txt');
     }
     /**
      *
