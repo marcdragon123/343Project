@@ -49,7 +49,8 @@ class AdminMapper extends MapperAbstract{
                     'Email' => $userObj->__get('Email'),
                     'Type' => $userObj->__get('Type')
                 );
-
+                $userObj->__set('LoginStatus', true);
+                //$this->UOW->updateDirty($userObj)
                 return true;
             }
             Messages::setMsg("None Admin", 'error');
@@ -69,8 +70,9 @@ class AdminMapper extends MapperAbstract{
                     );
                     $usr = $this->create();
                     $usr = $this->populate($usr, $userObj);
-                    $usr->__set('LoginStatus', null);
+                    $usr->__set('LoginStatus', true);
                     IdMap::getInstance()->add($usr, 'Admin');
+                    //$this->UOW->updateDirty();
                     return true;
                 }
                 Messages::setMsg('Email does not possess Admin rights', 'error');
@@ -82,6 +84,12 @@ class AdminMapper extends MapperAbstract{
         }
         Messages::setMsg('Email Does Not Exist', 'error');
             return false;
+    }
+    public function logout($email){
+        $userObj = IdMap::getInstance()->get('Admin', $email);
+        $userObj->__set('LoginStatus', false);
+        $this->updateLoginSession($userObj);
+
     }
 
     /**
@@ -211,11 +219,10 @@ class AdminMapper extends MapperAbstract{
         //$this->userTDG->delete($obj->getID());
     }
 
-    /**
-     *
-     */
-    public function updateLoginSession(){
-        //$this->UOW->registerDirty($this);
+
+    public function updateLoginSession(Account $admin){
+
+        $this->UOW->registerDirty($admin);
         //$this->UOW->commit();
 
     }

@@ -24,6 +24,12 @@ class IdMap
         $this->customerFile = new CustomerFile();
     }
 
+    /**
+     * @param Account $object
+     * @param $objectName
+     * @return $this
+     * @throws Exception
+     */
     public function add(Account $object, $objectName) {
         $tempContainer= $this->customerFile->read($this->customerFile->getFileName());
         $this->container = $tempContainer[0];
@@ -40,6 +46,11 @@ class IdMap
         return $this;
     }
 
+    /**
+     * @param $objectName
+     * @param $email
+     * @return Account
+     */
     public function get($objectName,$email) {
         // If no entity is known by this ID, simply return NULL. It's not exceptional that a
         // key doesn't exists, so throwing an exception is not recommended.
@@ -55,6 +66,12 @@ class IdMap
         return $this->container[$objectName][$email];
     }
 
+    /**
+     * @param $objectName
+     * @param $email
+     * @return $this
+     * @throws Exception
+     */
     public function remove($objectName,$email) {
         $tempContainer= $this->customerFile->read($this->customerFile->getFileName());
         $this->container = $tempContainer[0];
@@ -67,28 +84,4 @@ class IdMap
         return $this;
     }
 
-   /* public function findByEmail($objectName,$email) {
-        $tempContainer= $this->customerFile->read($this->customerFile->getFileName());
-        $this->container = $tempContainer[0];
-        $object = null;
-        for ($i = 0; $i<sizeof($this->container[$objectName]);$i++){
-            //var_dump($this->container[$objectName][$i]);
-            $object = $this->container[$objectName][$i];
-            print_r($object);
-            foreach ($object as $customer){
-                echo "".($customer[$email]);
-            }
-            //var_dump($object);
-            echo "<br>";
-        }
-        //var_dump($this->container['Customer']);
-
-        //foreach ($this->container[$objectName] as $account) {
-            //if($account['email'] == $email){
-              //  return;
-            //}
-        //}
-        return false;
-    }
-   */
 }

@@ -41,18 +41,7 @@ abstract class Account extends DomainObject {
 
 
     public function __set($name, $value) {
-
-        switch ($name) {
-            case "LoginStatus":
-                if ($this->LoginStatus)
-                    $this->LoginStatus = false;
-                else
-                    $this->LoginStatus = true;
-                break;
-            default:
-                $this->$name = $value;
-        }
-
+        $this->$name = $value;
     }
 
     /**

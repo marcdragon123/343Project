@@ -51,6 +51,9 @@ class CustomerMapper extends MapperAbstract{
                     'Email' => $userObj->__get('Email'),
                     'Type' => $userObj->__get('Type')
                 );
+                $userObj->__set('LoginStatus', true);
+                //$this->UOW->updateDirty($userObj)
+
 
                 return true;
             }
@@ -71,7 +74,7 @@ class CustomerMapper extends MapperAbstract{
                     );
                     $usr = $this->create();
                     $usr = $this->populate($usr, $userObj);
-                    $usr->__set('LoginStatus', null);
+                    $usr->__set('LoginStatus', true);
                     IdMap::getInstance()->add($usr, 'Admin');
                     return true;
                 }
@@ -86,6 +89,11 @@ class CustomerMapper extends MapperAbstract{
         return false;
     }
 
+    public function logout($email){
+        $userObj = IdMap::getInstance()->get('Customer', $email);
+        //$userObj->__set('LoginStatus', false);
+        //$this->updateLoginSession($userObj);
+    }
 
     /**
      * @param array|null $data
@@ -215,10 +223,11 @@ class CustomerMapper extends MapperAbstract{
     }
 
     /**
-     *
+     * @param Account $admin
      */
-    public function updateLoginSession(){
-        //$this->UOW->registerDirty($this);
+    public function updateLoginSession(Account $admin){
+
+        $this->UOW->registerDirty($admin);
         //$this->UOW->commit();
 
     }
