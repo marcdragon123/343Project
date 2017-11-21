@@ -15,14 +15,14 @@ class UserTDG extends Model
     public function get($id){
         $this->query('SELECT * FROM account WHERE UserID = :id');//query goes here
         $this->bind('id', $id);
-        return $this->single();;
+        return $this->single();
     }
 
     /**
      * fetch single users from DB by email
-     * @param $email
+     * @param $Email
      *
-     * @return array $userData
+     * @return array
      */
     public function find($Email) {
         $this->query('SELECT * FROM Account WHERE Email = :Email');//query goes here
@@ -107,6 +107,12 @@ class UserTDG extends Model
 
         return $this->lastInsertId();
     }
+
+    //public function loginAudit(Account $user){}
+
+    //public function logoutAudit(Account $user){}
+
+
 
 
 

@@ -51,10 +51,7 @@ class CustomerMapper extends MapperAbstract{
                     'Email' => $userObj->__get('Email'),
                     'Type' => $userObj->__get('Type')
                 );
-                $userObj->__set('LoginStatus', true);
-                //$this->UOW->updateDirty($userObj)
-
-
+                $this->updateLoginSession($userObj);
                 return true;
             }
             Messages::setMsg($userObj['FirstName'].", login from admin page please", 'error');
@@ -106,24 +103,10 @@ class CustomerMapper extends MapperAbstract{
         if($data){
             $obj = $this->populate($obj, $data);
         }
-        $id = $this->userTDG->insert($obj);
-        $obj->setID($id);
         IdMap::getInstance()->add($obj, 'Customer');
-
         $this->UOW->registerNew($obj);
+        $this->UOW->commit();
         return $obj;
-    }
-
-    /**
-     * @param Customer $obj
-     */
-    public function save($obj)
-    {
-        if(is_null($obj->__get("UserID"))){
-            $this->_insert($obj);
-        } else {
-            $this->_update($obj);
-        }
     }
 
     /**
@@ -147,25 +130,18 @@ class CustomerMapper extends MapperAbstract{
      */
     public function populate($obj, array $data){
 
-
-        function __construct($array) {
-            foreach ($array as $key => $value) {
-                $this->$key = $value;
-            }
-        }
-
         $obj->__set("FirstName", $data['FirstName']);
         $obj->__set("LastName", $data['LastName']);
         $obj->__set("Password", $data['Password']);
         $obj->__set("Email", $data['Email']);
-        $obj->__set("PhoneNumber", $data['PhoneNumber']);
+        $obj->__set("Phone", $data['Phone']);
         $obj->__set("StreetNumber", $data['StreetNumber']);
         $obj->__set("StreetName", $data['StreetName']);
         $obj->__set("City", $data['City']);
         $obj->__set("Province", $data['Province']);
         $obj->__set("PostalCode", $data['PostalCode']);
         $obj->__set("Country", $data['Country']);
-        $obj->__set("LoginStatus", 0);
+        $obj->__set("LoginStatus", false);
         $obj->__set("Type", 'C');
 
 
@@ -174,11 +150,9 @@ class CustomerMapper extends MapperAbstract{
 
     /**
      * Create a new users DomainObject
-     *
      * @return Customer
      */
     public function _create(){
-
         return new Customer();
     }
 
@@ -192,9 +166,8 @@ class CustomerMapper extends MapperAbstract{
      */
     public function _insert($obj)
     {
-        //var_dump($obj->__get('firstName'));
-
-        $this->userTDG->insert($obj);
+        $UserId = $this->userTDG->insert($obj);
+        $obj->__set('UserID', $UserId);
     }
 
     /**
@@ -207,7 +180,7 @@ class CustomerMapper extends MapperAbstract{
      */
     public function _update($obj)
     {
-        //$this->userTDG->update($obj);
+        $this->userTDG->update($obj);
     }
 
     /**
@@ -220,17 +193,20 @@ class CustomerMapper extends MapperAbstract{
      */
     public function _delete($obj)
     {
-        //$this->userTDG->delete($obj->getID());
+        $this->userTDG->delete($obj->getID());
     }
 
     /**
      * @param Account $admin
      */
     public function updateLoginSession(Account $admin){
-
+        $admin->__set('LoginStatus', true);
         $this->UOW->registerDirty($admin);
-        //$this->UOW->commit();
-
+        if($admin->__get('LoginStatus')){
+            //$this->userTDG->loginAudit($admin);
+        }
+        //else
+            //this->userTDG->logoutAudit($admin)
     }
 
 }

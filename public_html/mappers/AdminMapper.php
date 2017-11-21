@@ -87,8 +87,8 @@ class AdminMapper extends MapperAbstract{
     }
     public function logout($email){
         $userObj = IdMap::getInstance()->get('Admin', $email);
-        //$userObj->__set('LoginStatus', false);
-        //$this->updateLoginSession($userObj);
+        $userObj->__set('LoginStatus', false);
+        $this->updateLoginSession($userObj);
 
     }
 
