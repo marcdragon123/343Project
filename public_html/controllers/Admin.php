@@ -62,16 +62,33 @@ class admin extends Controller {
 
     }
 
-    public function viewProductSpecification(){
+    public function viewProductSpecification() {
 
     }
 
-    public function adminCatalog(){
+    public function adminCatalog() {
         $viewmodel = CatalogMapper::getInstance();
         return $this->returnView($viewmodel, true);
 
     }
 
+    public function addMonitorProduct() {
+        echo "add monitor is being caled";
+        $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        if($post['submit']) {
+            $monitor = monitorMapper::getInstance()->create($post);
+
+
+
+            if(!is_null($monitor)) {
+
+               
+            }
+        }
+        $this->returnView(null, true);
+    
+
+    }
 
 
 }

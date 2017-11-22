@@ -76,7 +76,7 @@ class UserTDG extends Model
      */
     public function delete($id)
     {
-        $this->query('DELETE FROM Account WHERE UserID = :id');
+        $this->query('DELETE FROM account WHERE UserID = :id');
         $this->bind('id', $id);
         $this->execute();
 
@@ -90,7 +90,7 @@ class UserTDG extends Model
 
     public function update(Account $user)
     {
-        $this->query('UPDATE account SET FirstName = :FirstName, LastName = :LastName, Email = :Email, PhoneNumber = :Phone,
+        $this->query('UPDATE account SET FirstName = :FirstName, LastName = :LastName, Email = :Email, PhoneNumber = :PhoneNumber,
                             Password = :Password, StreetName = :StreetName, StreetNumber = :StreetNumber,
                             City = :City, Province = :Province, Country = :Country, PostalCode = :PostalCode) WHERE UserID = :UserID');
         $this->bind(':UserID', $user->getID());
