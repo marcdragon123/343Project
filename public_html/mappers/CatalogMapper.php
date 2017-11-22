@@ -6,16 +6,18 @@
  * Time: 1:44 PM
  */
 
-class CatalogMapper extends MapperAbstract
-{
-    public $CatalogTDG;
+class CatalogMapper extends MapperAbstract {
     private static $instance = null;
+    public $CatalogTDG;
+    public $monitorTDG;
+    public $tabletTDG;
+    public $laptopTDG;
+    public $desktopcomputerTDG;
 
     /**
      * @return CatalogMapper|null
      */
-    public static function getInstance()
-    {
+    public static function getInstance() {
         if (self::$instance == null)
         {
             self::$instance = new CatalogMapper();
@@ -29,6 +31,10 @@ class CatalogMapper extends MapperAbstract
      */
     private function __construct() {
         $this->CatalogTDG = new CatalogTDG();
+        $this->$monitorTDG = new monitorTDG();                                                  
+        $this->$tabletTDG = new tabletTDG();
+        $this->$laptopTDG = new laptopTDG();
+        $this->$desktopcomputerTDG = new desktopcomputerTDG();
     }
 
     /**
@@ -39,8 +45,7 @@ class CatalogMapper extends MapperAbstract
      * @param array $data
      * @return Product $obj
      */
-    public function create(array $data = null)
-    {
+    public function create(array $data = null) {
         $obj = $this->_createProduct($data['ProductType']);
         if($data)
         {
@@ -82,8 +87,7 @@ class CatalogMapper extends MapperAbstract
      *
      * @param Product $obj
      */
-    public function deleteProduct($obj)
-    {
+    public function deleteProduct($obj) {
         try{
             ProductCatalog::getInstance()->deleteProduct($obj);
             UnitOfWork::getInstance()->registerDeleted($obj);
@@ -95,23 +99,23 @@ class CatalogMapper extends MapperAbstract
 
     }
 
-    public function editProduct(){
+    public function editProduct() {
 
     }
 
-    public function getMonitors(){
+    public function getMonitors() {
         
     }
 
-    public function getDesktops(){
+    public function getDesktops() {
 
     }
 
-    public function getLaptops(){
+    public function getLaptops() {
 
     }
 
-    public function getTablets(){
+    public function getTablets() {
 
     }
 
@@ -120,7 +124,7 @@ class CatalogMapper extends MapperAbstract
      * @param array $data
      * @return Product $obj
      */
-    public function populateDesktop($obj, array $data){
+    public function populateDesktop($obj, array $data) {
         $obj->__set("SerialNumber", $data['SerialNumber']);
         $obj->__set("Brand", $data['Brand']);
         $obj->__set("Price", $data['Price']);
@@ -141,7 +145,7 @@ class CatalogMapper extends MapperAbstract
      * @param array $data
      * @return Product $obj
      */
-    public function populateTablet($obj, array $data){
+    public function populateTablet($obj, array $data) {
         $obj->__set("SerialNumber", $data['SerialNumber']);
         $obj->__set("Brand", $data['Brand']);
         $obj->__set("Price", $data['Price']);
@@ -166,7 +170,7 @@ class CatalogMapper extends MapperAbstract
      * @param array $data
      * @return Product $obj
      */
-    public function populateLaptop($obj, array $data){
+    public function populateLaptop($obj, array $data) {
         $obj->__set("SerialNumber", $data['SerialNumber']);
         $obj->__set("Brand", $data['Brand']);
         $obj->__set("Price", $data['Price']);
@@ -191,7 +195,7 @@ class CatalogMapper extends MapperAbstract
      * @param array $data
      * @return Product $obj
      */
-    public function populateMonitor($obj, array $data){
+    public function populateMonitor($obj, array $data) {
         $obj->__set("SerialNumber", $data['SerialNumber']);
         $obj->__set("Brand", $data['Brand']);
         $obj->__set("Price", $data['Price']);
@@ -206,8 +210,7 @@ class CatalogMapper extends MapperAbstract
      * @param $type
      * @return Product
      */
-    public function _createProduct($type)
-    {
+    public function _createProduct($type) {
         switch($type)
         {
             case "Laptop":
@@ -231,8 +234,7 @@ class CatalogMapper extends MapperAbstract
      *
      * @return DomainObject
      */
-    public function _create()
-    {
+    public function _create() {
         // TODO: Implement _create() method.
     }
 
@@ -241,8 +243,7 @@ class CatalogMapper extends MapperAbstract
      *
      * @param DomainObject $obj
      */
-    public function _insert($obj)
-    {
+    public function _insert($obj) {
         switch ($obj->__get('ProductType')){
             case "Tablet":
                 $this->tabletTDG->addTablet($obj);
@@ -264,8 +265,7 @@ class CatalogMapper extends MapperAbstract
      *
      * @param DomainObject $obj
      */
-    public function _update($obj)
-    {
+    public function _update($obj) {
         switch ($obj->__get('ProductType')){
             case "Tablet":
                 $this->tabletTDG->updateTablet($obj);
@@ -287,8 +287,7 @@ class CatalogMapper extends MapperAbstract
      *
      * @param DomainObject $obj
      */
-    public function _delete($obj)
-    {
+    public function _delete($obj) {
         switch ($obj->__get('ProductType')){
             case "Tablet":
                 $this->tabletTDG->deleteTablet($obj);
