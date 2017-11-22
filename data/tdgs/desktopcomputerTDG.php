@@ -5,23 +5,13 @@
 
 class desktopcomputerTDG extends Model
 {
-
-    public function get($id){
-        $this->query('SELECT * FROM desktopcomputer WHERE ID = :ID');
-        $this->bind('ID', $id);
-        return $this->single();
-    }
-
     /**
-     * fetch single desktopcomputer from DB by ModelNumber
-     * @param $ModelNumber
-     *
-     * @return array
+     * @param Product $product
+     * @return mixed
      */
-    public function find($ModelNumber) {
-        $this->query('SELECT * FROM desktopcomputer WHERE ModelNumber = :ModelNumber');
-        $this->bind('ModelNumber', $ModelNumber);
-
+    public function get($product){
+        $this->query('SELECT * FROM desktopcomputer WHERE SerialNumber = :SerialNumber');
+        $this->bind(':SerialNumber', $product->__get('SerialNumber'));
         return $this->single();
     }
 
@@ -63,12 +53,12 @@ class desktopcomputerTDG extends Model
 
     /**
      * delete a desktopcomputer from the DB
-     * @param $id
+     * @param Product $product
      */
-    public function delete($id)
+    public function delete($product)
     {
-        $this->query('DELETE FROM desktopcomputer WHERE ID = :ID');
-        $this->bind('ID', $id);
+        $this->query('DELETE FROM desktopcomputer WHERE SerialNumber = :SerialNumber');
+        $this->bind(':SerialNumber', $product->__get('SerialNumber'));
         $this->execute();
 
         return;
@@ -80,7 +70,7 @@ class desktopcomputerTDG extends Model
      * @return string
      */
 
-    public function update(Product $desktopcomputer)
+    public function update($desktopcomputer)
     {
         $this->query('UPDATE desktopcomputer SET ModelNumber = :ModelNumber, DisplaySize = :DisplaySize, DisplayDimensions = :DisplayDimensions, Brand = :Brand,
                             Price = :Price, CPUType = :CPUType, CoreNumber = :CoreNumber,

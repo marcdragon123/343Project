@@ -14,7 +14,7 @@ class UserTDG extends Model
 
     public function get($id){
         $this->query('SELECT * FROM account WHERE UserID = :id');//query goes here
-        $this->bind('id', $id);
+        $this->bind(':id', $id);
         return $this->single();
     }
 
@@ -26,7 +26,7 @@ class UserTDG extends Model
      */
     public function find($Email) {
         $this->query('SELECT * FROM account WHERE Email = :Email');//query goes here
-        $this->bind('Email', $Email);
+        $this->bind(':Email', $Email);
 
         return $this->single();
     }
@@ -77,7 +77,7 @@ class UserTDG extends Model
     public function delete($id)
     {
         $this->query('DELETE FROM account WHERE UserID = :id');
-        $this->bind('id', $id);
+        $this->bind(':id', $id);
         $this->execute();
 
         return;

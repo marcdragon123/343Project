@@ -155,10 +155,10 @@ class CustomerMapper extends MapperAbstract{
     }
 
     /**
-     * Create a new users DomainObject
+     * @param array|null $arr
      * @return Customer
      */
-    public function _create(){
+    public function _create(array $arr=null){
         return new Customer();
     }
 

@@ -30,10 +30,10 @@ class CatalogMapper extends MapperAbstract {
      * CatalogMapper constructor.
      */
     private function __construct() {
-        $this->$monitorTDG = new monitorTDG();                                                  
-        $this->$tabletTDG = new tabletTDG();
-        $this->$laptopTDG = new laptopTDG();
-        $this->$desktopcomputerTDG = new desktopcomputerTDG();
+        $this->monitorTDG = new monitorTDG();
+        $this->tabletTDG = new tabletTDG();
+        $this->laptopTDG = new laptopTDG();
+        $this->desktopcomputerTDG = new desktopcomputerTDG();
     }
 
     /**
@@ -110,13 +110,6 @@ class CatalogMapper extends MapperAbstract {
         return $products;
     }
 
-<<<<<<< HEAD
-    public function showAllProducts(){
-        $productsList = ProductCatalog::getInstance()->viewAllProducts();
-        return $productList;
-    }
-=======
->>>>>>> origin/layered
 
    
 
@@ -211,10 +204,10 @@ class CatalogMapper extends MapperAbstract {
 
     /**
      * Create a new instance of a DomainObject
-     *
+     * @param $type
      * @return DomainObject
      */
-    public function _create($type) {
+    public function _create($type = null) {
         switch($type)
         {
             case "Laptop":
@@ -237,8 +230,6 @@ class CatalogMapper extends MapperAbstract {
      *
      * @param DomainObject $obj
      */
-
-
     public function _insert($obj)
     {
 
@@ -264,7 +255,6 @@ class CatalogMapper extends MapperAbstract {
      *
      * @param DomainObject $obj
      */
-
     public function _update($obj)
     {
 
@@ -290,7 +280,6 @@ class CatalogMapper extends MapperAbstract {
      *
      * @param DomainObject $obj
      */
-
     public function _delete($obj)
     {
         switch ($obj->__get('ProductType')){

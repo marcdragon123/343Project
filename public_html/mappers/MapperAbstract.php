@@ -18,11 +18,12 @@ abstract class MapperAbstract {
     abstract public function create(array $data = null);
 
     /**
-     * Create a new instance of a DomainObject
      *
-     * @return DomainObject
+     * Create a new instance of a DomainObject
+     * @param mixed
+     * @return mixed
      */
-    abstract public function _create();
+    abstract public function _create($type=null);
 
     /**
      * Insert the DomainObject to persistent storage

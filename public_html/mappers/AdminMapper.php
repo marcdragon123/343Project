@@ -160,11 +160,10 @@ class AdminMapper extends MapperAbstract{
     }
 
     /**
-     * Create a new users DomainObject
-     *
+     * @param mixed $type
      * @return Administrator
      */
-    public function _create(){
+    public function _create($type = null){
         return new Administrator();
     }
 
