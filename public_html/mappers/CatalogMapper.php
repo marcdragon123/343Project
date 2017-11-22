@@ -99,6 +99,7 @@ class CatalogMapper extends MapperAbstract {
 
     }
 
+
     public function editProduct() {
 
     }
@@ -117,7 +118,21 @@ class CatalogMapper extends MapperAbstract {
 
     public function getTablets() {
 
+    public function viewProductsByType($type){
+        ProductCatalog::getInstance()->viewByType($type);
     }
+
+    public function showProductsByType($product){
+        return $product;
+    }
+
+    public function showAllProducts($product){
+        return $product;
+    }
+
+   
+
+
 
     /**
      * @param Product $obj
@@ -243,7 +258,11 @@ class CatalogMapper extends MapperAbstract {
      *
      * @param DomainObject $obj
      */
-    public function _insert($obj) {
+
+
+    public function _insert($obj)
+    {/*
+
         switch ($obj->__get('ProductType')){
             case "Tablet":
                 $this->tabletTDG->addTablet($obj);
@@ -258,6 +277,7 @@ class CatalogMapper extends MapperAbstract {
                 $this->desktopTDG->addDesktop($obj);
                 break;
         }
+    */
     }
 
     /**
@@ -265,7 +285,10 @@ class CatalogMapper extends MapperAbstract {
      *
      * @param DomainObject $obj
      */
-    public function _update($obj) {
+
+    public function _update($obj)
+    {/*
+
         switch ($obj->__get('ProductType')){
             case "Tablet":
                 $this->tabletTDG->updateTablet($obj);
@@ -280,6 +303,7 @@ class CatalogMapper extends MapperAbstract {
                 $this->desktopTDG->updateDesktop($obj);
                 break;
         }
+    */
     }
 
     /**
@@ -287,7 +311,9 @@ class CatalogMapper extends MapperAbstract {
      *
      * @param DomainObject $obj
      */
-    public function _delete($obj) {
+
+    public function _delete($obj)
+    {/*
         switch ($obj->__get('ProductType')){
             case "Tablet":
                 $this->tabletTDG->deleteTablet($obj);
@@ -302,6 +328,7 @@ class CatalogMapper extends MapperAbstract {
                 $this->desktopTDG->deleteDeskop($obj);
                 break;
         }
+*/
     }
 
 }
