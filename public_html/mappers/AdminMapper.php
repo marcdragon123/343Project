@@ -8,6 +8,7 @@ class AdminMapper extends MapperAbstract{
 
     public $UOW;
     public $userTDG;
+    public $idMap;
     private static $instance = null;
 
 
@@ -22,7 +23,8 @@ class AdminMapper extends MapperAbstract{
     }
 
     private function __construct() {
-        $this->UOW = new UnitOfWork($this);
+        $this->UOW = UnitOfWork::getInstance();
+        $this->idMap = IdMap::getInstance();
         $this->userTDG = new UserTDG();
     }
 
@@ -32,15 +34,15 @@ class AdminMapper extends MapperAbstract{
      */
     public function login(array $post) {
 
-        $userObj = IdMap::getInstance()->get('Admin',$post['Email']);
+        $userObj = $this->idMap->get('Admin',$post['Email']);
 
         if(!is_null($userObj)) {
-            if ($userObj->__get('Password') != $post['Password']) {
+            //if found in idmap, check if password is correct
+            if (!($userObj->__get('Password') === $post['Password'])) {
                 Messages::setMsg("wrong password", 'error');
-                return false;
             }
+            //if pass is correct, check if customer
             if($userObj->__get('Type')==='A'){
-                $userObj = $this->_create();
                 $_SESSION['is_logged_in'] = true;
                 $_SESSION['user_data'] = array(
                     'UserID' => $userObj->__get('UserID'),
@@ -50,12 +52,15 @@ class AdminMapper extends MapperAbstract{
                     'Type' => $userObj->__get('Type')
                 );
                 $userObj->__set('LoginStatus', true);
+                //$this->updateLoginSession($userObj);
                 //$this->UOW->updateDirty($userObj)
                 return true;
             }
             Messages::setMsg("None Admin", 'error');
             return false;
         }
+        //if email is not in idmap, check db
+
         $userObj = $this->userTDG->find($post['Email']);
         if(!is_null($userObj)){
             if($userObj['Password'] === $post['Password']){
@@ -68,12 +73,12 @@ class AdminMapper extends MapperAbstract{
                         'Email' => $userObj['Email'],
                         'Type' => $userObj['Type']
                     );
-                    $usr = $this->create();
+                    $usr = $this->_create();
                     $usr = $this->populate($usr, $userObj);
                     $usr->__set('LoginStatus', true);
-                    IdMap::getInstance()->add($usr, 'Admin');
+                    //$this->updateLoginSession($usr);
+                    $this->idMap->add($usr, 'Admin');
                     //$this->UOW->updateDirty();
-                    return true;
                 }
                 Messages::setMsg('Email does not possess Admin rights', 'error');
                 return false;
@@ -85,6 +90,7 @@ class AdminMapper extends MapperAbstract{
         Messages::setMsg('Email Does Not Exist', 'error');
             return false;
     }
+
     public function logout($email){
         $userObj = IdMap::getInstance()->get('Admin', $email);
         $userObj->__set('LoginStatus', false);
@@ -114,21 +120,9 @@ class AdminMapper extends MapperAbstract{
     /**
      * @param Administrator $obj
      */
-    public function save($obj)
-    {
-        if(is_null($obj->__get("UserID"))){
-            $this->_insert($obj);
-        } else {
-            $this->_update($obj);
-        }
-    }
-
-    /**
-     * @param Administrator $obj
-     */
     public function delete($obj)
     {
-        $this->_delete($obj);
+        $this->idMap->remove('Customer', $obj->__get('Email'));
     }
 
     /**
@@ -221,9 +215,15 @@ class AdminMapper extends MapperAbstract{
 
 
     public function updateLoginSession(Account $admin){
-
+        $admin->__set('LoginStatus', true);
         $this->UOW->registerDirty($admin);
-        //$this->UOW->commit();
+
+        /*if($admin->__get('LoginStatus')){
+            $this->userTDG->loginAudit($admin);
+        }
+        else
+            $this->userTDG->logoutAudit($admin)
+        */
 
     }
 

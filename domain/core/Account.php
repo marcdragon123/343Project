@@ -39,19 +39,12 @@ abstract class Account extends DomainObject {
         $this->UserID = $id;
     }
 
-
+    /**
+     * @param $name
+     * @param $value
+     */
     public function __set($name, $value) {
-        switch ($name){
-            case "LoginStatus":
-                if($this->LoginStatus === false){
-                    $this->LoginStatus = $value;
-                }
-                $this->LoginStatus = false;
-                break;
-            default:
-                $this->$name = $value;
-                break;
-        }
+        $this->$name = $value;
     }
 
     /**

@@ -18,15 +18,6 @@ abstract class MapperAbstract {
     abstract public function create(array $data = null);
 
     /**
-     * Delete the DomainObject
-     *
-     * Delete the DomainObject from persistent storage.
-     *
-     * @param DomainObject $obj
-     */
-    abstract public function delete($obj);
-
-    /**
      * Populate the DomainObject with the values
      * from the data array.
      *
