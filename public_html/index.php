@@ -45,6 +45,10 @@ require('../domain/uow/UnitOfWork.php');
 require('../data/tdgs/Model.php');
 require('../data/tdgs/UserTDG.php');
 require('../data/tdgs/CatalogTDG.php');
+require('../data/tdgs/monitorTDG.php');
+require('../data/tdgs/laptopTDG.php');
+require('../data/tdgs/tabletTDG.php');
+require('../data/tdgs/desktopcomputerTDG.php');
 
 require('../domain/activeCache/FileCaching.php');
 require('../domain/activeCache/File.php');
