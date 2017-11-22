@@ -8,11 +8,8 @@
 
 class CatalogMapper extends MapperAbstract
 {
-    public $UOW;
     public $CatalogTDG;
-    public $productIdMap;
     private static $instance = null;
-    public $productCatalog;
 
     /**
      * @return CatalogMapper|null
@@ -30,12 +27,8 @@ class CatalogMapper extends MapperAbstract
     /**
      * CatalogMapper constructor.
      */
-    public function __construct() {
-
-        $this->UOW = UnitOfWork::getInstance();
+    private function __construct() {
         $this->CatalogTDG = new CatalogTDG();
-        $this->productIdMap = ProductsIdMap::getInstance();
-        $this->productCatalog = ProductCatalog::getInstance();
     }
 
     /**
@@ -44,18 +37,21 @@ class CatalogMapper extends MapperAbstract
      * from a data array.
      *
      * @param array $data
+     * @return Product $obj
      */
     public function create(array $data = null)
     {
-        $obj = $this->_createProduct($data['name']);
+        $obj = $this->_createProduct($data['ProductType']);
         if($data)
         {
             $obj = $this->populate($obj, $data);
         }
         // adding product straight to Catalog Array, which will be saved in the idmap
-        $this->productCatalog->addProduct($obj);
-        $this->UOW->registerNew($obj);
-        $this->UOW->commit(CatalogMapper::getInstance());
+        ProductCatalog::getInstance()->addProduct($obj);
+        UnitOfWork::getInstance()->registerNew($obj);
+        UnitOfWork::getInstance()->commit(CatalogMapper::getInstance());
+
+        return null;
     }
 
     /**
@@ -66,9 +62,9 @@ class CatalogMapper extends MapperAbstract
      */
     public function deleteProduct($obj)
     {
-        $this->productCatalog->deleteProduct($obj);
-        $this->UOW->registerDeleted($obj);
-        $this->UOW->commit(CatalogMapper::getInstance());
+        ProductCatalog::getInstance()->deleteProduct($obj);
+        UnitOfWork::getInstance()->registerDeleted($obj);
+        UnitOfWork::getInstance()->commit(CatalogMapper::getInstance());
     }
 
     public function editProduct(){

@@ -5,7 +5,7 @@
  * Date: 2017-11-05
  * Time: 2:36 PM
  */
-
+ini_set('memory_limit', '1024M');
 // Start Session
 session_start();
 require('config.php');
@@ -29,6 +29,8 @@ require('mappers/CustomerMapper.php');
 require('mappers/AdminMapper.php');
 require('mappers/CatalogMapper.php');
 
+
+require('../domain/core/ProductCatalog.php');
 require('../domain/idmap/idMap.php');
 require('../domain/idmap/ProductsIdMap.php');
 require('../domain/uow/UnitOfWork.php');

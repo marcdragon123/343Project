@@ -64,8 +64,8 @@
                                 <tr>
                                     <td><br><input type="text" placeholder="Processor Type" name ="CPUType"><br></td>
                                     <td><br><input type="text" placeholder="Ram Size" name ="RAMSize"><br></td>
-                                    <td><br><input type="text" placeholder="Number Of CPU Cores" name ="$CoreNumber"><br></td>
-                                    <td><br><br></td>
+                                    <td><br><input type="text" placeholder="Number Of CPU Cores" name ="CoreNumber"><br></td>
+                                    <td><br><input type="hidden" name="ProductType" value="Tablet" <br></td>
                                 </tr>
                                 <td><br><input type="text" placeholder="Hard Drive Size" name="HDDSize"><br></td>
                                 <td><br><input type="text" placeholder="Operating System" name="OS"><br></td>
@@ -106,7 +106,7 @@
                                     <td><br><input type="text" placeholder="Operating System" name="OS"><br></td>
                                     <td><br><input type="text" placeholder="Hard Drive" name="HDDSize"><br></td>
                                     <td><br><input type="text" placeholder="Camera Information" name="CameraInformation"><br></td>
-                                    <td><br><br></td>
+                                    <td><br><input type="hidden" name="ProductType" value="Laptop" <br></td>
                                 </tr>
                                 <td><br><input type="text" placeholder="Model Number" name ="Model"><br></td>
 
@@ -143,7 +143,7 @@
                                 <tr>
                                     <td><br><input type="text" placeholder="Weight (kg)" name ="Weight"><br></td>
                                     <td><br><input type="text" placeholder="Model Number" name ="Model"><br></td>
-                                    <td><br><br></td>
+                                    <td><br><input type="hidden" name="ProductType" value="Monitor" <br><br></td>
                                     <td><br><br></td>
                                 </tr>
                                 <br></td>
@@ -181,7 +181,7 @@
                                     <td><br><input type="text" placeholder="Model Number" name ="Model"><br></td>
                                     <td><br><input type="text" placeholder="Number of CPU Cores" name ="CoreNumber"><br></td>
                                     <td><br><input type="text" placeholder="Ram Size" name ="RAMSize"><br></td>
-                                    <td><br><br></td>
+                                    <td><br><input type="hidden" name="ProductType" value="Desktop" <br><br></td>
                                 </tr>
                                 </tbody>
                             </table>

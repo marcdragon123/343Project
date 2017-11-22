@@ -172,9 +172,7 @@ class CustomerMapper extends MapperAbstract{
      */
     public function _insert($obj)
     {
-        $UserId = $this->userTDG->insert($obj);
-        echo "_insert worked";
-        $obj->__set('UserID', $UserId);
+        $this->userTDG->insert($obj);
     }
 
     /**
@@ -188,7 +186,6 @@ class CustomerMapper extends MapperAbstract{
     public function _update($obj)
     {
         $this->userTDG->update($obj);
-
     }
 
     /**

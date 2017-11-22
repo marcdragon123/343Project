@@ -4,8 +4,6 @@
  */
 class admin extends Controller {
 
-    private $obj;
-
     public function __construct($action, $request) {
         parent::__construct($action, $request);
     }
@@ -22,11 +20,7 @@ class admin extends Controller {
         $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
         if($post['submit']) {
             $customer = CustomerMapper::getInstance()->create($post);
-
-
-
             if(!is_null($customer)) {
-
                 header('Location: ' . ROOT_URL . 'admin/adminlogin');
             }
         }
@@ -54,8 +48,7 @@ class admin extends Controller {
         unset($_SESSION['user_data']);
         session_destroy();
         // Redirect
-        header('Location: '.ROOT_URL);
-
+        header('Location: '.ROOT_URL.'home');
     }
 
     public function viewProductCatalog(){
@@ -66,29 +59,25 @@ class admin extends Controller {
 
     }
 
-    public function adminCatalog() {
-        $viewmodel = CatalogMapper::getInstance();
-        return $this->returnView($viewmodel, true);
+    public function addProduct() {
+        if(!isset($_SESSION['is_logged_in'])){
+            header('Location: '.ROOT_URL.'home');
+        }
+        if(!($_SESSION['user_data']['Type']==='A')){
+            header('Location: '.ROOT_URL.'home');
+        }
 
-    }
-
-    public function addMonitorProduct() {
-        echo "add monitor is being caled";
         $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-        if($post['submit']) {
-            $monitor = monitorMapper::getInstance()->create($post);
-
-
-
-            if(!is_null($monitor)) {
-
-               
+        if(!empty($post)){
+            //var_dump($_POST);
+            if(CatalogMapper::getInstance()->create($post)){
+                header('Location: '.ROOT_URL. 'admin');
             }
         }
         $this->returnView(null, true);
-    
+
+
 
     }
-
 
 }

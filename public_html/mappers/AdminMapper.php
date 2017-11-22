@@ -52,8 +52,7 @@ class AdminMapper extends MapperAbstract{
                     'Type' => $userObj->__get('Type')
                 );
                 $userObj->__set('LoginStatus', true);
-                //$this->updateLoginSession($userObj);
-                //$this->UOW->updateDirty($userObj)
+                $this->updateLoginSession($userObj);
                 return true;
             }
             Messages::setMsg("None Admin", 'error');
@@ -76,9 +75,8 @@ class AdminMapper extends MapperAbstract{
                     $usr = $this->_create();
                     $usr = $this->populate($usr, $userObj);
                     $usr->__set('LoginStatus', true);
-                    //$this->updateLoginSession($usr);
+                    $this->updateLoginSession($usr);
                     $this->idMap->add($usr, 'Admin');
-                    //$this->UOW->updateDirty();
                 }
                 Messages::setMsg('Email does not possess Admin rights', 'error');
                 return false;
@@ -92,7 +90,7 @@ class AdminMapper extends MapperAbstract{
     }
 
     public function logout($email){
-        $userObj = IdMap::getInstance()->get('Admin', $email);
+        $userObj = $this->idMap->get('Admin', $email);
         $userObj->__set('LoginStatus', false);
         $this->updateLoginSession($userObj);
 
@@ -109,11 +107,9 @@ class AdminMapper extends MapperAbstract{
         if($data){
             $obj = $this->populate($obj, $data);
         }
-        $id = $this->userTDG->insert($obj);
-        $obj->setID($id);
-        IdMap::getInstance()->add($obj, 'Admin');
-
+        $this->idMap->add($obj, 'Admin');
         $this->UOW->registerNew($obj);
+        $this->UOW->commit(CustomerMapper::getInstance());
         return $obj;
     }
 
@@ -122,8 +118,8 @@ class AdminMapper extends MapperAbstract{
      */
     public function delete($obj)
     {
-        $this->idMap->remove('Customer', $obj->__get('Email'));
-    }
+        $this->idMap->remove('Admin', $obj->__get('Email'));
+        $this->UOW->registerDeleted($obj);    }
 
     /**
      * Populate the Account (AccountObj) with
@@ -182,8 +178,6 @@ class AdminMapper extends MapperAbstract{
      */
     public function _insert($obj)
     {
-        //var_dump($obj->__get('firstName'));
-
         $this->userTDG->insert($obj);
     }
 
@@ -197,7 +191,7 @@ class AdminMapper extends MapperAbstract{
      */
     public function _update($obj)
     {
-        //$this->userTDG->update($obj);
+        $this->userTDG->update($obj);
     }
 
     /**
@@ -210,20 +204,16 @@ class AdminMapper extends MapperAbstract{
      */
     public function _delete($obj)
     {
-        //$this->userTDG->delete($obj->getID());
+        $this->userTDG->delete($obj->getID());
     }
 
 
     public function updateLoginSession(Account $admin){
-        $admin->__set('LoginStatus', true);
-        $this->UOW->registerDirty($admin);
-
-        /*if($admin->__get('LoginStatus')){
+        if($admin->__get('LoginStatus')){
             $this->userTDG->loginAudit($admin);
         }
         else
-            $this->userTDG->logoutAudit($admin)
-        */
+            $this->userTDG->logoutAudit($admin);
 
     }
 
