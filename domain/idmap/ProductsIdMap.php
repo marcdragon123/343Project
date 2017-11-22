@@ -25,14 +25,13 @@ class ProductsIdMap
      * @throws Exception
      */
     public function add(Product $object, $objectName) {
-        $tempContainer = $this->productFile->read($this->productFile->getFileName());
-        $this->container = $tempContainer[0];
+        $this->container = $this->getContainer();
 
-        if(isset($this->container[$objectName][$object->getSerialNumber()])) {
-            throw new Exception('cannot reset users email: ' . $object->getSerialNumber());
+        if(isset($this->container[$objectName][$object->__get('SerialNumber')])) {
+            throw new Exception('cannot reset users email: ' . $object->__get('SerialNumber'));
         }
 
-        $this->container[$objectName][$object->getSerialNumber()] = $object;
+        $this->container[$objectName][$object->__get('SerialNumber')] = $object;
         $this->productFile->write($this->container, true);
 
         // Define an entry, based on the entity name, and the ID (primary key) of the entity
@@ -50,8 +49,7 @@ class ProductsIdMap
         // key doesn't exists, so throwing an exception is not recommended.
         //echo "the id is: ".$id;
 
-        $tempContainer = $this->productFile->read($this->productFile->getFileName());
-        $this->container = $tempContainer[0];
+        $this->container = $this->getContainer();
 
         if (!isset($this->container[$objectName][$serialNumber])) {
             return null;
@@ -67,8 +65,7 @@ class ProductsIdMap
      * @throws Exception
      */
     public function remove($objectName,$serialNumber) {
-        $tempContainer = $this->productFile->read($this->productFile->getFileName());
-        $this->container = $tempContainer[0];
+        $this->container = $this->getContainer();
 
         if(!isset($this->container[$objectName][$serialNumber])) {
             throw new Exception('item does not exist, cannot delete it');
@@ -76,6 +73,11 @@ class ProductsIdMap
         unset($this->container[$objectName][$serialNumber]);
         $this->productFile->write($this->container, true);
         return $this;
+    }
+
+    public function getContainer(){
+        $tempContainer = $this->productFile->read($this->productFile->getFileName());
+        return $tempContainer[0];
     }
 
 }

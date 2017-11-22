@@ -188,7 +188,6 @@ class CustomerMapper extends MapperAbstract{
     public function _update($obj)
     {
         $this->userTDG->update($obj);
-        echo "_insert workd";
 
     }
 
@@ -203,21 +202,19 @@ class CustomerMapper extends MapperAbstract{
     public function _delete($obj)
     {
         $this->userTDG->delete($obj->getID());
-        echo "_insert workd";
 
     }
 
     /**
-     * @param Account $admin
+     * @param Account $usr
      */
-    public function updateLoginSession(Account $admin){
-        $this->UOW->registerDirty($admin);
-        /*if($admin->__get('LoginStatus')){
-            $this->userTDG->loginAudit($admin);
+    public function updateLoginSession(Account $usr){
+        if($usr->__get('LoginStatus')){
+            $this->userTDG->loginAudit($usr);
         }
         else
-            $this->userTDG->logoutAudit($admin)
-        */
+            $this->userTDG->logoutAudit($usr);
+
     }
 
 }

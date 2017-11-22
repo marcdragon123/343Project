@@ -54,21 +54,25 @@ class CatalogMapper extends MapperAbstract
         }
         // adding product straight to Catalog Array, which will be saved in the idmap
         $this->productCatalog->addProduct($obj);
-        //TODO: product catalog is saved in idMap;
-
-
+        $this->UOW->registerNew($obj);
+        $this->UOW->commit(CatalogMapper::getInstance());
     }
 
     /**
-     * Delete the DomainObject
-     *
-     * Delete the DomainObject from persistent storage.
+     * Delete the Product from active memory.
+     * Delete the Product from persistent storage.
      *
      * @param DomainObject $obj
      */
-    public function delete($obj)
+    public function deleteProduct($obj)
     {
-        // TODO: Implement delete() method.
+        $this->productCatalog->deleteProduct($obj);
+        $this->UOW->registerDeleted($obj);
+        $this->UOW->commit(CatalogMapper::getInstance());
+    }
+
+    public function editProduct(){
+
     }
 
     /**
@@ -90,7 +94,6 @@ class CatalogMapper extends MapperAbstract
         }
         return $obj;
     }
-
 
     /**
      * @param $type
@@ -114,6 +117,7 @@ class CatalogMapper extends MapperAbstract
                 break;
         }
     }
+
 
     /**
      * Create a new instance of a DomainObject
