@@ -7,31 +7,53 @@
  */
 
 class ProductCatalog{
+
+
     protected $productMapper;
-    protected $tablets = array();
+    protected $productContainer = array();
+    protected $productsInUse = array();
+
+    private static $instance;
+
+    public static function getInstance(){
+        if(self::$instance === null){
+            self::$instance = new ProductCatalog();
+        }
+
+        return self::$instance;
+    }
+
+    private function __construct()
+    {
+
+    }
 
 
     public function addProduct(Product $product){
 
+        if(isset($this->productContainer[$product->__get('ProductType')][$product->__get('SerialNumber')])){
+            throw new Exception("Product Serial Number Already Exists");
+        }
+        $this->productContainer[$product->__get('ProductType')][$product->__get('SerialNumber')] = $product;
     }
 
-    public function editProductSpecification($id, $specification){
-
-    }
-
-    public function deleteProductSpecification($id, $specification){
-
-    }
-
-    public function addProductSpecification($id, $specification){
-
-    }
-
-    public function viewProductCatalog(){
+    public function editProduct(Product $product){
+        if(!isset($this->productContainer[$product->__get('ProductType')][$product->__get('SerialNumber')])){
+            throw new Exception("Product is not in the Product Catalog");
+        }
+        $this->productContainer[$product->__get('ProductType')][$product->__get('SerialNumber')] = $product;
 
     }
 
-    public function deleteProductCatalog(){
+    public function deleteProductSpecification($productType, $productSerialNumber){
+
+    }
+
+    public function viewByType($productType){
+
+    }
+
+    public function viewAllProducts(){
 
     }
 

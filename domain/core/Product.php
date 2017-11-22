@@ -10,111 +10,40 @@ require "DomainObject.php";
 
 class Product extends DomainObject
 {
-    private $Weight;
-    private $Brand;
-    private $Model;
-    private $Price;
-    private $SerialNumber;
-    private $productType;
+    protected $ID;
+    protected $Weight;
+    protected $Brand;
+    protected $Model;
+    protected $Price;
+    protected $SerialNumber;
+    protected $ProductType;
 
     public function __construct($type)
     {
-        $this->setProductType($type);
+        $this->ProductType = $type;
     }
 
     /**
-     * @return mixed
+     * @param $name
+     * @param $value
      */
-    public function getProductType()
-    {
-        return $this->productType;
+    public function __set($name, $value) {
+        $this->$name = $value;
     }
 
     /**
-     * @param mixed $productType
+     * @param $name
+     * @return int $id
+     *
      */
-    public function setProductType($productType)
-    {
-        $this->productType = $productType;
+    public function __get($name) {
+        return $this->$name;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getWeight()
-    {
-        return $this->Weight;
-    }
-    /**
-     * @param mixed $Weight
-     */
-    public function setWeight($Weight)
-    {
-        $this->Weight = $Weight;
-    }
-    /**
-     * @return mixed
-     */
-    public function getBrand()
-    {
-        return $this->Brand;
-    }
-    /**
-     * @param mixed $Brand
-     */
-    public function setBrand($Brand)
-    {
-        $this->Brand = $Brand;
-    }
-    /**
-     * @return mixed
-     */
-    public function getModel()
-    {
-        return $this->Model;
-    }
-    /**
-     * @param mixed $Model
-     */
-    public function setModel($Model)
-    {
-        $this->Model = $Model;
-    }
-    /**
-     * @return mixed
-     */
-    public function getPrice()
-    {
-        return $this->Price;
-    }
-    /**
-     * @param mixed $Price
-     */
-    public function setPrice($Price)
-    {
-        $this->Price = $Price;
-    }
-    /**
-     * @return mixed
-     */
-    public function getSerialNumber()
-    {
-        return $this->SerialNumber;
-    }
-    /**
-     * @param mixed $SerialNumber
-     */
-    public function setSerialNumber($SerialNumber)
-    {
-        $this->SerialNumber = $SerialNumber;
-    }
 
-    /**
-     * @return int $id;
-     */
     function getID()
     {
-        // TODO: Implement getID() method.
+        return $this->ID;
     }
 
     /**
@@ -122,6 +51,6 @@ class Product extends DomainObject
      */
     function setID($id)
     {
-        // TODO: Implement setID() method.
+        $this->ID = $id;
     }
 }

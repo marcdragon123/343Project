@@ -151,7 +151,7 @@
                                 </tr>
                                 </tbody>
                             </table>
-                            <input class="btn btn-primary" name="monitor" type="submit" value="Submit"/>
+                            <input class="btn btn-primary" name="Monitor" type="submit" value="Submit"/>
                         </div>
                         <!-- /.table-responsive -->
                     </div>

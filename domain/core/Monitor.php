@@ -16,19 +16,20 @@ class Monitor extends Product {
     }
 
     /**
-     * @return mixed
+     * @param $name
+     * @param $value
      */
-    public function getDisplayDimensions()
-    {
-        return $this->DisplayDimensions;
+    public function __set($name, $value) {
+        $this->$name = $value;
     }
 
     /**
-     * @param mixed $DisplayDimensions
+     * @param $name
+     * @return int $id
+     *
      */
-    public function setDisplayDimensions($DisplayDimensions)
-    {
-        $this->DisplayDimensions = $DisplayDimensions;
+    public function __get($name) {
+        return $this->$name;
     }
 
 

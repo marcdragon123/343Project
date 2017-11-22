@@ -18,8 +18,14 @@ class ProductsIdMap
         $this->productFile = new File();
     }
 
+    /**
+     * @param Product $object
+     * @param $objectName
+     * @return $this
+     * @throws Exception
+     */
     public function add(Product $object, $objectName) {
-        $tempContainer= $this->productFile->read($this->productFile->getFileName());
+        $tempContainer = $this->productFile->read($this->productFile->getFileName());
         $this->container = $tempContainer[0];
 
         if(isset($this->container[$objectName][$object->getSerialNumber()])) {
@@ -34,27 +40,37 @@ class ProductsIdMap
         return $this;
     }
 
+    /**
+     * @param $objectName
+     * @param $serialNumber
+     * @return null
+     */
     public function get($objectName,$serialNumber) {
         // If no entity is known by this ID, simply return NULL. It's not exceptional that a
         // key doesn't exists, so throwing an exception is not recommended.
         //echo "the id is: ".$id;
 
-        $tempContainer= $this->productFile->read($this->productFile->getFileName());
+        $tempContainer = $this->productFile->read($this->productFile->getFileName());
         $this->container = $tempContainer[0];
 
         if (!isset($this->container[$objectName][$serialNumber])) {
-            echo "doesnt exist";
             return null;
         }
 
         return $this->container[$objectName][$serialNumber];
     }
 
+    /**
+     * @param $objectName
+     * @param $serialNumber
+     * @return $this
+     * @throws Exception
+     */
     public function remove($objectName,$serialNumber) {
-        $tempContainer= $this->productFile->read($this->productFile->getFileName());
+        $tempContainer = $this->productFile->read($this->productFile->getFileName());
         $this->container = $tempContainer[0];
 
-        if(isset($this->container[$objectName][$serialNumber])) {
+        if(!isset($this->container[$objectName][$serialNumber])) {
             throw new Exception('item does not exist, cannot delete it');
         }
         unset($this->container[$objectName][$serialNumber]);

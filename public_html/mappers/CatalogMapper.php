@@ -10,9 +10,13 @@ class CatalogMapper extends MapperAbstract
 {
     public $UOW;
     public $CatalogTDG;
+    public $productIdMap;
     private static $instance = null;
+    public $productCatalog;
 
-
+    /**
+     * @return CatalogMapper|null
+     */
     public static function getInstance()
     {
         if (self::$instance == null)
@@ -23,10 +27,15 @@ class CatalogMapper extends MapperAbstract
         return self::$instance;
     }
 
+    /**
+     * CatalogMapper constructor.
+     */
     public function __construct() {
 
-        $this->UOW = new UnitOfWork($this);
+        $this->UOW = UnitOfWork::getInstance();
         $this->CatalogTDG = new CatalogTDG();
+        $this->productIdMap = ProductsIdMap::getInstance();
+        $this->productCatalog = ProductCatalog::getInstance();
     }
 
     /**
@@ -38,27 +47,16 @@ class CatalogMapper extends MapperAbstract
      */
     public function create(array $data = null)
     {
-        $obj = $this->_createProduct($data['ProductType']);
+        $obj = $this->_createProduct($data['name']);
         if($data)
         {
             $obj = $this->populate($obj, $data);
         }
+        // adding product straight to Catalog Array, which will be saved in the idmap
+        $this->productCatalog->addProduct($obj);
+        //TODO: product catalog is saved in idMap;
 
 
-
-    }
-
-    /**
-     * Save the DomainObject
-     *
-     * Store the DomainObject in persistent storage. Either insert
-     * or update the store as required.
-     *
-     * @param Product $obj
-     */
-    public function save($obj)
-    {
-        // TODO: Implement save() method.
     }
 
     /**
@@ -90,7 +88,6 @@ class CatalogMapper extends MapperAbstract
         foreach ($data as $key => $value) {
             $obj->$key = $value;
         }
-
         return $obj;
     }
 
@@ -114,9 +111,6 @@ class CatalogMapper extends MapperAbstract
                 break;
             case "Tablet":
                 return new Tablet();
-                break;
-            Default :
-                return null;
                 break;
         }
     }

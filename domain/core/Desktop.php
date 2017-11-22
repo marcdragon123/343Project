@@ -9,11 +9,11 @@
 class Desktop extends Product
 {
 
-    private $Dimensions;
-    private $CPUType;
-    private $CoreNumber;
-    private $RAMSize;
-    private $HDDSize;
+    protected $Dimensions;
+    protected $CPUType;
+    protected $CoreNumber;
+    protected $RAMSize;
+    protected $HDDSize;
 
     public function __construct()
     {
@@ -21,85 +21,20 @@ class Desktop extends Product
     }
 
     /**
-     * @return mixed
+     * @param $name
+     * @param $value
      */
-    public function getDimensions()
-    {
-        return $this->Dimensions;
+    public function __set($name, $value) {
+        $this->$name = $value;
     }
 
     /**
-     * @param mixed $Dimensions
+     * @param $name
+     * @return int $id
+     *
      */
-    public function setDimensions($Dimensions)
-    {
-        $this->Dimensions = $Dimensions;
+    public function __get($name) {
+        return $this->$name;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getCPUType()
-    {
-        return $this->CPUType;
-    }
-
-    /**
-     * @param mixed $CPUType
-     */
-    public function setCPUType($CPUType)
-    {
-        $this->CPUType = $CPUType;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCoreNumber()
-    {
-        return $this->CoreNumber;
-    }
-
-    /**
-     * @param mixed $CoreNumber
-     */
-    public function setCoreNumber($CoreNumber)
-    {
-        $this->CoreNumber = $CoreNumber;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getRAMSize()
-    {
-        return $this->RAMSize;
-    }
-
-    /**
-     * @param mixed $RAMSize
-     */
-    public function setRAMSize($RAMSize)
-    {
-        $this->RAMSize = $RAMSize;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getHDDSize()
-    {
-        return $this->HDDSize;
-    }
-
-    /**
-     * @param mixed $HDDSize
-     */
-    public function setHDDSize($HDDSize)
-    {
-        $this->HDDSize = $HDDSize;
-    }
-
-
 
 }
