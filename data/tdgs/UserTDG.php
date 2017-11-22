@@ -110,16 +110,11 @@ class UserTDG extends Model
         return $this->lastInsertId();
     }
 
-    public function loginAudit(Account $user)
+        public function loginAudit(Account $user)
     {
-        $this->query('INSERT INTO audit (ID, AccountID, IsActive, Login, Logout)
-                                VALUES(:ID, :AccountID, :IsActive, :Login, :Logout)');
-        $this->bind(':ID', $user->__get('ID'));
-        $this->bind(':AccountID', $user->__get('AccountID'));
-        $this->bind(':IsActive', $user->__get('IsActive'));
-        $this->bind(':Login', $user->__get('Login'));
-        $this->bind(':Logout', $user->__get('Logout'));
-        
+        $this->query('INSERT INTO audit (AccountID, IsActive, Login) VALUES(:UserID, :IsActive, CURRENT_TIMESTAMP)');
+        $this->bind(':UserID', $user->__get('UserID'));
+        $this->bind(':IsActive', 1);
         $this->execute();
         
         return $this->lastInsertId();
@@ -127,13 +122,9 @@ class UserTDG extends Model
 
     public function logoutAudit(Account $user)
     {
-        $this->query('UPDATE audit SET ID = :ID, AccountID = :AccountID, IsActive = :IsActive, Login = :Login, Logout = :Logout) WHERE UserID = :UserID');
-        
-        $this->bind(':ID', $user->__get('ID'));
-        $this->bind(':AccountID', $user->__get('AccountID'));
-        $this->bind(':IsActive', $user->__get('IsActive'));
-        $this->bind(':Login', $user->__get('Login'));
-        $this->bind(':Logout', $user->__get('Logout'));
+        $this->query('UPDATE audit SET AccountID = :UserID, IsActive = :IsActive, Logout = CURRENT_TIMESTAMP ) WHERE UserID = :UserID AND Logout == NULL ');
+        $this->bind(':UserID', $user->__get('UserID'));
+        $this->bind(':IsActive', 0);
         $this->execute();
         
         return $this->lastInsertId();
