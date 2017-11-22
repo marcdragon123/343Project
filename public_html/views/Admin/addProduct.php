@@ -51,7 +51,7 @@
                                 <tr>
                                     <td><br><input type="text" placeholder="Serial Number" name ="SerialNumber" pattern="[A-Za-z]{1,45}" required><br></td>
                                     <td><br><input type="text" placeholder="Brand Name" name ="Brand" pattern="[A-Za-z]{1,45}" required><br></td>
-                                    <td><br><input type="text" placeholder="Price" name ="Price" pattern="(\d{4})+[.]+(\d{2})" required><br></td>
+                                    <td><br><input type="text" placeholder="Price" name ="Price" pattern="(\d{4}|\d{3}|\d{2})+[.]+(\d{2})" required><br></td>
                                     <td><br><input type="text" placeholder="Battery Life" name="Battery" pattern="[A-Za-z]{1,45}" required><br></td>
 
                                 </tr>
@@ -92,7 +92,7 @@
                                 <tr>
                                     <td><br><input type="text" placeholder="Serial Number" name ="SerialNumber" pattern="[A-Za-z]{1,45}" required><br></td>
                                     <td><br><input type="text" placeholder="Brand Name" name ="Brand" pattern="[A-Za-z]{1,45}" required><br></td>
-                                    <td><br><input type="text" placeholder="Price" name ="Price" pattern="(\d{4})+[.]+(\d{2})" required><br></td>
+                                    <td><br><input type="text" placeholder="Price" name ="Price" pattern="(\d{4}|\d{3}|\d{2})+[.]+(\d{2})" required><br></td>
                                     <td><br><input type="text" placeholder="Display Size (inches)" name ="DisplaySize" pattern="[0-9]{1,11}" required><br></td>
                                 </tr>
                                 <tr>
@@ -136,7 +136,7 @@
                                 <tr>
                                     <td><br><input type="text" placeholder="Serial Number" name ="SerialNumber" pattern="[A-Za-z]{1,45}" required><br></td>
                                     <td><br><input type="text" placeholder="Brand Name" name ="Brand" pattern="[A-Za-z]{1,45}" required><br></td>
-                                    <td><br><input type="text" placeholder="Price" name ="Price" pattern="(\d{4})+[.]+(\d{2})" required><br></td>
+                                    <td><br><input type="text" placeholder="Price" name ="Price" pattern="(\d{4}|\d{3}|\d{2})+[.]+(\d{2})" required><br></td>
                                     <td><br><input type="text" placeholder="Display Size (inches)" name ="DisplaySize" required><br></td>
                                 </tr>
                                 <tr>
@@ -167,7 +167,7 @@
                                 <tr>
                                     <td><br><input type="text" placeholder="Serial Number" name ="SerialNumber" pattern="[A-Za-z]{1,45}" required><br></td>
                                     <td><br><input type="text" placeholder="Brand Name" name ="Brand" pattern="[A-Za-z]{1,45}" required><br></td>
-                                    <td><br><input type="text" placeholder="Price" name ="Price" pattern="(\d{4})+[.]+(\d{2})" required><br></td>
+                                    <td><br><input type="text" placeholder="Price" name ="Price" pattern="(\d{4}|\d{3}|\d{2})+[.]+(\d{2})" required><br></td>
                                     <td><br><input type="text" placeholder="CPU Type" name ="CPUType" pattern="[A-Za-z]{1,45}" required><br></td>
                                 </tr>
                                 <tr>
