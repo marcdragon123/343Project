@@ -49,27 +49,27 @@
                             <table class="table">
                                 <tbody>
                                 <tr>
-                                    <td><br><input type="text" placeholder="Serial Number" name ="SerialNumber"><br></td>
-                                    <td><br><input type="text" placeholder="Brand Name" name ="Brand"><br></td>
-                                    <td><br><input type="text" placeholder="Price" name ="Price"><br></td>
-                                    <td><br><input type="text" placeholder="Battery Life" name="Battery"><br></td>
+                                    <td><br><input type="text" placeholder="Serial Number" name ="SerialNumber" required><br></td>
+                                    <td><br><input type="text" placeholder="Brand Name" name ="Brand" required><br></td>
+                                    <td><br><input type="text" placeholder="Price" name ="Price" required><br></td>
+                                    <td><br><input type="text" placeholder="Battery Life" name="Battery" required><br></td>
 
                                 </tr>
                                 <tr>
-                                    <td><br><input type="text" placeholder="Display Size (inches)" name ="DisplaySize"><br></td>
-                                    <td><br><input type="text" placeholder="Display Dimensions" name ="DisplayDimensions"><br></td>
-                                    <td><br><input type="text" placeholder="Weight (kg)" name ="Weight"><br></td>
-                                    <td><br><input type="text" placeholder="Model Number" name ="Model"><br></td>
+                                    <td><br><input type="text" placeholder="Display Size (inches)" name ="DisplaySize" required><br></td>
+                                    <td><br><input type="text" placeholder="Display Dimensions" name ="DisplayDimensions" required><br></td>
+                                    <td><br><input type="text" placeholder="Weight (kg)" name ="Weight" required><br></td>
+                                    <td><br><input type="text" placeholder="Model Number" name ="Model" required><br></td>
                                 </tr>
                                 <tr>
-                                    <td><br><input type="text" placeholder="Processor Type" name ="CPUType"><br></td>
-                                    <td><br><input type="text" placeholder="Ram Size" name ="RAMSize"><br></td>
-                                    <td><br><input type="text" placeholder="Number Of CPU Cores" name ="CoreNumber"><br></td>
-                                    <td><br><input type="hidden" name="ProductType" value="Tablet" <br></td>
+                                    <td><br><input type="text" placeholder="Processor Type" name ="CPUType" required><br></td>
+                                    <td><br><input type="text" placeholder="Ram Size" name ="RAMSize" required><br></td>
+                                    <td><br><input type="text" placeholder="Number Of CPU Cores" name ="$CoreNumber" required><br></td>
+                                    <td><br><br></td>
                                 </tr>
-                                <td><br><input type="text" placeholder="Hard Drive Size" name="HDDSize"><br></td>
-                                <td><br><input type="text" placeholder="Operating System" name="OS"><br></td>
-                                <td><br><input type="text" placeholder="Camera Pixels" name="CameraInformation"><br></td>
+                                <td><br><input type="text" placeholder="Hard Drive Size" name="HDDSize" required><br></td>
+                                <td><br><input type="text" placeholder="Operating System" name="OS" required><br></td>
+                                <td><br><input type="text" placeholder="Camera Pixels" name="CameraInformation" required><br></td>
                                 <td><br><br></td>
                                 <tr>
                                 </tr>
@@ -90,34 +90,33 @@
                             <table class="table">
                                 <tbody>
                                 <tr>
-                                    <td><br><input type="text" placeholder="Serial Number" name ="SerialNumber"><br></td>
-                                    <td><br><input type="text" placeholder="Brand Name" name ="Brand"><br></td>
-                                    <td><br><input type="text" placeholder="Price" name ="Price"><br></td>
-                                    <td><br><input type="text" placeholder="Display Size (inches)" name ="DisplayDimensions"><br></td>
+                                    <td><br><input type="text" placeholder="Serial Number" name ="SerialNumber" required><br></td>
+                                    <td><br><input type="text" placeholder="Brand Name" name ="Brand" required><br></td>
+                                    <td><br><input type="text" placeholder="Price" name ="Price" required><br></td>
+                                    <td><br><input type="text" placeholder="Display Size (inches)" name ="DisplayDimensions" required><br></td>
                                 </tr>
                                 <tr>
-                                    <td><br><input type="text" placeholder="Weight (kg)" name ="Weight"><br></td>
-                                    <td><br><input type="text" placeholder="Processor Type" name ="CPUType"><br></td>
-                                    <td><br><input type="text" placeholder="Ram Size" name ="RAMSize"><br></td>
-                                    <td><br><input type="text" placeholder="Number of CPU Cores" name ="CoreNumber"><br></td>
+                                    <td><br><input type="text" placeholder="Weight (kg)" name ="Weight" required><br></td>
+                                    <td><br><input type="text" placeholder="Processor Type" name ="CPUType" required><br></td>
+                                    <td><br><input type="text" placeholder="Ram Size" name ="RAMSize" required><br></td>
+                                    <td><br><input type="text" placeholder="Number of CPU Cores" name ="CoreNumber" required><br></td>
                                 </tr>
                                 <tr>
-                                    <td><br><input type="text" placeholder="Battery Life" name="Battery"><br></td>
-                                    <td><br><input type="text" placeholder="Operating System" name="OS"><br></td>
-                                    <td><br><input type="text" placeholder="Hard Drive" name="HDDSize"><br></td>
-                                    <td><br><input type="text" placeholder="Camera Information" name="CameraInformation"><br></td>
-                                    <td><br><input type="hidden" name="ProductType" value="Laptop" <br></td>
+                                    <td><br><input type="text" placeholder="Battery Life" name="Battery" required><br></td>
+                                    <td><br><input type="text" placeholder="Operating System" name="OS" required><br></td>
+                                    <td><br><input type="text" placeholder="Hard Drive" name="HDDSize" required><br></td>
+                                    <td><br><input type="text" placeholder="Camera Information" name="CameraInformation" required><br></td>
+                                    <td><br><br></td>
                                 </tr>
-                                <td><br><input type="text" placeholder="Model Number" name ="Model"><br></td>
+                                <td><br><input type="text" placeholder="Model Number" name ="Model" required><br></td>
 
                                 <td><br><input type="checkbox" name="ToucheScreenToggle">
                                     <label for="touchScreen">Touch Screen</label><br></td>
                                 <td><br><br></td>
                                 <td><br><br></td>
                                 <td><br><br></td>
-                                <br></td>
-                                <tr>
-                                </tr>
+                                <br>
+                                
                                 </tbody>
                             </table>
                             <input class="btn btn-primary" name="Laptop" type="submit" value="Submit"/>
@@ -128,25 +127,25 @@
                 </form>
             </div>
             <div style="display: none" id="Monitor">
-                <form name=Monitor" id="22" method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
+                <form name=Monitor id="22" method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <div class="table-responsive table-bordered">
                             <table class="table">
                                 <tbody>
                                 <tr>
-                                    <td><br><input type="text" placeholder="Serial Number" name ="SerialNumber"><br></td>
-                                    <td><br><input type="text" placeholder="Brand Name" name ="Brand"><br></td>
-                                    <td><br><input type="text" placeholder="Price" name ="Price"><br></td>
-                                    <td><br><input type="text" placeholder="Display Size (inches)" name ="DisplaySize"><br></td>
+                                    <td><br><input type="text" placeholder="Serial Number" name ="SerialNumber" required><br></td>
+                                    <td><br><input type="text" placeholder="Brand Name" name ="Brand" required><br></td>
+                                    <td><br><input type="text" placeholder="Price" name ="Price" required><br></td>
+                                    <td><br><input type="text" placeholder="Display Size (inches)" name ="DisplaySize" required><br></td>
                                 </tr>
                                 <tr>
-                                    <td><br><input type="text" placeholder="Weight (kg)" name ="Weight"><br></td>
-                                    <td><br><input type="text" placeholder="Model Number" name ="Model"><br></td>
-                                    <td><br><input type="hidden" name="ProductType" value="Monitor" <br><br></td>
+                                    <td><br><input type="text" placeholder="Weight (kg)" name ="Weight" required><br></td>
+                                    <td><br><input type="text" placeholder="Model Number" name ="Model" required><br></td>
+                                    <td><br><br></td>
                                     <td><br><br></td>
                                 </tr>
-                                <br></td>
+                                <br>
                                 <tr>
                                 </tr>
                                 </tbody>
@@ -166,22 +165,22 @@
                             <table class="table">
                                 <tbody>
                                 <tr>
-                                    <td><br><input type="text" placeholder="Serial Number" name ="SerialNumber"><br></td>
-                                    <td><br><input type="text" placeholder="Brand Name" name ="Brand"><br></td>
-                                    <td><br><input type="text" placeholder="Price" name ="Price"><br></td>
-                                    <td><br><input type="text" placeholder="CPU Type" name ="CPUType"><br></td>
+                                    <td><br><input type="text" placeholder="Serial Number" name ="SerialNumber" required><br></td>
+                                    <td><br><input type="text" placeholder="Brand Name" name ="Brand" required><br></td>
+                                    <td><br><input type="text" placeholder="Price" name ="Price" required><br></td>
+                                    <td><br><input type="text" placeholder="CPU Type" name ="CPUType" required><br></td>
                                 </tr>
                                 <tr>
-                                    <td><br><input type="text" placeholder="Length (cm)" name ="Dimensions"><br></td>
-                                    <td><br><input type="text" placeholder="Weight (kg)" name ="Weight"><br></td>
-                                    <td><br><input type="text" placeholder="Hard Drive" name="HDDSize"><br></td>
+                                    <td><br><input type="text" placeholder="Length (cm)" name ="Dimensions" required><br></td>
+                                    <td><br><input type="text" placeholder="Weight (kg)" name ="Weight" required><br></td>
+                                    <td><br><input type="text" placeholder="Hard Drive" name="HDDSize" required><br></td>
                                     <td><br><br></td>
                                 </tr>
                                 <tr>
-                                    <td><br><input type="text" placeholder="Model Number" name ="Model"><br></td>
-                                    <td><br><input type="text" placeholder="Number of CPU Cores" name ="CoreNumber"><br></td>
-                                    <td><br><input type="text" placeholder="Ram Size" name ="RAMSize"><br></td>
-                                    <td><br><input type="hidden" name="ProductType" value="Desktop" <br><br></td>
+                                    <td><br><input type="text" placeholder="Model Number" name ="Model" required><br></td>
+                                    <td><br><input type="text" placeholder="Number of CPU Cores" name ="CoreNumber" required><br></td>
+                                    <td><br><input type="text" placeholder="Ram Size" name ="RAMSize" required><br></td>
+                                    <td><br><br></td>
                                 </tr>
                                 </tbody>
                             </table>
