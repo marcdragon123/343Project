@@ -18,18 +18,6 @@ abstract class MapperAbstract {
     abstract public function create(array $data = null);
 
     /**
-     * Populate the DomainObject with the values
-     * from the data array.
-     *
-     * To be implemented by the concrete mapper class
-     *
-     * @param DomainObject $obj
-     * @param array $data
-     * @return DomainObject
-     */
-    abstract public function populate($obj, array $data);
-
-    /**
      * Create a new instance of a DomainObject
      *
      * @return DomainObject

@@ -78,9 +78,9 @@ class ProductCatalog
     {
         $this->productContainer = $this->getProductContainer();
 
-        //foreach ($this->productContainer[$productType] as $products){
-        //$this->myMapper
-        //}
+        foreach ($this->productContainer[$productType] as $product){
+            $this->myMapper->showProductsByType($product);
+        }
     }
 
     /**
@@ -90,9 +90,9 @@ class ProductCatalog
     {
         $this->productContainer = $this->getProductContainer();
 
-        //foreach ($this->productContainer as $type => $spec){
-        //$this->
-        //}
+        foreach ($this->productContainer as $type => $product){
+            $this->myMapper->showAllProducts($product);
+        }
     }
 
     /**

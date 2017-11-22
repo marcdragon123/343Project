@@ -95,25 +95,23 @@ class CatalogMapper extends MapperAbstract
 
     }
 
+    public function viewProductsByType($type){
+        ProductCatalog::getInstance()->viewByType($type);
+    }
+
+    public function showProductsByType($product){
+        return $product;
+    }
+
+    public function showAllProducts($product){
+        return $product;
+    }
+
     public function editProduct(){
 
     }
 
-    public function getMonitors(){
-        
-    }
 
-    public function getDesktops(){
-
-    }
-
-    public function getLaptops(){
-
-    }
-
-    public function getTablets(){
-
-    }
 
     /**
      * @param Product $obj
@@ -242,7 +240,7 @@ class CatalogMapper extends MapperAbstract
      * @param DomainObject $obj
      */
     public function _insert($obj)
-    {
+    {/*
         switch ($obj->__get('ProductType')){
             case "Tablet":
                 $this->tabletTDG->addTablet($obj);
@@ -257,6 +255,7 @@ class CatalogMapper extends MapperAbstract
                 $this->desktopTDG->addDesktop($obj);
                 break;
         }
+    */
     }
 
     /**
@@ -265,7 +264,7 @@ class CatalogMapper extends MapperAbstract
      * @param DomainObject $obj
      */
     public function _update($obj)
-    {
+    {/*
         switch ($obj->__get('ProductType')){
             case "Tablet":
                 $this->tabletTDG->updateTablet($obj);
@@ -280,6 +279,7 @@ class CatalogMapper extends MapperAbstract
                 $this->desktopTDG->updateDesktop($obj);
                 break;
         }
+    */
     }
 
     /**
@@ -288,7 +288,7 @@ class CatalogMapper extends MapperAbstract
      * @param DomainObject $obj
      */
     public function _delete($obj)
-    {
+    {/*
         switch ($obj->__get('ProductType')){
             case "Tablet":
                 $this->tabletTDG->deleteTablet($obj);
@@ -303,6 +303,7 @@ class CatalogMapper extends MapperAbstract
                 $this->desktopTDG->deleteDeskop($obj);
                 break;
         }
+*/
     }
 
 }
