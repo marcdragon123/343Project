@@ -126,8 +126,9 @@ class CatalogMapper extends MapperAbstract {
         return $product;
     }
 
-    public function showAllProducts($product){
-        return $product;
+    public function showAllProducts(){
+        $productsList = ProductCatalog::getInstance()->viewAllProducts();
+        return $productList;
     }
 
    

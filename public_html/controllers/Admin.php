@@ -52,7 +52,18 @@ class admin extends Controller {
     }
 
     public function viewProductCatalog(){
-
+        if(!isset($_SESSION['is_logged_in'])){
+            header('Location: '.ROOT_URL.'home');
+        }
+        if(!($_SESSION['user_data']['Type']==='A')){
+            header('Location: '.ROOT_URL.'home');
+        }
+        $viewmodel = CatalogMapper::getInstance()->getAllProducts();
+        $this->returnView($viewmodel, true);
+    }
+    
+    public function display($product){
+        
     }
 
     public function viewProductSpecification() {
@@ -75,9 +86,6 @@ class admin extends Controller {
             }
         }
         $this->returnView(null, true);
-
-
-
     }
 
 }
