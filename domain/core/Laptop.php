@@ -9,15 +9,15 @@
 class Laptop extends Product
 {
 
-    private $DisplayDimensions;
-    private $CPUType;
-    private $CoreNumber;
-    private $RAMSize;
-    private $HDDSize;
-    private $Battery;
-    private $OS;
-    private $ToucheScreenToggle;
-    private $CameraToggle;
+    protected $DisplayDimensions;
+    protected $CPUType;
+    protected $CoreNumber;
+    protected $RAMSize;
+    protected $HDDSize;
+    protected $Battery;
+    protected $OS;
+    protected $ToucheScreenToggle;
+    protected $CameraToggle;
 
     public function __construct()
     {

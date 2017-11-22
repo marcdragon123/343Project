@@ -43,7 +43,7 @@ class admin extends Controller {
     public function logout(){
         $email = $_SESSION['user_data']['Email'];
         $ID = $_SESSION['user_data']['UserID'];
-        $viewModel = AdminMapper::getInstance()->logout($email);
+        AdminMapper::getInstance()->logout($email);
         unset($_SESSION['is_logged_in']);
         unset($_SESSION['user_data']);
         session_destroy();

@@ -41,9 +41,7 @@ class UnitOfWork
         $this->updateDirty($map);
         $this->deleteRemoved($map);
     }
-    /**
-     * @param DomainObject $object
-     */
+
     public function registerDirty(DomainObject $object)
     {
         $tempContainer= $this->dirtyFile->read($this->dirtyFile->getFileName());
@@ -53,16 +51,10 @@ class UnitOfWork
         $this->dirtyFile->write($this->dirtyObjects, true);
     }
 
-    /**
-     * Register an object as dirty. This is valid unless:
-     * - The object is registered to be removed
-     * - The object is registered as dirty (has been changed)
-     * - The object is already registered as new
-     * @param DomainObject $object
-     * @throws Exception
-     */
+
     public function registerNew(DomainObject $object)
     {
+        var_dump($object);
         $tempContainer= $this->newFile->read($this->newFile->getFileName());
         $this->newObjects = $tempContainer[0];
 
@@ -79,7 +71,8 @@ class UnitOfWork
         }
 
         $this->newObjects[spl_object_hash($object)] = $object;
-        $this->newFile->write($this->newObjects, true);
+        var_dump($this->newObjects[spl_object_hash($object)]);
+        $this->newFile->write($this->newObjects, false);
 
     }
     /**
@@ -136,6 +129,7 @@ class UnitOfWork
 
         if(!is_null($this->newObjects)){
             foreach($this->newObjects as $newObject => $value) {
+                echo"its in";
                 $map->_insert($value);
             }
             $this->newFile->purge();

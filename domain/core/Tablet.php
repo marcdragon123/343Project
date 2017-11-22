@@ -8,15 +8,15 @@
 
 class Tablet extends Product
 {
-    private $DisplayDimensions;
-    private $DisplaySize;
-    private $CPUType;
-    private $CoreNumber;
-    private $RAMSize;
-    private $HDDSize;
-    private $Battery;
-    private $OS;
-    private $CameraInformation;
+    protected $DisplayDimensions;
+    protected $DisplaySize;
+    protected $CPUType;
+    protected $CoreNumber;
+    protected $RAMSize;
+    protected $HDDSize;
+    protected $Battery;
+    protected $OS;
+    protected $CameraInformation;
 
     public function __construct()
     {

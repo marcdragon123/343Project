@@ -6,8 +6,6 @@
  * Time: 3:33 PM
  */
 
-require "DomainObject.php";
-
 class Product extends DomainObject
 {
     protected $ID;

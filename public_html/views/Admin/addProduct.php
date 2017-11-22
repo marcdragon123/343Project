@@ -116,7 +116,7 @@
                                 <td><br><br></td>
                                 <td><br><br></td>
                                 <br>
-                                
+
                                 </tbody>
                             </table>
                             <input class="btn btn-primary" name="Laptop" type="submit" value="Submit"/>

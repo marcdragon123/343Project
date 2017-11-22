@@ -19,6 +19,13 @@ require('../domain/core/DomainObject.php');
 require('../domain/core/Account.php');
 require('../domain/core/Customer.php');
 require('../domain/core/Administrator.php');
+require('../domain/core/ProductCatalog.php');
+require('../domain/core/Product.php');
+require('../domain/core/Desktop.php');
+require('../domain/core/Monitor.php');
+require('../domain/core/Laptop.php');
+require('../domain/core/Tablet.php');
+
 
 require('controllers/Admin.php');
 require('controllers/users.php');
@@ -30,7 +37,6 @@ require('mappers/AdminMapper.php');
 require('mappers/CatalogMapper.php');
 
 
-require('../domain/core/ProductCatalog.php');
 require('../domain/idmap/idMap.php');
 require('../domain/idmap/ProductsIdMap.php');
 require('../domain/uow/UnitOfWork.php');
