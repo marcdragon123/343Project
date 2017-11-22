@@ -30,7 +30,6 @@ class CatalogMapper extends MapperAbstract {
      * CatalogMapper constructor.
      */
     private function __construct() {
-        $this->CatalogTDG = new CatalogTDG();
         $this->$monitorTDG = new monitorTDG();                                                  
         $this->$tabletTDG = new tabletTDG();
         $this->$laptopTDG = new laptopTDG();
@@ -46,7 +45,7 @@ class CatalogMapper extends MapperAbstract {
      * @return Product $obj
      */
     public function create(array $data = null) {
-        $obj = $this->_createProduct($data['ProductType']);
+        $obj = $this->_create($data['ProductType']);
         if($data)
         {
             switch ($data['ProductType']){
@@ -99,36 +98,18 @@ class CatalogMapper extends MapperAbstract {
 
     }
 
-
-    public function editProduct() {
-
-    }
-
-    public function getMonitors() {
-        
-    }
-
-    public function getDesktops() {
-
-    }
-
-    public function getLaptops() {
-
-    }
-
-    public function getTablets() {
-    }
     public function viewProductsByType($type){
-        ProductCatalog::getInstance()->viewByType($type);
+        $products = ProductCatalog::getInstance()->viewByType($type);
+
+        return $products;
     }
 
-    public function showProductsByType($product){
-        return $product;
+    public function getAllProducts(){
+        $products = ProductCatalog::getInstance()->viewAllProducts();
+
+        return $products;
     }
 
-    public function showAllProducts($product){
-        return $product;
-    }
 
    
 
@@ -222,10 +203,11 @@ class CatalogMapper extends MapperAbstract {
     }
 
     /**
-     * @param $type
-     * @return Product
+     * Create a new instance of a DomainObject
+     *
+     * @return DomainObject
      */
-    public function _createProduct($type) {
+    public function _create($type) {
         switch($type)
         {
             case "Laptop":
@@ -243,16 +225,6 @@ class CatalogMapper extends MapperAbstract {
         }
     }
 
-
-    /**
-     * Create a new instance of a DomainObject
-     *
-     * @return DomainObject
-     */
-    public function _create() {
-        // TODO: Implement _create() method.
-    }
-
     /**
      * Insert the DomainObject to persistent storage
      *
@@ -261,7 +233,7 @@ class CatalogMapper extends MapperAbstract {
 
 
     public function _insert($obj)
-    {/*
+    {
 
         switch ($obj->__get('ProductType')){
             case "Tablet":
@@ -274,10 +246,10 @@ class CatalogMapper extends MapperAbstract {
                 $this->monitorTDG->addMonitor($obj);
                 break;
             case "Desktop":
-                $this->desktopTDG->addDesktop($obj);
+                $this->desktopcomputerTDG->addDesktop($obj);
                 break;
         }
-    */
+    
     }
 
     /**
@@ -287,7 +259,7 @@ class CatalogMapper extends MapperAbstract {
      */
 
     public function _update($obj)
-    {/*
+    {
 
         switch ($obj->__get('ProductType')){
             case "Tablet":
@@ -300,10 +272,10 @@ class CatalogMapper extends MapperAbstract {
                 $this->monitorTDG->updateMonitor($obj);
                 break;
             case "Desktop":
-                $this->desktopTDG->updateDesktop($obj);
+                $this->desktopcomputerTDG->updateDesktop($obj);
                 break;
         }
-    */
+
     }
 
     /**
@@ -313,7 +285,7 @@ class CatalogMapper extends MapperAbstract {
      */
 
     public function _delete($obj)
-    {/*
+    {
         switch ($obj->__get('ProductType')){
             case "Tablet":
                 $this->tabletTDG->deleteTablet($obj);
@@ -325,10 +297,9 @@ class CatalogMapper extends MapperAbstract {
                 $this->monitorTDG->deleteMonitor($obj);
                 break;
             case "Desktop":
-                $this->desktopTDG->deleteDeskop($obj);
+                $this->desktopcomputerTDG->deleteDeskop($obj);
                 break;
         }
-*/
     }
 
 }

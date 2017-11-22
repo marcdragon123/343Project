@@ -73,32 +73,29 @@ class ProductCatalog
 
     /**
      * @param $productType
+     * @return mixed
      */
     public function viewByType($productType)
     {
         $this->productContainer = $this->getProductContainer();
+        return $this->productContainer[$productType];
 
-        foreach ($this->productContainer[$productType] as $product){
-            $this->myMapper->showProductsByType($product);
-        }
     }
 
     /**
-     *
+     * @return array|mixed
      */
     public function viewAllProducts()
     {
         $this->productContainer = $this->getProductContainer();
+        return $this->productContainer;
 
-        foreach ($this->productContainer as $type => $product){
-            $this->myMapper->showAllProducts($product);
-        }
     }
 
     /**
      * @return mixed
      */
-    public function getProductContainer()
+    private function getProductContainer()
     {
         $temp = $this->containerFile->read($this->containerFile->getFileName());
         return $temp[0];

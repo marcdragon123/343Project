@@ -19,7 +19,7 @@ class admin extends Controller {
     public function register() {
         $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
         if($post['submit']) {
-            $customer = CustomerMapper::getInstance()->create($post);
+            $customer = AdminMapper::getInstance()->create($post);
             if(!is_null($customer)) {
                 header('Location: ' . ROOT_URL . 'admin/adminlogin');
             }
@@ -52,7 +52,14 @@ class admin extends Controller {
     }
 
     public function viewProductCatalog(){
-
+        if(!isset($_SESSION['is_logged_in'])){
+            header('Location: '.ROOT_URL.'home');
+        }
+        if(!($_SESSION['user_data']['Type']==='A')){
+            header('Location: '.ROOT_URL.'home');
+        }
+        $viewmodel = CatalogMapper::getInstance()->getAllProducts();
+        $this->returnView($viewmodel, true);
     }
 
     public function viewProductSpecification() {
@@ -75,9 +82,6 @@ class admin extends Controller {
             }
         }
         $this->returnView(null, true);
-
-
-
     }
 
 }
