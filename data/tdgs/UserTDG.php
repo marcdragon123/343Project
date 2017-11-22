@@ -110,7 +110,20 @@ class UserTDG extends Model
         return $this->lastInsertId();
     }
 
-    //public function loginAudit(Account $user){}
+    public function loginAudit(Account $user)
+    {
+        $this->query('INSERT INTO audit (ID, AccountID, IsActive, Login, Logout)
+                                VALUES(:ID, :AccountID, :IsActive, :Login, :Logout)');
+        $this->bind(':ID', $user->__get('ID'));
+        $this->bind(':AccountID', $user->__get('AccountID'));
+        $this->bind(':IsActive', $user->__get('IsActive'));
+        $this->bind(':Login', $user->__get('Login'));
+        $this->bind(':Logout', $user->__get('Logout'));
+        
+        $this->execute();
+        
+        return $this->lastInsertId();
+    }
 
     //public function logoutAudit(Account $user){}
 
