@@ -60,13 +60,10 @@ class admin extends Controller {
         }
         $viewmodel = CatalogMapper::getInstance()->getAllProducts();
         $this->returnView($viewmodel, true);
-<<<<<<< HEAD
     }
     
     public function display($product){
-        
-=======
->>>>>>> origin/layered
+
     }
 
     public function viewProductSpecification() {
