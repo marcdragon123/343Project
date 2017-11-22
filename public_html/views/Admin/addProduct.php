@@ -56,7 +56,7 @@
 
                                 </tr>
                                 <tr>
-                                    <td><br><input type="text" placeholder="Display Size (inches)" name ="DisplaySize" required><br></td>
+                                    <td><br><input type="text" placeholder="Display Size (inches)" name ="DisplaySize" pattern="[0-9]{1,11}" required><br></td>
                                     <td><br><input type="text" placeholder="Display Dimensions" name ="DisplayDimensions" pattern="[A-Za-z]{1,10}" required><br></td>
                                     <td><br><input type="text" placeholder="Weight (kg)" name ="Weight" pattern="(\d{2})+[.]+(\d{2})" required><br></td>
                                     <td><br><input type="text" placeholder="Model Number" name ="Model" pattern="[A-Za-z]{1,45}" required><br></td>
@@ -90,23 +90,23 @@
                             <table class="table">
                                 <tbody>
                                 <tr>
-                                    <td><br><input type="text" placeholder="Serial Number" name ="SerialNumber" required><br></td>
-                                    <td><br><input type="text" placeholder="Brand Name" name ="Brand" required><br></td>
-                                    <td><br><input type="text" placeholder="Price" name ="Price" required><br></td>
-                                    <td><br><input type="text" placeholder="Display Size (inches)" name ="DisplayDimensions" required><br></td>
+                                    <td><br><input type="text" placeholder="Serial Number" name ="SerialNumber" pattern="[A-Za-z]{1,45}" required><br></td>
+                                    <td><br><input type="text" placeholder="Brand Name" name ="Brand" pattern="[A-Za-z]{1,45}" required><br></td>
+                                    <td><br><input type="text" placeholder="Price" name ="Price" pattern="(\d{4})+[.]+(\d{2})" required><br></td>
+                                    <td><br><input type="text" placeholder="Display Size (inches)" name ="DisplaySize" pattern="[0-9]{1,11}" required><br></td>
                                 </tr>
                                 <tr>
-                                    <td><br><input type="text" placeholder="Weight (kg)" name ="Weight" required><br></td>
-                                    <td><br><input type="text" placeholder="Processor Type" name ="CPUType" required><br></td>
-                                    <td><br><input type="text" placeholder="Ram Size" name ="RAMSize" required><br></td>
-                                    <td><br><input type="text" placeholder="Number of CPU Cores" name ="CoreNumber" required><br></td>
+                                    <td><br><input type="text" placeholder="Display Dimensions" name ="DisplayDimensions" pattern="[A-Za-z]{1,10}" required><br></td>
+                                    <td><br><input type="text" placeholder="Weight (kg)" name ="Weight" pattern="(\d{2})+[.]+(\d{2})"required><br></td>
+                                    <td><br><input type="text" placeholder="Processor Type" name ="CPUType" pattern="[A-Za-z]{1,45}"required><br></td>
+                                    <td><br><input type="text" placeholder="Ram Size" name ="RAMSize" pattern="[0-9]{1,11}"required><br></td>    
                                 </tr>
                                 <tr>
-                                    <td><br><input type="text" placeholder="Battery Life" name="Battery" required><br></td>
-                                    <td><br><input type="text" placeholder="Operating System" name="OS" required><br></td>
-                                    <td><br><input type="text" placeholder="Hard Drive" name="HDDSize" required><br></td>
-                                    <td><br><input type="text" placeholder="Camera Information" name="CameraInformation" required><br></td>
-                                    <td><br><br></td>
+                                    <td><br><input type="text" placeholder="Number of CPU Cores" name ="$CoreNumber" pattern="[0-9]{1,11}"required><br></td>
+                                    <td><br><input type="text" placeholder="Battery Life" name="Battery" pattern="[A-Za-z]{1,45}" required><br></td>
+                                    <td><br><input type="text" placeholder="Operating System" name="OS" pattern="[A-Za-z]{1,45}"required><br></td>
+                                    <td><br><input type="text" placeholder="Hard Drive" name="HDDSize" pattern="[0-9]{1,11}"required><br></td>
+                                    <td><br><input type="text" placeholder="Camera Information" name="CameraInformation" pattern="[A-Za-z]{1,45}"required><br></td>
                                 </tr>
                                 <td><br><input type="text" placeholder="Model Number" name ="Model" required><br></td>
 
@@ -134,14 +134,14 @@
                             <table class="table">
                                 <tbody>
                                 <tr>
-                                    <td><br><input type="text" placeholder="Serial Number" name ="SerialNumber" required><br></td>
-                                    <td><br><input type="text" placeholder="Brand Name" name ="Brand" required><br></td>
-                                    <td><br><input type="text" placeholder="Price" name ="Price" required><br></td>
+                                    <td><br><input type="text" placeholder="Serial Number" name ="SerialNumber" pattern="[A-Za-z]{1,45}" required><br></td>
+                                    <td><br><input type="text" placeholder="Brand Name" name ="Brand" pattern="[A-Za-z]{1,45}" required><br></td>
+                                    <td><br><input type="text" placeholder="Price" name ="Price" pattern="(\d{4})+[.]+(\d{2})" required><br></td>
                                     <td><br><input type="text" placeholder="Display Size (inches)" name ="DisplaySize" required><br></td>
                                 </tr>
                                 <tr>
-                                    <td><br><input type="text" placeholder="Weight (kg)" name ="Weight" required><br></td>
-                                    <td><br><input type="text" placeholder="Model Number" name ="Model" required><br></td>
+                                    <td><br><input type="text" placeholder="Weight (kg)" name ="Weight" pattern="(\d{2})+[.]+(\d{2})" required><br></td>
+                                    <td><br><input type="text" placeholder="Model Number" name ="Model" pattern="[A-Za-z]{1,45}" required><br></td>
                                     <td><br><br></td>
                                     <td><br><br></td>
                                 </tr>
@@ -165,21 +165,21 @@
                             <table class="table">
                                 <tbody>
                                 <tr>
-                                    <td><br><input type="text" placeholder="Serial Number" name ="SerialNumber" required><br></td>
-                                    <td><br><input type="text" placeholder="Brand Name" name ="Brand" required><br></td>
-                                    <td><br><input type="text" placeholder="Price" name ="Price" required><br></td>
-                                    <td><br><input type="text" placeholder="CPU Type" name ="CPUType" required><br></td>
+                                    <td><br><input type="text" placeholder="Serial Number" name ="SerialNumber" pattern="[A-Za-z]{1,45}" required><br></td>
+                                    <td><br><input type="text" placeholder="Brand Name" name ="Brand" pattern="[A-Za-z]{1,45}" required><br></td>
+                                    <td><br><input type="text" placeholder="Price" name ="Price" pattern="(\d{4})+[.]+(\d{2})" required><br></td>
+                                    <td><br><input type="text" placeholder="CPU Type" name ="CPUType" pattern="[A-Za-z]{1,45}" required><br></td>
                                 </tr>
                                 <tr>
-                                    <td><br><input type="text" placeholder="Length (cm)" name ="Dimensions" required><br></td>
-                                    <td><br><input type="text" placeholder="Weight (kg)" name ="Weight" required><br></td>
-                                    <td><br><input type="text" placeholder="Hard Drive" name="HDDSize" required><br></td>
+                                    <td><br><input type="text" placeholder="Length (cm)" name ="Dimensions" pattern="[A-Za-z]{1,10}" required><br></td>
+                                    <td><br><input type="text" placeholder="Weight (kg)" name ="Weight" pattern="(\d{2})+[.]+(\d{2})" required><br></td>
+                                    <td><br><input type="text" placeholder="Hard Drive" name="HDDSize" pattern="[0-9]{1,11}" required><br></td>
                                     <td><br><br></td>
                                 </tr>
                                 <tr>
-                                    <td><br><input type="text" placeholder="Model Number" name ="Model" required><br></td>
-                                    <td><br><input type="text" placeholder="Number of CPU Cores" name ="CoreNumber" required><br></td>
-                                    <td><br><input type="text" placeholder="Ram Size" name ="RAMSize" required><br></td>
+                                    <td><br><input type="text" placeholder="Model Number" name ="Model" pattern="[A-Za-z]{1,45}" required><br></td>
+                                    <td><br><input type="text" placeholder="Number of CPU Cores" name ="CoreNumber" pattern="[0-9]{1,11}" required><br></td>
+                                    <td><br><input type="text" placeholder="Ram Size" name ="RAMSize" pattern="[0-9]{1,11}" required><br></td>
                                     <td><br><br></td>
                                 </tr>
                                 </tbody>
