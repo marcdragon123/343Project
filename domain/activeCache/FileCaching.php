@@ -66,6 +66,9 @@ abstract class FileCaching
         // TODO: Implement read() method.
         $unserializedObj = array();
         $this->acquireReaderLock();
+        if($this->isEmpty()){
+            return null;
+        }
         if($this->locked) {
             $val = fread($this->file, filesize($fileName));
             $this->releaseLock();
@@ -81,11 +84,15 @@ abstract class FileCaching
         return $unserializedObj;
     }
 
+
     public function purge()
     {
         ftruncate($this->file, 0);
     }
 
+    /**
+     * @return bool
+     */
     public function isEmpty()
     {
         return (filesize($this->fileName)==0);
@@ -105,6 +112,10 @@ abstract class FileCaching
     public function setFileName($fileName)
     {
         $this->fileName = $fileName;
+    }
+
+    public function emptyFile($filename){
+        return (filesize($this->fileName)==0);
     }
 
 }

@@ -5,31 +5,41 @@
  */
 class UnitOfWork
 {
+    private static $instance=null;
+    private $mapper;
     private $dirtyFile;
     private $newFile;
     private $deletedFile;
-    private $mapper;
     private $dirtyObjects = array();
     private $newObjects = array();
     private $deletedObjects = array();
+
+    public static function getInstance(){
+        if(self::$instance === null){
+            self::$instance = new UnitOfWork();
+        }
+        return self::$instance;
+    }
+
     /**
-     * @param MapperAbstract $mapper
+     * UnitOfWork constructor.
      */
-    public function __construct(MapperAbstract $mapper)
+    private function __construct()
     {
-        $this->mapper = $mapper;
         $this->dirtyFile = new File('dirty.txt');
         $this->newFile = new File('new.txt');
         $this->deletedFile = new File('deleted.txt');
     }
+
     /**
-     *
+     * commits to MapperAbstract $map
+     * @param MapperAbstract $map
      */
-    public function commit()
+    public function commit(MapperAbstract $map)
     {
-        $this->insertNew();
-        $this->updateDirty();
-        $this->deleteRemoved();
+        $this->insertNew($map);
+        $this->updateDirty($map);
+        $this->deleteRemoved($map);
     }
     /**
      * @param DomainObject $object
@@ -57,6 +67,7 @@ class UnitOfWork
         $this->newObjects = $tempContainer[0];
 
         // Check if we meet our criteria.
+
         if ($this->isDeleted($object)) {
             throw new Exception('Cannot register as new, object is marked for deletion.');
         }
@@ -66,7 +77,8 @@ class UnitOfWork
         if ($this->isNew($object)) {
             throw new Exception('Cannot register as new, object is already marked as new.');
         }
-        $this->newObjects[ spl_object_hash($object) ] = $object;
+
+        $this->newObjects[spl_object_hash($object)] = $object;
         $this->newFile->write($this->newObjects, true);
 
     }
@@ -78,8 +90,7 @@ class UnitOfWork
         $tempContainer= $this->deletedFile->read($this->deletedFile->getFileName());
         $this->deletedObjects = $tempContainer[0];
 
-        $this->deletedObjects[ spl_object_hash($object) ] = $object;
-
+        $this->deletedObjects[spl_object_hash($object)] = $object;
         $this->deletedFile->write($this->deletedObjects, true);
 
     }
@@ -91,7 +102,7 @@ class UnitOfWork
     {
         $tempContainer= $this->dirtyFile->read($this->dirtyFile->getFileName());
         $this->dirtyObjects = $tempContainer[0];
-        return isset($this->dirtyObjects[ spl_object_hash($object) ]);
+        return isset($this->dirtyObjects[spl_object_hash($object)]);
     }
     /**
      * @param DomainObject $object
@@ -102,7 +113,7 @@ class UnitOfWork
         $tempContainer= $this->newFile->read($this->newFile->getFileName());
         $this->newObjects = $tempContainer[0];
 
-        return isset($this->newObjects[ spl_object_hash($object) ]);
+        return isset($this->newObjects[spl_object_hash($object)]);
     }
     /**
      * @param DomainObject $object
@@ -113,34 +124,52 @@ class UnitOfWork
         $tempContainer= $this->deletedFile->read($this->deletedFile->getFileName());
         $this->deletedObjects = $tempContainer[0];
 
-        $this->dirtyFile->write($this->dirtyObjects, true);
-        return isset($this->deletedObjects[ spl_object_hash($object) ]);
+        return isset($this->deletedObjects[spl_object_hash($object)]);
     }
 
-    public function insertNew(){
+    /**
+     * @param MapperAbstract $map
+     */
+    public function insertNew($map){
         $tempContainer= $this->newFile->read($this->newFile->getFileName());
         $this->newObjects = $tempContainer[0];
 
-        foreach ($this->newObjects as $newObject) {
-            $this->mapper->_insert($newObject);
+        if(!is_null($this->newObjects)){
+            foreach($this->newObjects as $newObject => $value) {
+                $map->_insert($value);
+            }
+            $this->newFile->purge();
         }
     }
 
-    public function updateDirty(){
+    /**
+     * @param MapperAbstract $map
+     */
+    public function updateDirty($map){
         $tempContainer= $this->dirtyFile->read($this->dirtyFile->getFileName());
         $this->dirtyObjects = $tempContainer[0];
 
-        foreach ($this->dirtyObjects as $updateObject) {
-            $this->mapper->_update($updateObject);
+        if(!is_null($this->dirtyObjects)) {
+            foreach ($this->dirtyObjects as $updateObject => $value) {
+                $map->_update($value);
+            }
+            $this->newFile->purge();
         }
+
     }
 
-    public function deleteRemoved(){
+    /**
+     * @param MapperAbstract $map
+     */
+    public function deleteRemoved($map){
         $tempContainer= $this->dirtyFile->read($this->deletedFile->getFileName());
         $this->deletedObjects = $tempContainer[0];
 
-        foreach ($this->deletedObjects as $deletedObject) {
-            $this->mapper->_delete($deletedObject);
+        if(!is_null($this->deletedObjects)) {
+            foreach ($this->deletedObjects as $deletedObject => $value) {
+                $map->_delete($value);
+            }
+            $this->deletedFile->purge();
         }
     }
 }
