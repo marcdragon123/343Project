@@ -117,7 +117,7 @@ class CatalogMapper extends MapperAbstract {
     }
 
     public function getTablets() {
-
+    }
     public function viewProductsByType($type){
         ProductCatalog::getInstance()->viewByType($type);
     }
