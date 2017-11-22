@@ -15,7 +15,7 @@ class ShoppingCart extends DomainObject
 
     public function addToCart($p)
     {
-        if (count($this.items) < 7)
+        if (count($this.items) <= 7)
         {
             array_push($items,$p);
         }
