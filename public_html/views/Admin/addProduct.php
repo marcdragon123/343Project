@@ -49,6 +49,7 @@
                             <table class="table">
                                 <tbody>
                                 <tr>
+                                    <input type="hidden" name="ProductType" value="Tablet">
                                     <td><br><input type="text" placeholder="Serial Number" name ="SerialNumber" pattern="([a-zA-Z0-9]{1,45})" required><br></td>
                                     <td><br><input type="text" placeholder="Brand Name" name ="Brand" pattern="([a-zA-Z0-9]{1,45})" required><br></td>
                                     <td><br><input type="text" placeholder="Price" name ="Price" pattern="(\d{4}|\d{3}|\d{2})+[.]+(\d{2})" required><br></td>
@@ -90,6 +91,7 @@
                             <table class="table">
                                 <tbody>
                                 <tr>
+                                    <input type="hidden" name="ProductType" value="Laptop">
                                     <td><br><input type="text" placeholder="Serial Number" name ="SerialNumber" pattern="([a-zA-Z0-9]{1,45})" required><br></td>
                                     <td><br><input type="text" placeholder="Brand Name" name ="Brand" pattern="([a-zA-Z0-9]{1,45})" required><br></td>
                                     <td><br><input type="text" placeholder="Price" name ="Price" pattern="(\d{4}|\d{3}|\d{2}|d{1})+[.]+(\d{2})" required><br></td>
@@ -138,6 +140,7 @@
                                     <td><br><input type="text" placeholder="Brand Name" name ="Brand" pattern="([a-zA-Z0-9]{1,45})" required><br></td>
                                     <td><br><input type="text" placeholder="Price" name ="Price" pattern="(\d{4}|\d{3}|\d{2})+[.]+(\d{2})" required><br></td>
                                     <td><br><input type="text" placeholder="Display Size (inches)" name ="DisplaySize" pattern="(\d{1}|\d{2})" required><br></td>
+                                    <input type="hidden" name="ProductType" value="Monitor">
                                 </tr>
                                 <tr>
                                     <td><br><input type="text" placeholder="Weight (kg)" name ="Weight" pattern="(\d{1}|\d{2})+[.]+(\d{2})" required><br></td>
@@ -165,6 +168,7 @@
                             <table class="table">
                                 <tbody>
                                 <tr>
+                                    <input type="hidden" name="ProductType" value="Desktop">
                                     <td><br><input type="text" placeholder="Serial Number" name ="SerialNumber" pattern="([a-zA-Z0-9]{1,45})" required><br></td>
                                     <td><br><input type="text" placeholder="Brand Name" name ="Brand" pattern="([a-zA-Z0-9]{1,45})" required><br></td>
                                     <td><br><input type="text" placeholder="Price" name ="Price" pattern="(\d{4}|\d{3}|\d{2})+[.]+(\d{2})" required><br></td>

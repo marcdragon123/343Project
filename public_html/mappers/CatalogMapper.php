@@ -95,7 +95,6 @@ class CatalogMapper extends MapperAbstract {
         catch (Exception $exception){
             Messages::setMsg($exception->getMessage(), 'error');
         }
-
     }
 
     public function findProduct($obj){
@@ -103,11 +102,8 @@ class CatalogMapper extends MapperAbstract {
             ProductCatalog::getInstance()->findProduct($obj);
         }
         catch (Exception $e){
-
             Messages::setMsg($e->getMessage(), 'error');
-
         }
-
     }
 
     public function viewProductsByType($type){
@@ -275,7 +271,6 @@ class CatalogMapper extends MapperAbstract {
      */
     public function _update($obj)
     {
-
         switch ($obj->__get('ProductType')){
             case "Tablet":
                 $this->tabletTDG->updateTablet($obj);
@@ -290,7 +285,6 @@ class CatalogMapper extends MapperAbstract {
                 $this->desktopcomputerTDG->updateDesktop($obj);
                 break;
         }
-
     }
 
     /**

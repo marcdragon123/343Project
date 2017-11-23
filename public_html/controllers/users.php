@@ -50,7 +50,6 @@ class users extends Controller {
         session_destroy();
         // Redirect
         header('Location: '.ROOT_URL);
-
     }
 
     public function viewProductCatalog(){
@@ -64,11 +63,8 @@ class users extends Controller {
     }
 
     public function browseCatalog(){
-        $viewmodel = CatalogMapper::getInstance();
-
-        $this->returnView($viewmodel,true);
+        $products = CatalogMapper::getInstance()->getAllProducts();
+        $this->setVars(compact('products'));
+        $this->returnView(null, true);
     }
-
-
-
 }

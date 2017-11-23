@@ -92,7 +92,7 @@ class admin extends Controller {
 
         $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
         if(!empty($post)){
-            //var_dump($_POST);
+            var_dump($_POST);
             if(CatalogMapper::getInstance()->create($post)){
                 header('Location: '.ROOT_URL. 'admin');
             }

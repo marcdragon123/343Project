@@ -25,6 +25,7 @@ abstract class Controller{
 	}
 
 	//pass variables to respective view, by adding to array
+	//$this->setVars(compact('myvarnameincontroller', 'myvar2nameincontroller'));
 	protected function setVars($varArray){
 		foreach ($varArray as $key => $value) {
 			$this->viewVars[$key] = $value;
