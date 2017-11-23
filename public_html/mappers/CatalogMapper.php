@@ -122,6 +122,12 @@ class CatalogMapper extends MapperAbstract {
         return $products;
     }
 
+    public function Display(){
+
+        $viewmodel = $this->getAllProducts();
+
+        return $viewmodel;
+    }
 
    
 
