@@ -2,12 +2,12 @@
 
 define("DB_HOST", "localhost");
 define("DB_USER", "root");
-define("DB_PASS", "root");
+define("DB_PASS", "");
 define("DB_NAME", "compstor_db");
 
 // Define URL
-define("ROOT_PATH", "/~ahmadbiz/343Project/public_html/");
-define("ROOT_URL", "http://localhost/~ahmadbiz/343Project/public_html/");
+define("ROOT_PATH", "/343Project/public_html/");
+define("ROOT_URL", "http://localhost/343Project/public_html/");
 /*
 
 define("DB_HOST", "localhost");

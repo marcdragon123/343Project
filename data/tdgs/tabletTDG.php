@@ -6,11 +6,12 @@
 class tabletTDG extends Model
 {
 
-    public function get($id){
-        $this->query('SELECT * FROM tablet WHERE ID = :ID');
-        $this->bind('ID', $id);
+    public function get($product) {
+        $this->query('SELECT * FROM tablet WHERE SerialNumber = :SerialNumber');
+        $this->bind(':SerialNumber', $product->__get('SerialNumber'));
         return $this->single();
     }
+
 
     /**
      * fetch single tablet from DB by ModelNumber
@@ -69,10 +70,10 @@ class tabletTDG extends Model
      * delete a tablet from the DB
      * @param $id
      */
-    public function delete($id)
+     public function delete($product)
     {
-        $this->query('DELETE FROM tablet WHERE ID = :ID');
-        $this->bind('ID', $id);
+        $this->query('DELETE FROM tablet WHERE SerialNumber = :SerialNumber');
+        $this->bind(':SerialNumber', $product->__get('SerialNumber'));
         $this->execute();
 
         return;

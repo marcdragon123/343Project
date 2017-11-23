@@ -9,10 +9,14 @@ class monitorTDG extends Model
     //maybe add here rest of attributes to make sqls easier to eliminate mistakes
     //and make it easier to change one to change all
 
-    public function get($id){
-        $this->query('SELECT * FROM monitor WHERE ID = :id');//query goes here
-        $this->bind('id', $id);
-        return $this->single();;
+    /**
+     * @param Product $product
+     * @return mixed
+     */
+    public function get($product) {
+        $this->query('SELECT * FROM monitor WHERE SerialNumber = :SerialNumber');
+        $this->bind(':SerialNumber', $product->__get('SerialNumber'));
+        return $this->single();
     }
 
     /**
@@ -30,6 +34,13 @@ class monitorTDG extends Model
 
     /**
      * fetch all monitors from DB
+     *
+     * @return array monitors
+     */
+
+
+    /**
+     * fetch all monitors from the DB
      *
      * @return array monitors
      */
@@ -62,14 +73,14 @@ class monitorTDG extends Model
         return $this->lastInsertId();
     }
 
-    /**
-     * deletes monitor from DB
-     * @param $id
+     /**
+     * delete a monitor from the DB
+     * @param Product $product
      */
-    public function delete($id)
+    public function delete($product)
     {
-        $this->query('DELETE FROM monitor WHERE ID = :id');
-        $this->bind('id', $id);
+        $this->query('DELETE FROM monitor WHERE SerialNumber = :SerialNumber');
+        $this->bind(':SerialNumber', $product->__get('SerialNumber'));
         $this->execute();
 
         return;
