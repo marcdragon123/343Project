@@ -104,7 +104,7 @@ class CatalogMapper extends MapperAbstract {
         }
         catch (Exception $e){
 
-            Messages::setMsg()$e->getMessage(), 'error';
+            Messages::setMsg($e->getMessage(), 'error');
 
         }
 
