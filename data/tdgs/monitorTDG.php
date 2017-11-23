@@ -70,7 +70,7 @@ class monitorTDG extends Model
         $this->execute();
 
         
-        return $this->lastInsertId();
+        //return $this->lastInsertId();
     }
 
      /**
@@ -105,7 +105,7 @@ class monitorTDG extends Model
         
         $this->execute();
 
-        return $this->lastInsertId();
+        //return $this->lastInsertId();
     }
 
 

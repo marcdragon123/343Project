@@ -150,8 +150,8 @@ class MonitorMapper extends MapperAbstract {
      * @param Monitor $obj
      */
     public function _insert($obj) {
-        $UserId = $this->monitorTDG->insert($obj);
-        $obj->__set('ID', $Id);
+        $this->monitorTDG->insert($obj);
+        //$obj->__set('ID', $Id);
     }
 
     /**

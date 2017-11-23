@@ -51,7 +51,7 @@ class CatalogTDG extends Model
 
         $this->execute();
 
-        return $this->lastInsertId();
+        //return $this->lastInsertId();
 
     }
 
@@ -80,7 +80,7 @@ class CatalogTDG extends Model
 
         $this->execute();
 
-        return $this->lastInsertId();
+        //return $this->lastInsertId();
 
     }
 
@@ -105,7 +105,7 @@ class CatalogTDG extends Model
 
         $this->execute();
 
-        return $this->lastInsertId();
+        //return $this->lastInsertId();
 
     }
 
@@ -126,7 +126,7 @@ class CatalogTDG extends Model
 
         $this->execute();
 
-        return $this->lastInsertId();
+        //return $this->lastInsertId();
 
     }
 

@@ -48,7 +48,7 @@ class desktopcomputerTDG extends Model
 
         $this->execute();
         
-        return $this->lastInsertId();
+        //return $this->lastInsertId();
     }
 
     /**
@@ -90,7 +90,7 @@ class desktopcomputerTDG extends Model
 
         $this->execute();
 
-        return $this->lastInsertId();
+       // return $this->lastInsertId();
     }
     
 }

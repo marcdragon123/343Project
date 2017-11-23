@@ -67,7 +67,7 @@ class laptopTDG extends Model
         $this->execute();
 
         
-        return $this->lastInsertId();
+        //return $this->lastInsertId();
     }
 
     /**
@@ -110,7 +110,7 @@ class laptopTDG extends Model
         
         $this->execute();
 
-        return $this->lastInsertId();
+        //return $this->lastInsertId();
     }
 
 

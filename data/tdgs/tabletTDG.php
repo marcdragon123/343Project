@@ -62,13 +62,13 @@ class tabletTDG extends Model
         $this->bind(':SerialNumber', $tablet->__get('SerialNumber'));
 
         $this->execute();
-        
-        return $this->lastInsertId();
+
+        //return $this->lastInsertId();
     }
 
     /**
      * delete a tablet from the DB
-     * @param $id
+     * @param $product
      */
      public function delete($product)
     {
@@ -108,7 +108,7 @@ class tabletTDG extends Model
 
         $this->execute();
 
-        return $this->lastInsertId();
+        //return $this->lastInsertId();
     }
 
 }
