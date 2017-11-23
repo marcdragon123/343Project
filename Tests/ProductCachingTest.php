@@ -22,7 +22,7 @@ class ProductCachingTest extends PHPUnit_Framework_TestCase
         $this->productToSave = new Product();
         $product = $this->productToSave;
         $product->setProductID(123);
-        $product->setBrand("SUCK MY DICK");
+        $product->setBrand("DELL");
         $product->setModel("AHAHAHAH I GOT THIS WORKING");
         $product->setPrice(120.00);
         $product->setSerialNumber("13AX4C");
