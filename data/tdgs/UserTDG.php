@@ -12,12 +12,6 @@ class UserTDG extends Model
     //maybe add here rest of attributes to make sqls easier to eliminate mistakes
     //and make it easier to change one to change all
 
-    public function get($id){
-        $this->query('SELECT * FROM account WHERE UserID = :id');//query goes here
-        $this->bind(':id', $id);
-        return $this->single();
-    }
-
     /**
      * fetch single users from DB by email
      * @param $Email
@@ -66,8 +60,8 @@ class UserTDG extends Model
         
         $this->execute();
 
-        
-        return $this->lastInsertId();
+
+        //return $this->lastInsertId();
     }
 
     /**
@@ -107,7 +101,7 @@ class UserTDG extends Model
         $this->bind(':Password', $user->__get('Password'));
         $this->execute();
 
-        return $this->lastInsertId();
+        //return $this->lastInsertId();
     }
 
         public function loginAudit(Account $user)
@@ -116,8 +110,8 @@ class UserTDG extends Model
         $this->bind(':UserID', $user->__get('UserID'));
         $this->bind(':IsActive', 1);
         $this->execute();
-        
-        return $this->lastInsertId();
+
+        //return $this->lastInsertId();
     }
 
     public function logoutAudit(Account $user)
@@ -126,9 +120,9 @@ class UserTDG extends Model
         $this->bind(':UserID', $user->__get('UserID'));
         $this->bind(':IsActive', 0);
         $this->execute();
-        
-        return $this->lastInsertId();
-        
+
+        //return $this->lastInsertId();
+
     }
 
 

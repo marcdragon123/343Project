@@ -6,28 +6,15 @@
 class monitorTDG extends Model
 {
 
-    //maybe add here rest of attributes to make sqls easier to eliminate mistakes
-    //and make it easier to change one to change all
-
-    /**
-     * @param Product $product
-     * @return mixed
-     */
-    public function get($product) {
-        $this->query('SELECT * FROM monitor WHERE SerialNumber = :SerialNumber');
-        $this->bind(':SerialNumber', $product->__get('SerialNumber'));
-        return $this->single();
-    }
-
     /**
      * fetch single monitor from DB by model number
-     * @param $modelNumber
+     * @param SerialNumber
      *
      * @return array $monitorData
      */
-    public function find($ModelNumber) {
-        $this->query('SELECT * FROM monitor WHERE ModelNumber = :ModelNumber');//query goes here
-        $this->bind('ModelNumber', $ModelNumber);
+    public function find($serialNumber) {
+        $this->query('SELECT * FROM monitor WHERE SerialNumber = :SerialNumber');//query goes here
+        $this->bind(':serialNumber', $serialNumber);
 
         return $this->single();
     }
@@ -37,16 +24,9 @@ class monitorTDG extends Model
      *
      * @return array monitors
      */
-
-
-    /**
-     * fetch all monitors from the DB
-     *
-     * @return array monitors
-     */
     public function findAll()
     {
-        $this->query('SELECT * FROM monitor ORDER BY ID');
+        $this->query('SELECT * FROM monitor ORDER BY SerialNumber');
         $monitors = $this->resultSet();
         return $monitors;
     }
@@ -70,32 +50,31 @@ class monitorTDG extends Model
         $this->execute();
 
         
-        return $this->lastInsertId();
+        //return $this->lastInsertId();
     }
 
-     /**
-     * delete a monitor from the DB
-     * @param Product $product
+    /**
+     * deletes monitor from DB
+     * @param $serialNumber
      */
-    public function delete($product)
+    public function delete($serialNumber)
     {
         $this->query('DELETE FROM monitor WHERE SerialNumber = :SerialNumber');
-        $this->bind(':SerialNumber', $product->__get('SerialNumber'));
+        $this->bind(':SerialNumber', $serialNumber);
         $this->execute();
 
         return;
     }
 
     /**
-     * @param monitor $monitor
+     * @param Monitor $monitor
      * @return string id
      */
 
-    public function update(monitor $monitor)
+    public function update(Monitor $monitor)
     {
         $this->query('UPDATE monitor SET ModelNumber = :ModelNumber, DisplayDimensions = :DisplayDimensions, Brand = :Brand, Price = :Price,
-                            Weight = :Weight, SerialNumber = :SerialNumber) WHERE ID = :ID');
-        $this->bind(':ID', $monitor->getID());
+                            Weight = :Weight, SerialNumber = :SerialNumber) WHERE SerialNumber = :SerialNumber');
         $this->bind(':ModelNumber', $monitor->__get('ModelNumber'));
         $this->bind(':DisplayDimensions', $monitor->__get('DisplayDimensions'));
         $this->bind(':Brand', $monitor->__get('Brand'));
@@ -105,7 +84,7 @@ class monitorTDG extends Model
         
         $this->execute();
 
-        return $this->lastInsertId();
+        //return $this->lastInsertId();
     }
 
 

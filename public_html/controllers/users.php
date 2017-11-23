@@ -53,13 +53,24 @@ class users extends Controller {
     }
 
     public function viewProductCatalog(){
-
-    $viewmodel = CatalogMapper::getInstance()->getAllProducts();
-    $this->returnView($viewmodel, true);
+        $viewmodel = CatalogMapper::getInstance()->getAllProducts();
+        $this->returnView($viewmodel, true);
     }
 
-    public function viewProductSpecification(){
+    /**
+     * @param array $arr
+     * @return Product
+     */
+    public static function objectify(array $arr){
+        foreach ($arr as $prod){
+            return $prod;
+        }
+    }
 
+    public function viewSpecs(){
+        $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        $viewmodel = CatalogMapper::getInstance()->getProductSpecification($post['ProductType'],$post['SerialNumber'] );
+        $this->returnView($viewmodel, true);
     }
 
     public function browseCatalog(){
