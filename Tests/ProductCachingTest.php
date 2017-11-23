@@ -6,11 +6,7 @@
  * Time: 12:40 AM
  */
 
-<<<<<<< HEAD
-require "../domain/core/ProductFile.php";
-=======
 require "../domain/core/File.php";
->>>>>>> 9a5fe753952a5b2188e3418c201573502384af19
 require "../domain/core/Product.php";
 
 class ProductCachingTest extends PHPUnit_Framework_TestCase
@@ -24,7 +20,7 @@ class ProductCachingTest extends PHPUnit_Framework_TestCase
         $this->productToSave = new Product();
         $product = $this->productToSave;
         $product->setProductID(123);
-        $product->setBrand("SUCK MY DICK");
+        $product->setBrand("DELL");
         $product->setModel("AHAHAHAH I GOT THIS WORKING");
         $product->setPrice(120.00);
         $product->setSerialNumber("13AX4C");
