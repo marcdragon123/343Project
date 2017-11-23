@@ -26,7 +26,7 @@ class monitorTDG extends Model
      */
     public function findAll()
     {
-        $this->query('SELECT * FROM monitor ORDER BY ID');
+        $this->query('SELECT * FROM monitor ORDER BY SerialNumber');
         $monitors = $this->resultSet();
         return $monitors;
     }

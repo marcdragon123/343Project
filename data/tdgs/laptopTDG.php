@@ -25,7 +25,7 @@ class laptopTDG extends Model
      */
     public function findAll()
     {
-        $this->query('SELECT * FROM laptop ORDER BY ID');
+        $this->query('SELECT * FROM laptop ORDER BY SerialNumber');
         $laptops = $this->resultSet();
         return $laptops;
     }
