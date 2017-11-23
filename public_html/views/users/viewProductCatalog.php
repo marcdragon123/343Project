@@ -9,11 +9,8 @@
         <?php foreach($viewmodel as $item =>  $product) :
             $spec = users::objectify($product)?>
             <div class="well">
-                <form action="viewSpecs" method="post">
-                    <input type="hidden" name="ProductType" value="<?php echo $spec->__get('ProductType')?>">
-                    <input type="hidden" name="SerialNumber" value="<?php echo $spec->__get('SerialNumber')?>">
-                    <input class="button" name="viewSpecifivation" type="submit" value="View Specs">
-                </form>
+            <a href="editProductSpecs?ProductType=<?= $spec->__get('ProductType')?>&SerialNumber=<?= $spec->__get('SerialNumber')?>">Product Specs</a>
+
                 <h3><?php echo $spec->__get('SerialNumber'); ?></h3>
                 <small><?php //echo $product['']['SerialNumber']; ?></small>
                 <hr />
