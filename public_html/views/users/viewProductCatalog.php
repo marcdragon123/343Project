@@ -9,7 +9,7 @@
         <?php foreach($viewmodel as $item =>  $product) :
             $spec = users::objectify($product)?>
             <div class="well">
-            <a href="editProductSpecs?ProductType=<?= $spec->__get('ProductType')?>&SerialNumber=<?= $spec->__get('SerialNumber')?>">Product Specs</a>
+            <a href="viewSpecs?ProductType=<?= $spec->__get('ProductType')?>&SerialNumber=<?= $spec->__get('SerialNumber')?>">Product Specs</a>
 
                 <h3><?php echo $spec->__get('SerialNumber'); ?></h3>
                 <small><?php //echo $product['']['SerialNumber']; ?></small>

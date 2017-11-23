@@ -96,8 +96,7 @@ class admin extends Controller {
     }
 
     public function editProductSpecs(){
-        $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-        $viewmodel = CatalogMapper::getInstance()->getProductSpecification($post['ProductType'],$post['SerialNumber'] );
+        $viewmodel = CatalogMapper::getInstance()->getProductSpecification($_GET['ProductType'],$$_GET['SerialNumber'] );
         $this->returnView($viewmodel, true);
     }
 
