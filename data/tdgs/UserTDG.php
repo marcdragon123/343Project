@@ -12,12 +12,6 @@ class UserTDG extends Model
     //maybe add here rest of attributes to make sqls easier to eliminate mistakes
     //and make it easier to change one to change all
 
-    public function get($id){
-        $this->query('SELECT * FROM account WHERE UserID = :id');//query goes here
-        $this->bind(':id', $id);
-        return $this->single();
-    }
-
     /**
      * fetch single users from DB by email
      * @param $Email
