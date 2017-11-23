@@ -9,10 +9,10 @@ class laptopTDG extends Model
     //maybe add here rest of attributes to make sqls easier to eliminate mistakes
     //and make it easier to change one to change all
 
-    public function get($id){
-        $this->query('SELECT * FROM laptop WHERE ID = :id');//query goes here
-        $this->bind('id', $id);
-        return $this->single();;
+    public function get($product) {
+        $this->query('SELECT * FROM laptop WHERE SerialNumber = :SerialNumber');
+        $this->bind(':SerialNumber', $product->__get('SerialNumber'));
+        return $this->single();
     }
 
     /**
@@ -74,10 +74,10 @@ class laptopTDG extends Model
      * deletes laptop from DB
      * @param $id
      */
-    public function delete($id)
+    public function delete($product)
     {
-        $this->query('DELETE FROM laptop WHERE ID = :id');
-        $this->bind('id', $id);
+        $this->query('DELETE FROM laptop WHERE SerialNumber = :SerialNumber');
+        $this->bind(':SerialNumber', $product->__get('SerialNumber'));
         $this->execute();
 
         return;
