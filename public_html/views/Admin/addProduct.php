@@ -57,7 +57,7 @@
                                 </tr>
                                 <tr>
                                     <td><br><input type="text" placeholder="Display Size (inches)" name ="DisplaySize" pattern="(\d{1}|\d{2})" required><br></td>
-                                    <td><br><input type="text" placeholder="Display Dimensions" name ="DisplayDimensions" pattern="[A-Za-z]{1,10}" required><br></td>
+                                    <td><br><input type="text" placeholder="Display Dimensions(CMxCM)" name ="DisplayDimensions" pattern="(\d{1}|\d{2})+[x]+(\d{1}|\d{2})" required><br></td>
                                     <td><br><input type="text" placeholder="Weight (kg)" name ="Weight" pattern="(\d{2}|\d{1})+[.]+(\d{2})" required><br></td>
                                     <td><br><input type="text" placeholder="Model Number" name ="Model" pattern="[A-Za-z]{1,500}" required><br></td>
                                 </tr>
@@ -96,7 +96,7 @@
                                     <td><br><input type="text" placeholder="Display Size (inches)" name ="DisplaySize" pattern="(\d{1}|\d{2})" required><br></td>
                                 </tr>
                                 <tr>
-                                    <td><br><input type="text" placeholder="Display Dimensions" name ="DisplayDimensions" pattern="[A-Za-z]{1,10}" required><br></td>
+                                    <td><br><input type="text" placeholder="Display Dimensions (CMxCM)" name ="DisplayDimensions" pattern="(\d{1}|\d{2})+[x]+(\d{1}|\d{2})" required><br></td>
                                     <td><br><input type="text" placeholder="Weight (kg)" name ="Weight" pattern="(\d{1}|\d{2})+[.]+(\d{2})"required><br></td>
                                     <td><br><input type="text" placeholder="Processor Type" name ="CPUType" pattern="[A-Za-z]{1,500}"required><br></td>
                                     <td><br><input type="text" placeholder="Ram Size (Gb)" name ="RAMSize" pattern="\d{1}|\d{2}|\d{3}"required><br></td>    
@@ -108,7 +108,7 @@
                                     <td><br><input type="text" placeholder="Hard Drive (Gb)" name="HDDSize" pattern="\d{1}|\d{2}|\d{3}"required><br></td>
                                     <td><br><input type="text" placeholder="Camera Pixels" name="CameraInformation" pattern="(\d{1}|\d{2}|\d{3}|\d{4}).[p]"required><br></td>
                                 </tr>
-                                <td><br><input type="text" placeholder="Model Number" name ="Model" required><br></td>
+                                <td><br><input type="text" placeholder="Model Number" name ="Model" pattern="[A-Za-z]{1,500}" required><br></td>
 
                                 <td><br><input type="checkbox" name="ToucheScreenToggle">
                                     <label for="touchScreen">Touch Screen</label><br></td>
@@ -171,7 +171,7 @@
                                     <td><br><input type="text" placeholder="CPU Type" name ="CPUType" pattern="[A-Za-z]{1,45}" required><br></td>
                                 </tr>
                                 <tr>
-                                    <td><br><input type="text" placeholder="Length (cm)" name ="Dimensions" pattern="(\d{1}|\d{2}|\d{3})" required><br></td>
+                                    <td><br><input type="text" placeholder="Tower Dimensions (CMxCMxCM)" name ="Dimensions" pattern="(\d{1}|\d{2}|\d{3})+[x]+(\d{1}|\d{2}|\d{3})+[x]+(\d{1}|\d{2}|\d{3})" required><br></td>
                                     <td><br><input type="text" placeholder="Weight (kg)" name ="Weight" pattern="(\d{1}|\d{2})+[.]+(\d{2})" required><br></td>
                                     <td><br><input type="text" placeholder="Hard Drive (Gb)" name="HDDSize" pattern="(\d{1}|\d{2}|\d{3})" required><br></td>
                                     <td><br><br></td>
