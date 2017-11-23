@@ -92,6 +92,20 @@ class ProductCatalog
 
     }
 
+    public function findProduct(Product $product){
+        $this->productContainer = $this->getProductContainer();
+
+        if(isset($this->productContainer[$product->getID('ProductType')][$product->getID('SerialNumber')])){
+
+            $obj = $this->productContainer[$product->getID('ProductType')][$product->getID('SerialNumber')];
+
+            return $obj;
+        }
+
+        return null;
+    }
+
+
     /**
      * @return mixed
      */

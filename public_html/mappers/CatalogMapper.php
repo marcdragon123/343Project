@@ -98,6 +98,18 @@ class CatalogMapper extends MapperAbstract {
 
     }
 
+    public function findProduct($obj){
+        try{
+            ProductCatalog::getInstance()->findProduct($obj);
+        }
+        catch (Exception $e){
+
+            Messages::setMsg()$e->getMessage(), 'error';
+
+        }
+
+    }
+
     public function viewProductsByType($type){
         $products = ProductCatalog::getInstance()->viewByType($type);
 
