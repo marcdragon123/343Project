@@ -51,16 +51,6 @@ class admin extends Controller {
         header('Location: '.ROOT_URL.'home');
     }
 
-    public function viewProductCatalog(){
-        if(!isset($_SESSION['is_logged_in'])){
-            header('Location: '.ROOT_URL.'home');
-        }
-        if(!($_SESSION['user_data']['Type']==='A')){
-            header('Location: '.ROOT_URL.'home');
-        }
-        $viewmodel = CatalogMapper::getInstance()->getAllProducts();
-        $this->returnView($viewmodel, true);
-    }
     
     public function display($product){
 
@@ -69,6 +59,28 @@ class admin extends Controller {
     public function viewProductSpecification() {
 
     }
+    public function viewProductCatalog(){
+        if(!isset($_SESSION['is_logged_in'])){
+            header('Location: '.ROOT_URL.'home');
+        }
+        if(!($_SESSION['user_data']['Type']==='A')){
+            header('Location: '.ROOT_URL.'home');
+        }
+        $viewmodel = CatalogMapper::getInstance()->getAllProducts();
+
+        $this->returnView($viewmodel, true);
+    }
+
+    /**
+     * @param array $arr
+     * @return Product
+     */
+    public static function objectify(array $arr){
+        foreach ($arr as $prod){
+            return $prod;
+        }
+    }
+
 
     public function addProduct() {
         if(!isset($_SESSION['is_logged_in'])){

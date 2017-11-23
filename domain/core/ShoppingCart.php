@@ -10,23 +10,67 @@ require "DomainObject.php";
 
 class ShoppingCart extends DomainObject
 {
-    private $items = array ();
-    private $CustomerID;
+    private $customerID;
+    private $products;
+    private $size;
+    private $total;
 
-    public function addToCart($p)
+    public function createCart($customerID)
     {
-        if (count($this.items) <= 7)
+        $this->customerID = $customerID;
+        $this->products = array();
+        $this->size = 0;
+        $this->total = 0;
+    }
+
+    public function addToCart($product)
+    {
+        if (count($this->products) == 0)
         {
-            array_push($items,$p);
+
+        }
+
+        if (count($this->products) <= 7)
+        {
+            array_push($this->products,$product);
         }
     }
-    public function removeFromCart($p)
+    public function removeFromCart($product)
     {
-        if (count($this.items) > 0)
+        if (count($this->products) > 0)
         {
-            array_remove($items,$p);
+            array_splice($this->products,array_search($this->products, $product),1);
         }
     }
+
+    public function calculateSize()
+    {
+        $this->size = 0;
+        foreach($this->products as $value)
+        {
+            $this->size++;
+        }
+    }
+
+    public function calculateTotal()
+    {
+        $this->total = 0;
+        foreach($this->products as $value)
+        {
+            $this->total += $value->price;
+        }
+    }
+
+    public function getSize()
+    {
+        return $this->size;
+    }
+
+    public function getTotal()
+    {
+        return $this->total;
+    }
+
     public function checkOut()
     {
 
