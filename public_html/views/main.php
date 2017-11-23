@@ -20,7 +20,8 @@
                 <?php if (isset($_SESSION['is_logged_in'])) :?>
                 <?php if($_SESSION['user_data']['Type'] === 'A') : ?>
                 <li><a href="<?php echo ROOT_URL; ?>admin">Admin Main</a></li>
-                <?php else :?>
+                    <li><a href = "<?php echo ROOT_URL; ?>admin">View Catalog</a></li>
+                    <?php else :?>
                 <li><a href="<?php echo ROOT_URL; ?>">Home</a></li>
                 <?php endif;?>
                 <?php endif;?>
@@ -28,6 +29,7 @@
                 <?php else :?>
                     <li><a href="<?php echo ROOT_URL; ?>admin/adminlogin">Administrator</a></li>
                 <?php endif; ?>
+
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
