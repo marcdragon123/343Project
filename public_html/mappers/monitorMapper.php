@@ -20,7 +20,7 @@ class MonitorMapper extends MapperAbstract {
     }
 
     public function __construct() {
-        $this->UOW = new UnitOfWork($this);
+        $this->UOW = UnitOfWork::getInstance();
         $this->monitorTDG = new MonitorTDG();
     }
 
@@ -98,7 +98,7 @@ class MonitorMapper extends MapperAbstract {
         }
         ProductsIdMap::getInstance()->add($obj, 'Monitor');
         $this->UOW->registerNew($obj);
-        $this->UOW->commit();
+        $this->UOW->commit($this);
         return $obj;
     }
 
@@ -176,9 +176,6 @@ class MonitorMapper extends MapperAbstract {
      */
     public function _delete($obj) {
         $this->monitorTDG->delete($obj->getID());
-    }
-
-    
     }
 
 }
