@@ -98,38 +98,25 @@ class CatalogMapper extends MapperAbstract {
 
     }
 
-    public function findProduct($obj){
-        try{
-            ProductCatalog::getInstance()->findProduct($obj);
-        }
-        catch (Exception $e){
-
-            Messages::setMsg($e->getMessage(), 'error');
-
-        }
-
-    }
-
+    /**
+     * @param $type
+     * @return ArrayObject
+     */
     public function viewProductsByType($type){
         $products = ProductCatalog::getInstance()->viewByType($type);
 
-        return $products;
+        return new ArrayObject($products);
     }
 
     public function getAllProducts(){
         $products = ProductCatalog::getInstance()->viewAllProducts();
-
-        return $products;
+        return ($products);
     }
 
-    public function Display(){
-
-        $viewmodel = $this->getAllProducts();
-
-        return $viewmodel;
+    public function getProductSpecification($type, $serianNum){
+        $product = ProductCatalog::getInstance()->getProduct($type,$serianNum);
+        return $product;
     }
-
-   
 
 
 

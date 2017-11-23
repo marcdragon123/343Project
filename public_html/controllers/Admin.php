@@ -51,14 +51,6 @@ class admin extends Controller {
         header('Location: '.ROOT_URL.'home');
     }
 
-    
-    public function display($product){
-
-    }
-
-    public function viewProductSpecification() {
-
-    }
     public function viewProductCatalog(){
         if(!isset($_SESSION['is_logged_in'])){
             header('Location: '.ROOT_URL.'home');
@@ -81,6 +73,9 @@ class admin extends Controller {
         }
     }
 
+    public function viewProductSpecification() {
+
+    }
 
     public function addProduct() {
         if(!isset($_SESSION['is_logged_in'])){
@@ -98,6 +93,12 @@ class admin extends Controller {
             }
         }
         $this->returnView(null, true);
+    }
+
+    public function editProductSpecs(){
+        $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        $viewmodel = CatalogMapper::getInstance()->getProductSpecification($post['ProductType'],$post['SerialNumber'] );
+        $this->returnView($viewmodel, true);
     }
 
 }

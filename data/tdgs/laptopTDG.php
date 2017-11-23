@@ -5,25 +5,15 @@
 
 class laptopTDG extends Model
 {
-
-    //maybe add here rest of attributes to make sqls easier to eliminate mistakes
-    //and make it easier to change one to change all
-
-    public function get($product) {
-        $this->query('SELECT * FROM laptop WHERE SerialNumber = :SerialNumber');
-        $this->bind(':SerialNumber', $product->__get('SerialNumber'));
-        return $this->single();
-    }
-
     /**
      * fetch single laptop from DB by model number
-     * @param $modelNumber
+     * @param $serialNumber
      *
      * @return array $laptopData
      */
-    public function find($ModelNumber) {
-        $this->query('SELECT * FROM laptop WHERE ModelNumber = :ModelNumber');//query goes here
-        $this->bind('ModelNumber', $ModelNumber);
+    public function find($serialNumber) {
+        $this->query('SELECT * FROM laptop WHERE SerialNumber = :SerialNumber');//query goes here
+        $this->bind(':SerialNumber', $serialNumber);
 
         return $this->single();
     }
@@ -41,7 +31,7 @@ class laptopTDG extends Model
     }
 
     /**
-     * @param laptop object
+     * @param Laptop object
      * @return string
      */
     public function insert($laptop)
@@ -72,27 +62,26 @@ class laptopTDG extends Model
 
     /**
      * deletes laptop from DB
-     * @param $id
+     * @param $serialNumber
      */
-    public function delete($product)
+    public function delete($serialNumber)
     {
         $this->query('DELETE FROM laptop WHERE SerialNumber = :SerialNumber');
-        $this->bind(':SerialNumber', $product->__get('SerialNumber'));
+        $this->bind(':SerialNumber', $serialNumber);
         $this->execute();
 
         return;
     }
 
     /**
-     * @param laptop $laptop
+     * @param Laptop $laptop
      * @return string id
      */
 
-    public function update(laptop $laptop)
+    public function update(Laptop $laptop)
     {
         $this->query('UPDATE laptop SET ModelNumber = :ModelNumber, DisplayDimensions = :DisplayDimensions, Brand = :Brand, Price = :Price,
-                            Weight = :Weight, SerialNumber = :SerialNumber) WHERE ID = :ID');
-        $this->bind(':ID', $laptop->getID());
+                            Weight = :Weight, SerialNumber = :SerialNumber) WHERE SerialNumber = :SerialNumber');
         $this->bind(':ModelNumber', $laptop->__get('ModelNumber'));
         $this->bind(':DisplayDimensions', $laptop->__get('DisplayDimensions'));
         $this->bind(':Brand', $laptop->__get('Brand'));
