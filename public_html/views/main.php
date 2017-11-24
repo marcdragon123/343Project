@@ -22,9 +22,10 @@
                 <li><a href="<?php echo ROOT_URL; ?>admin">Admin Main</a></li>
                     <li><a href = "<?php echo ROOT_URL; ?>admin">View Catalog</a></li>
                     <?php else :?>
+                <?php endif;?>
+                <?php endif;?>
                 <li><a href="<?php echo ROOT_URL; ?>">Home</a></li>
-                <?php endif;?>
-                <?php endif;?>
+
                 <?php if(isset($_SESSION['is_logged_in'])) : ?>
                 <?php else :?>
                     <li><a href="<?php echo ROOT_URL; ?>admin/adminlogin">Administrator</a></li>
@@ -39,12 +40,12 @@
                         <li><a type="logout" href="<?php echo ROOT_URL; ?>admin/logout">Logout</a></li>
                         <?php else :?>
                         <li><a type="logout" href="<?php echo ROOT_URL; ?>users/logout">Logout</a></li>
-                        <li><a href="<?php echo ROOT_URL; ?>cart/displayCart">Cart</a></li>
                         <?php endif; ?>
-
                 <?php else : ?>
                     <li><a href="<?php echo ROOT_URL; ?>users/login">Login</a></li>
                     <li><a href="<?php echo ROOT_URL; ?>users/register">Register</a></li>
+                    <li><a href="<?php echo ROOT_URL; ?>users/viewCart">Cart</a></li>
+                    <li><a href="<?php echo ROOT_URL; ?>users/returns">Returns</a></li>
                 <?php endif; ?>
             </ul>
         </div><!--/.nav-collapse -->

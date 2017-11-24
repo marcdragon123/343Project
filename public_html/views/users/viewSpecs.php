@@ -36,15 +36,12 @@
         $("input[name='DisplaySize']").val("<?= @$viewmodel->__get('DisplaySize'); ?>");
         $("input[name='DisplayDimensions']").val("<?= @$viewmodel->__get('DisplayDimensions'); ?>");
         $("input[name='CPUType']").val("<?= @$viewmodel->__get('Brand'); ?>");
-        $("input[name='RAMSize']").val("<?= @$viewmodel->__get('Brand'); ?>");
+        $("input[name='RAMSize']").val("<?= @$viewmodel->__get('RAMSize'); ?>");
         $("input[name='CoreNumber']").val("<?= @$viewmodel->__get('CoreNumber'); ?>");
         $("input[name='HDDSize']").val("<?= @$viewmodel->__get('HDDSize'); ?>");
         $("input[name='OS']").val("<?= @$viewmodel->__get('OS'); ?>");
         $("input[name='CameraInformation']").val("<?= @$viewmodel->__get('CameraInformation'); ?>");
         $("input[name='ToucheScreenToggle']").val("<?= @$viewmodel->__get('ToucheScreenToggle'); ?>");
-
-
-
 
 
         setInterval(checking, <?= (30*500) ?>);

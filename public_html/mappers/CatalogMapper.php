@@ -1,18 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * users: leban
- * Date: 2017-11-19
- * Time: 1:44 PM
- */
 
 class CatalogMapper extends MapperAbstract {
     private static $instance = null;
-    public $CatalogTDG;
-    public $monitorTDG;
-    public $tabletTDG;
-    public $laptopTDG;
-    public $desktopcomputerTDG;
+    protected $CatalogTDG;
+    protected $monitorTDG;
+    protected $tabletTDG;
+    protected $laptopTDG;
+    protected $desktopcomputerTDG;
 
     /**
      * @return CatalogMapper|null
@@ -65,7 +59,7 @@ class CatalogMapper extends MapperAbstract {
         }
         // adding product straight to Catalog Array, which will be saved in the idmap
         try{
-            ProductCatalog::getInstance()->addProduct($obj);
+            //ProductCatalog::getInstance()->addProduct($obj);
             try{
                 $this->_insert($obj);
                 //UnitOfWork::getInstance()->registerNew($obj);

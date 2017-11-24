@@ -10,69 +10,71 @@ require "DomainObject.php";
 
 class ShoppingCart extends DomainObject
 {
-    private $customerID;
-    private $products;
-    private $size;
-    private $total;
+    protected $customerEmail;
+    protected $product;
+    protected $productsContainer;
+    protected $numOfProducts;
+    protected $cartTotal;
 
-    public function createCart($customerID)
+    public function createCart($email)
     {
-        $this->customerID = $customerID;
-        $this->products = array();
-        $this->size = 0;
-        $this->total = 0;
+        $this->customerEmail = $email;
+        $this->productsContainer = array();
+        $this->numOfProducts = 0;
+        $this->cartTotal = 0;
     }
 
+    /**
+     * @param Product $product
+     */
     public function addToCart($product)
     {
-        if (count($this->products) == 0)
+        if (count($this->productsContainer) <= 7)
         {
-
-        }
-
-        if (count($this->products) <= 7)
-        {
-            array_push($this->products,$product);
+            array_push($this->productsContainer,$product);
+            $this->numOfProducts++;
         }
     }
+
+    /**
+     * @param Product $product
+     */
     public function removeFromCart($product)
     {
-        if (count($this->products) > 0)
+        if (count($this->productsContainer) > 0)
         {
-            array_splice($this->products,array_search($this->products, $product),1);
+
+            $this->numOfProducts--;
+
         }
     }
 
-    public function calculateSize()
-    {
-        $this->size = 0;
-        foreach($this->products as $value)
-        {
-            $this->size++;
-        }
-    }
-
+    /**
+     *
+     */
     public function calculateTotal()
     {
-        $this->total = 0;
-        foreach($this->products as $value)
+        $this->cartTotal = 0;
+        foreach($this->productsContainer as $value)
         {
-            $this->total += $value->price;
+            $this->cartTotal += $value->price;
         }
     }
 
+    /**
+     * @return mixed
+     */
     public function getSize()
     {
-        return $this->size;
+        return $this->numOfProducts;
     }
 
+    /**
+     * @return mixed
+     */
     public function getTotal()
     {
-        return $this->total;
+        return $this->cartTotal;
     }
 
-    public function checkOut()
-    {
-
-    }
 }

@@ -70,6 +70,7 @@ class users extends Controller {
 
     public function viewSpecs(){
         $viewmodel = CatalogMapper::getInstance()->getProductSpecification($_GET['ProductType'],$_GET['SerialNumber'] );
+        $post = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
 
         if(CatalogMapper::getInstance()->isAvailable($viewmodel)){
             $this->returnView($viewmodel, true);
@@ -77,6 +78,15 @@ class users extends Controller {
         else{
             Messages::setMsg("This can't be accessed because someone's already viewing this file.", '');
             header("Location: ".ROOT_URL."users/viewProductCatalog");
+        }
+
+        if(!empty($post)){
+            if(!($_SESSION['user_data']['Type']==='A')){
+                Messages::setMsg('Only customers may add products to their cart','');
+            }
+            else{
+
+            }
         }
     }
 

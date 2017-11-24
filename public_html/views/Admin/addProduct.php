@@ -73,7 +73,7 @@
                                         <input type="text" placeholder="e.g. 7&quot;, 11&quot;" name ="DisplaySize" required><br></td>
 
                                     <td><label>Dimensions (cm)</label><br>
-                                        <input type="text" placeholder="e.g. 22 x 28 x 1" name ="Dimensions" required><br></td>
+                                        <input type="text" placeholder="e.g. 22 x 28 x 1" name ="DisplayDimensions" required><br></td>
 
                                     <td><label>Weight (kg)</label><br>
                                         <input type="text" placeholder="e.g. 0.8 kg, 1 kg" name ="Weight" required><br></td>
@@ -141,7 +141,7 @@
                                 <tr>
 
                                     <td><label>Dimensions (cm)</label><br>
-                                        <input type="text" placeholder="e.g. 17 x 25 x 1" name ="Dimensions" required><br></td>
+                                        <input type="text" placeholder="e.g. 17 x 25 x 1" name ="DisplayDimensions" required><br></td>
 
                                     <td><label>Weight (kg)</label><br>
                                         <input type="text" placeholder="Weight (kg)" name ="Weight" required><br></td>
@@ -263,7 +263,7 @@
                                 <tr>
 
                                     <td><label>Dimensions (cm)</label><br>
-                                        <input type="text" placeholder="e.g. 17 x 25 x 1" name ="Dimensions" required><br></td>
+                                        <input type="text" placeholder="e.g. 17 x 25 x 1" name ="DisplayDimensions" required><br></td>
 
                                     <td><label>Weight (kg)</label><br>
                                         <input type="text" placeholder="Weight (kg)" name ="Weight" required><br></td>

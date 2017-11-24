@@ -40,7 +40,7 @@ class monitorTDG extends Model
         $this->query('INSERT INTO monitor (ModelNumber, DisplayDimensions, Brand, Price, Weight, SerialNumber) 
                              VALUES(:ModelNumber, :DisplayDimensions, :Brand, :Price, :Weight , :SerialNumber)');
         $this->bind(':ModelNumber', $monitor->__get('ModelNumber'));
-        $this->bind(':DisplayDimensions', $monitor->__get('DisplaySize'));
+        $this->bind(':DisplayDimensions', $monitor->__get('DisplayDimensions'));
         $this->bind(':Brand', $monitor->__get('Brand'));
         $this->bind(':Price', $monitor->__get('Price'));
         $this->bind(':Weight', $monitor->__get('Weight'));
