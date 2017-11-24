@@ -7,3 +7,4 @@
 .gitignore
 phpunit-5.7.23.phar
 Tests/*
+public_html/views/Admin/addProduct.php

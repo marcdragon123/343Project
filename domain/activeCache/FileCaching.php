@@ -67,6 +67,9 @@ abstract class FileCaching
         $unserializedObj = array();
         $this->acquireReaderLock();
         if($this->locked) {
+            if($this->isEmpty()){
+                return null;
+            }
             $val = fread($this->file, filesize($fileName));
             $this->releaseLock();
             $contents = explode(PHP_EOL, $val);
@@ -81,11 +84,15 @@ abstract class FileCaching
         return $unserializedObj;
     }
 
+
     public function purge()
     {
         ftruncate($this->file, 0);
     }
 
+    /**
+     * @return bool
+     */
     public function isEmpty()
     {
         return (filesize($this->fileName)==0);
@@ -105,6 +112,10 @@ abstract class FileCaching
     public function setFileName($fileName)
     {
         $this->fileName = $fileName;
+    }
+
+    public function emptyFile($filename){
+        return (filesize($this->fileName)==0);
     }
 
 }

@@ -8,6 +8,7 @@
 
 class CatalogTDG extends Model
 {
+
     public function selectAll()
     {
         //queries all the tables individually
@@ -25,7 +26,11 @@ class CatalogTDG extends Model
         return $row;
     }
 
-    public function addLaptop(Laptop $obj)
+    /**
+     * @param DomainObject $obj
+     * @return string
+     */
+    public function addLaptop($obj)
     {
         $this->query('INSERT INTO Laptop (ModelNumber, DisplayDimensions, Brand, Price, CPUType, CoreNumber, RAMSize, Weight, HDDSize, Battery, OS, ToucheScreenToggle, CameraToggle, SerialNumber) VALUES(:ModelNumber, :DisplayDimesions, :Brand, :Price, :CPUType, :CoreNumber, :RAMSize, :Weight, :HDDSize, :Battery, :OS, :ToucheScreenToggle, :CameraToggle, :SerialNumber)');
 
@@ -46,11 +51,15 @@ class CatalogTDG extends Model
 
         $this->execute();
 
-        return $this->lastInsertId();
+        //return $this->lastInsertId();
 
     }
 
-    public function addTablet(Tablet $obj)
+    /**
+     * @param DomainObject $obj
+     * @return string
+     */
+    public function addTablet($obj)
     {
         $this->query('INSERT INTO Tablet (ModelNumber, DisplaySize, DisplayDimesions, Brand, Price, CPUType, CoreNumber, RAMSize, Weight, HDDSize, Battery, OS, CameraInformation, SerialNumber) VALUES (:ModelNumber, :DisplaySize, :DisplayDimesions, :Brand, :Price, :CPUType, :CoreNumber, :RAMSize, :Weight, :HDDSize, :Battery, :OS, :CameraInformation, :SerialNumber)');
 
@@ -71,11 +80,15 @@ class CatalogTDG extends Model
 
         $this->execute();
 
-        return $this->lastInsertId();
+        //return $this->lastInsertId();
 
     }
 
-    public function addDesktop(Desktop $obj)
+    /**
+     * @param DomainObject $obj
+     * @return string
+     */
+    public function addDesktop($obj)
     {
         $this->query('INSERT INTO DesktopComputer (ModelNumber, Dimensions, Brand, Price, CPUType, CoreNumber, RAMSize, Weight, HDDSize, SerialNumber) VALUES (:ModelNumber, :Dimensions, :Brand, :Price, :CPUType, :CoreNumber, :RAMSize, :Weight, :HDDSize, :SerialNumber)');
 
@@ -92,11 +105,15 @@ class CatalogTDG extends Model
 
         $this->execute();
 
-        return $this->lastInsertId();
+        //return $this->lastInsertId();
 
     }
 
-    public function addMonitor(Monitor $obj)
+    /**
+     * @param DomainObject $obj
+     * @return string
+     */
+    public function addMonitor($obj)
     {
         $this->query('INSERT INTO Monitor (ModelNumber, DisplayDimesions, Brand, Price, Weight, SerialNumber) VALUES (:ModelNumber, :DisplayDimesions, :Brand, :Price, :Weight, :SerialNumber)');
 
@@ -109,7 +126,7 @@ class CatalogTDG extends Model
 
         $this->execute();
 
-        return $this->lastInsertId();
+        //return $this->lastInsertId();
 
     }
 

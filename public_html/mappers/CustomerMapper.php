@@ -10,6 +10,7 @@ class CustomerMapper extends MapperAbstract{
 
     public $UOW;
     public $userTDG;
+    public $idMap;
     private static $instance = null;
 
 
@@ -23,8 +24,9 @@ class CustomerMapper extends MapperAbstract{
         return self::$instance;
     }
 
-    public function __construct() {
-        $this->UOW = new UnitOfWork($this);
+    private function __construct() {
+        $this->idMap = IdMap::getInstance();
+        $this->UOW = UnitOfWork::getInstance();
         $this->userTDG = new UserTDG();
     }
 
@@ -33,49 +35,67 @@ class CustomerMapper extends MapperAbstract{
      * @return bool
      */
     public function login(array $post) {
+/*
+        $userObj = $this->idMap->get('Customer',$post['Email']);
 
-        $userObj = IdMap::getInstance()->get('Customer',$post['Email']);
         if(!is_null($userObj)) {
-            if ($userObj->__get('Password') !== $post['Password']) {
+            //if found in idmap, check if password is correct
+            if (!($userObj->__get('Password') === $post['Password'])) {
                 Messages::setMsg("wrong password", 'error');
                 return false;
             }
-            $_SESSION['is_logged_in'] = true;
-            $_SESSION['user_data'] = array(
-                'UserID' => $userObj->__get('UserID'),
-                'FirstName' => $userObj->__get('FirstName'),
-                'LastName' => $userObj->__get('LastName'),
-                'Email' => $userObj->__get('Email'),
-                'Type' => $userObj->__get('Type')
-            );
-            Messages::setMsg("Welcome ".$_SESSION['FirstName'], '');
-            return true;
+            //if pass is correct, check if customer
+            if($userObj->__get('Type')==='C'){
+                $_SESSION['is_logged_in'] = true;
+                $_SESSION['user_data'] = array(
+                    'UserID' => $userObj->__get('UserID'),
+                    'FirstName' => $userObj->__get('FirstName'),
+                    'LastName' => $userObj->__get('LastName'),
+                    'Email' => $userObj->__get('Email'),
+                    'Type' => $userObj->__get('Type')
+                );
+                $userObj->__set('LoginStatus', true);
+                $this->updateLoginSession($userObj);
+                return true;
+            }
+            Messages::setMsg($userObj->__get('FirstName').", login from admin page please", 'error');
         }
+*/
+        //if email is not in idmap, check db
         $userObj = $this->userTDG->find($post['Email']);
         if(!is_null($userObj)){
-            Messages::setMsg('Email Does not exist', 'error');
+            if($userObj['Password'] === $post['Password']){
+                if($userObj['Type'] === 'C') {
+                    $_SESSION['is_logged_in'] = true;
+                    $_SESSION['user_data'] = array(
+                        'UserID' => $userObj['UserID'],
+                        'FirstName' => $userObj['FirstName'],
+                        'LastName' => $userObj['LastName'],
+                        'Email' => $userObj['Email'],
+                        'Type' => $userObj['Type']
+                    );
+                    $usr = $this->_create();
+                    $usr = $this->populate($usr, $userObj);
+                    $usr->__set('LoginStatus', true);
+                    $this->updateLoginSession($usr);
+                    //$this->idMap->add($usr, 'Customer');
+                    return true;
+                }
+                Messages::setMsg('Admin login from admin page', 'error');
+                return false;
+            }
+            Messages::setMsg('Wrong Password', 'error');
             return false;
+
         }
-        if($userObj['Password'] === $post['Password']){
-            $this->create($userObj);
-            $this->updateLoginSession();
-            return true;
-        }
+        Messages::setMsg('Email Does Not Exist', 'error');
+        return false;
     }
 
-    /**
-     * @param array $post
-     * @return string
-     * @throws Exception
-     */
-    public function createAccount(array $post){
-        $userTDG = new UserTDG();
-        if(!is_null($userTDG->find($post['Email']))){
-            throw new Exception("this email already exists");
-        }
-        //$userObj = $userTDG->insert($post);
-        $this->create($post);
-
+    public function logout($email){
+        $userObj = $this->idMap->get('Customer', $email);
+        $userObj->__set('LoginStatus', false);
+        $this->updateLoginSession($userObj);
     }
 
     /**
@@ -89,24 +109,10 @@ class CustomerMapper extends MapperAbstract{
         if($data){
             $obj = $this->populate($obj, $data);
         }
-        $id = $this->userTDG->insert($obj);
-        $obj->setID($id);
-        IdMap::getInstance()->add($obj, 'Customer');
-
-        $this->UOW->registerNew($obj);
+        $this->idMap->add($obj, 'Customer');
+        //$this->UOW->registerNew($obj);
+        //$this->UOW->commit(CustomerMapper::getInstance());
         return $obj;
-    }
-
-    /**
-     * @param Customer $obj
-     */
-    public function save($obj)
-    {
-        if(is_null($obj->__get("UserID"))){
-            $this->_insert($obj);
-        } else {
-            $this->_update($obj);
-        }
     }
 
     /**
@@ -114,7 +120,8 @@ class CustomerMapper extends MapperAbstract{
      */
     public function delete($obj)
     {
-        $this->_delete($obj);
+        $this->idMap->remove('Customer', $obj->__get('Email'));
+        //$this->UOW->registerDeleted($obj);
     }
 
     /**
@@ -130,25 +137,18 @@ class CustomerMapper extends MapperAbstract{
      */
     public function populate($obj, array $data){
 
-
-        function __construct($array) {
-            foreach ($array as $key => $value) {
-                $this->$key = $value;
-            }
-        }
-
         $obj->__set("FirstName", $data['FirstName']);
         $obj->__set("LastName", $data['LastName']);
         $obj->__set("Password", $data['Password']);
         $obj->__set("Email", $data['Email']);
-        $obj->__set("Phone", $data['Phone']);
+        $obj->__set("PhoneNumber", $data['PhoneNumber']);
         $obj->__set("StreetNumber", $data['StreetNumber']);
         $obj->__set("StreetName", $data['StreetName']);
         $obj->__set("City", $data['City']);
         $obj->__set("Province", $data['Province']);
         $obj->__set("PostalCode", $data['PostalCode']);
         $obj->__set("Country", $data['Country']);
-        $obj->__set("LoginStatus", 0);
+        $obj->__set("LoginStatus", false);
         $obj->__set("Type", 'C');
 
 
@@ -156,11 +156,10 @@ class CustomerMapper extends MapperAbstract{
     }
 
     /**
-     * Create a new users DomainObject
-     *
+     * @param $arr
      * @return Customer
      */
-    public function _create(){
+    public function _create($arr=null){
         return new Customer();
     }
 
@@ -174,8 +173,6 @@ class CustomerMapper extends MapperAbstract{
      */
     public function _insert($obj)
     {
-        //var_dump($obj->__get('firstName'));
-
         $this->userTDG->insert($obj);
     }
 
@@ -189,7 +186,7 @@ class CustomerMapper extends MapperAbstract{
      */
     public function _update($obj)
     {
-        //$this->userTDG->update($obj);
+        $this->userTDG->update($obj);
     }
 
     /**
@@ -202,15 +199,19 @@ class CustomerMapper extends MapperAbstract{
      */
     public function _delete($obj)
     {
-        //$this->userTDG->delete($obj->getID());
+        $this->userTDG->delete($obj->getID());
+
     }
 
     /**
-     *
+     * @param Account $usr
      */
-    public function updateLoginSession(){
-        //$this->UOW->registerDirty($this);
-        //$this->UOW->commit();
+    public function updateLoginSession(Account $usr){
+        if($usr->__get('LoginStatus')){
+            $this->userTDG->loginAudit($usr);
+        }
+        else
+            $this->userTDG->logoutAudit($usr);
 
     }
 

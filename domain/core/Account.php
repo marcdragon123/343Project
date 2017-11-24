@@ -39,9 +39,11 @@ abstract class Account extends DomainObject {
         $this->UserID = $id;
     }
 
-
+    /**
+     * @param $name
+     * @param $value
+     */
     public function __set($name, $value) {
-
         $this->$name = $value;
     }
 

@@ -8,6 +8,7 @@ class AdminMapper extends MapperAbstract{
 
     public $UOW;
     public $userTDG;
+    public $idMap;
     private static $instance = null;
 
 
@@ -22,7 +23,8 @@ class AdminMapper extends MapperAbstract{
     }
 
     private function __construct() {
-        $this->UOW = new UnitOfWork($this);
+        $this->UOW = UnitOfWork::getInstance();
+        $this->idMap = IdMap::getInstance();
         $this->userTDG = new UserTDG();
     }
 
@@ -31,42 +33,69 @@ class AdminMapper extends MapperAbstract{
      * @return bool
      */
     public function login(array $post) {
+/*
+        $userObj = $this->idMap->get('Admin',$post['Email']);
 
-
-        
-        $userObj = IdMap::getInstance()->get('Admin',$post['Email']);
         if(!is_null($userObj)) {
-            if ($userObj->__get('Password') !== $post['Password']) {
+            //if found in idmap, check if password is correct
+            if (!($userObj->__get('Password') === $post['Password'])) {
                 Messages::setMsg("wrong password", 'error');
-                return false;
             }
-            Messages::setMsg("Welcome ".$userObj->__get('FirstName'), '');
-            return true;
-        }
-        $userObj = $this->userTDG->find($post['Email']);
-        if(!is_null($userObj)){
-            Messages::setMsg('Email Does not exist', 'error');
+            //if pass is correct, check if customer
+            if($userObj->__get('Type')==='A'){
+                $_SESSION['is_logged_in'] = true;
+                $_SESSION['user_data'] = array(
+                    'UserID' => $userObj->__get('UserID'),
+                    'FirstName' => $userObj->__get('FirstName'),
+                    'LastName' => $userObj->__get('LastName'),
+                    'Email' => $userObj->__get('Email'),
+                    'Type' => $userObj->__get('Type')
+                );
+                $userObj->__set('LoginStatus', true);
+                //$this->updateLoginSession($userObj);
+                return true;
+            }
+            Messages::setMsg("None Admin", 'error');
             return false;
         }
-        if($userObj['Password'] === $post['Password']){
-            $this->create($userObj);
-            $this->updateLoginSession();
-            return true;
+*/
+        //if email is not in idmap, check db
+
+        $userObj = $this->userTDG->find($post['Email']);
+        if(!is_null($userObj)){
+            if($userObj['Password'] === $post['Password']){
+                var_dump($userObj);
+                if($userObj["Type"] == "A") {
+                    $_SESSION['is_logged_in'] = true;
+                    $_SESSION['user_data'] = array(
+                        'UserID' => $userObj['UserID'],
+                        'FirstName' => $userObj['FirstName'],
+                        'LastName' => $userObj['LastName'],
+                        'Email' => $userObj['Email'],
+                        'Type' => $userObj['Type']
+                    );
+                    $usr = $this->_create();
+                    $usr = $this->populate($usr, $userObj);
+                    //$usr->__set('LoginStatus', true);
+                    $this->updateLoginSession($usr);
+                    //$this->idMap->add($usr, 'Admin');
+                    return true;
+                }
+                Messages::setMsg('Email does not possess Admin rights', 'error');
+                return false;
+
             }
+            Messages::setMsg('Wrong Password', 'error');
+            return false;
+        }
+        Messages::setMsg('Email Does Not Exist', 'error');
+            return false;
     }
 
-    /**
-     * @param array $post
-     * @return string
-     * @throws Exception
-     */
-    public function createAccount(array $post){
-        $userTDG = new UserTDG();
-        if(!is_null($userTDG->find($post['Email']))){
-            throw new Exception("this email already exists");
-        }
-        //$userObj = $userTDG->insert($post);
-        $this->create($post);
+    public function logout($email){
+        //$userObj = $this->idMap->get('Admin', $email);
+        //$userObj->__set('LoginStatus', false);
+        //$this->updateLoginSession($userObj);
 
     }
 
@@ -81,24 +110,11 @@ class AdminMapper extends MapperAbstract{
         if($data){
             $obj = $this->populate($obj, $data);
         }
-        $id = $this->userTDG->insert($obj);
-        $obj->setID($id);
-        IdMap::getInstance()->add($obj, 'Admin');
-
-        $this->UOW->registerNew($obj);
+        $this->idMap->add($obj, 'Admin');
+        $this->userTDG->insert($obj);
+        //$this->UOW->registerNew($obj);
+        //$this->UOW->commit(CustomerMapper::getInstance());
         return $obj;
-    }
-
-    /**
-     * @param Administrator $obj
-     */
-    public function save($obj)
-    {
-        if(is_null($obj->__get("UserID"))){
-            $this->_insert($obj);
-        } else {
-            $this->_update($obj);
-        }
     }
 
     /**
@@ -106,7 +122,8 @@ class AdminMapper extends MapperAbstract{
      */
     public function delete($obj)
     {
-        $this->_delete($obj);
+        $this->idMap->remove('Admin', $obj->__get('Email'));
+        //$this->UOW->registerDeleted($obj);
     }
 
     /**
@@ -141,18 +158,17 @@ class AdminMapper extends MapperAbstract{
         $obj->__set("PostalCode", $data['PostalCode']);
         $obj->__set("Country", $data['Country']);
         $obj->__set("LoginStatus", 0);
-        $obj->__set("Type", A);
+        $obj->__set("Type", 'A');
 
 
         return $obj;
     }
 
     /**
-     * Create a new users DomainObject
-     *
+     * @param mixed $type
      * @return Administrator
      */
-    public function _create(){
+    public function _create($type = null){
         return new Administrator();
     }
 
@@ -166,8 +182,6 @@ class AdminMapper extends MapperAbstract{
      */
     public function _insert($obj)
     {
-        //var_dump($obj->__get('firstName'));
-
         $this->userTDG->insert($obj);
     }
 
@@ -181,7 +195,7 @@ class AdminMapper extends MapperAbstract{
      */
     public function _update($obj)
     {
-        //$this->userTDG->update($obj);
+        $this->userTDG->update($obj);
     }
 
     /**
@@ -194,15 +208,16 @@ class AdminMapper extends MapperAbstract{
      */
     public function _delete($obj)
     {
-        //$this->userTDG->delete($obj->getID());
+        $this->userTDG->delete($obj->getID());
     }
 
-    /**
-     *
-     */
-    public function updateLoginSession(){
-        //$this->UOW->registerDirty($this);
-        //$this->UOW->commit();
+
+    public function updateLoginSession(Account $admin){
+        if($admin->__get('LoginStatus')){
+            $this->userTDG->loginAudit($admin);
+        }
+        else
+            $this->userTDG->logoutAudit($admin);
 
     }
 

@@ -18,42 +18,12 @@ abstract class MapperAbstract {
     abstract public function create(array $data = null);
 
     /**
-     * Save the DomainObject
      *
-     * Store the DomainObject in persistent storage. Either insert
-     * or update the store as required.
-     *
-     * @param DomainObject $obj
-     */
-    abstract public function save($obj);
-
-    /**
-     * Delete the DomainObject
-     *
-     * Delete the DomainObject from persistent storage.
-     *
-     * @param DomainObject $obj
-     */
-    abstract public function delete($obj);
-
-    /**
-     * Populate the DomainObject with the values
-     * from the data array.
-     *
-     * To be implemented by the concrete mapper class
-     *
-     * @param DomainObject $obj
-     * @param array $data
-     * @return DomainObject
-     */
-    abstract public function populate($obj, array $data);
-
-    /**
      * Create a new instance of a DomainObject
-     *
-     * @return DomainObject
+     * @param mixed
+     * @return mixed
      */
-    abstract public function _create();
+    abstract public function _create($type=null);
 
     /**
      * Insert the DomainObject to persistent storage
@@ -70,7 +40,7 @@ abstract class MapperAbstract {
     abstract public function _update($obj);
 
     /**
-     * Delete the DomainObject from peristent Storage
+     * Delete the DomainObject from persistent Storage
      *
      * @param DomainObject $obj
      */

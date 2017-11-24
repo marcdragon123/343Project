@@ -12,23 +12,17 @@ class UserTDG extends Model
     //maybe add here rest of attributes to make sqls easier to eliminate mistakes
     //and make it easier to change one to change all
 
-    public function get($id){
-        $this->query('SELECT * FROM account WHERE UserID = :id');//query goes here
-        $this->bind('id', $id);
-        return $this->single();;
-    }
-
     /**
      * fetch single users from DB by email
-     * @param $email
+     * @param $Email
      *
-     * @return array $userData
+     * @return array
      */
-    public function find($email) {
-        $this->query('SELECT * FROM account WHERE Email = :email');//query goes here
-        $this->bind('email', $email);
-        $userData = $this->single();
-        return $userData;
+    public function find($Email) {
+        $this->query('SELECT * FROM account WHERE Email = :Email');//query goes here
+        $this->bind(':Email', $Email);
+
+        return $this->single();
     }
 
     /**
@@ -63,7 +57,9 @@ class UserTDG extends Model
         $this->bind(':Country', $user->__get('Country'));
         $this->bind(':PostalCode', $user->__get('PostalCode'));
 
+        
         $this->execute();
+
         
         return $this->lastInsertId();
     }
@@ -74,8 +70,8 @@ class UserTDG extends Model
      */
     public function delete($id)
     {
-        $this->query('DELETE FROM Account WHERE UserID = :id');
-        $this->bind('id', $id);
+        $this->query('DELETE FROM account WHERE UserID = :id');
+        $this->bind(':id', $id);
         $this->execute();
 
         return;
@@ -88,7 +84,7 @@ class UserTDG extends Model
 
     public function update(Account $user)
     {
-        $this->query('UPDATE account SET FirstName = :FirstName, LastName = :LastName, Email = :Email, PhoneNumber = :Phone,
+        $this->query('UPDATE account SET FirstName = :FirstName, LastName = :LastName, Email = :Email, PhoneNumber = :PhoneNumber,
                             Password = :Password, StreetName = :StreetName, StreetNumber = :StreetNumber,
                             City = :City, Province = :Province, Country = :Country, PostalCode = :PostalCode) WHERE UserID = :UserID');
         $this->bind(':UserID', $user->getID());
@@ -107,6 +103,29 @@ class UserTDG extends Model
 
         return $this->lastInsertId();
     }
+
+        public function loginAudit(Account $user)
+    {
+        $this->query('INSERT INTO audit (AccountID, IsActive, Login) VALUES(:UserID, :IsActive, CURRENT_TIMESTAMP)');
+        $this->bind(':UserID', $user->__get('UserID'));
+        $this->bind(':IsActive', 1);
+        $this->execute();
+        
+        return $this->lastInsertId();
+    }
+
+    public function logoutAudit(Account $user)
+    {
+        $this->query('UPDATE audit SET AccountID = :UserID, IsActive = :IsActive, Logout = CURRENT_TIMESTAMP ) WHERE UserID = :UserID AND Logout == NULL ');
+        $this->bind(':UserID', $user->__get('UserID'));
+        $this->bind(':IsActive', 0);
+        $this->execute();
+        
+        return $this->lastInsertId();
+        
+    }
+
+
 
 
 
