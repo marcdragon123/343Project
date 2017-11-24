@@ -27,7 +27,22 @@
         $("input").attr("disabled", "disabled");
         $(".btn-primary").prop("value", "Add to cart").prop("disabled", false);
 
+        $("input[name='SerialNumber']").val("<?= @$viewmodel->__get('SerialNumber'); ?>");
         $("input[name='Brand']").val("<?= @$viewmodel->__get('Brand'); ?>");
+        $("input[name='Price']").val("<?= @$viewmodel->__get('Price'); ?>");
+        $("input[name='ModelNumber']").val("<?= @$viewmodel->__get('ModelNumber'); ?>");
+        $("input[name='Weight']").val("<?= @$viewmodel->__get('Weight'); ?>");
+        $("input[name='Battery']").val("<?= @$viewmodel->__get('Battery'); ?>");
+        $("input[name='DisplaySize']").val("<?= @$viewmodel->__get('DisplaySize'); ?>");
+        $("input[name='DisplayDimensions']").val("<?= @$viewmodel->__get('DisplayDimensions'); ?>");
+        $("input[name='CPUType']").val("<?= @$viewmodel->__get('Brand'); ?>");
+        $("input[name='RAMSize']").val("<?= @$viewmodel->__get('Brand'); ?>");
+        $("input[name='CoreNumber']").val("<?= @$viewmodel->__get('CoreNumber'); ?>");
+        $("input[name='HDDSize']").val("<?= @$viewmodel->__get('HDDSize'); ?>");
+        $("input[name='OS']").val("<?= @$viewmodel->__get('OS'); ?>");
+        $("input[name='CameraInformation']").val("<?= @$viewmodel->__get('CameraInformation'); ?>");
+        $("input[name='ToucheScreenToggle']").val("<?= @$viewmodel->__get('ToucheScreenToggle'); ?>");
+
 
 
 
