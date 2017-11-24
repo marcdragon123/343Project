@@ -1,38 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Add Product</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $('#product').on('change', function() {
-                if(this.value === "Tablet"){
-                    $("#Tablet").show();
-                } else {
-                    $("#Tablet").hide();
-                }
-                if(this.value === "Monitor"){
-                    $("#Monitor").show();
-                } else {
-                    $("#Monitor").hide();
-                }
-                if(this.value === "Laptop"){
-                    $("#Laptop").show();
-                } else {
-                    $("#Laptop").hide();
-                }
-                if(this.value === "Desktop"){
-                    $("#Desktop").show();
-                } else {
-                    $("#Desktop").hide();
-                }
-            });
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#product').on('change', function() {
+            if(this.value === "Tablet"){
+                $("#Tablet").show();
+            } else {
+                $("#Tablet").hide();
+            }
+            if(this.value === "Monitor"){
+                $("#Monitor").show();
+            } else {
+                $("#Monitor").hide();
+            }
+            if(this.value === "Laptop"){
+                $("#Laptop").show();
+            } else {
+                $("#Laptop").hide();
+            }
+            if(this.value === "Desktop"){
+                $("#Desktop").show();
+            } else {
+                $("#Desktop").hide();
+            }
         });
-    </script>
-</head>
-<body>
+
+
+    });
+</script>
 <div class="panel panel-default" id="page-wrapper">
     <div class="panel-heading">
         <h3>Add Product</h3>
@@ -60,55 +55,55 @@
                                     <input type="hidden" name="ProductType" value="Tablet">
 
                                     <td><label>Serial Number</label><br>
-                                    <input type="text" placeholder="e.g FQ2R84HEWXH8" name ="SerialNumber" required></td>
-                                    
+                                        <input type="text" placeholder="e.g FQ2R84HEWXH8" name ="SerialNumber" required></td>
+
                                     <td><label>Brand Name</label><br>
-                                    <input type="text" placeholder="e.g. Apple, Microsoft" name ="Brand" required></td>
+                                        <input type="text" placeholder="e.g. Apple, Microsoft" name ="Brand" required></td>
 
                                     <td><label>Price</label><br>
-                                    <input type="text" placeholder="e.g. $999, $1299" name ="Price" required></td>
+                                        <input type="text" placeholder="e.g. $999, $1299" name ="Price" required></td>
 
                                     <td><label>Battery Life</label><br>
-                                    <input type="text" placeholder="e.g. 6 hours, 8 hours" name="Battery" required></td>
+                                        <input type="text" placeholder="e.g. 6 hours, 8 hours" name="Battery" required></td>
 
                                 </tr>
                                 <tr>
 
                                     <td><label>Display Size (inches)</label><br>
-                                    <input type="text" placeholder="e.g. 7&quot;, 11&quot;" name ="DisplaySize" required><br></td>
-                                    
+                                        <input type="text" placeholder="e.g. 7&quot;, 11&quot;" name ="DisplaySize" required><br></td>
+
                                     <td><label>Dimensions (cm)</label><br>
-                                    <input type="text" placeholder="e.g. 22 x 28 x 1" name ="Dimensions" required><br></td>
-                                    
+                                        <input type="text" placeholder="e.g. 22 x 28 x 1" name ="Dimensions" required><br></td>
+
                                     <td><label>Weight (kg)</label><br>
-                                    <input type="text" placeholder="e.g. 0.8 kg, 1 kg" name ="Weight" required><br></td>
-                                    
+                                        <input type="text" placeholder="e.g. 0.8 kg, 1 kg" name ="Weight" required><br></td>
+
                                     <td><label>Model Number</label><br>
-                                    <input type="text" placeholder="e.g. MHJR5VC6" name ="ModelNumber" required><br></td>
-                                
+                                        <input type="text" placeholder="e.g. MHJR5VC6" name ="ModelNumber" required><br></td>
+
                                 </tr>
                                 <tr>
 
                                     <td><label>Processor Type</label><br>
-                                    <input type="text" placeholder="e.g. A8, A9X" name ="CPUType" required><br></td>
-                                    
+                                        <input type="text" placeholder="e.g. A8, A9X" name ="CPUType" required><br></td>
+
                                     <td><label>RAM Size</label><br>
-                                    <input type="text" placeholder="e.g. 2GB, 3GB" name ="RAMSize" required><br></td>
-                                    
+                                        <input type="text" placeholder="e.g. 2GB, 3GB" name ="RAMSize" required><br></td>
+
                                     <td><label>Number of CPU Cores</label><br>
-                                    <input type="text" placeholder="e.g. 2, 4" name ="CoreNumber" required><br></td>
+                                        <input type="text" placeholder="e.g. 2, 4" name ="CoreNumber" required><br></td>
 
                                 </tr>
                                 <tr>
 
-                                    <td><label>Hard Drive Size</label><br>    
-                                    <input type="text" placeholder="e.g. 64GB, 128GB" name="HDDSize" required><br></td>
-                                    
+                                    <td><label>Hard Drive Size</label><br>
+                                        <input type="text" placeholder="e.g. 64GB, 128GB" name="HDDSize" required><br></td>
+
                                     <td><label>Operating System</label><br>
-                                    <input type="text" placeholder="e.g. iOS 11" name="OS" required><br></td>
-                                    
+                                        <input type="text" placeholder="e.g. iOS 11" name="OS" required><br></td>
+
                                     <td><label>Camera Pixels</label><br>
-                                    <input type="text" placeholder="e.g. 10 megapixels" name="CameraInformation" required><br></td>
+                                        <input type="text" placeholder="e.g. 10 megapixels" name="CameraInformation" required><br></td>
 
                                 </tbody>
                             </table>
@@ -131,49 +126,49 @@
                                     <input type="hidden" name="ProductType" value="Laptop">
 
                                     <td><label>Serial Number</label><br>
-                                    <input type="text" placeholder="e.g. FQ2R84HEWXH8" name ="SerialNumber" required><br></td>
+                                        <input type="text" placeholder="e.g. FQ2R84HEWXH8" name ="SerialNumber" required><br></td>
 
                                     <td><label>Brand Name</label><br>
-                                    <input type="text" placeholder="e.g. Apple, Microsoft" name ="Brand" required><br></td>
+                                        <input type="text" placeholder="e.g. Apple, Microsoft" name ="Brand" required><br></td>
 
                                     <td><label>Price</label><br>
-                                    <input type="text" placeholder="e.g. $999, $1299" name ="Price" required><br></td>
+                                        <input type="text" placeholder="e.g. $999, $1299" name ="Price" required><br></td>
 
                                     <td><label>Display Size (inches)</label><br>
-                                    <input type="text" placeholder="e.g. 13&quot;, 15&quot;" name ="DisplaySize" required><br></td>
+                                        <input type="text" placeholder="e.g. 13&quot;, 15&quot;" name ="DisplaySize" required><br></td>
 
                                 </tr>
                                 <tr>
 
                                     <td><label>Dimensions (cm)</label><br>
-                                    <input type="text" placeholder="e.g. 17 x 25 x 1" name ="Dimensions" required><br></td>
+                                        <input type="text" placeholder="e.g. 17 x 25 x 1" name ="Dimensions" required><br></td>
 
                                     <td><label>Weight (kg)</label><br>
-                                    <input type="text" placeholder="Weight (kg)" name ="Weight" required><br></td>
+                                        <input type="text" placeholder="Weight (kg)" name ="Weight" required><br></td>
 
                                     <td><label>Processor Type</label><br>
-                                    <input type="text" placeholder="e.g. 2.6 GHz Intel Core i5" name ="CPUType" required><br></td>
+                                        <input type="text" placeholder="e.g. 2.6 GHz Intel Core i5" name ="CPUType" required><br></td>
 
                                     <td><label>RAM Size</label><br>
-                                    <input type="text" placeholder="e.g. 8GB, 16GB" name ="RAMSize" required><br></td>
+                                        <input type="text" placeholder="e.g. 8GB, 16GB" name ="RAMSize" required><br></td>
 
                                 </tr>
                                 <tr>
 
                                     <td><label>Number of CPU Cores</label><br>
-                                    <input type="text" placeholder="e.g. 4, 8" name ="CoreNumber" required><br></td>
+                                        <input type="text" placeholder="e.g. 4, 8" name ="CoreNumber" required><br></td>
 
                                     <td><label>Battery Life</label><br>
-                                    <input type="text" placeholder="e.g. 6 hours, 8 hours" name="Battery" required><br></td>
+                                        <input type="text" placeholder="e.g. 6 hours, 8 hours" name="Battery" required><br></td>
 
                                     <td><label>Operating System</label><br>
-                                    <input type="text" placeholder="e.g. Mac OS X, Windows 10" name="OS" required><br></td>
+                                        <input type="text" placeholder="e.g. Mac OS X, Windows 10" name="OS" required><br></td>
 
                                     <td><label>Hard Drive Size</label><br>
-                                    <input type="text" placeholder="e.g. 256 GB, 512 GB" name="HDDSize" required><br></td>
+                                        <input type="text" placeholder="e.g. 256 GB, 512 GB" name="HDDSize" required><br></td>
 
                                     <td><label>Camera Information</label><br>
-                                    <input type="text" placeholder="e.g. 4 MP, 6 MP" name="CameraInformation" required><br></td>
+                                        <input type="text" placeholder="e.g. 4 MP, 6 MP" name="CameraInformation" required><br></td>
 
                                 </tr>
 
@@ -206,16 +201,16 @@
                                 <tr>
 
                                     <td><label>Serial Number</label><br>
-                                    <input type="text" placeholder="e.g. FQ2R84HEWXH8" name ="SerialNumber" required><br></td>
+                                        <input type="text" placeholder="e.g. FQ2R84HEWXH8" name ="SerialNumber" required><br></td>
 
                                     <td><label>Brand Name</label><br>
-                                    <input type="text" placeholder="e.g. Apple, Microsoft" name ="Brand" required><br></td>
+                                        <input type="text" placeholder="e.g. Apple, Microsoft" name ="Brand" required><br></td>
 
                                     <td><label>Price</label><br>
-                                    <input type="text" placeholder="e.g. $999, $1299" name ="Price" required><br></td>
+                                        <input type="text" placeholder="e.g. $999, $1299" name ="Price" required><br></td>
 
                                     <td><label>Display Size (inches)</label><br>
-                                    <input type="text" placeholder="e.g. 13&quot;, 15&quot;" required><br></td>
+                                        <input type="text" placeholder="e.g. 13&quot;, 15&quot;" required><br></td>
 
                                     <input type="hidden" name="ProductType" value="Monitor">
 
@@ -223,10 +218,10 @@
                                 <tr>
 
                                     <td><label>Weight (kg)</label><br>
-                                    <input type="text" placeholder="e.g. 0.8 kg, 1 kg" name ="Weight" required><br></td>
-                                    
+                                        <input type="text" placeholder="e.g. 0.8 kg, 1 kg" name ="Weight" required><br></td>
+
                                     <td><label>Model Number</label><br>
-                                    <input type="text" placeholder="e.g. MHJR5VC6" name ="ModelNumber" required><br></td>
+                                        <input type="text" placeholder="e.g. MHJR5VC6" name ="ModelNumber" required><br></td>
 
                                 </tr>
                                 <br>
@@ -253,40 +248,40 @@
                                     <input type="hidden" name="ProductType" value="Desktop">
 
                                     <td><label>Serial Number</label><br>
-                                    <input type="text" placeholder="e.g. FQ2R84HEWXH8" name ="SerialNumber" required><br></td>
+                                        <input type="text" placeholder="e.g. FQ2R84HEWXH8" name ="SerialNumber" required><br></td>
 
                                     <td><label>Brand Name</label><br>
-                                    <input type="text" placeholder="e.g. Apple, Microsoft" name ="Brand" required><br></td>
+                                        <input type="text" placeholder="e.g. Apple, Microsoft" name ="Brand" required><br></td>
 
                                     <td><label>Price</label><br>
-                                    <input type="text" placeholder="e.g. $999, $1299" name ="Price" required><br></td>
+                                        <input type="text" placeholder="e.g. $999, $1299" name ="Price" required><br></td>
 
                                     <td><label>Processor Type</label><br>
-                                    <input type="text" placeholder="e.g. 2.6 GHz Intel Core i5" name ="CPUType" required><br></td>
+                                        <input type="text" placeholder="e.g. 2.6 GHz Intel Core i5" name ="CPUType" required><br></td>
 
                                 </tr>
                                 <tr>
 
                                     <td><label>Dimensions (cm)</label><br>
-                                    <input type="text" placeholder="e.g. 17 x 25 x 1" name ="Dimensions" required><br></td>
+                                        <input type="text" placeholder="e.g. 17 x 25 x 1" name ="Dimensions" required><br></td>
 
                                     <td><label>Weight (kg)</label><br>
-                                    <input type="text" placeholder="Weight (kg)" name ="Weight" required><br></td>
+                                        <input type="text" placeholder="Weight (kg)" name ="Weight" required><br></td>
 
                                     <td><label>Hard Drive Size</label><br>
-                                    <input type="text" placeholder="e.g. 256 GB, 512 GB" name="HDDSize" required><br></td>
+                                        <input type="text" placeholder="e.g. 256 GB, 512 GB" name="HDDSize" required><br></td>
 
                                 </tr>
                                 <tr>
 
                                     <td><label>Model Number</label><br>
-                                    <input type="text" placeholder="e.g. MHJR5VC6" name ="ModelNumber" required><br></td>
+                                        <input type="text" placeholder="e.g. MHJR5VC6" name ="ModelNumber" required><br></td>
 
                                     <td><label>Number of CPU Cores</label><br>
-                                    <input type="text" placeholder="e.g. 4, 8" name ="CoreNumber" required><br></td>
+                                        <input type="text" placeholder="e.g. 4, 8" name ="CoreNumber" required><br></td>
 
                                     <td><label>RAM Size</label><br>
-                                    <input type="text" placeholder="e.g. 8GB, 16GB" name ="RAMSize" required><br></td>    
+                                        <input type="text" placeholder="e.g. 8GB, 16GB" name ="RAMSize" required><br></td>
 
                                 </tr>
                                 </tbody>
@@ -301,4 +296,6 @@
         </div>
     </div>
 </div>
+
+
 </body>

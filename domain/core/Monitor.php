@@ -8,7 +8,7 @@
 
 class Monitor extends Product {
 
-    protected $DisplaySize;
+    protected $DisplayDimensions;
 
     public function __construct()
     {

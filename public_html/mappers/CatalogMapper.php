@@ -100,6 +100,32 @@ class CatalogMapper extends MapperAbstract {
     }
 
     /**
+     * @param Product $obj
+     * @return boolean
+     */
+    public function modifyProduct(Product $obj){
+        try{
+            ProductCatalog::getInstance()->modifyProduct($obj);
+
+        }catch (Exception $exception){
+                Messages::setMsg($exception->getMessage(), 'error');
+        }
+        try{
+            $this->_update($obj);
+            //UnitOfWork::getInstance()->registerNew($obj);
+            //UnitOfWork::getInstance()->commit(CatalogMapper::getInstance());
+            //return true;
+        }catch (Exception $exception){
+                Messages::setMsg($exception->getMessage(), 'error');
+        }
+    }
+
+    public function setTimer(Product $obj){
+        $obj->__set("status", time()+LOCKED_TIME);
+        CatalogMapper::getInstance()->modifyProduct($obj);
+    }
+
+    /**
      * @param $type
      * @return ArrayObject
      */
@@ -113,9 +139,42 @@ class CatalogMapper extends MapperAbstract {
      * returns array of product objects
      * @return Product
      */
+
     public function getAllProducts(){
         $products = ProductCatalog::getInstance()->viewAllProducts();
         return ($products);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAllProductsAvailable(){
+        $products = ProductCatalog::getInstance()->viewAllProducts();
+
+        return $this->availableList($products);
+    }
+
+
+    /**
+     * @param $products
+     * @return array
+     */
+    public function availableList($products){
+        $array = array();
+
+        foreach($products as $key => $value) {
+            foreach ($products[$key] as $item => $product) {
+                if($product->__get('status') <= time()) {
+                    array_push($array, $products[$key]);
+                }
+            }
+        }
+
+        return $array;
+    }
+
+    public function isAvailable(Product $product){
+        return ($product->__get('status') <= time());
     }
 
     /**
@@ -173,7 +232,6 @@ class CatalogMapper extends MapperAbstract {
         $obj->__set("CameraInformation", $data['CameraInformation']);
 
         return $obj;
-
     }
 
     /**
@@ -212,7 +270,7 @@ class CatalogMapper extends MapperAbstract {
         $obj->__set("Price", $data['Price']);
         $obj->__set("Weight", $data['Weight']);
         $obj->__set("ModelNumber", $data['ModelNumber']);
-        $obj->__set("DisplaySize", $data['DisplaySize']);
+        $obj->__set("DisplayDimensions", $data['DisplayDimensions']);
 
         return $obj;
     }

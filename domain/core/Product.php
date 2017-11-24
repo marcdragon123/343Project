@@ -8,6 +8,7 @@
 
 class Product extends DomainObject
 {
+    protected $status;
     protected $ID;
     protected $Weight;
     protected $Brand;

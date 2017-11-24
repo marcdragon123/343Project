@@ -6,7 +6,7 @@ class ProductCatalog
 
     protected $productContainer = array();
     protected $productsInUse = array();
-    private $containerFile;
+    public $containerFile;
     public $myMapper;
 
     private static $instance;
@@ -26,6 +26,8 @@ class ProductCatalog
     {
         $this->myMapper = CatalogMapper::getInstance();
         $this->containerFile = new File('productContainer.txt');
+
+        $this->productContainer = $this->getProductContainer();
     }
 
     /**
@@ -34,7 +36,7 @@ class ProductCatalog
      */
     public function addProduct(Product $product)
     {
-        $this->productContainer = $this->getProductContainer();
+
 
         if (isset($this->productContainer[$product->__get('ProductType')][$product->__get('SerialNumber')])) {
             throw new Exception("Product Serial Number Already Exists");
@@ -47,9 +49,9 @@ class ProductCatalog
      * @param Product $product
      * @throws Exception
      */
-    public function editProduct(Product $product)
+    public function modifyProduct(Product $product)
     {
-        $this->productContainer = $this->getProductContainer();
+
         if (!isset($this->productContainer[$product->__get('ProductType')][$product->__get('SerialNumber')])) {
             throw new Exception("Product is not in the Product Catalog");
         }
@@ -64,7 +66,7 @@ class ProductCatalog
      */
     public function deleteProduct(Product $product)
     {
-        $this->productContainer = $this->getProductContainer();
+
         if (!isset($this->productContainer[$product->__get('ProductType')][$product->__get('SerialNumber')])) {
             throw new Exception("Product is not in the Product Catalog");
         }
@@ -77,7 +79,7 @@ class ProductCatalog
      */
     public function viewByType($productType)
     {
-        $this->productContainer = $this->getProductContainer();
+
         return $this->productContainer[$productType];
 
     }
@@ -87,9 +89,7 @@ class ProductCatalog
      */
     public function viewAllProducts()
     {
-        $this->productContainer = $this->getProductContainer();
         return $this->productContainer;
-
     }
 
     /**
@@ -99,7 +99,7 @@ class ProductCatalog
      * @throws Exception
      */
     public function getProduct($productType, $serialNumber){
-        $this->productContainer = $this->getProductContainer();
+
         if (!isset($this->productContainer[$productType][$serialNumber])) {
             throw new Exception("Product is not in the Product Catalog");
         }

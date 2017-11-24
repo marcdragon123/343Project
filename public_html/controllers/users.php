@@ -54,7 +54,7 @@ class users extends Controller {
     }
 
     public function viewProductCatalog(){
-        $viewmodel = CatalogMapper::getInstance()->getAllProducts();
+        $viewmodel = CatalogMapper::getInstance()->getAllProductsAvailable();
         $this->returnView($viewmodel, true);
     }
 
@@ -70,7 +70,14 @@ class users extends Controller {
 
     public function viewSpecs(){
         $viewmodel = CatalogMapper::getInstance()->getProductSpecification($_GET['ProductType'],$_GET['SerialNumber'] );
-        $this->returnView($viewmodel, true);
+
+        if(CatalogMapper::getInstance()->isAvailable($viewmodel)){
+            $this->returnView($viewmodel, true);
+        }
+        else{
+            Messages::setMsg("This can't be accessed because someone's already viewing this file.", '');
+            header("Location: ".ROOT_URL."users/viewProductCatalog");
+        }
     }
 
     public function browseCatalog(){
@@ -79,6 +86,24 @@ class users extends Controller {
         $this->returnView($viewmodel,true);
     }
 
+    public function pingProduct(){
+        $get = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
+
+
+        if($get && isset($get["ProductType"]) && isset($get["SerialNumber"])){
+            $product = CatalogMapper::getInstance()->getProductSpecification($get["ProductType"], $get["SerialNumber"]);
+            if(isset($get["update"]) && $_SESSION['user_data']['Type']==="A"){
+                CatalogMapper::getInstance()->setTimer($product);
+            }
+            else{
+                if(!CatalogMapper::getInstance()->isAvailable($product)){
+                    Messages::setMsg("An admin took over this page, try to access it again in few minutes.", '');
+                    echo "tookover";
+                }
+            }
+        }
+
+    }
 
 
 }
