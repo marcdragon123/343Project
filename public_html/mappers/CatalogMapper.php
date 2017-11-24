@@ -67,8 +67,9 @@ class CatalogMapper extends MapperAbstract {
         try{
             ProductCatalog::getInstance()->addProduct($obj);
             try{
-                UnitOfWork::getInstance()->registerNew($obj);
-                UnitOfWork::getInstance()->commit(CatalogMapper::getInstance());
+                $this->_insert($obj);
+                //UnitOfWork::getInstance()->registerNew($obj);
+                //UnitOfWork::getInstance()->commit(CatalogMapper::getInstance());
                 return null;
             }catch (Exception $exception){
                 Messages::setMsg($exception->getMessage(), 'error');
@@ -95,37 +96,35 @@ class CatalogMapper extends MapperAbstract {
         catch (Exception $exception){
             Messages::setMsg($exception->getMessage(), 'error');
         }
+
     }
-
-
-    public function findProduct($obj){
-        try{
-            ProductCatalog::getInstance()->findProduct($obj);
-        }
-        catch (Exception $e){
-            Messages::setMsg($e->getMessage(), 'error');
-        }
-    }
-
 
     /**
      * @param $type
      * @return ArrayObject
      */
-
     public function viewProductsByType($type){
         $products = ProductCatalog::getInstance()->viewByType($type);
 
-        return new ArrayObject($products);
+        return ($products);
     }
 
+    /**
+     * returns array of product objects
+     * @return Product
+     */
     public function getAllProducts(){
         $products = ProductCatalog::getInstance()->viewAllProducts();
         return ($products);
     }
 
-    public function getProductSpecification($type, $serianNum){
-        $product = ProductCatalog::getInstance()->getProduct($type,$serianNum);
+    /**
+     * @param $type
+     * @param $serialNum
+     * @return Product
+     */
+    public function getProductSpecification($type, $serialNum){
+        $product = ProductCatalog::getInstance()->getProduct($type,$serialNum);
         return $product;
     }
 
@@ -143,7 +142,7 @@ class CatalogMapper extends MapperAbstract {
         $obj->__set("CPUType", $data['CPUType']);
         $obj->__set("Dimensions", $data['Dimensions']);
         $obj->__set("Weight", $data['Weight']);
-        $obj->__set("Model", $data['Model']);
+        $obj->__set("ModelNumber", $data['ModelNumber']);
         $obj->__set("HDDSize", $data['HDDSize']);
         $obj->__set("CoreNumber", $data['CoreNumber']);
         $obj->__set("RAMSize", $data['RAMSize']);
@@ -164,7 +163,7 @@ class CatalogMapper extends MapperAbstract {
         $obj->__set("CPUType", $data['CPUType']);
         $obj->__set("DisplayDimensions", $data['DisplayDimensions']);
         $obj->__set("Weight", $data['Weight']);
-        $obj->__set("Model", $data['Model']);
+        $obj->__set("ModelNumber", $data['ModelNumber']);
         $obj->__set("HDDSize", $data['HDDSize']);
         $obj->__set("CoreNumber", $data['CoreNumber']);
         $obj->__set("RAMSize", $data['RAMSize']);
@@ -189,7 +188,7 @@ class CatalogMapper extends MapperAbstract {
         $obj->__set("CPUType", $data['CPUType']);
         $obj->__set("DisplayDimensions", $data['DisplayDimensions']);
         $obj->__set("Weight", $data['Weight']);
-        $obj->__set("Model", $data['Model']);
+        $obj->__set("ModelNumber", $data['ModelNumber']);
         $obj->__set("HDDSize", $data['HDDSize']);
         $obj->__set("CoreNumber", $data['CoreNumber']);
         $obj->__set("RAMSize", $data['RAMSize']);
@@ -212,7 +211,7 @@ class CatalogMapper extends MapperAbstract {
         $obj->__set("Brand", $data['Brand']);
         $obj->__set("Price", $data['Price']);
         $obj->__set("Weight", $data['Weight']);
-        $obj->__set("Model", $data['Model']);
+        $obj->__set("ModelNumber", $data['ModelNumber']);
         $obj->__set("DisplaySize", $data['DisplaySize']);
 
         return $obj;
@@ -221,7 +220,7 @@ class CatalogMapper extends MapperAbstract {
     /**
      * Create a new instance of a DomainObject
      * @param $type
-     * @return DomainObject
+     * @return Product
      */
     public function _create($type = null) {
         switch($type)
@@ -244,23 +243,23 @@ class CatalogMapper extends MapperAbstract {
     /**
      * Insert the DomainObject to persistent storage
      *
-     * @param DomainObject $obj
+     * @param Product $obj
      */
     public function _insert($obj)
     {
 
         switch ($obj->__get('ProductType')){
             case "Tablet":
-                $this->tabletTDG->addTablet($obj);
+                $this->tabletTDG->insert($obj);
                 break;
             case "Laptop":
-                $this->laptopTDG->addLaptop($obj);
+                $this->laptopTDG->insert($obj);
                 break;
             case "Monitor":
-                $this->monitorTDG->addMonitor($obj);
+                $this->monitorTDG->insert($obj);
                 break;
             case "Desktop":
-                $this->desktopcomputerTDG->addDesktop($obj);
+                $this->desktopcomputerTDG->insert($obj);
                 break;
         }
     
@@ -269,45 +268,47 @@ class CatalogMapper extends MapperAbstract {
     /**
      * Update the DomainObject in persistent storage
      *
-     * @param DomainObject $obj
+     * @param Product $obj
      */
     public function _update($obj)
     {
+
         switch ($obj->__get('ProductType')){
             case "Tablet":
-                $this->tabletTDG->updateTablet($obj);
+                $this->tabletTDG->update($obj);
                 break;
             case "Laptop":
-                $this->laptopTDG->updateLaptop($obj);
+                $this->laptopTDG->update($obj);
                 break;
             case "Monitor":
-                $this->monitorTDG->updateMonitor($obj);
+                $this->monitorTDG->update($obj);
                 break;
             case "Desktop":
-                $this->desktopcomputerTDG->updateDesktop($obj);
+                $this->desktopcomputerTDG->update($obj);
                 break;
         }
+
     }
 
     /**
      * Delete the DomainObject from peristent Storage
      *
-     * @param DomainObject $obj
+     * @param Product $obj
      */
     public function _delete($obj)
     {
         switch ($obj->__get('ProductType')){
             case "Tablet":
-                $this->tabletTDG->deleteTablet($obj);
+                $this->tabletTDG->update($obj);
                 break;
             case "Laptop":
-                $this->laptopTDG->deleteLaptop($obj);
+                $this->laptopTDG->update($obj);
                 break;
             case "Monitor":
-                $this->monitorTDG->deleteMonitor($obj);
+                $this->monitorTDG->update($obj);
                 break;
             case "Desktop":
-                $this->desktopcomputerTDG->deleteDeskop($obj);
+                $this->desktopcomputerTDG->update($obj);
                 break;
         }
     }

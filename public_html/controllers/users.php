@@ -35,7 +35,7 @@ class users extends Controller {
         $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
         if($post['submit']){
             if(CustomerMapper::getInstance()->login($post)){
-                header('Location: ' . ROOT_URL . 'catalog');
+                header('Location: ' . ROOT_URL . 'users/viewProductCatalog');
             }
         }
         $this->returnView(null, true);
@@ -50,6 +50,7 @@ class users extends Controller {
         session_destroy();
         // Redirect
         header('Location: '.ROOT_URL);
+
     }
 
     public function viewProductCatalog(){
@@ -68,14 +69,16 @@ class users extends Controller {
     }
 
     public function viewSpecs(){
-        $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-        $viewmodel = CatalogMapper::getInstance()->getProductSpecification($post['ProductType'],$post['SerialNumber'] );
+        $viewmodel = CatalogMapper::getInstance()->getProductSpecification($_GET['ProductType'],$_GET['SerialNumber'] );
         $this->returnView($viewmodel, true);
     }
 
     public function browseCatalog(){
-        $products = CatalogMapper::getInstance()->getAllProducts();
-        $this->setVars(compact('products'));
-        $this->returnView(null, true);
+        $viewmodel = CatalogMapper::getInstance();
+
+        $this->returnView($viewmodel,true);
     }
+
+
+
 }

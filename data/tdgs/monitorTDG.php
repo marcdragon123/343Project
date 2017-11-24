@@ -26,13 +26,13 @@ class monitorTDG extends Model
      */
     public function findAll()
     {
-        $this->query('SELECT * FROM monitor ORDER BY SerialNumber');
+        $this->query('SELECT * FROM monitor ORDER BY ID');
         $monitors = $this->resultSet();
         return $monitors;
     }
 
     /**
-     * @param Monitor object
+     * @param Product object
      * @return string
      */
     public function insert($monitor)
@@ -40,7 +40,7 @@ class monitorTDG extends Model
         $this->query('INSERT INTO monitor (ModelNumber, DisplayDimensions, Brand, Price, Weight, SerialNumber) 
                              VALUES(:ModelNumber, :DisplayDimensions, :Brand, :Price, :Weight , :SerialNumber)');
         $this->bind(':ModelNumber', $monitor->__get('ModelNumber'));
-        $this->bind(':DisplayDimensions', $monitor->__get('DisplayDimensions'));
+        $this->bind(':DisplayDimensions', $monitor->__get('DisplaySize'));
         $this->bind(':Brand', $monitor->__get('Brand'));
         $this->bind(':Price', $monitor->__get('Price'));
         $this->bind(':Weight', $monitor->__get('Weight'));
@@ -50,7 +50,7 @@ class monitorTDG extends Model
         $this->execute();
 
         
-        //return $this->lastInsertId();
+        return $this->lastInsertId();
     }
 
     /**
@@ -67,11 +67,11 @@ class monitorTDG extends Model
     }
 
     /**
-     * @param Monitor $monitor
+     * @param Product $monitor
      * @return string id
      */
 
-    public function update(Monitor $monitor)
+    public function update($monitor)
     {
         $this->query('UPDATE monitor SET ModelNumber = :ModelNumber, DisplayDimensions = :DisplayDimensions, Brand = :Brand, Price = :Price,
                             Weight = :Weight, SerialNumber = :SerialNumber) WHERE SerialNumber = :SerialNumber');
@@ -84,7 +84,7 @@ class monitorTDG extends Model
         
         $this->execute();
 
-        //return $this->lastInsertId();
+        return $this->lastInsertId();
     }
 
 

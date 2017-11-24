@@ -25,13 +25,13 @@ class laptopTDG extends Model
      */
     public function findAll()
     {
-        $this->query('SELECT * FROM laptop ORDER BY SerialNumber');
+        $this->query('SELECT * FROM laptop ORDER BY ID');
         $laptops = $this->resultSet();
         return $laptops;
     }
 
     /**
-     * @param Laptop object
+     * @param Product object
      * @return string
      */
     public function insert($laptop)
@@ -57,11 +57,11 @@ class laptopTDG extends Model
         $this->execute();
 
         
-        //return $this->lastInsertId();
+        return $this->lastInsertId();
     }
 
     /**
-     * deletes laptop from DB
+     * deletes Product from DB
      * @param $serialNumber
      */
     public function delete($serialNumber)
@@ -74,11 +74,11 @@ class laptopTDG extends Model
     }
 
     /**
-     * @param Laptop $laptop
+     * @param Product $laptop
      * @return string id
      */
 
-    public function update(Laptop $laptop)
+    public function update($laptop)
     {
         $this->query('UPDATE laptop SET ModelNumber = :ModelNumber, DisplayDimensions = :DisplayDimensions, Brand = :Brand, Price = :Price,
                             Weight = :Weight, SerialNumber = :SerialNumber) WHERE SerialNumber = :SerialNumber');
@@ -99,7 +99,7 @@ class laptopTDG extends Model
         
         $this->execute();
 
-        //return $this->lastInsertId();
+        return $this->lastInsertId();
     }
 
 

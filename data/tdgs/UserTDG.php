@@ -60,8 +60,8 @@ class UserTDG extends Model
         
         $this->execute();
 
-
-        //return $this->lastInsertId();
+        
+        return $this->lastInsertId();
     }
 
     /**
@@ -101,7 +101,7 @@ class UserTDG extends Model
         $this->bind(':Password', $user->__get('Password'));
         $this->execute();
 
-        //return $this->lastInsertId();
+        return $this->lastInsertId();
     }
 
         public function loginAudit(Account $user)
@@ -110,8 +110,8 @@ class UserTDG extends Model
         $this->bind(':UserID', $user->__get('UserID'));
         $this->bind(':IsActive', 1);
         $this->execute();
-
-        //return $this->lastInsertId();
+        
+        return $this->lastInsertId();
     }
 
     public function logoutAudit(Account $user)
@@ -120,9 +120,9 @@ class UserTDG extends Model
         $this->bind(':UserID', $user->__get('UserID'));
         $this->bind(':IsActive', 0);
         $this->execute();
-
-        //return $this->lastInsertId();
-
+        
+        return $this->lastInsertId();
+        
     }
 
 

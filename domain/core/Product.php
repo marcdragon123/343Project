@@ -8,9 +8,10 @@
 
 class Product extends DomainObject
 {
+    protected $ID;
     protected $Weight;
     protected $Brand;
-    protected $Model;
+    protected $ModelNumber;
     protected $Price;
     protected $SerialNumber;
     protected $ProductType;
@@ -35,5 +36,19 @@ class Product extends DomainObject
      */
     public function __get($name) {
         return $this->$name;
+    }
+
+
+    function getID()
+    {
+        return $this->ID;
+    }
+
+    /**
+     * @param int $id
+     */
+    function setID($id)
+    {
+        $this->ID = $id;
     }
 }

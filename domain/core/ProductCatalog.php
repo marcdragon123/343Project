@@ -92,19 +92,20 @@ class ProductCatalog
 
     }
 
-    public function findProduct(Product $product){
+    /**
+     * @param $productType
+     * @param $serialNumber
+     * @return Product
+     * @throws Exception
+     */
+    public function getProduct($productType, $serialNumber){
         $this->productContainer = $this->getProductContainer();
-
-        if(isset($this->productContainer[$product->getID('ProductType')][$product->getID('SerialNumber')])){
-
-            $obj = $this->productContainer[$product->getID('ProductType')][$product->getID('SerialNumber')];
-
-            return $obj;
+        if (!isset($this->productContainer[$productType][$serialNumber])) {
+            throw new Exception("Product is not in the Product Catalog");
         }
 
-        return null;
+        return $this->productContainer[$productType][$serialNumber];
     }
-
 
     /**
      * @return mixed

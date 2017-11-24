@@ -48,7 +48,7 @@ class desktopcomputerTDG extends Model
 
         $this->execute();
         
-        //return $this->lastInsertId();
+        return $this->lastInsertId();
     }
 
     /**
@@ -75,7 +75,8 @@ class desktopcomputerTDG extends Model
         $this->query('UPDATE desktopcomputer SET ModelNumber = :ModelNumber, DisplaySize = :DisplaySize, DisplayDimensions = :DisplayDimensions, Brand = :Brand,
                             Price = :Price, CPUType = :CPUType, CoreNumber = :CoreNumber,
                             RAMSize = :RAMSize, Weight = :Weight, HDDSize = :HDDSize, Battery = :Battery, OS = :OS,
-                            CameraInformation = :CameraInformation, SerialNumber = :SerialNumber) WHERE SerialNumber =:SerialNumber');
+                            CameraInformation = :CameraInformation, SerialNumber = :SerialNumber) WHERE ID = :ID');
+        $this->bind(':ID', $desktopcomputer->getID());
         $this->bind(':ModelNumber', $desktopcomputer->__get('ModelNumber'));
         $this->bind(':Dimensions', $desktopcomputer->__get('Dimensions'));
         $this->bind(':Brand', $desktopcomputer->__get('Brand'));
@@ -89,7 +90,7 @@ class desktopcomputerTDG extends Model
 
         $this->execute();
 
-       // return $this->lastInsertId();
+        return $this->lastInsertId();
     }
     
 }

@@ -43,7 +43,7 @@ class admin extends Controller {
     public function logout(){
         $email = $_SESSION['user_data']['Email'];
         $ID = $_SESSION['user_data']['UserID'];
-        AdminMapper::getInstance()->logout($email);
+        //AdminMapper::getInstance()->logout($email);
         unset($_SESSION['is_logged_in']);
         unset($_SESSION['user_data']);
         session_destroy();
@@ -87,7 +87,7 @@ class admin extends Controller {
 
         $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
         if(!empty($post)){
-            var_dump($_POST);
+            //var_dump($_POST);
             if(CatalogMapper::getInstance()->create($post)){
                 header('Location: '.ROOT_URL. 'admin');
             }

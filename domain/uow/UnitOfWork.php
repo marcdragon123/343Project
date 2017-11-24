@@ -128,8 +128,8 @@ class UnitOfWork
         $this->newObjects = $tempContainer[0];
 
         if(!is_null($this->newObjects)){
+            var_dump($this->newObjects);
             foreach($this->newObjects as $newObject => $value) {
-                echo"its in";
                 $map->_insert($value);
             }
             $this->newFile->purge();

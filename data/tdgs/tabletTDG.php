@@ -27,7 +27,7 @@ class tabletTDG extends Model
      */
     public function findAll()
     {
-        $this->query('SELECT * FROM tablet ORDER BY SerialNumber');
+        $this->query('SELECT * FROM tablet ORDER BY ID');
         $tablets = $this->resultSet();
         return $tablets;
     }
@@ -56,8 +56,8 @@ class tabletTDG extends Model
         $this->bind(':SerialNumber', $tablet->__get('SerialNumber'));
 
         $this->execute();
-
-        //return $this->lastInsertId();
+        
+        return $this->lastInsertId();
     }
 
     /**
@@ -77,7 +77,7 @@ class tabletTDG extends Model
      * @return string
      */
 
-    public function update(Product $tablet)
+    public function update($tablet)
     {
         $this->query('UPDATE tablet SET ModelNumber = :ModelNumber, DisplaySize = :DisplaySize, DisplayDimensions = :DisplayDimensions, Brand = :Brand,
                             Price = :Price, CPUType = :CPUType, CoreNumber = :CoreNumber,
@@ -100,7 +100,7 @@ class tabletTDG extends Model
 
         $this->execute();
 
-        //return $this->lastInsertId();
+        return $this->lastInsertId();
     }
 
 }

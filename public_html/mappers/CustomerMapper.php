@@ -35,7 +35,7 @@ class CustomerMapper extends MapperAbstract{
      * @return bool
      */
     public function login(array $post) {
-
+/*
         $userObj = $this->idMap->get('Customer',$post['Email']);
 
         if(!is_null($userObj)) {
@@ -60,6 +60,7 @@ class CustomerMapper extends MapperAbstract{
             }
             Messages::setMsg($userObj->__get('FirstName').", login from admin page please", 'error');
         }
+*/
         //if email is not in idmap, check db
         $userObj = $this->userTDG->find($post['Email']);
         if(!is_null($userObj)){
@@ -77,7 +78,7 @@ class CustomerMapper extends MapperAbstract{
                     $usr = $this->populate($usr, $userObj);
                     $usr->__set('LoginStatus', true);
                     $this->updateLoginSession($usr);
-                    $this->idMap->add($usr, 'Customer');
+                    //$this->idMap->add($usr, 'Customer');
                     return true;
                 }
                 Messages::setMsg('Admin login from admin page', 'error');
@@ -109,8 +110,8 @@ class CustomerMapper extends MapperAbstract{
             $obj = $this->populate($obj, $data);
         }
         $this->idMap->add($obj, 'Customer');
-        $this->UOW->registerNew($obj);
-        $this->UOW->commit(CustomerMapper::getInstance());
+        //$this->UOW->registerNew($obj);
+        //$this->UOW->commit(CustomerMapper::getInstance());
         return $obj;
     }
 
@@ -120,7 +121,7 @@ class CustomerMapper extends MapperAbstract{
     public function delete($obj)
     {
         $this->idMap->remove('Customer', $obj->__get('Email'));
-        $this->UOW->registerDeleted($obj);
+        //$this->UOW->registerDeleted($obj);
     }
 
     /**

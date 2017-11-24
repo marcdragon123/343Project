@@ -66,10 +66,10 @@ abstract class FileCaching
         // TODO: Implement read() method.
         $unserializedObj = array();
         $this->acquireReaderLock();
-        if($this->isEmpty()){
-            return null;
-        }
         if($this->locked) {
+            if($this->isEmpty()){
+                return null;
+            }
             $val = fread($this->file, filesize($fileName));
             $this->releaseLock();
             $contents = explode(PHP_EOL, $val);
@@ -81,7 +81,6 @@ abstract class FileCaching
         else{
             throw new Exception("Could Not Lock");
         }
-        //var_dump($unserializedObj[0]);
         return $unserializedObj;
     }
 
@@ -115,5 +114,8 @@ abstract class FileCaching
         $this->fileName = $fileName;
     }
 
+    public function emptyFile($filename){
+        return (filesize($this->fileName)==0);
+    }
 
 }
