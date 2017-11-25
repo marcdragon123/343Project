@@ -1,52 +1,61 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Shayan
- * Date: 2017-11-21
- * Time: 3:08 PM
- */
-
-require "DomainObject.php";
 
 class ShoppingCart extends DomainObject
 {
+    protected $id;
     protected $customerEmail;
     protected $product;
-    protected $productsContainer;
+    protected $shoppingCart;
     protected $numOfProducts;
     protected $cartTotal;
 
-    public function createCart($email)
+    public function __construct()
     {
-        $this->customerEmail = $email;
-        $this->productsContainer = array();
+        $this->shoppingCart = array();
         $this->numOfProducts = 0;
         $this->cartTotal = 0;
     }
 
     /**
-     * @param Product $product
+     * @param $product
+     * @throws Exception
      */
     public function addToCart($product)
     {
-        if (count($this->productsContainer) <= 7)
+        if ((count($this->shoppingCart) >= 7))
         {
-            array_push($this->productsContainer,$product);
-            $this->numOfProducts++;
+            throw new Exception('Maximum number of products you may add at once is 7');
         }
+        array_push($this->shoppingCart,$product);
+        $this->numOfProducts++;
     }
 
     /**
-     * @param Product $product
+     * @param $product
+     * @throws Exception
      */
     public function removeFromCart($product)
     {
-        if (count($this->productsContainer) > 0)
+        if ((count($this->shoppingCart) == 0))
         {
-
-            $this->numOfProducts--;
-
+            throw new Exception('Your cart is empty');
         }
+        if(!isset($this->shoppingCart[$product])){
+            throw new Exception('Your cart is empty');
+        }
+        unset($this->shoppingCart[$product]);
+        $this->numOfProducts++;
+    }
+
+    /**
+     * @return array
+     * @throws Exception
+     */
+    public function getCartProducts(){
+        if(($this->numOfProducts===0)){
+            throw new Exception('Cart is Empty');
+        }
+        return $this->shoppingCart;
     }
 
     /**
@@ -55,7 +64,7 @@ class ShoppingCart extends DomainObject
     public function calculateTotal()
     {
         $this->cartTotal = 0;
-        foreach($this->productsContainer as $value)
+        foreach($this->shoppingCart as $value)
         {
             $this->cartTotal += $value->price;
         }

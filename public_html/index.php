@@ -25,6 +25,9 @@ require('../domain/core/Desktop.php');
 require('../domain/core/Monitor.php');
 require('../domain/core/Laptop.php');
 require('../domain/core/Tablet.php');
+require('../domain/core/ShoppingCart.php');
+require('../domain/core/Transaction.php');
+require('../domain/core/TransactionsCatalog.php');
 
 
 require('controllers/Admin.php');
@@ -35,6 +38,7 @@ require('mappers/MapperAbstract.php');
 require('mappers/CustomerMapper.php');
 require('mappers/AdminMapper.php');
 require('mappers/CatalogMapper.php');
+require('mappers/TransactionsMapper.php');
 
 
 require('../domain/idmap/idMap.php');
@@ -48,6 +52,7 @@ require('../data/tdgs/monitorTDG.php');
 require('../data/tdgs/laptopTDG.php');
 require('../data/tdgs/tabletTDG.php');
 require('../data/tdgs/desktopcomputerTDG.php');
+require('../data/tdgs/transactionTDG.php');
 
 require('../domain/activeCache/FileCaching.php');
 require('../domain/activeCache/File.php');

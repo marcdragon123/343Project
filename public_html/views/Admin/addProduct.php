@@ -107,7 +107,7 @@
 
                                 </tbody>
                             </table>
-                            <input class="btn btn-primary" name="Tablet" type="submit" value="Submit"/>
+                            <input class="btn btn-primary" name="submit" type="submit" value="Submit"/>
                         </div>
                         <!-- /.table-responsive -->
                     </div>
@@ -184,7 +184,7 @@
 
                                 </tbody>
                             </table>
-                            <input class="btn btn-primary" name="Laptop" type="submit" value="Submit"/>
+                            <input class="btn btn-primary" name="submit" type="submit" value="Submit"/>
                         </div>
                         <!-- /.table-responsive -->
                     </div>
@@ -210,7 +210,7 @@
                                         <input type="text" placeholder="e.g. $999, $1299" name ="Price" required><br></td>
 
                                     <td><label>Display Size (inches)</label><br>
-                                        <input type="text" placeholder="e.g. 13&quot;, 15&quot;" required><br></td>
+                                        <input type="text" placeholder="e.g. 13x15" name="DisplaySize" required><br></td>
 
                                     <input type="hidden" name="ProductType" value="Monitor">
 
@@ -229,7 +229,7 @@
                                 </tr>
                                 </tbody>
                             </table>
-                            <input class="btn btn-primary" name="Monitor" type="submit" value="Submit"/>
+                            <input class="btn btn-primary" name="submit" type="submit" value="Submit"/>
                         </div>
                         <!-- /.table-responsive -->
                     </div>
@@ -286,7 +286,7 @@
                                 </tr>
                                 </tbody>
                             </table>
-                            <input class="btn btn-primary" name="Desktop" type="submit" value="Submit"/>
+                            <input class="btn btn-primary" name="submit" type="submit" value="Submit"/>
                         </div>
                         <!-- /.table-responsive -->
                     </div>

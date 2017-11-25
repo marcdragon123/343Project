@@ -7,11 +7,12 @@
  */
 class users extends Controller {
 
-    private $obj;
+    public $transactionMapper;
 
     public function __construct($action, $request)
     {
         parent::__construct($action, $request);
+        $this->transactionMapper = new TransactionsMapper();
     }
 
     /**
@@ -68,26 +69,34 @@ class users extends Controller {
         }
     }
 
-    public function viewSpecs(){
-        $viewmodel = CatalogMapper::getInstance()->getProductSpecification($_GET['ProductType'],$_GET['SerialNumber'] );
-        $post = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
+    public function viewSpecs()
+    {
+        $viewmodel = CatalogMapper::getInstance()->getProductSpecification($_GET['ProductType'], $_GET['SerialNumber']);
+        $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
-        if(CatalogMapper::getInstance()->isAvailable($viewmodel)){
+        if (CatalogMapper::getInstance()->isAvailable($viewmodel)) {
             $this->returnView($viewmodel, true);
-        }
-        else{
+        } else {
             Messages::setMsg("This can't be accessed because someone's already viewing this file.", '');
-            header("Location: ".ROOT_URL."users/viewProductCatalog");
+            header("Location: " . ROOT_URL . "users/viewProductCatalog");
         }
 
-        if(!empty($post)){
-            if(!($_SESSION['user_data']['Type']==='A')){
-                Messages::setMsg('Only customers may add products to their cart','');
-            }
-            else{
+        if ($post) {
+            if (isset($_SESSION['is_logged_in'])) {
+                if (!($_SESSION['user_data']['Type'] === 'A')) {
+                    $this->transactionMapper->addToCart($viewmodel);
+                    Messages::setMsg('Product has been added to your cart and will remain there for the next 7 minutes', '');
 
+                }
+                Messages::setMsg('Only customers may add products to their cart', '');
+            }
+            else {
+                $this->transactionMapper->addToCart($viewmodel);
+                Messages::setMsg('Product has been added to your cart and will remain there for the next 7 minutes', '');
+                //header('Location: '. ROOT_URL . 'users/viewProductCatalog');
             }
         }
+
     }
 
     public function browseCatalog(){
@@ -112,6 +121,14 @@ class users extends Controller {
                 }
             }
         }
+
+    }
+
+    public function cart(){
+
+    }
+
+    public function transaction(){
 
     }
 
