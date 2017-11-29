@@ -20,6 +20,7 @@ class Monitor extends Product {
      * @param $value
      */
     public function __set($name, $value) {
+        parent::__set($name, $value);
         $this->$name = $value;
     }
 
@@ -29,6 +30,7 @@ class Monitor extends Product {
      *
      */
     public function __get($name) {
+        parent::__get($name);
         return $this->$name;
     }
 

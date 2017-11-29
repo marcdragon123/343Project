@@ -5,9 +5,16 @@
  * Date: 2017-11-05
  * Time: 2:36 PM
  */
+require_once __DIR__ .'/../domain/core/DomainObject.php';
+require_once __DIR__ .'/../domain/core/ShoppingCart.php';
+require_once __DIR__.'/mappers/MapperAbstract.php';
+require_once __DIR__.'/mappers/TransactionsMapper.php';
+
 ini_set('memory_limit', '1024M');
 // Start Session
 session_start();
+$_SESSION['cart'] = new ShoppingCart();
+
 require('config.php');
 
 require('classes/Messages.php');
@@ -15,7 +22,6 @@ require('classes/Router.php');
 require('classes/Controller.php');
 
 
-require('../domain/core/DomainObject.php');
 require('../domain/core/Account.php');
 require('../domain/core/Customer.php');
 require('../domain/core/Administrator.php');
@@ -25,7 +31,6 @@ require('../domain/core/Desktop.php');
 require('../domain/core/Monitor.php');
 require('../domain/core/Laptop.php');
 require('../domain/core/Tablet.php');
-require('../domain/core/ShoppingCart.php');
 require('../domain/core/Transaction.php');
 require('../domain/core/TransactionsCatalog.php');
 
@@ -34,13 +39,12 @@ require('controllers/Admin.php');
 require('controllers/users.php');
 require('controllers/home.php');
 
-require('mappers/MapperAbstract.php');
 require('mappers/CustomerMapper.php');
 require('mappers/AdminMapper.php');
 require('mappers/CatalogMapper.php');
-require('mappers/TransactionsMapper.php');
 
 
+require('../domain/idmap/ShoppingCartIdMap.php');
 require('../domain/idmap/idMap.php');
 require('../domain/idmap/ProductsIdMap.php');
 require('../domain/uow/UnitOfWork.php');

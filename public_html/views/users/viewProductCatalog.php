@@ -4,7 +4,7 @@
     <h1>Welcome <?php echo ucwords($_SESSION['user_data']['FirstName']);?></h1>
     <?php endif; ?>
     <p class="lead">Click below to browse or add new products!</p>
-    <a class="btn btn-primary text-center" href="<?php echo ROOT_PATH;?>admin/addProduct">View Cart</a>
+    <a class="btn btn-primary text-center" href="<?php echo ROOT_PATH;?>users/cart">View Cart</a>
     <div>
         <?php
         foreach($viewmodel as $key => $value){

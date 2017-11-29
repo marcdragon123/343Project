@@ -2,8 +2,6 @@
 
 class ProductCatalog
 {
-
-
     protected $productContainer = array();
     protected $productsInUse = array();
     public $containerFile;
@@ -36,8 +34,6 @@ class ProductCatalog
      */
     public function addProduct(Product $product)
     {
-
-
         if (isset($this->productContainer[$product->__get('ProductType')][$product->__get('SerialNumber')])) {
             throw new Exception("Product Serial Number Already Exists");
         }
@@ -51,7 +47,6 @@ class ProductCatalog
      */
     public function modifyProduct(Product $product)
     {
-
         if (!isset($this->productContainer[$product->__get('ProductType')][$product->__get('SerialNumber')])) {
             throw new Exception("Product is not in the Product Catalog");
         }

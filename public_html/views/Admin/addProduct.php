@@ -192,7 +192,7 @@
                 </form>
             </div>
             <div style="display: none" id="Monitor">
-                <form name=Monitor id="22" method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
+                <form name="Monitor" id="22" method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <div class="table-responsive table-bordered">

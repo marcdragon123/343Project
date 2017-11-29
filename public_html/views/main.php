@@ -44,7 +44,7 @@
                 <?php else : ?>
                     <li><a href="<?php echo ROOT_URL; ?>users/login">Login</a></li>
                     <li><a href="<?php echo ROOT_URL; ?>users/register">Register</a></li>
-                    <li><a href="<?php echo ROOT_URL; ?>users/viewCart">Cart</a></li>
+                    <li><a href="<?php echo ROOT_URL; ?>users/cart">Cart</a></li>
                     <li><a href="<?php echo ROOT_URL; ?>users/returns">Returns</a></li>
                 <?php endif; ?>
             </ul>

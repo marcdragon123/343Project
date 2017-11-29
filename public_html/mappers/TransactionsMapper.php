@@ -11,62 +11,49 @@ class TransactionsMapper extends MapperAbstract
     protected $transactionsTDG;
     protected $transactionsCatalog;
     protected $shoppingCart;
+    protected $cartIdMap;
+    protected $userEmail;
 
 
     public function __construct()
     {
-        //$this->transactionsTDG = new transactionTDG();
         $this->transactionsCatalog = TransactionsCatalog::getInstance();
-        $this->shoppingCart = new ShoppingCart();
+        $this->userEmail = $_SESSION['user_data']['Email'];
+        $this->cartIdMap = ShoppingCartIdMap::getInstance();
+        $this->shoppingCart = $this->cartIdMap->get($this->userEmail);
+        if(is_null($this->shoppingCart)){
+            $this->shoppingCart = new ShoppingCart();
+        }
     }
 
 
     public function addToCart($product){
-        var_dump($_SESSION['cart']);
-        if(isset($_SESSION['cart'])){
-            $this->shoppingCart = $_SESSION['cart'];
-            try{
-                $this->shoppingCart->addToCart($product);
-            }catch (Exception $exception){
-                Messages::setMsg($exception->getMessage(),'error');
-            }
+        try{
+            $this->shoppingCart->addToCart($product);
+            $this->cartIdMap->add($this->shoppingCart, $this->userEmail);
+            var_dump($this->shoppingCart);
+            return ;
+        }catch (Exception $exception){
+            Messages::setMsg($exception->getMessage(),'error');
         }
-        else{
-            $this->shoppingCart = new ShoppingCart();
-            try{
-                $this->shoppingCart->addToCart($product);
-            }catch (Exception $exception){
-                Messages::setMsg($exception->getMessage(),'error');
-            }
-            $_SESSION['cart'] = $this;
-
-        }
-        return;
     }
 
     public function removeFromCart($product){
-        if(isset($_SESSION['cart'])){
-            $this->shoppingCart = $_SESSION['cart'];
-            try{
-                $this->shoppingCart->removeFromCart($product);
-            }catch (Exception $exception){
-                Messages::setMsg($exception->getMessage(),'error');
-            }
+        try{
+            $this->shoppingCart->removeFromCart($product);
+            $this->cartIdMap->add($this->shoppingCart, $this->userEmail);
         }
-        else{
-            Messages::setMsg('Your cart is empty', 'error');
+        catch (Exception $exception){
+            Messages::setMsg($exception->getMessage(), 'error');
         }
     }
 
     public function viewCart(){
-        if(isset($_SESSION['cart'])){
-            $this->shoppingCart = $_SESSION['cart'];
-            try{
-                $this->shoppingCart->getCartProducts();
-            }
-            catch (Exception $exception){
-                Messages::setMsg($exception->getMessage(),'error');
-            }
+        try{
+            //$cartView = $this->shoppingCart->getCartProducts();
+            return $this->shoppingCart;
+        }catch (Exception $exception){
+            Messages::setMsg($exception->getMessage(), 'error');
         }
     }
 

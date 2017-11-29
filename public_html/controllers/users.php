@@ -81,22 +81,26 @@ class users extends Controller {
             header("Location: " . ROOT_URL . "users/viewProductCatalog");
         }
 
-        if ($post) {
-            if (isset($_SESSION['is_logged_in'])) {
-                if (!($_SESSION['user_data']['Type'] === 'A')) {
-                    $this->transactionMapper->addToCart($viewmodel);
-                    Messages::setMsg('Product has been added to your cart and will remain there for the next 7 minutes', '');
-
+        while ($_POST){
+            if ($_SESSION['is_logged_in']){
+                if(!($_SESSION['user_data']['Type'] === 'A')){
+                    if($this->transactionMapper->addToCart($viewmodel)){
+                        Messages::setMsg('Product has been added to your cart and will remain there for the next 7 minutes', '');
+                        break;
+                    }
+                    Messages::setMsg('Only customers may add products to their cart', '');
+                    break;
                 }
-                Messages::setMsg('Only customers may add products to their cart', '');
-            }
-            else {
-                $this->transactionMapper->addToCart($viewmodel);
-                Messages::setMsg('Product has been added to your cart and will remain there for the next 7 minutes', '');
-                //header('Location: '. ROOT_URL . 'users/viewProductCatalog');
+                Messages::setMsg('You must be logged in to cart', 'error');
+                break;
             }
         }
+    }
 
+    public function cart(){
+        $viewmodel = $this->transactionMapper->viewCart();
+
+        $this->returnView($viewmodel, true);
     }
 
     public function browseCatalog(){
@@ -121,10 +125,6 @@ class users extends Controller {
                 }
             }
         }
-
-    }
-
-    public function cart(){
 
     }
 
