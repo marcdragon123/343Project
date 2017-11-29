@@ -7,12 +7,9 @@
  */
 class users extends Controller {
 
-    public $transactionMapper;
-
     public function __construct($action, $request)
     {
         parent::__construct($action, $request);
-        $this->transactionMapper = new TransactionsMapper();
     }
 
     /**
@@ -84,7 +81,7 @@ class users extends Controller {
         while ($_POST){
             if ($_SESSION['is_logged_in']){
                 if(!($_SESSION['user_data']['Type'] === 'A')){
-                    if($this->transactionMapper->addToCart($viewmodel)){
+                    if(TransactionsMapper::getInstance()->addToCart($viewmodel)){
                         Messages::setMsg('Product has been added to your cart and will remain there for the next 7 minutes', '');
                         break;
                     }
@@ -97,10 +94,16 @@ class users extends Controller {
         }
     }
 
-    public function cart(){
-        $viewmodel = $this->transactionMapper->viewCart();
-
+    public function cart()
+    {
+        $viewmodel = TransactionsMapper::getInstance()->viewCart();
         $this->returnView($viewmodel, true);
+        $get = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
+
+        if ($get && isset($get["ProductType"]) && isset($get["SerialNumber"])) {
+            TransactionsMapper::getInstance()->removeFromCart($get["ProductType"], $get["SerialNumber"]);
+            header('Location:' .ROOT_URL . 'users/cart');
+        }
     }
 
     public function browseCatalog(){

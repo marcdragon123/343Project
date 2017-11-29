@@ -8,14 +8,22 @@
 
 class TransactionsMapper extends MapperAbstract
 {
+    private static $instance;
     protected $transactionsTDG;
     protected $transactionsCatalog;
     protected $shoppingCart;
     protected $cartIdMap;
     protected $userEmail;
 
+    public static function getInstance()
+    {
+        if (self::$instance === null) {
+            self::$instance = new TransactionsMapper();
+        }
+        return self::$instance;
+    }
 
-    public function __construct()
+    private function __construct()
     {
         $this->transactionsCatalog = TransactionsCatalog::getInstance();
         $this->userEmail = $_SESSION['user_data']['Email'];
@@ -38,9 +46,9 @@ class TransactionsMapper extends MapperAbstract
         }
     }
 
-    public function removeFromCart($product){
+    public function removeFromCart($productType, $serialNumber){
         try{
-            $this->shoppingCart->removeFromCart($product);
+            $this->shoppingCart->removeFromCart($productType, $serialNumber);
             $this->cartIdMap->add($this->shoppingCart, $this->userEmail);
         }
         catch (Exception $exception){

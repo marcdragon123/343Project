@@ -82,7 +82,7 @@
     <div class="panel-heading">
         <h3>Add Product</h3>
         <div class="row">
-            <select name="productType" id="product">
+            <select name="productType" id="product" hidden>
                 <option value="" disabled="disabled" selected="selected">Choose Product to Enter</option>
                 <option value="Tablet">Tablet</option>
                 <option value="Monitor">Monitor</option>
