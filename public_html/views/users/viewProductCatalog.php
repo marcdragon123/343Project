@@ -22,43 +22,43 @@
             </label>
         </form>
     </div>
-      <script>
+    <script>
+/*
+      var allRadios = document.getElementsByTagName('input');
+      var booRadio, val;
+      var x = 0;
+      var y = 0;
+      for(x = 0; x < allRadios.length; x++){
 
-        var allRadios = document.getElementsByTagName('input');
-        var booRadio, val;
-        var x = 0;
-        var y = 0;
-        for(x = 0; x < allRadios.length; x++){
-
-            allRadios[x].onclick = function() {
-                if(booRadio == this){
-                    this.checked = false;
-                    val = null;
-                    booRadio = null;
-                }else{
-                    booRadio = this;
-                    val = this.value;
-                }
-            };
-        }
+          allRadios[x].onclick = function() {
+              if(booRadio == this){
+                  this.checked = false;
+                  val = null;
+                  booRadio = null;
+              }else{
+                  booRadio = this;
+                  val = this.value;
+              }
+          };
+      }
         
-        function filterBTN(){
-            if (val != undefined){
-                console.log("WORK YOU FUCK"+val);
-                var allWells = document.getElementsByName(val);
-                for (y=0;y<allWells.length;y++){
-                    allWells[y].style = "display:none";
-                    //right now it hides the elements we need. change it so it only changes the other elements
-                }
-            }
-            else{
-                var allWells = document.getElementsByClassName("wells");
-                for (y=0;y<allWells.length;y++){
+      function filterBTN(){
+          if (val != undefined){
+              console.log("WORK YOU FUCK"+val);
+              var allWells = document.getElementsByName(val);
+              for (y=0;y<allWells.length;y++){
+                  allWells[y].style = "display:none";
+                  //right now it hides the elements we need. change it so it only changes the other elements
+              }
+          }
+          else{
+              var allWells = document.getElementsByClassName("wells");
+              for (y=0;y<allWells.length; y++) {
                     allWells[y].show();
                     //this function isnt working, find a way to make things appear first
                 }
             }
-        }
+        } **/
     </script>
     <div>
         <?php
