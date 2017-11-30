@@ -98,6 +98,17 @@ class CustomerMapper extends MapperAbstract{
         $this->updateLoginSession($userObj);
     }
 
+    public function deleteCustomer($email){
+        try{
+            $this->idMap->remove('Customer', $email);
+            $this->userTDG->delete($email);
+            return true;
+        }
+        catch(Exception $e){
+            Messages::setMsg($e->getMessage(), 'error');
+        }
+    }
+
     /**
      * @param array|null $data
      * @return Customer

@@ -51,6 +51,14 @@ class users extends Controller {
 
     }
 
+    public function deleteUser(){
+        if(CustomerMapper::getInstance()->deleteCustomer($_SESSION['user_data']['Email'])){
+           session_destroy();
+           header('Location: ' . ROOT_URL );  
+        }
+    }
+
+
     public function viewProductCatalog(){
         $viewmodel = CatalogMapper::getInstance()->getAllProductsAvailable();
         $this->returnView($viewmodel, true);
