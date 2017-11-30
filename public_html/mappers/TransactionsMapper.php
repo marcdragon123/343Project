@@ -37,6 +37,7 @@ class TransactionsMapper extends MapperAbstract
 
     public function addToCart($product){
         try{
+            ProductCatalog::getInstance()->addedToCart($product);
             $this->shoppingCart->addToCart($product);
             $this->cartIdMap->add($this->shoppingCart, $this->userEmail);
             var_dump($this->shoppingCart);
@@ -48,6 +49,8 @@ class TransactionsMapper extends MapperAbstract
 
     public function removeFromCart($productType, $serialNumber){
         try{
+            $productObj = $this->shoppingCart->getInCartProduct($productType,$serialNumber);
+            ProductCatalog::getInstance()->removedFromCart($productObj);
             $this->shoppingCart->removeFromCart($productType, $serialNumber);
             $this->cartIdMap->add($this->shoppingCart, $this->userEmail);
         }
@@ -58,7 +61,6 @@ class TransactionsMapper extends MapperAbstract
 
     public function viewCart(){
         try{
-            //$cartView = $this->shoppingCart->getCartProducts();
             return $this->shoppingCart;
         }catch (Exception $exception){
             Messages::setMsg($exception->getMessage(), 'error');

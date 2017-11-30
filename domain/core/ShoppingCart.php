@@ -31,25 +31,34 @@ class ShoppingCart extends DomainObject
             throw new Exception("This Product is already in your cart");
         }
         $this->shoppingCart[$product->__get('ProductType')][$product->__get('SerialNumber')] = $product;
-        //$this->cartTotal =+ $product->__get('Price');
+        $this->numOfProducts++;
+    }
+
+    public function getInCartProduct($productType, $serialNumber){
+        if (!isset($this->shoppingCart[$productType][$serialNumber])) {
+            throw new Exception("This Product is not in the cart");
+        }
+        return $this->shoppingCart[$productType][$serialNumber];
 
     }
 
     /**
-     * @param Product $product
+     * @param $productType
+     * @param $serialNumber
      * @throws Exception
      */
-    public function removeFromCart($product)
+    public function removeFromCart($productType, $serialNumber)
     {
         if ((count($this->shoppingCart) == 0))
         {
             throw new Exception('Your cart is empty');
         }
-        if(!isset($this->shoppingCart[$product->__get('ProductType')][$product->__get('SerialNumber')])){
+        if(!isset($this->shoppingCart[$productType][$serialNumber])){
             throw new Exception('Your cart is empty');
         }
-        unset($this->shoppingCart[$product->__get('ProductType')][$product->__get('SerialNumber')]);
-        //$this->cartTotal =- $product->__get('Price');
+        unset($this->shoppingCart[$productType][$serialNumber]);
+        $this->numOfProducts--;
+
     }
 
     /**
@@ -68,10 +77,9 @@ class ShoppingCart extends DomainObject
      */
     public function getSize()
     {
-
+        return $this->numOfProducts;
     }
-//foreach($productArray as $item => $product){
-//foreach ($product as $item) {
+
 
     /**
      * @return mixed

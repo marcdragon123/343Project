@@ -52,10 +52,12 @@ class users extends Controller {
     }
 
     public function deleteUser(){
-        if(CustomerMapper::getInstance()->deleteCustomer($_SESSION['user_data']['Email'])){
-           session_destroy();
-           header('Location: ' . ROOT_URL );  
-        }
+        CustomerMapper::getInstance()->deleteCustomer($_SESSION['user_data']['Email']);
+        unset($_SESSION['is_logged_in']);
+        unset($_SESSION['user_data']);
+        session_destroy();
+        header('Location: ' . ROOT_URL );
+
     }
 
 
@@ -105,7 +107,13 @@ class users extends Controller {
     public function cart()
     {
         $viewmodel = TransactionsMapper::getInstance()->viewCart();
+        try{
+            $viewmodel->getCartProducts();
+        }catch (Exception $exception){
+            Messages::setMsg($exception->getMessage(), '');
+        }
         $this->returnView($viewmodel, true);
+
         $get = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
 
         if ($get && isset($get["ProductType"]) && isset($get["SerialNumber"])) {

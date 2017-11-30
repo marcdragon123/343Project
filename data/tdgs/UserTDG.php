@@ -66,12 +66,12 @@ class UserTDG extends Model
 
     /**
      * deletes users from DB
-     * @param $id
+     * @param $email
      */
-    public function delete($id)
+    public function delete($email)
     {
-        $this->query('DELETE FROM account WHERE UserID = :id');
-        $this->bind(':id', $id);
+        $this->query('DELETE FROM account WHERE account.Email = :Email');
+        $this->bind(':Email', $email);
         $this->execute();
 
         return;

@@ -35,9 +35,8 @@ class CustomerMapper extends MapperAbstract{
      * @return bool
      */
     public function login(array $post) {
-/*
-        $userObj = $this->idMap->get('Customer',$post['Email']);
 
+        $userObj = $this->idMap->get('Customer',$post['Email']);
         if(!is_null($userObj)) {
             //if found in idmap, check if password is correct
             if (!($userObj->__get('Password') === $post['Password'])) {
@@ -60,7 +59,7 @@ class CustomerMapper extends MapperAbstract{
             }
             Messages::setMsg($userObj->__get('FirstName').", login from admin page please", 'error');
         }
-*/
+
         //if email is not in idmap, check db
         $userObj = $this->userTDG->find($post['Email']);
         if(!is_null($userObj)){
@@ -102,10 +101,9 @@ class CustomerMapper extends MapperAbstract{
         try{
             $this->idMap->remove('Customer', $email);
             $this->userTDG->delete($email);
-            return true;
         }
-        catch(Exception $e){
-            Messages::setMsg($e->getMessage(), 'error');
+        catch(Exception $exception){
+            Messages::setMsg($exception->getMessage(), 'error');
         }
     }
 
@@ -131,7 +129,7 @@ class CustomerMapper extends MapperAbstract{
      */
     public function delete($obj)
     {
-        $this->idMap->remove('Customer', $obj->__get('Email'));
+        //$this->idMap->remove('Customer', $obj->__get('Email'));
         //$this->UOW->registerDeleted($obj);
     }
 

@@ -22,6 +22,8 @@ class IdMap
 
     public function __construct() {
         $this->customerFile = new CustomerFile();
+        $this->container = $this->getContainer();
+
     }
 
     /**
@@ -31,8 +33,6 @@ class IdMap
      * @throws Exception
      */
     public function add(Account $object, $objectName) {
-        $tempContainer= $this->customerFile->read($this->customerFile->getFileName());
-        $this->container = $tempContainer[0];
 
         if(isset($this->container[$objectName][$object->__get("Email")])) {
                 throw new Exception('cannot reset users email: ' . $object->__get("Email"));
@@ -56,9 +56,6 @@ class IdMap
         // key doesn't exists, so throwing an exception is not recommended.
         //echo "the id is: ".$id;
 
-        $tempContainer= $this->customerFile->read($this->customerFile->getFileName());
-        $this->container = $tempContainer[0];
-
         if (!isset($this->container[$objectName][$email])) {
             return null;
         }
@@ -73,15 +70,18 @@ class IdMap
      * @throws Exception
      */
     public function remove($objectName,$email) {
-        $tempContainer= $this->customerFile->read($this->customerFile->getFileName());
-        $this->container = $tempContainer[0];
 
-        if(isset($this->container[$objectName][$email])) {
+        if(!isset($this->container[$objectName][$email])) {
             throw new Exception('item does not exist, cannot delete it');
         }
         unset($this->container[$objectName][$email]);
         $this->customerFile->write($this->container, true);
+        var_dump($email);
         return $this;
     }
 
+    public function getContainer(){
+        $tempContainer= $this->customerFile->read($this->customerFile->getFileName());
+        return $tempContainer[0];
+    }
 }

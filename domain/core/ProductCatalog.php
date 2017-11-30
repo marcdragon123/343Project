@@ -3,8 +3,9 @@
 class ProductCatalog
 {
     protected $productContainer = array();
-    protected $productsInUse = array();
+    protected $productInCart = array();
     public $containerFile;
+    public $cartFile;
     public $myMapper;
 
     private static $instance;
@@ -24,8 +25,13 @@ class ProductCatalog
     {
         $this->myMapper = CatalogMapper::getInstance();
         $this->containerFile = new File('productContainer.txt');
+        $this->cartFile = new File('productsInCart.txt');
 
-        $this->productContainer = $this->getProductContainer();
+        $temp = $this->containerFile->read($this->containerFile->getFileName());
+        $this->productContainer = $temp[0];
+
+        $temp = $this->cartFile->read($this->cartFile->getFileName());
+        $this->productInCart = $temp[0];
     }
 
     /**
@@ -61,11 +67,12 @@ class ProductCatalog
      */
     public function deleteProduct(Product $product)
     {
-
         if (!isset($this->productContainer[$product->__get('ProductType')][$product->__get('SerialNumber')])) {
             throw new Exception("Product is not in the Product Catalog");
         }
         unset($this->productContainer[$product->__get('ProductType')][$product->__get('SerialNumber')]);
+        $this->containerFile->write($this->productContainer, true);
+
     }
 
     /**
@@ -74,9 +81,7 @@ class ProductCatalog
      */
     public function viewByType($productType)
     {
-
         return $this->productContainer[$productType];
-
     }
 
     /**
@@ -94,20 +99,32 @@ class ProductCatalog
      * @throws Exception
      */
     public function getProduct($productType, $serialNumber){
-
         if (!isset($this->productContainer[$productType][$serialNumber])) {
             throw new Exception("Product is not in the Product Catalog");
         }
-
         return $this->productContainer[$productType][$serialNumber];
     }
 
-    /**
-     * @return mixed
-     */
-    private function getProductContainer()
-    {
-        $temp = $this->containerFile->read($this->containerFile->getFileName());
-        return $temp[0];
+    public function addedToCart($product){
+        $this->deleteProduct($product);
+
+        if (isset($this->productInCart[$product->__get('ProductType')][$product->__get('SerialNumber')])) {
+            throw new Exception("Product Already In Cart Array");
+        }
+        $this->productInCart[$product->__get('ProductType')][$product->__get('SerialNumber')] = $product;
+        $this->cartFile->write($this->productInCart, true);
     }
+
+    public function removedFromCart($product){
+        $this->addProduct($product);
+
+        if (!isset($this->productInCart[$product->__get('ProductType')][$product->__get('SerialNumber')])) {
+            throw new Exception("Product is not in the cart");
+        }
+        unset($this->productInCart[$product->__get('ProductType')][$product->__get('SerialNumber')]);
+        $this->cartFile->write($this->productInCart, true);
+
+    }
+
+
 }

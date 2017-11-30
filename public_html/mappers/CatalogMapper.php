@@ -57,7 +57,6 @@ class CatalogMapper extends MapperAbstract {
                     break;
             }
         }
-        // adding product straight to Catalog Array, which will be saved in the idmap
         try{
             //ProductCatalog::getInstance()->addProduct($obj);
             try{
