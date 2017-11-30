@@ -119,7 +119,7 @@ class CustomerMapper extends MapperAbstract{
             $obj = $this->populate($obj, $data);
         }
         $this->idMap->add($obj, 'Customer');
-        //$this->UOW->registerNew($obj);
+        $this->UOW->registerNew($obj);
         //$this->UOW->commit(CustomerMapper::getInstance());
         return $obj;
     }

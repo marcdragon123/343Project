@@ -38,8 +38,8 @@ class tabletTDG extends Model
      */
     public function insert($tablet)
     {
-        $this->query('INSERT INTO tablet (ModelNumber, DisplaySize, DisplayDimensions, Brand, Price, CPUType, CoreNumber, RAMSize, Weight, HDDSize, Battery, OS, CameraInformation, SerialNumber)
-                             VALUES(:ModelNumber, :DisplaySize, :DisplayDimensions, :Brand, :Price, :CPUType, :CoreNumber, :RAMSize, :Weight, :HDDSize, :Battery, :OS, :CameraInformation, :SerialNumber)');
+        $this->query('INSERT INTO tablet (ModelNumber, DisplaySize, DisplayDimensions, Brand, Price, CPUType, CoreNumber, RAMSize, Weight, HDDSize, Battery, OS, CameraInformation, SerialNumber, Sold)
+                             VALUES(:ModelNumber, :DisplaySize, :DisplayDimensions, :Brand, :Price, :CPUType, :CoreNumber, :RAMSize, :Weight, :HDDSize, :Battery, :OS, :CameraInformation, :SerialNumber, :Sold)');
         $this->bind(':ModelNumber', $tablet->__get('ModelNumber'));
         $this->bind(':DisplaySize', $tablet->__get('DisplaySize'));
         $this->bind(':DisplayDimensions', $tablet->__get('DisplayDimensions'));
@@ -54,6 +54,7 @@ class tabletTDG extends Model
         $this->bind(':OS', $tablet->__get('OS'));
         $this->bind(':CameraInformation', $tablet->__get('CameraInformation'));
         $this->bind(':SerialNumber', $tablet->__get('SerialNumber'));
+        $this->bind(':Sold', $tablet->__get('Sold'));
 
         $this->execute();
         
@@ -82,7 +83,7 @@ class tabletTDG extends Model
         $this->query('UPDATE tablet SET ModelNumber = :ModelNumber, DisplaySize = :DisplaySize, DisplayDimensions = :DisplayDimensions, Brand = :Brand,
                             Price = :Price, CPUType = :CPUType, CoreNumber = :CoreNumber,
                             RAMSize = :RAMSize, Weight = :Weight, HDDSize = :HDDSize, Battery = :Battery, OS = :OS,
-                            CameraInformation = :CameraInformation, SerialNumber = :SerialNumber) WHERE SerialNumber = :SerialNumber');
+                            CameraInformation = :CameraInformation, SerialNumber = :SerialNumber, Sold = :Sold) WHERE SerialNumber = :SerialNumber');
         $this->bind(':ModelNumber', $tablet->__get('ModelNumber'));
         $this->bind(':DisplaySize', $tablet->__get('DisplaySize'));
         $this->bind(':DisplayDimensions', $tablet->__get('DisplayDimensions'));
@@ -97,6 +98,7 @@ class tabletTDG extends Model
         $this->bind(':OS', $tablet->__get('OS'));
         $this->bind(':CameraInformation', $tablet->__get('CameraInformation'));
         $this->bind(':SerialNumber', $tablet->__get('SerialNumber'));
+        $this->bind(':Sold', $tablet->__get('Sold'));
 
         $this->execute();
 

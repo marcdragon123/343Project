@@ -8,12 +8,13 @@
 require_once __DIR__ .'/../domain/core/DomainObject.php';
 require_once __DIR__ .'/../domain/core/ShoppingCart.php';
 require_once __DIR__.'/mappers/MapperAbstract.php';
-require_once __DIR__.'/mappers/TransactionsMapper.php';
+require_once __DIR__.'/mappers/CatalogMapper.php';
 
 ini_set('memory_limit', '1024M');
 // Start Session
 session_start();
 $_SESSION['cart'] = new ShoppingCart();
+date_default_timezone_set('America/New_York');
 
 require('config.php');
 
@@ -41,7 +42,6 @@ require('controllers/home.php');
 
 require('mappers/CustomerMapper.php');
 require('mappers/AdminMapper.php');
-require('mappers/CatalogMapper.php');
 
 
 require('../domain/idmap/ShoppingCartIdMap.php');

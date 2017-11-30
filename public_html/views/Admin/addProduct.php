@@ -222,7 +222,6 @@
 
                                     <td><label>Model Number</label><br>
                                         <input type="text" placeholder="e.g. MHJR5VC6" name ="ModelNumber" required><br></td>
-
                                 </tr>
                                 <br>
                                 <tr>

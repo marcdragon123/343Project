@@ -8,8 +8,8 @@ define("DB_NAME", "compstor_db");
 define("LOCKED_TIME", 30);
 
 // Define URL
-define("ROOT_PATH", "/~vartanbeno/343Project/public_html/");
-define("ROOT_URL", "http://localhost/~vartanbeno/343Project/public_html/");
+define("ROOT_PATH", "/~ahmadbiz/343Project/public_html/");
+define("ROOT_URL", "http://localhost/~ahmadbiz/343Project/public_html/");
 /*
 
 define("DB_HOST", "localhost");

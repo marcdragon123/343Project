@@ -37,15 +37,16 @@ class monitorTDG extends Model
      */
     public function insert($monitor)
     {
-        $this->query('INSERT INTO monitor (ModelNumber, DisplayDimensions, Brand, Price, Weight, SerialNumber) 
-                             VALUES(:ModelNumber, :DisplayDimensions, :Brand, :Price, :Weight , :SerialNumber)');
+        $this->query('INSERT INTO monitor (ModelNumber, DisplayDimensions, Brand, Price, Weight, SerialNumber, Sold) 
+                             VALUES(:ModelNumber, :DisplayDimensions, :Brand, :Price, :Weight , :SerialNumber, :Sold)');
         $this->bind(':ModelNumber', $monitor->__get('ModelNumber'));
         $this->bind(':DisplayDimensions', $monitor->__get('DisplayDimensions'));
         $this->bind(':Brand', $monitor->__get('Brand'));
         $this->bind(':Price', $monitor->__get('Price'));
         $this->bind(':Weight', $monitor->__get('Weight'));
         $this->bind(':SerialNumber', $monitor->__get('SerialNumber'));
-        
+        $this->bind(':Sold', $monitor->__get('Sold'));
+
         
         $this->execute();
 
@@ -74,14 +75,16 @@ class monitorTDG extends Model
     public function update($monitor)
     {
         $this->query('UPDATE monitor SET ModelNumber = :ModelNumber, DisplayDimensions = :DisplayDimensions, Brand = :Brand, Price = :Price,
-                            Weight = :Weight, SerialNumber = :SerialNumber) WHERE SerialNumber = :SerialNumber');
+                            Weight = :Weight, SerialNumber = :SerialNumber, Sold = :Sold) WHERE SerialNumber = :SerialNumber');
         $this->bind(':ModelNumber', $monitor->__get('ModelNumber'));
         $this->bind(':DisplayDimensions', $monitor->__get('DisplayDimensions'));
         $this->bind(':Brand', $monitor->__get('Brand'));
         $this->bind(':Price', $monitor->__get('Price'));
         $this->bind(':Weight', $monitor->__get('Weight'));
         $this->bind(':SerialNumber', $monitor->__get('SerialNumber'));
-        
+        $this->bind(':Sold', $monitor->__get('Sold'));
+
+
         $this->execute();
 
         return $this->lastInsertId();

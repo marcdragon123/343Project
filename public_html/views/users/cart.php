@@ -3,7 +3,7 @@
         <h1>Welcome <?php echo ucwords($_SESSION['user_data']['FirstName']);?></h1>
     <?php endif; ?>
     <p class="lead">Click below to browse or add new products!</p>
-    <a class="btn btn-primary text-center" href="<?php echo ROOT_PATH;?>admin/addProduct">View Cart</a>
+    <a class="btn btn-primary text-center" href="<?php echo ROOT_PATH;?>users/viewProductCatalog">Continue Shopping</a>
     <div>
         <?php
         try {
@@ -46,9 +46,9 @@
         <table class="table">
             <tbody>
             <tr><td>Total: <?php echo $viewmodel->getTotal() ?> </td></tr>
-            <tr><td>Total: <?php echo $viewmodel->getTotal() ?> </td></tr>
+            <a class="btn btn-primary text-center" href="<?php echo ROOT_PATH;?>users/checkout">Checkout</a>
 <?php }catch (Exception $exception) {
-    Messages::setMsg($exception->getMessage(), '');
+    //Messages::setMsg($exception->getMessage(), '');
 }?>
             </tbody>
         </table>

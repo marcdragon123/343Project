@@ -36,8 +36,8 @@ class laptopTDG extends Model
      */
     public function insert($laptop)
     {
-        $this->query('INSERT INTO laptop (ModelNumber, DisplayDimensions, Brand, Price, CPUType, CoreNumber, RAMSize, Weight, HDDSize, Battery, OS, ToucheScreenToggle, CameraToggle, SerialNumber) 
-                             VALUES(:ModelNumber, :DisplayDimensions, :Brand, :Price, :CPUType, :CoreNumber,:RAMSize,:Weight,:HDDSize,:Battery,:OS,:ToucheScreenToggle, :CameraToggle, :SerialNumber)');
+        $this->query('INSERT INTO laptop (ModelNumber, DisplayDimensions, Brand, Price, CPUType, CoreNumber, RAMSize, Weight, HDDSize, Battery, OS, ToucheScreenToggle, CameraToggle, SerialNumber, Sold) 
+                             VALUES(:ModelNumber, :DisplayDimensions, :Brand, :Price, :CPUType, :CoreNumber,:RAMSize,:Weight,:HDDSize,:Battery,:OS,:ToucheScreenToggle, :CameraToggle, :SerialNumber, :Sold)');
         $this->bind(':ModelNumber', $laptop->__get('ModelNumber'));
         $this->bind(':DisplayDimensions', $laptop->__get('DisplayDimensions'));
         $this->bind(':Brand', $laptop->__get('Brand'));
@@ -52,7 +52,8 @@ class laptopTDG extends Model
         $this->bind(':ToucheScreenToggle', $laptop->__get('ToucheScreenToggle'));
         $this->bind(':CameraToggle', $laptop->__get('CameraToggle'));
         $this->bind(':SerialNumber', $laptop->__get('SerialNumber'));
-        
+        $this->bind(':Sold', $laptop->__get('Sold'));
+
         
         $this->execute();
 
@@ -81,7 +82,7 @@ class laptopTDG extends Model
     public function update($laptop)
     {
         $this->query('UPDATE laptop SET ModelNumber = :ModelNumber, DisplayDimensions = :DisplayDimensions, Brand = :Brand, Price = :Price,
-                            Weight = :Weight, SerialNumber = :SerialNumber) WHERE SerialNumber = :SerialNumber');
+                            Weight = :Weight, SerialNumber = :SerialNumber, Sold = :Sold) WHERE SerialNumber = :SerialNumber');
         $this->bind(':ModelNumber', $laptop->__get('ModelNumber'));
         $this->bind(':DisplayDimensions', $laptop->__get('DisplayDimensions'));
         $this->bind(':Brand', $laptop->__get('Brand'));
@@ -96,7 +97,8 @@ class laptopTDG extends Model
         $this->bind(':ToucheScreenToggle', $laptop->__get('ToucheScreenToggle'));
         $this->bind(':CameraToggle', $laptop->__get('CameraToggle'));
         $this->bind(':SerialNumber', $laptop->__get('SerialNumber'));
-        
+        $this->bind(':Sold', $laptop->__get('Sold'));
+
         $this->execute();
 
         return $this->lastInsertId();

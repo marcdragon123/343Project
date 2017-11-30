@@ -16,6 +16,7 @@ class Product extends DomainObject
     protected $Price;
     protected $SerialNumber;
     protected $ProductType;
+    protected $Sold = false;
 
     public function __construct($type)
     {

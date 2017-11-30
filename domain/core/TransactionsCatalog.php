@@ -8,11 +8,12 @@ class TransactionsCatalog
     private static $instance;
 
     /**
-     * @return ProductCatalog
+     * @return TransactionsCatalog
      */
     public static function getInstance()
     {
         if (self::$instance === null) {
+            self::$instance = new TransactionsCatalog();
         }
         return self::$instance;
     }
@@ -21,19 +22,20 @@ class TransactionsCatalog
     {
         $this->transactionsFile = new File('transactionsFile.txt');
 
-        $this->transactionsContainer = $this->getProductContainer();
+        $this->transactionsContainer = $this->getTransactionContainer();
     }
 
     /**
      * @param Transaction $transaction
      * @throws Exception
      */
-    public function add(Transaction $transaction)
+    public function addTransaction(Transaction $transaction)
     {
-        if (isset($this->productContainer[$transaction->__get('ProductType')][$transaction->__get('SerialNumber')])) {
-            throw new Exception("Product Serial Number Already Exists");
+        if (isset($this->transactionsContainer[$transaction->__get('transactionID')][$transaction->__get('userEmail')])) {
+            throw new Exception("Transaction Number Already Exists");
         }
-        $this->transactionsContainer[$transaction->__get('ProductType')][$transaction->__get('SerialNumber')] = $transaction;
+        $this->transactionsContainer[$transaction->__get('transactionID')][$transaction->__get('userEmail')] = $transaction;
+        //var_dump($this->transactionsContainer);
         $this->transactionsFile->write($this->transactionsContainer, true);
     }
 
@@ -42,12 +44,12 @@ class TransactionsCatalog
      * @throws Exception
      */
 
-    public function modifyProduct(Transaction $transaction)
+    public function modifyTransaction(Transaction $transaction)
     {
-        if (!isset($this->productContainer[$transaction->__get('ProductType')][$transaction->__get('SerialNumber')])) {
+        if (!isset($this->transactionsContainer[$transaction->__get('transactionID')][$transaction->__get('userEmail')])) {
             throw new Exception("Product is not in the Product Catalog");
         }
-        $this->transactionsContainer[$transaction->__get('ProductType')][$transaction->__get('SerialNumber')] = $transaction;
+        $this->transactionsContainer[$transaction->__get('transactionID')][$transaction->__get('userEmail')] = $transaction;
         $this->transactionsFile->write($this->transactionsContainer, true);
     }
 
@@ -55,34 +57,43 @@ class TransactionsCatalog
      * @param Transaction $transaction
      * @throws Exception
      */
-    public function deleteProduct(Transaction $transaction)
+    public function deleteTransaction(Transaction $transaction)
     {
 
-        if (!isset($this->transactionsContainer[$transaction->__get('ProductType')][$transaction->__get('SerialNumber')])) {
+        if (!isset($this->transactionsContainer[$transaction->__get('transactionID')][$transaction->__get('userEmail')])) {
             throw new Exception("Product is not in the Product Catalog");
         }
-        unset($this->transactionsContainer[$transaction->__get('ProductType')][$transaction->__get('SerialNumber')]);
+        unset($this->transactionsContainer[$transaction->__get('transactionID')][$transaction->__get('userEmail')]);
+        $this->transactionsFile->write($this->transactionsContainer, true);
     }
 
     /**
      * @param $transactionID
-     * @return Transaction
+     * @param $userEmail
+     * @return mixed
      * @throws Exception
      */
-    public function getProduct($transactionID){
+    public function getTransaction($transactionID, $userEmail){
 
-        if (!isset($this->productContainer[$transactionID])) {
+        if (!isset($this->transactionsContainer[$transactionID][$userEmail])) {
             throw new Exception("Product is not in the Product Catalog");
         }
-        return $this->transactionsContainer[$transactionID];
+        return $this->transactionsContainer[$transactionID][$userEmail];
     }
 
     /**
      * @return mixed
      */
-    private function getProductContainer()
+    private function getTransactionContainer()
     {
         $temp = $this->transactionsFile->read($this->transactionsFile->getFileName());
         return $temp[0];
+    }
+
+    public function taken($transactionID){
+        if (isset($this->transactionsContainer[$transactionID])) {
+            return true;
+        }
+        return false;
     }
 }

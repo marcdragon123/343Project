@@ -2,9 +2,6 @@
 
 class ShoppingCart extends DomainObject
 {
-    protected $id;
-    protected $customerEmail;
-    protected $product;
     protected $shoppingCart;
     protected $numOfProducts;
     protected static $cartTotal;

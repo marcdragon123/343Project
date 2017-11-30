@@ -33,8 +33,8 @@ class desktopcomputerTDG extends Model
      */
     public function insert($desktopcomputer)
     {
-        $this->query('INSERT INTO desktopcomputer (ModelNumber, Dimensions, Brand, Price, CPUType, CoreNumber, RAMSize, Weight, HDDSize, SerialNumber)
-                             VALUES(:ModelNumber, :DisplaySize, :DisplayDimensions, :Brand, :Price, :CPUType, :CoreNumber, :RAMSize, :Weight, :HDDSize, :Battery, :OS, :CameraInformation, :SerialNumber)');
+        $this->query('INSERT INTO desktopcomputer (ModelNumber, Dimensions, Brand, Price, CPUType, CoreNumber, RAMSize, Weight, HDDSize, SerialNumber, Sold)
+                             VALUES(:ModelNumber, :DisplaySize, :DisplayDimensions, :Brand, :Price, :CPUType, :CoreNumber, :RAMSize, :Weight, :HDDSize, :Battery, :OS, :CameraInformation, :SerialNumber, :Sold)');
         $this->bind(':ModelNumber', $desktopcomputer->__get('ModelNumber'));
         $this->bind(':Dimensions', $desktopcomputer->__get('Dimensions'));
         $this->bind(':Brand', $desktopcomputer->__get('Brand'));
@@ -45,6 +45,7 @@ class desktopcomputerTDG extends Model
         $this->bind(':Weight', $desktopcomputer->__get('Weight'));
         $this->bind(':HDDSize', $desktopcomputer->__get('HDDSize'));
         $this->bind(':SerialNumber', $desktopcomputer->__get('SerialNumber'));
+        $this->bind(':Sold', $desktopcomputer->__get('Sold'));
 
         $this->execute();
         
@@ -75,7 +76,7 @@ class desktopcomputerTDG extends Model
         $this->query('UPDATE desktopcomputer SET ModelNumber = :ModelNumber, DisplaySize = :DisplaySize, DisplayDimensions = :DisplayDimensions, Brand = :Brand,
                             Price = :Price, CPUType = :CPUType, CoreNumber = :CoreNumber,
                             RAMSize = :RAMSize, Weight = :Weight, HDDSize = :HDDSize, Battery = :Battery, OS = :OS,
-                            CameraInformation = :CameraInformation, SerialNumber = :SerialNumber) WHERE ID = :ID');
+                            CameraInformation = :CameraInformation, SerialNumber = :SerialNumber, Sold = :Sold) WHERE SerialNumber = :SerialNumber');
         $this->bind(':ID', $desktopcomputer->getID());
         $this->bind(':ModelNumber', $desktopcomputer->__get('ModelNumber'));
         $this->bind(':Dimensions', $desktopcomputer->__get('Dimensions'));
@@ -87,6 +88,7 @@ class desktopcomputerTDG extends Model
         $this->bind(':Weight', $desktopcomputer->__get('Weight'));
         $this->bind(':HDDSize', $desktopcomputer->__get('HDDSize'));
         $this->bind(':SerialNumber', $desktopcomputer->__get('SerialNumber'));
+        $this->bind(':Sold', $desktopcomputer->__get('Sold'));
 
         $this->execute();
 

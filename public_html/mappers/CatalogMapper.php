@@ -7,6 +7,12 @@ class CatalogMapper extends MapperAbstract {
     protected $tabletTDG;
     protected $laptopTDG;
     protected $desktopcomputerTDG;
+    protected $transactionsTDG;
+    protected $transactionsCatalog;
+    protected $shoppingCart;
+    protected $cartIdMap;
+    protected $userEmail;
+    protected $UOW;
 
     /**
      * @return CatalogMapper|null
@@ -24,10 +30,19 @@ class CatalogMapper extends MapperAbstract {
      * CatalogMapper constructor.
      */
     private function __construct() {
+        $this->UOW = UnitOfWork::getInstance();
         $this->monitorTDG = new monitorTDG();
         $this->tabletTDG = new tabletTDG();
         $this->laptopTDG = new laptopTDG();
         $this->desktopcomputerTDG = new desktopcomputerTDG();
+        $this->transactionsTDG = new transactionTDG();
+        $this->transactionsCatalog = TransactionsCatalog::getInstance();
+        $this->userEmail = $_SESSION['user_data']['Email'];
+        $this->cartIdMap = ShoppingCartIdMap::getInstance();
+        $this->shoppingCart = $this->cartIdMap->get($this->userEmail);
+        if(is_null($this->shoppingCart)){
+            $this->shoppingCart = new ShoppingCart();
+        }
     }
 
     /**
@@ -60,9 +75,9 @@ class CatalogMapper extends MapperAbstract {
         try{
             //ProductCatalog::getInstance()->addProduct($obj);
             try{
-                $this->_insert($obj);
-                //UnitOfWork::getInstance()->registerNew($obj);
-                //UnitOfWork::getInstance()->commit(CatalogMapper::getInstance());
+                //$this->_insert($obj);
+                UnitOfWork::getInstance()->registerNew($obj);
+                UnitOfWork::getInstance()->commit(CatalogMapper::getInstance());
                 return null;
             }catch (Exception $exception){
                 Messages::setMsg($exception->getMessage(), 'error');
@@ -105,9 +120,9 @@ class CatalogMapper extends MapperAbstract {
         }
         try{
             $this->_update($obj);
-            //UnitOfWork::getInstance()->registerNew($obj);
-            //UnitOfWork::getInstance()->commit(CatalogMapper::getInstance());
-            //return true;
+            UnitOfWork::getInstance()->registerNew($obj);
+            UnitOfWork::getInstance()->commit(CatalogMapper::getInstance());
+            return true;
         }catch (Exception $exception){
                 Messages::setMsg($exception->getMessage(), 'error');
         }
@@ -294,24 +309,28 @@ class CatalogMapper extends MapperAbstract {
     /**
      * Insert the DomainObject to persistent storage
      *
-     * @param Product $obj
+     * @param DomainObject $obj
      */
     public function _insert($obj)
     {
-
-        switch ($obj->__get('ProductType')){
-            case "Tablet":
-                $this->tabletTDG->insert($obj);
-                break;
-            case "Laptop":
-                $this->laptopTDG->insert($obj);
-                break;
-            case "Monitor":
-                $this->monitorTDG->insert($obj);
-                break;
-            case "Desktop":
-                $this->desktopcomputerTDG->insert($obj);
-                break;
+        if(get_class($obj) == 'Transaction'){
+            $this->transactionsTDG->insert($obj);
+        }
+        else {
+            switch ($obj->__get('ProductType')) {
+                case "Tablet":
+                    $this->tabletTDG->insert($obj);
+                    break;
+                case "Laptop":
+                    $this->laptopTDG->insert($obj);
+                    break;
+                case "Monitor":
+                    $this->monitorTDG->insert($obj);
+                    break;
+                case "Desktop":
+                    $this->desktopcomputerTDG->insert($obj);
+                    break;
+            }
         }
     
     }
@@ -363,5 +382,76 @@ class CatalogMapper extends MapperAbstract {
                 break;
         }
     }
+
+    public function addToCart($product){
+        try{
+            ProductCatalog::getInstance()->addedToCart($product);
+            $this->shoppingCart->addToCart($product);
+            $this->cartIdMap->add($this->shoppingCart, $this->userEmail);
+            //var_dump($this->shoppingCart);
+            return ;
+        }catch (Exception $exception){
+            Messages::setMsg($exception->getMessage(),'error');
+        }
+    }
+
+    public function removeFromCart($productType, $serialNumber){
+        try{
+            $productObj = $this->shoppingCart->getInCartProduct($productType,$serialNumber);
+            ProductCatalog::getInstance()->removedFromCart($productObj);
+            $this->shoppingCart->removeFromCart($productType, $serialNumber);
+            $this->cartIdMap->add($this->shoppingCart, $this->userEmail);
+        }
+        catch (Exception $exception){
+            Messages::setMsg($exception->getMessage(), 'error');
+        }
+    }
+
+    public function viewCart(){
+        try{
+            return $this->shoppingCart;
+        }catch (Exception $exception){
+            Messages::setMsg($exception->getMessage(), 'error');
+        }
+    }
+
+
+    public function checkout(){
+        $transaction = new Transaction($this->userEmail);
+        $myCartProducts = $this->viewCart()->getCartProducts();
+        $transaction->setPurchasedProducts($myCartProducts);
+        $transaction->setProducts();
+        $transaction->__set('totalCost', $this->shoppingCart->getTotal());
+        $this->addToTransactionCatalog($transaction);
+        $this->UOW->registerNew($transaction);
+        $this->UOW->commit(CatalogMapper::getInstance());
+    }
+
+
+    /**
+     * @param Transaction $transaction
+     */
+    public function addToTransactionCatalog($transaction){
+        $transactionID = rand();
+        $transaction->__set('transactionID', $transactionID);
+        $this->transactionsCatalog->addTransaction($transaction);
+        $this->setAsSold($transaction);
+        //$this->cartIdMap->remove($this->userEmail);
+
+    }
+
+    /**
+     * @param Transaction $transaction
+     */
+    public function setAsSold($transaction){
+        foreach ($transaction->getPurchasedProducts() as $product => $item){
+            foreach ($item as $product){
+                $product->__set('Sold', true);
+                $this->UOW->registerDirty($product);
+            }
+        }
+        //$this->UOW->commit(CatalogMapper::getInstance());
+    }
+
 
 }

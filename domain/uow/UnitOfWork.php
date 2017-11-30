@@ -71,7 +71,6 @@ class UnitOfWork
         }
 
         $this->newObjects[spl_object_hash($object)] = $object;
-        var_dump($this->newObjects[spl_object_hash($object)]);
         $this->newFile->write($this->newObjects, false);
 
     }
@@ -114,7 +113,6 @@ class UnitOfWork
      */
     public function insertNew($map){
         if(!is_null($this->newObjects)){
-            var_dump($this->newObjects);
             foreach($this->newObjects as $newObject => $value) {
                 $map->_insert($value);
             }

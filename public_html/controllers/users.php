@@ -147,8 +147,8 @@ class users extends Controller {
 
     }
 
-    public function transaction(){
-
+    public function checkout(){
+        CatalogMapper::getInstance()->checkout();
     }
 
 
