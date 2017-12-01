@@ -40,7 +40,6 @@ class users extends Controller {
     }
 
     public function logout(){
-        var_dump($_SESSION['user_data']);
 
         CustomerMapper::getInstance()->logout($_SESSION['user_data']['Email']);
         unset($_SESSION['is_logged_in']);
@@ -155,6 +154,10 @@ class users extends Controller {
             Messages::setMsg($exception->getMessage(), 'error');
         }
 
+    }
+    
+    public function processReturn() {
+        
     }
 
 
