@@ -33,7 +33,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <?php if(isset($_SESSION['is_logged_in'])) : ?>
-                    <li><a href="<?php echo ROOT_URL; ?>users/deleteUser">Delete Account</a></li>
+                    <li><a href="<?php echo ROOT_URL; ?>users/deleteUser" onclick="return confirm('Click OK to delete your account.');">Delete Account</a></li>
                     <?php if ($_SESSION['user_data']['Type']==='A') :?>
                         <li><a type="logout" href="<?php echo ROOT_URL; ?>admin/logout">Logout</a></li>
                         <li><a href = "<?php echo ROOT_URL; ?>admin/viewAccountCatalog">View List of Users</a></li>
