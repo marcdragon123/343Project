@@ -73,9 +73,8 @@ class CatalogMapper extends MapperAbstract {
             }
         }
         try{
-            //ProductCatalog::getInstance()->addProduct($obj);
+            ProductCatalog::getInstance()->addProduct($obj);
             try{
-                //$this->_insert($obj);
                 UnitOfWork::getInstance()->registerNew($obj);
                 UnitOfWork::getInstance()->commit(CatalogMapper::getInstance());
                 return null;
@@ -119,10 +118,9 @@ class CatalogMapper extends MapperAbstract {
                 Messages::setMsg($exception->getMessage(), 'error');
         }
         try{
-            $this->_update($obj);
-            UnitOfWork::getInstance()->registerNew($obj);
+            UnitOfWork::getInstance()->registerDirty($obj);
             UnitOfWork::getInstance()->commit(CatalogMapper::getInstance());
-            return true;
+            //return true;
         }catch (Exception $exception){
                 Messages::setMsg($exception->getMessage(), 'error');
         }
@@ -130,7 +128,14 @@ class CatalogMapper extends MapperAbstract {
 
     public function setTimer(Product $obj){
         $obj->__set("status", time()+LOCKED_TIME);
-        CatalogMapper::getInstance()->modifyProduct($obj);
+        $this->updateTime($obj);
+    }
+
+    /**
+     * @param Product $obj
+     */
+    public function updateTime(Product $obj){
+        ProductCatalog::getInstance()->modifyProduct($obj);
     }
 
     /**
@@ -177,7 +182,6 @@ class CatalogMapper extends MapperAbstract {
                 }
             }
         }
-
         return $array;
     }
 
@@ -332,7 +336,6 @@ class CatalogMapper extends MapperAbstract {
                     break;
             }
         }
-    
     }
 
     /**
@@ -342,7 +345,6 @@ class CatalogMapper extends MapperAbstract {
      */
     public function _update($obj)
     {
-
         switch ($obj->__get('ProductType')){
             case "Tablet":
                 $this->tabletTDG->update($obj);
@@ -369,6 +371,7 @@ class CatalogMapper extends MapperAbstract {
     {
         switch ($obj->__get('ProductType')){
             case "Tablet":
+                echo 'about to update Tablet'.'<br>';
                 $this->tabletTDG->update($obj);
                 break;
             case "Laptop":
@@ -417,26 +420,29 @@ class CatalogMapper extends MapperAbstract {
 
 
     public function checkout(){
+        if(is_null($this->shoppingCart->getCartProducts())){
+            throw new Exception('Cannot perform transaction on an empty cart');
+        }
         $transaction = new Transaction($this->userEmail);
-        $myCartProducts = $this->viewCart()->getCartProducts();
-        $transaction->setPurchasedProducts($myCartProducts);
-        $transaction->setProducts();
+        $transaction->setPurchasedProducts($this->shoppingCart->getCartProducts());
         $transaction->__set('totalCost', $this->shoppingCart->getTotal());
-        $this->addToTransactionCatalog($transaction);
         $this->UOW->registerNew($transaction);
-        $this->UOW->commit(CatalogMapper::getInstance());
+        return $this->addToTransactionCatalog($transaction);
+
     }
 
 
     /**
-     * @param Transaction $transaction
+     * @param $transaction
+     * @return int $transactionID;
      */
     public function addToTransactionCatalog($transaction){
         $transactionID = rand();
         $transaction->__set('transactionID', $transactionID);
         $this->transactionsCatalog->addTransaction($transaction);
         $this->setAsSold($transaction);
-        //$this->cartIdMap->remove($this->userEmail);
+        $this->cartIdMap->remove($this->userEmail);
+        return $transactionID;
 
     }
 
@@ -446,11 +452,11 @@ class CatalogMapper extends MapperAbstract {
     public function setAsSold($transaction){
         foreach ($transaction->getPurchasedProducts() as $product => $item){
             foreach ($item as $product){
-                $product->__set('Sold', true);
+                $product->__set('Sold', 1);
                 $this->UOW->registerDirty($product);
             }
         }
-        //$this->UOW->commit(CatalogMapper::getInstance());
+        $this->UOW->commit(CatalogMapper::getInstance());
     }
 
 

@@ -209,8 +209,8 @@
                                     <td><label>Price</label><br>
                                         <input type="text" placeholder="e.g. $999, $1299" name ="Price" required><br></td>
 
-                                    <td><label>Display Size (inches)</label><br>
-                                        <input type="text" placeholder="e.g. 13x15" name="DisplaySize" required><br></td>
+                                    <td><label>Dimensions (inches)</label><br>
+                                        <input type="text" placeholder="e.g. 13x15" name="DisplayDimensions" required><br></td>
 
                                     <input type="hidden" name="ProductType" value="Monitor">
 

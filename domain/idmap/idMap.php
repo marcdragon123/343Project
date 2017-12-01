@@ -76,7 +76,6 @@ class IdMap
         }
         unset($this->container[$objectName][$email]);
         $this->customerFile->write($this->container, true);
-        var_dump($email);
         return $this;
     }
 

@@ -58,6 +58,7 @@ class CustomerMapper extends MapperAbstract{
                 return true;
             }
             Messages::setMsg($userObj->__get('FirstName').", login from admin page please", 'error');
+            return false;
         }
 
         //if email is not in idmap, check db
@@ -77,7 +78,7 @@ class CustomerMapper extends MapperAbstract{
                     $usr = $this->populate($usr, $userObj);
                     $usr->__set('LoginStatus', true);
                     $this->updateLoginSession($usr);
-                    //$this->idMap->add($usr, 'Customer');
+                    $this->idMap->add($usr, 'Customer');
                     return true;
                 }
                 Messages::setMsg('Admin login from admin page', 'error');
@@ -120,17 +121,8 @@ class CustomerMapper extends MapperAbstract{
         }
         $this->idMap->add($obj, 'Customer');
         $this->UOW->registerNew($obj);
-        //$this->UOW->commit(CustomerMapper::getInstance());
+        $this->UOW->commit(CustomerMapper::getInstance());
         return $obj;
-    }
-
-    /**
-     * @param Customer $obj
-     */
-    public function delete($obj)
-    {
-        //$this->idMap->remove('Customer', $obj->__get('Email'));
-        //$this->UOW->registerDeleted($obj);
     }
 
     /**

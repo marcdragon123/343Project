@@ -91,7 +91,7 @@ class users extends Controller {
         while ($_POST){
             if ($_SESSION['is_logged_in']){
                 if(!($_SESSION['user_data']['Type'] === 'A')){
-                    if(TransactionsMapper::getInstance()->addToCart($viewmodel)){
+                    if(CatalogMapper::getInstance()->addToCart($viewmodel)){
                         Messages::setMsg('Product has been added to your cart and will remain there for the next 7 minutes', '');
                         break;
                     }
@@ -106,7 +106,7 @@ class users extends Controller {
 
     public function cart()
     {
-        $viewmodel = TransactionsMapper::getInstance()->viewCart();
+        $viewmodel = CatalogMapper::getInstance()->viewCart();
         try{
             $viewmodel->getCartProducts();
         }catch (Exception $exception){
@@ -117,7 +117,7 @@ class users extends Controller {
         $get = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
 
         if ($get && isset($get["ProductType"]) && isset($get["SerialNumber"])) {
-            TransactionsMapper::getInstance()->removeFromCart($get["ProductType"], $get["SerialNumber"]);
+            CatalogMapper::getInstance()->removeFromCart($get["ProductType"], $get["SerialNumber"]);
             header('Location:' .ROOT_URL . 'users/cart');
         }
     }
@@ -148,7 +148,13 @@ class users extends Controller {
     }
 
     public function checkout(){
-        CatalogMapper::getInstance()->checkout();
+        try{
+            $transactionID = CatalogMapper::getInstance()->checkout();
+            Messages::setMsg('Transaction Complete, your transaction number is: ' . $transactionID, '');
+        }catch (Exception $exception){
+            Messages::setMsg($exception->getMessage(), 'error');
+        }
+
     }
 
 

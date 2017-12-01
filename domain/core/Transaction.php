@@ -33,6 +33,7 @@ class Transaction extends DomainObject
 
     public function setPurchasedProducts(array $products){
         $this->purchasedProducts = $products;
+        $this->setProducts();
     }
 
     public function setProducts(){

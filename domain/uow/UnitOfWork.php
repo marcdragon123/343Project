@@ -81,7 +81,6 @@ class UnitOfWork
     {
         $this->deletedObjects[spl_object_hash($object)] = $object;
         $this->deletedFile->write($this->deletedObjects, true);
-
     }
     /**
      * @param DomainObject $object
@@ -128,7 +127,7 @@ class UnitOfWork
             foreach ($this->dirtyObjects as $updateObject => $value) {
                 $map->_update($value);
             }
-            $this->newFile->purge();
+            $this->dirtyFile->purge();
         }
 
     }

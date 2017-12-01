@@ -19,11 +19,10 @@ class transactionTDG extends model
 
     public function insert($transaction)
     {
-        var_dump($transaction);
-        $this->query('INSERT INTO `Transaction` (TotalCost,TransactionID, productType1, ProductSerialNumber1,
+        $this->query('INSERT INTO `Transaction` (TransactionID,TotalCost , productType1, ProductSerialNumber1,
                 productType2, ProductSerialNumber2, productType3, ProductSerialNumber3, productType4, ProductSerialNumber4, productType5,
                 ProductSerialNumber5, productType6, ProductSerialNumber6, productType7, ProductSerialNumber7, Email) VALUES
-                (:TotalCost, :TransactionID , :productType1, :ProductSerialNumber1, :productType2,
+                (:TransactionID, :TotalCost , :productType1, :ProductSerialNumber1, :productType2,
                  :ProductSerialNumber2, :productType3, :ProductSerialNumber3, :productType4, :ProductSerialNumber4, :productType5,
                   :ProductSerialNumber5, :productType6, :ProductSerialNumber6, :productType7, :ProductSerialNumber7, :Email) ');
         $this->bind(':TotalCost', $transaction->__get('totalCost'));
@@ -43,6 +42,7 @@ class transactionTDG extends model
         $this->bind(':productType7', $transaction->__get('productType7'));
         $this->bind(':ProductSerialNumber7', $transaction->__get('serialNumber7'));
         $this->bind(':Email', $transaction->__get('userEmail'));
+        echo $transaction->__get('userEmail');
 
         $this->execute();
 
