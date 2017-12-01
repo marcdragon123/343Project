@@ -32,7 +32,7 @@ class UserTDG extends Model
      */
     public function findAll()
     {
-        $this->query('SELECT * FROM account ORDER BY userID');
+        $this->query('SELECT * FROM account ORDER BY UserID');
         $users = $this->resultSet();
         return $users;
     }

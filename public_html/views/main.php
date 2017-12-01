@@ -22,9 +22,9 @@
                         <li><a href="<?php echo ROOT_URL; ?>admin">Home</a></li>
                         <li><a href = "<?php echo ROOT_URL; ?>admin/viewProductCatalog">View Catalog</a></li>
                     <?php else :?>
+                        <li><a href="<?php echo ROOT_URL; ?>">Home</a></li>
                     <?php endif;?>
                 <?php endif;?>
-                <li><a href="<?php echo ROOT_URL; ?>">Home</a></li>
 
                 <?php if(isset($_SESSION['is_logged_in'])) : ?>
                 <?php else :?>
@@ -35,10 +35,10 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <?php if(isset($_SESSION['is_logged_in'])) : ?>
-                    <li><a href="<?php echo ROOT_URL; ?>">Welcome <?php echo ucwords($_SESSION['user_data']['FirstName']); ?></a></li>
                     <li><a href="<?php echo ROOT_URL; ?>users/deleteUser">Delete Account</a></li>
                     <?php if ($_SESSION['user_data']['Type']==='A') :?>
                         <li><a type="logout" href="<?php echo ROOT_URL; ?>admin/logout">Logout</a></li>
+                        <li><a href = "<?php echo ROOT_URL; ?>admin/viewAccountCatalog">View List of Users</a></li>
                     <?php else :?>
                         <li><a href="<?php echo ROOT_URL; ?>users/processReturn">Returns</a></li>
                         <li><a type="logout" href="<?php echo ROOT_URL; ?>users/logout">Logout</a></li>

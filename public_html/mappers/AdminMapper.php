@@ -211,4 +211,10 @@ class AdminMapper extends MapperAbstract{
 
     }
 
+    public function getAllCustomers() {
+        if (isset($_SESSION['is_logged_in'])){
+            return $this->userTDG->findAll();
+        }
+    }
+
 }

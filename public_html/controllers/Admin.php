@@ -113,4 +113,12 @@ class admin extends Controller {
         }
     }
 
+    public function viewAccountCatalog() {
+
+        $viewmodel = AdminMapper::getInstance()->getAllCustomers();
+        //var_dump($viewmodel);
+        $this->returnView($viewmodel, true);
+        
+    }
+
 }
