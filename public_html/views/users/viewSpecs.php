@@ -21,10 +21,10 @@
     };
     window.onload = function(){
 
-        $("#title").html("View product");
+        $("#title").html("Vie product");
         $("#product").val("<?= $viewmodel->__get('ProductType'); ?>");
         $("#product").change();
-        //$("#product").attr('disabled', 'disabled');
+        $("#product").attr('disabled', 'disabled');
 
 
         $("input").attr("disabled", "disabled");
@@ -80,8 +80,9 @@
 </script>
 <div class="panel panel-default" id="page-wrapper">
     <div class="panel-heading">
+        <h3>Add Product</h3>
         <div class="row">
-            <select name="productType" id="product" hidden>
+            <select name="productType" id="product">
                 <option value="" disabled="disabled" selected="selected">Choose Product to Enter</option>
                 <option value="Tablet">Tablet</option>
                 <option value="Monitor">Monitor</option>
@@ -193,7 +194,7 @@
                                         <input type="text" placeholder="e.g. 17 x 25 x 1" name ="DisplayDimensions" required><br></td>
 
                                     <td><label>Weight (kg)</label><br>
-                                        <input type="text" placeholder="e.g. 0.8 kg, 1 kg" name ="Weight" required><br></td>
+                                        <input type="text" placeholder="Weight (kg)" name ="Weight" required><br></td>
 
                                     <td><label>Processor Type</label><br>
                                         <input type="text" placeholder="e.g. 2.6 GHz Intel Core i5" name ="CPUType" required><br></td>
@@ -258,8 +259,8 @@
                                     <td><label>Price</label><br>
                                         <input type="text" placeholder="e.g. $999, $1299" name ="Price" required><br></td>
 
-                                    <td><label>Display Size (inches)</label><br>
-                                        <input type="text" placeholder="" name="DisplaySize" required><br></td>
+                                    <td><label>Dimensions (inches)</label><br>
+                                        <input type="text" placeholder="" name="DisplayDimensions" required><br></td>
 
                                     <input type="hidden" name="ProductType" value="Monitor">
 
@@ -315,7 +316,7 @@
                                         <input type="text" placeholder="e.g. 17 x 25 x 1" name ="DisplayDimensions" required><br></td>
 
                                     <td><label>Weight (kg)</label><br>
-                                        <input type="text" placeholder="e.g. 0.8 kg, 1 kg" name ="Weight" required><br></td>
+                                        <input type="text" placeholder="Weight (kg)" name ="Weight" required><br></td>
 
                                     <td><label>Hard Drive Size</label><br>
                                         <input type="text" placeholder="e.g. 256 GB, 512 GB" name="HDDSize" required><br></td>

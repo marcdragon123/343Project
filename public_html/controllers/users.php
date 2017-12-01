@@ -40,6 +40,7 @@ class users extends Controller {
     }
 
     public function logout(){
+        var_dump($_SESSION['user_data']);
 
         CustomerMapper::getInstance()->logout($_SESSION['user_data']['Email']);
         unset($_SESSION['is_logged_in']);
@@ -61,8 +62,14 @@ class users extends Controller {
 
 
     public function viewProductCatalog(){
+
         $viewmodel = CatalogMapper::getInstance()->getAllProductsAvailable();
-        $this->returnView($viewmodel, true);
+        if(!is_null($viewmodel)){
+            $this->returnView($viewmodel, true);
+        }
+        else{
+            Messages::setMsg('Product Catalog is empty', 'error');
+        }
     }
 
     /**
@@ -78,27 +85,27 @@ class users extends Controller {
     public function viewSpecs()
     {
         $viewmodel = CatalogMapper::getInstance()->getProductSpecification($_GET['ProductType'], $_GET['SerialNumber']);
-        $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
         if (CatalogMapper::getInstance()->isAvailable($viewmodel)) {
             $this->returnView($viewmodel, true);
         } else {
             Messages::setMsg("This can't be accessed because someone's already viewing this file.", '');
-            header("Location: " . ROOT_URL . "users/viewProductCatalog");
+            //header("Location: " . ROOT_URL . "users/viewProductCatalog");
         }
 
-        while ($_POST){
-            if ($_SESSION['is_logged_in']){
-                if(!($_SESSION['user_data']['Type'] === 'A')){
-                    if(CatalogMapper::getInstance()->addToCart($viewmodel)){
-                        Messages::setMsg('Product has been added to your cart and will remain there for the next 7 minutes', '');
-                        break;
+        if($_POST){
+            if ($_SESSION['is_logged_in']) {
+                if (!($_SESSION['user_data']['Type'] === 'A')) {
+                    try{
+                        CatalogMapper::getInstance()->addToCart($viewmodel);
+                    }catch (Exception $exception){
+                        Messages::setMsg('Product Already Added to Cart', 'error');
                     }
+                }else{
                     Messages::setMsg('Only customers may add products to their cart', '');
-                    break;
                 }
+            }else{
                 Messages::setMsg('You must be logged in to cart', 'error');
-                break;
             }
         }
     }
@@ -116,8 +123,9 @@ class users extends Controller {
         $get = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
 
         if ($get && isset($get["ProductType"]) && isset($get["SerialNumber"])) {
-            CatalogMapper::getInstance()->removeFromCart($get["ProductType"], $get["SerialNumber"]);
-            header('Location:' .ROOT_URL . 'users/cart');
+            if(CatalogMapper::getInstance()->removeFromCart($get["ProductType"], $get["SerialNumber"])){
+                header('Location: ' . ROOT_URL. 'users/cart');
+            }
         }
     }
 
@@ -139,7 +147,6 @@ class users extends Controller {
             else{
                 if(!CatalogMapper::getInstance()->isAvailable($product)){
                     Messages::setMsg("An admin took over this page, try to access it again in few minutes.", '');
-                    echo "tookover";
                 }
             }
         }
@@ -147,18 +154,33 @@ class users extends Controller {
     }
 
     public function checkout(){
-        try{
-            $transactionID = CatalogMapper::getInstance()->checkout();
-            Messages::setMsg('Transaction Complete, your transaction number is: ' . $transactionID, '');
-        }catch (Exception $exception){
-            Messages::setMsg($exception->getMessage(), 'error');
+        $viewmodel = CatalogMapper::getInstance()->checkout();
+        $this->returnView($viewmodel, true);
+    }
+
+    public function returns(){
+        if(!isset($_SESSION['is_logged_in'])) {
+            Messages::setMsg('Must Log in for returns', '');
+            header('Location: '. ROOT_URL. 'users/login');
         }
-
-    }
-    
-    public function processReturn() {
-        
+        $email = $_SESSION['user_data']['Email'];
+        $viewmodel = CatalogMapper::getInstance()->getAllTransactions($email);
+        $this->returnView($viewmodel, true);
     }
 
+    public function viewTransaction(){
+        $email = $_SESSION['user_data']['Email'];
+        $viewmodel = CatalogMapper::getInstance()->getTransaction($_GET['transactionID'], $email);
+
+        $this->returnView($viewmodel, true);
+
+        $get = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
+
+        if ($get && isset($get["ProductType"]) && isset($get["SerialNumber"]) && isset($get["transactionID"])) {
+            CatalogMapper::getInstance()->returnProduct($get["ProductType"], $get["SerialNumber"]);
+            CatalogMapper::getInstance()->modifyTransaction($get['transactionID'], $email,$get["ProductType"], $get["SerialNumber"]);
+            header('Location: ' . ROOT_URL. 'users/returns');
+        }
+    }
 
 }

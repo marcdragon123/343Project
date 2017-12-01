@@ -172,8 +172,8 @@
 
                                 </tr>
 
-                                    <td><label>Model Number</label><br>
-                                        <input type="text" placeholder="e.g. MHJR56B7VC6" name ="ModelNumber" pattern="[A-Z0-9]{10,45}" required><br></td>
+                                <td><label>Model Number</label><br>
+                                    <input type="text" placeholder="e.g. MHJR56B7VC6" name ="ModelNumber" pattern="[A-Z0-9]{10,45}" required><br></td>
 
                                 <td><br><input type="checkbox" name="ToucheScreenToggle">
                                     <label for="touchScreen">Touch Screen</label><br></td>

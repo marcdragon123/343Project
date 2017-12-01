@@ -50,6 +50,9 @@
 </script>
 
 
+
+                            <input class="btn btn-primary" name="delete" type="submit" value="Delete"/>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
     $(document).ready(function(){
@@ -81,7 +84,7 @@
 </script>
 <div class="panel panel-default" id="page-wrapper">
     <div class="panel-heading">
-        <h3>Edit Product</h3>
+        <h3>Add Product</h3>
         <div class="row">
             <select name="productType" id="product">
                 <option value="" disabled="disabled" selected="selected">Choose Product to Enter</option>
@@ -105,59 +108,60 @@
 
                                     <input type="hidden" name="ProductType" value="Tablet">
 
+                                    <td><label>Serial Number</label><br>
+                                        <input type="text" placeholder="e.g. FQ2R84HEWXH8" name ="SerialNumber" pattern="[A-Z0-9]{10,45}" required></td>
+
                                     <td><label>Brand Name</label><br>
-                                        <input type="text" placeholder="e.g. Apple, Microsoft" name ="Brand" required></td>
+                                        <input type="text" placeholder="e.g. Apple, Microsoft" name ="Brand" pattern="^[a-zA-Z0-9][a-zA-Z0-9\s]*" required></td>
 
-                                    <td><label>Price</label><br>
-                                        <input type="text" placeholder="e.g. $999, $1299" name ="Price" required></td>
+                                    <td><label>Price (CAD$)</label><br>
+                                        <input type="text" placeholder="e.g. 999, 1299" name ="Price" pattern="^\d+(.\d{2})?$" required></td>
 
-                                    <td><label>Battery Life</label><br>
-                                        <input type="text" placeholder="e.g. 6 hours, 8 hours" name="Battery" required></td>
+                                    <td><label>Battery Life (hours)</label><br>
+                                        <input type="text" placeholder="e.g. 6, 8, 12" name="Battery" pattern="^[1-9][0-9]*" required></td>
 
                                 </tr>
                                 <tr>
 
                                     <td><label>Display Size (inches)</label><br>
-                                        <input type="text" placeholder="e.g. 7&quot;, 11&quot;" name ="DisplaySize" required><br></td>
+                                        <input type="text" placeholder="e.g. 11, 13.3, 15.5" name ="DisplaySize" pattern="^\d+(.\d{1})?$" required><br></td>
 
                                     <td><label>Dimensions (cm)</label><br>
-                                        <input type="text" placeholder="e.g. 22 x 28 x 1" name ="DisplayDimensions" required><br></td>
+                                        <input type="text" placeholder="e.g. 22 x 28 x 1" name ="DisplayDimensions" pattern="^[1-9][0-9]*\sx\s[1-9][0-9]*\sx\s[1-9][0-9]*"required><br></td>
 
                                     <td><label>Weight (kg)</label><br>
-                                        <input type="text" placeholder="e.g. 0.8 kg, 1 kg" name ="Weight" required><br></td>
+                                        <input type="text" placeholder="e.g. 0.8, 1, 5" name ="Weight" pattern="^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$" required><br></td>
 
                                     <td><label>Model Number</label><br>
-                                        <input type="text" placeholder="e.g. MHJR5VC6" name ="ModelNumber" required><br></td>
+                                        <input type="text" placeholder="e.g. MHJR56B7VC6" name ="ModelNumber" pattern="[A-Z0-9]{10,45}" required><br></td>
 
                                 </tr>
                                 <tr>
 
                                     <td><label>Processor Type</label><br>
-                                        <input type="text" placeholder="e.g. A8, A9X" name ="CPUType" required><br></td>
+                                        <input type="text" placeholder="e.g. A8, A9X" name ="CPUType" pattern="^[a-zA-Z0-9][a-zA-Z0-9\s.]*" required><br></td>
 
-                                    <td><label>RAM Size</label><br>
-                                        <input type="text" placeholder="e.g. 2GB, 3GB" name ="RAMSize" required><br></td>
+                                    <td><label>RAM Size (GB)</label><br>
+                                        <input type="text" placeholder="e.g. 2, 4, 8" name ="RAMSize" pattern="^[1-9][0-9]{0,2}" required><br></td>
 
                                     <td><label>Number of CPU Cores</label><br>
-                                        <input type="text" placeholder="e.g. 2, 4" name ="CoreNumber" required><br></td>
+                                        <input type="text" placeholder="e.g. 2, 4" name ="CoreNumber" pattern="^[1-9][0-9]?" required><br></td>
 
                                 </tr>
                                 <tr>
 
-                                    <td><label>Hard Drive Size</label><br>
-                                        <input type="text" placeholder="e.g. 64GB, 128GB" name="HDDSize" required><br></td>
+                                    <td><label>Hard Drive Size (GB)</label><br>
+                                        <input type="text" placeholder="e.g. 64, 128" name="HDDSize" pattern="^[1-9][0-9]{0,3}" required><br></td>
 
                                     <td><label>Operating System</label><br>
-                                        <input type="text" placeholder="e.g. iOS 11" name="OS" required><br></td>
+                                        <input type="text" placeholder="e.g. iOS 11" name="OS" pattern="^[a-zA-Z0-9][a-zA-Z0-9\s.]*" required><br></td>
 
-                                    <td><label>Camera Pixels</label><br>
-                                        <input type="text" placeholder="e.g. 10 megapixels" name="CameraInformation" required><br></td>
+                                    <td><label>Camera Pixels (MP)</label><br>
+                                        <input type="text" placeholder="e.g. 8, 10, 12" name="CameraInformation" pattern="^[1-9][0-9]?" required><br></td>
 
                                 </tbody>
                             </table>
                             <input class="btn btn-primary" name="submit" type="submit" value="Submit"/>
-                            <input class="btn btn-primary" name="delete" type="submit" value="Delete"/>
-
                         </div>
                         <!-- /.table-responsive -->
                     </div>
@@ -175,52 +179,55 @@
 
                                     <input type="hidden" name="ProductType" value="Laptop">
 
-                                    <td><label>Brand Name</label><br>
-                                        <input type="text" placeholder="e.g. Apple, Microsoft" name ="Brand" required><br></td>
+                                    <td><label>Serial Number</label><br>
+                                        <input type="text" placeholder="e.g. FQ2R84HEWXH8" name ="SerialNumber" pattern="[A-Z0-9]{10,45}" required></td>
 
-                                    <td><label>Price</label><br>
-                                        <input type="text" placeholder="e.g. $999, $1299" name ="Price" required><br></td>
+                                    <td><label>Brand Name</label><br>
+                                        <input type="text" placeholder="e.g. Apple, Microsoft" name ="Brand" pattern="^[a-zA-Z0-9][a-zA-Z0-9\s]*" required></td>
+
+                                    <td><label>Price (CAD$)</label><br>
+                                        <input type="text" placeholder="e.g. 999, 1299" name ="Price" pattern="^\d+(.\d{2})?$" required></td>
 
                                     <td><label>Display Size (inches)</label><br>
-                                        <input type="text" placeholder="e.g. 13&quot;, 15&quot;" name ="DisplaySize" required><br></td>
+                                        <input type="text" placeholder="e.g. 11, 13.3, 15.5" name ="DisplaySize" pattern="^\d+(.\d{1})?$" required><br></td>
 
                                 </tr>
                                 <tr>
 
                                     <td><label>Dimensions (cm)</label><br>
-                                        <input type="text" placeholder="e.g. 17 x 25 x 1" name ="DisplayDimensions" required><br></td>
+                                        <input type="text" placeholder="e.g. 22 x 28 x 1" name ="DisplayDimensions" pattern="^[1-9][0-9]*\sx\s[1-9][0-9]*\sx\s[1-9][0-9]*"required><br></td>
 
                                     <td><label>Weight (kg)</label><br>
-                                        <input type="text" placeholder="Weight (kg)" name ="Weight" required><br></td>
+                                        <input type="text" placeholder="e.g. 0.8, 1, 5" name ="Weight" pattern="^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$" required><br></td>
 
                                     <td><label>Processor Type</label><br>
-                                        <input type="text" placeholder="e.g. 2.6 GHz Intel Core i5" name ="CPUType" required><br></td>
+                                        <input type="text" placeholder="e.g. A8, A9X" name ="CPUType" pattern="^[a-zA-Z0-9][a-zA-Z0-9\s.]*" required><br></td>
 
-                                    <td><label>RAM Size</label><br>
-                                        <input type="text" placeholder="e.g. 8GB, 16GB" name ="RAMSize" required><br></td>
+                                    <td><label>RAM Size (GB)</label><br>
+                                        <input type="text" placeholder="e.g. 2, 4, 8" name ="RAMSize" pattern="^[1-9][0-9]{0,2}" required><br></td>
 
                                 </tr>
                                 <tr>
 
                                     <td><label>Number of CPU Cores</label><br>
-                                        <input type="text" placeholder="e.g. 4, 8" name ="CoreNumber" required><br></td>
+                                        <input type="text" placeholder="e.g. 2, 4" name ="CoreNumber" pattern="^[1-9][0-9]?" required><br></td>
 
-                                    <td><label>Battery Life</label><br>
-                                        <input type="text" placeholder="e.g. 6 hours, 8 hours" name="Battery" required><br></td>
+                                    <td><label>Battery Life (hours)</label><br>
+                                        <input type="text" placeholder="e.g. 6, 8, 12" name="Battery" pattern="^[1-9][0-9]*" required></td>
 
                                     <td><label>Operating System</label><br>
-                                        <input type="text" placeholder="e.g. Mac OS X, Windows 10" name="OS" required><br></td>
+                                        <input type="text" placeholder="e.g. iOS 11" name="OS" pattern="^[a-zA-Z0-9][a-zA-Z0-9\s.]*" required><br></td>
 
-                                    <td><label>Hard Drive Size</label><br>
-                                        <input type="text" placeholder="e.g. 256 GB, 512 GB" name="HDDSize" required><br></td>
+                                    <td><label>Hard Drive Size (GB)</label><br>
+                                        <input type="text" placeholder="e.g. 64, 128" name="HDDSize" pattern="^[1-9][0-9]{0,3}" required><br></td>
 
-                                    <td><label>Camera Information</label><br>
-                                        <input type="text" placeholder="e.g. 4 MP, 6 MP" name="CameraInformation" required><br></td>
+                                    <td><label>Camera Pixels (MP)</label><br>
+                                        <input type="text" placeholder="e.g. 8, 10, 12" name="CameraInformation" pattern="^[1-9][0-9]?" required><br></td>
 
                                 </tr>
 
                                 <td><label>Model Number</label><br>
-                                    <input type="text" placeholder="e.g. MHJR5VC6" name ="ModelNumber" required><br></td>
+                                    <input type="text" placeholder="e.g. MHJR56B7VC6" name ="ModelNumber" pattern="[A-Z0-9]{10,45}" required><br></td>
 
                                 <td><br><input type="checkbox" name="ToucheScreenToggle">
                                     <label for="touchScreen">Touch Screen</label><br></td>
@@ -232,7 +239,6 @@
                                 </tbody>
                             </table>
                             <input class="btn btn-primary" name="submit" type="submit" value="Submit"/>
-                            <input class="btn btn-primary" name="delete" type="submit" value="Delete"/>
                         </div>
                         <!-- /.table-responsive -->
                     </div>
@@ -248,14 +254,17 @@
                                 <tbody>
                                 <tr>
 
+                                    <td><label>Serial Number</label><br>
+                                        <input type="text" placeholder="e.g. FQ2R84HEWXH8" name ="SerialNumber" pattern="[A-Z0-9]{10,45}" required></td>
+
                                     <td><label>Brand Name</label><br>
-                                        <input type="text" placeholder="e.g. Apple, Microsoft" name ="Brand" required><br></td>
+                                        <input type="text" placeholder="e.g. Apple, Microsoft" name ="Brand" pattern="^[a-zA-Z0-9][a-zA-Z0-9\s]*" required></td>
 
-                                    <td><label>Price</label><br>
-                                        <input type="text" placeholder="e.g. $999, $1299" name ="Price" required><br></td>
+                                    <td><label>Price (CAD$)</label><br>
+                                        <input type="text" placeholder="e.g. 999, 1299" name ="Price" pattern="^\d+(.\d{2})?$" required></td>
 
-                                    <td><label>Dimensions (inches)</label><br>
-                                        <input type="text" placeholder="e.g. 13x15" name="DisplayDimensions" required><br></td>
+                                    <td><label>Display Size (inches)</label><br>
+                                        <input type="text" placeholder="e.g. 11, 13.3, 15.5" name ="DisplaySize" pattern="^\d+(.\d{1})?$" required><br></td>
 
                                     <input type="hidden" name="ProductType" value="Monitor">
 
@@ -263,11 +272,10 @@
                                 <tr>
 
                                     <td><label>Weight (kg)</label><br>
-                                        <input type="text" placeholder="e.g. 0.8 kg, 1 kg" name ="Weight" required><br></td>
+                                        <input type="text" placeholder="e.g. 0.8, 1, 5" name ="Weight" pattern="^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$" required><br></td>
 
                                     <td><label>Model Number</label><br>
-                                        <input type="text" placeholder="e.g. MHJR5VC6" name ="ModelNumber" required><br></td>
-
+                                        <input type="text" placeholder="e.g. MHJR56B7VC6" name ="ModelNumber" pattern="[A-Z0-9]{10,45}" required><br></td>
                                 </tr>
                                 <br>
                                 <tr>
@@ -275,8 +283,6 @@
                                 </tbody>
                             </table>
                             <input class="btn btn-primary" name="submit" type="submit" value="Submit"/>
-                            <input class="btn btn-primary" name="delete" type="submit" value="Delete"/>
-
                         </div>
                         <!-- /.table-responsive -->
                     </div>
@@ -294,45 +300,46 @@
 
                                     <input type="hidden" name="ProductType" value="Desktop">
 
-                                    <td><label>Brand Name</label><br>
-                                        <input type="text" placeholder="e.g. Apple, Microsoft" name ="Brand" required><br></td>
+                                    <td><label>Serial Number</label><br>
+                                        <input type="text" placeholder="e.g. FQ2R84HEWXH8" name ="SerialNumber" pattern="[A-Z0-9]{10,45}" required></td>
 
-                                    <td><label>Price</label><br>
-                                        <input type="text" placeholder="e.g. $999, $1299" name ="Price" required><br></td>
+                                    <td><label>Brand Name</label><br>
+                                        <input type="text" placeholder="e.g. Apple, Microsoft" name ="Brand" pattern="^[a-zA-Z0-9][a-zA-Z0-9\s]*" required></td>
+
+                                    <td><label>Price (CAD$)</label><br>
+                                        <input type="text" placeholder="e.g. 999, 1299" name ="Price" pattern="^\d+(.\d{2})?$" required></td>
 
                                     <td><label>Processor Type</label><br>
-                                        <input type="text" placeholder="e.g. 2.6 GHz Intel Core i5" name ="CPUType" required><br></td>
+                                        <input type="text" placeholder="e.g. A8, A9X" name ="CPUType" pattern="^[a-zA-Z0-9][a-zA-Z0-9\s.]*" required><br></td>
 
                                 </tr>
                                 <tr>
 
                                     <td><label>Dimensions (cm)</label><br>
-                                        <input type="text" placeholder="e.g. 17 x 25 x 1" name ="DisplayDimensions" required><br></td>
+                                        <input type="text" placeholder="e.g. 22 x 28 x 1" name ="DisplayDimensions" pattern="^[1-9][0-9]*\sx\s[1-9][0-9]*\sx\s[1-9][0-9]*"required><br></td>
 
                                     <td><label>Weight (kg)</label><br>
-                                        <input type="text" placeholder="Weight (kg)" name ="Weight" required><br></td>
+                                        <input type="text" placeholder="e.g. 0.8, 1, 5" name ="Weight" pattern="^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$" required><br></td>
 
-                                    <td><label>Hard Drive Size</label><br>
-                                        <input type="text" placeholder="e.g. 256 GB, 512 GB" name="HDDSize" required><br></td>
+                                    <td><label>Hard Drive Size (GB)</label><br>
+                                        <input type="text" placeholder="e.g. 64, 128" name="HDDSize" pattern="^[1-9][0-9]{0,3}" required><br></td>
 
                                 </tr>
                                 <tr>
 
                                     <td><label>Model Number</label><br>
-                                        <input type="text" placeholder="e.g. MHJR5VC6" name ="ModelNumber" required><br></td>
+                                        <input type="text" placeholder="e.g. MHJR56B7VC6" name ="ModelNumber" pattern="[A-Z0-9]{10,45}" required><br></td>
 
                                     <td><label>Number of CPU Cores</label><br>
-                                        <input type="text" placeholder="e.g. 4, 8" name ="CoreNumber" required><br></td>
+                                        <input type="text" placeholder="e.g. 2, 4" name ="CoreNumber" pattern="^[1-9][0-9]?" required><br></td>
 
-                                    <td><label>RAM Size</label><br>
-                                        <input type="text" placeholder="e.g. 8GB, 16GB" name ="RAMSize" required><br></td>
+                                    <td><label>RAM Size (GB)</label><br>
+                                        <input type="text" placeholder="e.g. 2, 4, 8" name ="RAMSize" pattern="^[1-9][0-9]{0,2}" required><br></td>
 
                                 </tr>
                                 </tbody>
                             </table>
                             <input class="btn btn-primary" name="submit" type="submit" value="Submit"/>
-                            <input class="btn btn-primary" name="delete" type="submit" value="Delete"/>
-
                         </div>
                         <!-- /.table-responsive -->
                     </div>
@@ -345,8 +352,6 @@
 
 
 </body>
-
-
 <?php
 $edit = true;
 ?>
