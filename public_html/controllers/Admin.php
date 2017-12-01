@@ -59,7 +59,7 @@ class admin extends Controller {
             header('Location: '.ROOT_URL.'home');
         }
         $viewmodel = CatalogMapper::getInstance()->getAllProducts();
-
+        //var_dump($viewmodel);
         $this->returnView($viewmodel, true);
     }
 
@@ -116,7 +116,7 @@ class admin extends Controller {
     public function viewAccountCatalog() {
 
         $viewmodel = AdminMapper::getInstance()->getAllCustomers();
-        //var_dump($viewmodel);
+        // var_dump($viewmodel);
         $this->returnView($viewmodel, true);
         
     }
