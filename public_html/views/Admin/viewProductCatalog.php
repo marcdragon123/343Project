@@ -14,42 +14,42 @@
         </select>
     </div>
 
-<script>
-    $(document).ready(function(){
-        $('#product').on('change', function() {
-            if(this.value == ""){
-                $(".Tablet").show();
-                $(".Monitor").show();
-                $(".Laptop").show();
-                $(".Desktop").show();
-            }
-            else if (this.value == "Tablet"){
-                $(".Tablet").show();
-                $(".Monitor").hide();
-                $(".Laptop").hide();
-                $(".Desktop").hide();
-            }
-            else if (this.value == "Monitor"){
-                $(".Monitor").show();
-                $(".Tablet").hide();
-                $(".Laptop").hide();
-                $(".Desktop").hide();
-            }
-            else if (this.value == "Laptop"){
-                $(".Laptop").show();
-                $(".Tablet").hide();
-                $(".Monitor").hide();
-                $(".Desktop").hide();
-            }
-            else if (this.value == "Desktop"){
-                $(".Desktop").show();
-                $(".Monitor").hide();
-                $(".Laptop").hide();
-                $(".Tablet").hide();
-            }
+    <script>
+        $(document).ready(function(){
+            $('#product').on('change', function() {
+                if(this.value == ""){
+                    $(".Tablet").show();
+                    $(".Monitor").show();
+                    $(".Laptop").show();
+                    $(".Desktop").show();
+                }
+                else if (this.value == "Tablet"){
+                    $(".Tablet").show();
+                    $(".Monitor").hide();
+                    $(".Laptop").hide();
+                    $(".Desktop").hide();
+                }
+                else if (this.value == "Monitor"){
+                    $(".Monitor").show();
+                    $(".Tablet").hide();
+                    $(".Laptop").hide();
+                    $(".Desktop").hide();
+                }
+                else if (this.value == "Laptop"){
+                    $(".Laptop").show();
+                    $(".Tablet").hide();
+                    $(".Monitor").hide();
+                    $(".Desktop").hide();
+                }
+                else if (this.value == "Desktop"){
+                    $(".Desktop").show();
+                    $(".Monitor").hide();
+                    $(".Laptop").hide();
+                    $(".Tablet").hide();
+                }
+            });
         });
-    });
-</script>
+    </script>
 
     <div>
         <?php

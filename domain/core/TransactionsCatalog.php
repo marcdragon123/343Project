@@ -70,7 +70,7 @@ class TransactionsCatalog
     /**
      * @param $transactionID
      * @param $userEmail
-     * @return mixed
+     * @return Transaction
      * @throws Exception
      */
     public function getTransaction($transactionID, $userEmail){

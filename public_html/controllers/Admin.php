@@ -59,7 +59,7 @@ class admin extends Controller {
             header('Location: '.ROOT_URL.'home');
         }
         $viewmodel = CatalogMapper::getInstance()->getAllProducts();
-        //var_dump($viewmodel);
+
         $this->returnView($viewmodel, true);
     }
 
@@ -90,26 +90,29 @@ class admin extends Controller {
         $this->returnView(null, true);
     }
 
-    public function editProductSpecs(){
+    public function editProductSpecs()
+    {
         $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
-        $viewmodel = CatalogMapper::getInstance()->getProductSpecification($_GET['ProductType'],$_GET['SerialNumber'] );
+        $viewmodel = CatalogMapper::getInstance()->getProductSpecification($_GET['ProductType'], $_GET['SerialNumber']);
 
-
-        if($post){
-            foreach($post as $key => $value){
-                if($key != "SerialNumber" && @$viewmodel->__get($key) != $value) {
+        if (isset($post['submit'])) {
+            foreach ($post as $key => $value) {
+                if ($key != "SerialNumber" && @$viewmodel->__get($key) != $value) {
                     @$viewmodel->__set($key, $value);
                 }
             }
             $viewmodel->__set("status", 0);
             CatalogMapper::getInstance()->modifyProduct($viewmodel);
             header("Location: " .ROOT_URL. 'admin/viewProductCatalog');
-        }
-        else{
-                CatalogMapper::getInstance()->setTimer($viewmodel);
-                $this->returnView($viewmodel, true);
+        } else {
+            CatalogMapper::getInstance()->setTimer($viewmodel);
+            $this->returnView($viewmodel, true);
 
+        }
+        if (isset($post['delete'])) {
+            CatalogMapper::getInstance()->deleteProduct($viewmodel);
+            header("Location: " .ROOT_URL. 'admin/viewProductCatalog');
         }
     }
 
@@ -118,7 +121,7 @@ class admin extends Controller {
         $viewmodel = AdminMapper::getInstance()->getAllCustomers();
         // var_dump($viewmodel);
         $this->returnView($viewmodel, true);
-        
+
     }
 
 }

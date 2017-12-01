@@ -20,7 +20,8 @@
         $("#title").html("View Product Specs");
         $("#product").val("<?= $viewmodel->__get('ProductType'); ?>");
         $("#product").change();
-        $("#product").attr('disabled', 'disabled');
+
+        //$("#product").attr('disabled', 'disabled');
         //$("input[name='SerialNumber']").prop("disabled", "disabled");
 
 
@@ -155,6 +156,8 @@
                                 </tbody>
                             </table>
                             <input class="btn btn-primary" name="submit" type="submit" value="Submit"/>
+                            <input class="btn btn-primary" name="delete" type="submit" value="Delete"/>
+
                         </div>
                         <!-- /.table-responsive -->
                     </div>
@@ -229,6 +232,7 @@
                                 </tbody>
                             </table>
                             <input class="btn btn-primary" name="submit" type="submit" value="Submit"/>
+                            <input class="btn btn-primary" name="delete" type="submit" value="Delete"/>
                         </div>
                         <!-- /.table-responsive -->
                     </div>
@@ -250,8 +254,8 @@
                                     <td><label>Price</label><br>
                                         <input type="text" placeholder="e.g. $999, $1299" name ="Price" required><br></td>
 
-                                    <td><label>Display Size (inches)</label><br>
-                                        <input type="text" placeholder="e.g. 13x15" name="DisplaySize" required><br></td>
+                                    <td><label>Dimensions (inches)</label><br>
+                                        <input type="text" placeholder="e.g. 13x15" name="DisplayDimensions" required><br></td>
 
                                     <input type="hidden" name="ProductType" value="Monitor">
 
@@ -271,6 +275,8 @@
                                 </tbody>
                             </table>
                             <input class="btn btn-primary" name="submit" type="submit" value="Submit"/>
+                            <input class="btn btn-primary" name="delete" type="submit" value="Delete"/>
+
                         </div>
                         <!-- /.table-responsive -->
                     </div>
@@ -325,6 +331,8 @@
                                 </tbody>
                             </table>
                             <input class="btn btn-primary" name="submit" type="submit" value="Submit"/>
+                            <input class="btn btn-primary" name="delete" type="submit" value="Delete"/>
+
                         </div>
                         <!-- /.table-responsive -->
                     </div>

@@ -21,6 +21,7 @@ class Product extends DomainObject
     public function __construct($type)
     {
         $this->ProductType = $type;
+        $this->status = time();
     }
 
     /**

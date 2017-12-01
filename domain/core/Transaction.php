@@ -31,20 +31,33 @@ class Transaction extends DomainObject
         $this->isComplete = true;
     }
 
-    public function setPurchasedProducts(array $products){
-        $this->purchasedProducts = $products;
-        $this->setProducts();
-    }
-
     public function setProducts(){
+        $this->totalCost = 0;
         foreach ($this->getPurchasedProducts() as $product => $item){
             foreach ($item as $product){
                 $i = 1;
                 $this->__set("productType$i", $product->__get('ProductType'));
                 $this->__set("serialNumber$i", $product->__get('SerialNumber'));
+                $this->totalCost = $this->totalCost + $product->__get('Price');
                 $i++;
             }
         }
+    }
+
+    public function addToTransaction($product){
+        if (isset($this->purchasedProducts[$product->__get('ProductType')][$product->__get('SerialNumber')])) {
+            throw new Exception("This Product is already in your cart");
+        }
+        $this->purchasedProducts[$product->__get('ProductType')][$product->__get('SerialNumber')] = $product;
+        $this->setProducts();
+    }
+
+    public function removeFromTransaction($productType, $serialNumber){
+        if(!isset($this->purchasedProducts[$productType][$serialNumber])){
+            throw new Exception('Your cart is empty');
+        }
+        unset($this->purchasedProducts[$productType][$serialNumber]);
+        $this->setProducts();
     }
 
     public function getPurchasedProducts(){
@@ -60,4 +73,6 @@ class Transaction extends DomainObject
     {
         return $this->$name;
     }
+
+
 }

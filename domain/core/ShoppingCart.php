@@ -39,6 +39,10 @@ class ShoppingCart extends DomainObject
 
     }
 
+    public function getCart(){
+        return $this->shoppingCart;
+    }
+
     /**
      * @param $productType
      * @param $serialNumber

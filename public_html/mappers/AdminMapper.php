@@ -64,7 +64,6 @@ class AdminMapper extends MapperAbstract{
         $userObj = $this->userTDG->find($post['Email']);
         if(!is_null($userObj)){
             if($userObj['Password'] === $post['Password']){
-                var_dump($userObj);
                 if($userObj["Type"] == "A") {
                     $_SESSION['is_logged_in'] = true;
                     $_SESSION['user_data'] = array(

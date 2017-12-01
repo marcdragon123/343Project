@@ -36,8 +36,8 @@ class laptopTDG extends Model
      */
     public function insert($laptop)
     {
-        $this->query('INSERT INTO laptop (ModelNumber, DisplayDimensions, Brand, Price, CPUType, CoreNumber, RAMSize, Weight, HDDSize, Battery, OS, ToucheScreenToggle, CameraToggle, SerialNumber, Sold) 
-                             VALUES(:ModelNumber, :DisplayDimensions, :Brand, :Price, :CPUType, :CoreNumber,:RAMSize,:Weight,:HDDSize,:Battery,:OS,:ToucheScreenToggle, :CameraToggle, :SerialNumber, :Sold)');
+        $this->query('INSERT INTO laptop (ModelNumber, DisplayDimensions, Brand, Price, CPUType, CoreNumber, RAMSize, Weight, HDDSize, Battery, OS, ToucheScreenToggle, CameraToggle, SerialNumber) 
+                             VALUES(:ModelNumber, :DisplayDimensions, :Brand, :Price, :CPUType, :CoreNumber,:RAMSize,:Weight,:HDDSize,:Battery,:OS,:ToucheScreenToggle, :CameraToggle, :SerialNumber)');
         $this->bind(':ModelNumber', $laptop->__get('ModelNumber'));
         $this->bind(':DisplayDimensions', $laptop->__get('DisplayDimensions'));
         $this->bind(':Brand', $laptop->__get('Brand'));
@@ -51,24 +51,20 @@ class laptopTDG extends Model
         $this->bind(':OS', $laptop->__get('OS'));
         $this->bind(':ToucheScreenToggle', $laptop->__get('ToucheScreenToggle'));
         $this->bind(':CameraToggle', $laptop->__get('CameraToggle'));
-        $this->bind(':SerialNumber', $laptop->__get('SerialNumber'));
-        $this->bind(':Sold', $laptop->__get('Sold'));
-
-        
+        $this->bind(':SerialNumber', 0);
         $this->execute();
 
-        
         return $this->lastInsertId();
     }
 
     /**
      * deletes Product from DB
-     * @param $serialNumber
+     * @param Laptop
      */
-    public function delete($serialNumber)
+    public function delete($laptop)
     {
         $this->query('DELETE FROM laptop WHERE SerialNumber = :SerialNumber');
-        $this->bind(':SerialNumber', $serialNumber);
+        $this->bind(':SerialNumber', $laptop->__get('SerialNumber'));
         $this->execute();
 
         return;
@@ -82,7 +78,7 @@ class laptopTDG extends Model
     public function update($laptop)
     {
         $this->query('UPDATE laptop SET ModelNumber = :ModelNumber, DisplayDimensions = :DisplayDimensions, Brand = :Brand, Price = :Price,
-                            Weight = :Weight, SerialNumber = :SerialNumber, Sold = :Sold) WHERE SerialNumber = :SerialNumber');
+                            Weight = :Weight, SerialNumber = :SerialNumber, Sold = :Sold WHERE SerialNumber = :SerialNumber');
         $this->bind(':ModelNumber', $laptop->__get('ModelNumber'));
         $this->bind(':DisplayDimensions', $laptop->__get('DisplayDimensions'));
         $this->bind(':Brand', $laptop->__get('Brand'));

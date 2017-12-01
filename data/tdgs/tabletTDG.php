@@ -61,12 +61,12 @@ class tabletTDG extends Model
     }
 
     /**
-     * @param $serialNumber
+     * @param Tablet $tablet
      */
-    public function delete($serialNumber)
+    public function delete($tablet)
     {
         $this->query('DELETE FROM tablet WHERE SerialNumber = :SerialNumber');
-        $this->bind(':SerialNumber', $serialNumber);
+        $this->bind(':SerialNumber', $tablet->__get('SerialNumber'));
         $this->execute();
 
         return;
@@ -83,17 +83,11 @@ class tabletTDG extends Model
         $this->query('UPDATE tablet SET ModelNumber=:ModelNumber, DisplaySize=:DisplaySize, DisplayDimensions=:DisplayDimensions, Brand=:Brand, Price=:Price, CPUType=:CPUType, CoreNumber=:CoreNumber, RAMSize=:RAMSize, Weight=:Weight, HDDSize=:HDDSize, Battery=:Battery, OS=:OS, CameraInformation=:CameraInformation, Sold=:Sold WHERE SerialNumber=:SerialNumber');
         $this->bind(':SerialNumber', $tablet->__get('SerialNumber'));
         $this->bind(':ModelNumber', $tablet->__get('ModelNumber'));
-        echo $tablet->__get('ModelNumber').'<br>';
         $this->bind(':DisplaySize', $tablet->__get('DisplaySize'));
-        echo $tablet->__get('DisplaySize').'<br>';
         $this->bind(':DisplayDimensions', $tablet->__get('DisplayDimensions'));
-        echo $tablet->__get('DisplayDimensions').'<br>';
         $this->bind(':Brand', $tablet->__get('Brand'));
-        echo $tablet->__get('Brand').'<br>';
         $this->bind(':Price', $tablet->__get('Price'));
-        echo $tablet->__get('Price').'<br>';
         $this->bind(':CPUType', $tablet->__get('CPUType'));
-        echo $tablet->__get('CPUType').'<br>';
         $this->bind(':CoreNumber', $tablet->__get('CoreNumber'));
         $this->bind(':RAMSize', $tablet->__get('RAMSize'));
         $this->bind(':Weight', $tablet->__get('Weight'));

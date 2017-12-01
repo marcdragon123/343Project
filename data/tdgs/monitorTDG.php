@@ -56,12 +56,12 @@ class monitorTDG extends Model
 
     /**
      * deletes monitor from DB
-     * @param $serialNumber
+     * @param Monitor
      */
-    public function delete($serialNumber)
+    public function delete($monitor)
     {
         $this->query('DELETE FROM monitor WHERE SerialNumber = :SerialNumber');
-        $this->bind(':SerialNumber', $serialNumber);
+        $this->bind(':SerialNumber', $monitor->__get('SerialNumber'));
         $this->execute();
 
         return;
