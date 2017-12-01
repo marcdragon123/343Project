@@ -56,7 +56,7 @@
         foreach($viewmodel as $key => $value){
         foreach ($viewmodel[$key] as $item => $product) { ?>
         <?php echo '<div style="" class="well '.$product->__get('ProductType').'">' ?>
-        <a class="btn btn-primary text-center" href="viewSpecs?ProductType=<?= $product->__get('ProductType') ?>&SerialNumber=<?= $product->__get('SerialNumber') ?>">View Product
+        <a class="btn btn-primary text-center" href="editProductSpecs?ProductType=<?= $product->__get('ProductType') ?>&SerialNumber=<?= $product->__get('SerialNumber') ?>">View Product
             Specs</a>
         <?php echo '<table class="'.$product->__get('ProductType').'">' ?>
         <p class='type1'><?php echo $product->__get('ProductType'); ?></p>
